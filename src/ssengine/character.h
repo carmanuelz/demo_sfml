@@ -105,7 +105,7 @@ namespace sse
         Animation Cstartcile;
         Animation Cruncicle;
         Animation Cidleicle;
-        Animation Catackcicle;
+        Animation Cattackcicle;
         Animation ChideIcle;
         Animation waposhootcicle;
         sf::Texture Cspritesheet;

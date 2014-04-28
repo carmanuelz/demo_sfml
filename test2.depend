@@ -7699,3 +7699,175 @@
 1398089209 source:d:\workspace\c++\test2\src\ssengine\loadconf\luascript.cpp
 	"LuaScript.h"
 
+1398691243 source:d:\workspace\c++\demo_sfml\src\debugrender.cpp
+	"debugrender.h"
+
+1398691243 d:\workspace\c++\demo_sfml\src\debugrender.h
+	<Box2D/Box2D.h>
+	<iostream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+
+1398691243 source:d:\workspace\c++\demo_sfml\src\main.cpp
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<sstream>
+	<Box2D/Box2D.h>
+	<math.h>
+	"rubestuff/b2dJson.h"
+	"debugrender.h"
+	"ssengine/AStarFinder.h"
+	"ssengine/AnimatedSprite.hpp"
+	"ssengine/character.h"
+	"ssengine/loadconf/LuaScript.h"
+
+1398691243 d:\workspace\c++\demo_sfml\src\rubestuff\b2djson.h
+	<stdio.h>
+	<map>
+	<set>
+	<string>
+	<Box2D/Box2D.h>
+	"json/json.h"
+
+1398691243 d:\workspace\c++\demo_sfml\src\rubestuff\json\json.h
+	<cpptl/config.h>
+	"config.h"
+	"forwards.h"
+	"forwards.h"
+	<string>
+	<vector>
+	<map>
+	<cpptl/smallmap.h>
+	<cpptl/forwards.h>
+	"features.h"
+	"value.h"
+	<deque>
+	<stack>
+	<string>
+	<iostream>
+	"value.h"
+	<vector>
+	<string>
+	<iostream>
+
+1398691243 d:\workspace\c++\demo_sfml\src\ssengine\astarfinder.h
+	<string>
+	<vector>
+	<map>
+	<iostream>
+	<SFML/Graphics.hpp>
+	<algorithm>
+	<Box2D/Box2D.h>
+	<math.h>
+
+1398691243 d:\workspace\c++\demo_sfml\src\ssengine\animatedsprite.hpp
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/System/Time.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/System/Vector2.hpp>
+	<iostream>
+	"Animation.hpp"
+
+1398691243 d:\workspace\c++\demo_sfml\src\ssengine\animation.hpp
+	<vector>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Texture.hpp>
+
+1398692505 d:\workspace\c++\demo_sfml\src\ssengine\character.h
+	<string>
+	<vector>
+	<map>
+	<iostream>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<Box2D/Box2D.h>
+	"AnimatedSprite.hpp"
+	"drawableentity.h"
+	"AStarFinder.h"
+	"loadconf/LuaScript.h"
+
+1398691243 d:\workspace\c++\demo_sfml\src\ssengine\drawableentity.h
+	<string>
+	<vector>
+	<map>
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1398691243 d:\workspace\c++\demo_sfml\src\ssengine\loadconf\luascript.h
+	<string>
+	<vector>
+	<iostream>
+	<lua.hpp>
+
+1398691243 source:d:\workspace\c++\demo_sfml\src\rubestuff\b2djson.cpp
+	<istream>
+	<fstream>
+	"b2dJson.h"
+	"json/json.h"
+	"b2dJsonImage.h"
+
+1398691243 d:\workspace\c++\demo_sfml\src\rubestuff\b2djsonimage.h
+	<string>
+	<Box2D/Box2D.h>
+
+1398691243 source:d:\workspace\c++\demo_sfml\src\rubestuff\b2djsonimage.cpp
+	<cstring>
+	<Box2D/Box2D.h>
+	"b2dJsonImage.h"
+
+1398691243 source:d:\workspace\c++\demo_sfml\src\rubestuff\jsoncpp.cpp
+	"json/json.h"
+	<json/reader.h>
+	<json/value.h>
+	"json_tool.h"
+	<utility>
+	<cstdio>
+	<cassert>
+	<cstring>
+	<iostream>
+	<stdexcept>
+	<stdlib.h>
+	<assert.h>
+	<json/value.h>
+	<json/writer.h>
+	"json_batchallocator.h"
+	<iostream>
+	<utility>
+	<stdexcept>
+	<cstring>
+	<cassert>
+	<cpptl/conststring.h>
+	<cstddef>
+	"json_internalarray.inl"
+	"json_internalmap.inl"
+	"json_valueiterator.inl"
+	<json/writer.h>
+	"json_tool.h"
+	<utility>
+	<assert.h>
+	<stdio.h>
+	<string.h>
+	<iostream>
+	<sstream>
+	<iomanip>
+
+1398691243 source:d:\workspace\c++\demo_sfml\src\ssengine\animatedsprite.cpp
+	"AnimatedSprite.hpp"
+
+1398691243 source:d:\workspace\c++\demo_sfml\src\ssengine\animation.cpp
+	"Animation.hpp"
+
+1398691243 source:d:\workspace\c++\demo_sfml\src\ssengine\astarfinder.cpp
+	"AStarFinder.h"
+
+1398691243 source:d:\workspace\c++\demo_sfml\src\ssengine\loadconf\luascript.cpp
+	"LuaScript.h"
+
+1398692563 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
+	"character.h"
+

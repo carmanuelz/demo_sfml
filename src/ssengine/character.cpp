@@ -37,8 +37,8 @@ void Character::init()
 
     if(!hasweapon)
     {
-        Catackcicle.setSpriteSheet(Cspritesheet);
-        loadFrames(&Catackcicle, Code+".atack");
+        Cattackcicle.setSpriteSheet(Cspritesheet);
+        loadFrames(&Cattackcicle, Code+".attack");
     }
     else
     {
@@ -112,7 +112,7 @@ void Character::setAnimCicle(int codecicle)
         animated.play(Cruncicle);
         break;
     case 3:
-        animated.play(Catackcicle);
+        animated.play(Cattackcicle);
         break;
     case 4:
         animated.play(ChideIcle);

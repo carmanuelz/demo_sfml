@@ -12,6 +12,7 @@
 #include "ssengine/AnimatedSprite.hpp"
 #include "ssengine/character.h"
 #include "ssengine/loadconf/LuaScript.h"
+#include "ssengine/particlesys.h"
 
 #define DEGTORAD 0.0174532925199432957f
 #define RADTODEG 57.295779513082320876f
@@ -94,6 +95,8 @@ int main()
                   << mode.width << "x" << mode.height << " - "
                   << mode.bitsPerPixel << " bpp" << std::endl;
     }*/
+
+    sse::ParticleSystem particles(1000);
 
     DebugDraw debugDraw = DebugDraw(renderWindow);
     renderWindow.setFramerateLimit(60);
@@ -189,12 +192,16 @@ int main()
             return EXIT_SUCCESS;
         }
 
+        particles.setEmitter(mousePos);
+
         sf::Time frameTime = frameClock.restart();
 		b2Vec2 playerposition = player->updatePlayer();
 		player->updatebehaviour(mousePos.x,mousePos.y);
         character->updateFind();
         character->update(frameTime);
         player->update(frameTime);
+
+        particles.update(frameTime);
 
         m_world->Step( 0.16f, 8, 3 );
 
@@ -287,7 +294,7 @@ int main()
             };
 
         renderWindow.draw(line2, 2, sf::Lines);
-
+        renderWindow.draw(particles);
         m_world->DrawDebugData();
 		renderWindow.display();
 		const float time = 1.f / frameClock.getElapsedTime().asSeconds();
