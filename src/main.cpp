@@ -1,0 +1,287 @@
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <sstream>
+#include <Box2D/Box2D.h>
+#include <math.h>
+
+#include "rubestuff/b2dJson.h"
+#include "debugrender.h"
+#include "ssengine/AStarFinder.h"
+#include "ssengine/AnimatedSprite.hpp"
+#include "ssengine/character.h"
+#include "ssengine/loadconf/LuaScript.h"
+
+#define DEGTORAD 0.0174532925199432957f
+#define RADTODEG 57.295779513082320876f
+
+#define TIMESTEP 1.0f/60.0f     //TIEMPO DE REFRESCO
+#define VELITER 10              //NUMERO DE ITERACION POR TICK PARA CALCULAR LA VELOCIDAD
+#define POSITER 10              //NUMERO DE ITERACIONES POR TICK PARA CALCULAR LA POSICION
+
+#define PPM 64.0f               //PIXELS POR METRO
+#define MPP (1.0f/PPM)          //METROS POR PIXEL
+#define M_PI 3.14159265358979323846
+#define SPEED 0.3
+#define PSPRITEW 48;
+#define PSPRITEH 60;
+#define RIGHT 1;
+#define LEFT 2;
+#define DSHOOT 0.04f;
+
+b2World* m_world;
+
+std::vector<b2Body*> RemoveList;
+std::vector<b2Body*> BulletList;
+std::vector<sse::MyRayCastCallback*> RaycastList;
+
+class ContactListener : public b2ContactListener
+{
+    void BeginContact(b2Contact* contact)
+    {
+        b2Fixture* FixtA = contact->GetFixtureA();
+        b2Fixture* FixtB = contact->GetFixtureB();
+        sse::UserData* userdataA = static_cast<sse::UserData*>(FixtA->GetUserData());
+        sse::UserData* userdataB = static_cast<sse::UserData*>(FixtB->GetUserData());
+        if(userdataA->tipo == 3 && userdataA->estado==0)
+        {
+            RemoveList.push_back(FixtA->GetBody());
+            userdataA->estado=1;
+        }
+        else
+            if(userdataB->tipo == 3 && userdataB->estado==0)
+            {
+                RemoveList.push_back(FixtB->GetBody());
+                userdataB->estado=1;
+            }
+    }
+
+    void EndContact(b2Contact* contact)
+    {
+    }
+};
+
+int main()
+{
+    std::string errMsg;
+    sf::Clock stepClock;
+    sf::VideoMode videomode(800, 600, 32);
+	sf::RenderWindow renderWindow(videomode, "Test"/*,sf::Style::Fullscreen*/);
+	renderWindow.setVerticalSyncEnabled(true);
+    renderWindow.setMouseCursorVisible(false);
+    sf::Vector2i screnSize((int)renderWindow.getSize().x,(int)renderWindow.getSize().y);
+
+    /*std::vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
+    for (std::size_t i = 0; i < modes.size(); ++i)
+    {
+        sf::VideoMode mode = modes[i];
+        std::cout << "Mode #" << i << ": "
+                  << mode.width << "x" << mode.height << " - "
+                  << mode.bitsPerPixel << " bpp" << std::endl;
+    }*/
+
+    DebugDraw debugDraw = DebugDraw(renderWindow);
+    renderWindow.setFramerateLimit(60);
+
+    sf::Texture groundT;
+    if(!groundT.loadFromFile("maps/area1.png"))
+	{
+		return EXIT_FAILURE;
+	}
+	sf::Sprite groundS;
+	groundS.setTexture(groundT);
+	b2dJson json;
+
+	m_world = json.readFromFile("maps/nivel1.json", errMsg);
+	if ( ! m_world )
+    {
+        std::cout << "Failed to load scene"<<std::endl;
+        return false;
+    }
+
+    ContactListener GameCL;
+	m_world -> SetContactListener(&GameCL);
+    std::vector<b2Fixture*> blocFixtures;
+    json.getFixturesByName("block",blocFixtures);
+
+    for (b2Body* b = m_world->GetBodyList(); b; b = b->GetNext())
+        for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
+        {
+            int tipo = json.getCustomInt(f, "tipo");
+            sse::UserData* ud = new sse::UserData();
+            ud->tipo = tipo;
+            f->SetUserData(ud);
+        }
+
+    for ( b2Body* b = m_world->GetBodyList(); b; b = b->GetNext())
+    {
+        int tipo = json.getCustomInt(b, "tipo");
+        sse::UserData* ud = new sse::UserData();
+        ud->tipo = tipo;
+        b->SetUserData(ud);
+    }
+
+    sse::AStarFinder* AStarta = new sse::AStarFinder(32,30,30,&blocFixtures);
+
+    LuaScript* script = new LuaScript("Player.lua");
+
+    sse::AICharacter* character = new sse::AICharacter(700,400,4,"mob001",m_world,script);
+    character->setRenderWindows(&renderWindow);
+    character->setpathfinding(AStarta,32);
+
+    sse::Player* player = new sse::Player(100,100,1,"player01",m_world,script);
+    player->setRenderWindows(&renderWindow);
+    player->setBulletList(&BulletList);
+
+    sf::Sprite targetS;
+    sf::Texture targetT;
+
+	if(!targetT.loadFromFile("assets/target.png"))
+	{
+		return EXIT_FAILURE;
+	}
+
+	targetS.setTexture(targetT);
+	sf::Vector2f centro;
+	centro.x = targetS.getTextureRect().width / 2.f;
+	centro.y = targetS.getTextureRect().height / 2.f;
+	targetS.setOrigin(centro);
+
+    //character->setTarget(player->Body);
+
+    debugDraw.SetFlags( b2Draw::e_shapeBit );
+    m_world->SetDebugDraw(&debugDraw);
+
+	sf::Clock frameClock;
+	float acumulator = 0;
+	//-----------------------------------//
+
+	while(renderWindow.isOpen())
+	{
+		//poll input
+		sf::Event event;
+		while(renderWindow.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				renderWindow.close();
+        }
+        sf::View view = renderWindow.getView();
+        sf::Vector2f mousePos(sf::Mouse::getPosition(renderWindow).x + view.getCenter().x - screnSize.x/2 ,sf::Mouse::getPosition(renderWindow).y + view.getCenter().y - screnSize.y/2);
+
+
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+        {
+            return EXIT_SUCCESS;
+        }
+
+        sf::Time frameTime = frameClock.restart();
+		b2Vec2 playerposition = player->updatePlayer();
+		player->updatebehaviour(mousePos.x,mousePos.y);
+        character->updateFind();
+        character->update(frameTime);
+        player->update(frameTime);
+
+        m_world->Step( 0.16f, 8, 3 );
+
+        while(!RemoveList.empty())
+        {
+            b2Body* b = RemoveList.back();
+            m_world -> DestroyBody(b);
+            RemoveList.pop_back();
+            std::vector<b2Body*>::iterator it = std::find(BulletList.begin(), BulletList.end(), b);
+            if ( it != BulletList.end() )
+                BulletList.erase( it );
+        }
+
+		renderWindow.clear();
+		renderWindow.draw(groundS);
+
+        stepClock.restart();
+        sf::Vector2f offsetview = sf::Vector2f((playerposition.x - view.getCenter().x)*0.1f,(playerposition.y - view.getCenter().y)*0.1f);
+        if(offsetview.x<0.5 && offsetview.x > -0.5)
+            offsetview.x = 0;
+        if(offsetview.y<0.5 && offsetview.y > -0.5)
+            offsetview.y = 0;
+
+        view.move(offsetview.x,offsetview.y);
+        renderWindow.setView(view);
+
+        character->draw();
+        player->draw();
+
+        targetS.setPosition(mousePos);
+        renderWindow.draw(targetS);
+
+        for(auto k = BulletList.cbegin() ; k != BulletList.cend() ; k++ )
+        {
+            b2Body* b = *k;
+            sf::Sprite* bulletS(static_cast<sf::Sprite*>(b->GetUserData()));
+            bulletS->setRotation(b->GetAngle()*RADTODEG);
+            bulletS->setPosition( b->GetPosition().x*PPM, b->GetPosition().y*PPM);
+            renderWindow.draw(*bulletS);
+        }
+        /*raycast*/
+        b2Vec2 p1 = player->Body->GetPosition();
+
+        /*int numRays = 20;
+        for (int i = 0; i < numRays; i++) {
+            float angle = (i / (float)numRays) * 360 * DEGTORAD;
+            b2Vec2 rayDir( sinf(angle), cosf(angle) );
+            b2Vec2 p2 = p1 + 5 * rayDir;
+
+            //check what this ray hits
+            sse::MyRayCastCallback callback;//basic callback to record body and hit point
+            m_world->RayCast(&callback, p1, p2);
+            if ( callback.m_fixture )
+                p2 = b2Vec2(callback.m_point.x, callback.m_point.y);
+
+            sf::Vertex line[] =
+            {
+                sf::Vertex(sf::Vector2f(p1.x*PPM, p1.y*PPM)),
+                sf::Vertex(sf::Vector2f(p2.x*PPM, p2.y*PPM))
+            };
+
+            renderWindow.draw(line, 2, sf::Lines);
+        }*/
+        b2Vec2 p3 = character->Body->GetPosition();
+        b2Vec2 dif2 = p1 - p3;
+        float module2 = sqrt(pow(dif2.x,2)+pow(dif2.y,2));
+        b2Vec2 p4 = p3 + b2Vec2(dif2.x/module2*4,dif2.y/module2*4);
+        sse::MyRayCastCallback RayCastCallback2;
+        m_world->RayCast(&RayCastCallback2, p3 , p4);
+        if ( RayCastCallback2.m_fixture )
+        {
+            if(character->Target == 0)
+            {
+                b2Body* bodyB = RayCastCallback2.m_fixture->GetBody();
+                sse::UserData* userdataA = static_cast<sse::UserData*>(bodyB->GetUserData());
+                if(userdataA->tipo == 1)
+                {
+                    character->setAnimCicle(2);
+                    character->setTarget(player->Body);
+                }
+            }
+            p4 = b2Vec2(RayCastCallback2.m_point.x, RayCastCallback2.m_point.y);
+        }
+
+
+        sf::Vertex line2[] =
+            {
+                sf::Vertex(sf::Vector2f(p3.x*PPM, p3.y*PPM)),
+                sf::Vertex(sf::Vector2f(p4.x*PPM, p4.y*PPM))
+            };
+
+        renderWindow.draw(line2, 2, sf::Lines);
+
+        m_world->DrawDebugData();
+		renderWindow.display();
+		const float time = 1.f / frameClock.getElapsedTime().asSeconds();
+		std::stringstream stream;
+		stream << "Use the cursor keys to move the view. Current fps: " << time << std::endl;
+		renderWindow.setTitle(stream.str());
+
+	}
+
+	return 0;
+}

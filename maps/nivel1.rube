@@ -1,0 +1,271 @@
+
+{
+  "collisionbitplanes" : 
+  {
+    "names" : 
+    [
+      "bitplane1",
+      "bitplane2",
+      "bitplane3",
+      "bitplane4",
+      "bitplane5",
+      "bitplane6",
+      "bitplane7",
+      "bitplane8",
+      "bitplane9",
+      "bitplane10",
+      "bitplane11",
+      "bitplane12",
+      "bitplane13",
+      "bitplane14",
+      "bitplane15",
+      "bitplane16",
+      "bitplane17",
+      "bitplane18",
+      "bitplane19",
+      "bitplane20",
+      "bitplane21",
+      "bitplane22",
+      "bitplane23",
+      "bitplane24",
+      "bitplane25",
+      "bitplane26",
+      "bitplane27",
+      "bitplane28",
+      "bitplane29",
+      "bitplane30",
+      "bitplane31",
+      "bitplane32"
+    ]
+  },
+  "customPropertyDefs" : 
+  [
+    
+    {
+      "class" : "body",
+      "displayName" : "tipo",
+      "name" : "tipo",
+      "type" : "int"
+    },
+    
+    {
+      "class" : "fixture",
+      "displayName" : "tipo",
+      "name" : "tipo",
+      "type" : "int"
+    }
+  ],
+  "metaworld" : 
+  {
+    "allowSleep" : true,
+    "autoClearForces" : true,
+    "continuousPhysics" : true,
+    "exportOptions" : 
+    {
+      "compactCommonFloats" : true,
+      "compactZeroVecs" : true,
+      "saveFullPathForImages" : false,
+      "saveImagePathsRelativeToRUBEFile" : false,
+      "useHumanReadableFloats" : true,
+      "usePrettyPrint" : true
+    },
+    "gravity" : 0,
+    "metabody" : 
+    [
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "customProperties" : 
+        [
+          
+          {
+            "int" : 2,
+            "name" : "tipo"
+          }
+        ],
+        "fixture" : 
+        [
+          
+          {
+            "customProperties" : 
+            [
+              
+              {
+                "int" : 2,
+                "name" : "tipo"
+              }
+            ],
+            "density" : 1,
+            "filter-categoryBits" : 3,
+            "id" : 1,
+            "name" : "block",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : 
+              [
+                -0.8646036386489868,
+                14.15439319610596,
+                14.15439319610596,
+                13.68864345550537,
+                13.68864345550537,
+                -0.3674443662166596,
+                -0.3899477124214172,
+                4.631270885467529,
+                4.587937355041504,
+                -0.4097603857517242,
+                -0.4009155035018921,
+                13.68864345550537,
+                13.68864345550537,
+                14.15439319610596,
+                14.15439319610596,
+                -0.9038301706314087
+              ],
+              "y" : 
+              [
+                0.9378751516342163,
+                0.9600323438644409,
+                -5.624062538146973,
+                -5.646220684051514,
+                -0.1023981571197510,
+                -0.06944820284843445,
+                -10.14059352874756,
+                -10.17409038543701,
+                -11.53848552703857,
+                -11.54183292388916,
+                -13.64993381500244,
+                -13.67324066162109,
+                -8.107976913452148,
+                -8.145449638366699,
+                -14.10045337677002,
+                -14.10045337677002
+              ]
+            }
+          }
+        ],
+        "id" : 1,
+        "linearVelocity" : 0,
+        "name" : "body0",
+        "position" : 
+        {
+          "x" : 0.8646036386489868,
+          "y" : -0.9378751516342163
+        },
+        "type" : "static"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "customProperties" : 
+        [
+          
+          {
+            "int" : 2,
+            "name" : "tipo"
+          }
+        ],
+        "fixture" : 
+        [
+          
+          {
+            "customProperties" : 
+            [
+              
+              {
+                "int" : 2,
+                "name" : "tipo"
+              }
+            ],
+            "density" : 1,
+            "filter-categoryBits" : 3,
+            "id" : 2,
+            "name" : "block",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : 
+              [
+                -0.5854456424713135,
+                1.416210174560547,
+                1.418981790542603,
+                -0.07996821403503418,
+                -0.09270095825195313,
+                3.925261497497559,
+                3.925261497497559,
+                2.909866571426392,
+                2.909866571426392,
+                4.405416488647461,
+                4.405416488647461,
+                -0.5391378402709961
+              ],
+              "y" : 
+              [
+                -4.000393867492676,
+                -3.991966724395752,
+                -2.987550497055054,
+                -2.987550497055054,
+                0.03035545349121094,
+                0.02920699119567871,
+                -2.987550497055054,
+                -2.987550497055054,
+                -3.963099241256714,
+                -3.991966485977173,
+                0.5126285552978516,
+                0.5126285552978516
+              ]
+            }
+          }
+        ],
+        "id" : 3,
+        "linearVelocity" : 0,
+        "name" : "body2",
+        "position" : 
+        {
+          "x" : 3.079454183578491,
+          "y" : -3.520735502243042
+        },
+        "type" : "static"
+      }
+    ],
+    "metaimage" : 
+    [
+      
+      {
+        "aspectScale" : 1,
+        "center" : 
+        {
+          "x" : 7.500453472137451,
+          "y" : -7.500348091125488
+        },
+        "file" : "area1.png",
+        "filter" : 1,
+        "flip" : false,
+        "id" : 1,
+        "name" : "image0",
+        "opacity" : 0.5,
+        "scale" : 15.0
+      }
+    ],
+    "positionIterations" : 3,
+    "stepsPerSecond" : 60.0,
+    "subStepping" : false,
+    "velocityIterations" : 8,
+    "warmStarting" : true
+  }
+}
