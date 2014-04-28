@@ -260,6 +260,15 @@ b2Body* Character::createBullet(sf::Vector2f origin, sf::Vector2f vel,float angl
 	return bulletB;
 }
 
+void Character::collisionCB(b2Fixture* inFixture)
+{
+    sse::UserData* userdataA = static_cast<sse::UserData*>(inFixture->GetUserData());
+    if(userdataA->tipo == 1)
+    {
+        setAnimCicle(3);
+    }
+}
+
 /* AI Character*/
 void AICharacter::setpathfinding(AStarFinder* inAStart, float intileSize)
 {

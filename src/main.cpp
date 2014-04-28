@@ -55,6 +55,20 @@ class ContactListener : public b2ContactListener
                 RemoveList.push_back(FixtB->GetBody());
                 userdataB->estado=1;
             }
+
+        if(userdataA->tipo == 4)
+        {
+            b2Body* bodyA = FixtA->GetBody();
+            sse::Character* collCharacter = static_cast<sse::Character*>(bodyA->GetUserData());
+            collCharacter->collisionCB(FixtB);
+        }
+        else
+            if(userdataB->tipo == 4)
+            {
+                b2Body* bodyB = FixtB->GetBody();
+                sse::Character* collCharacter = static_cast<sse::Character*>(bodyB->GetUserData());
+                collCharacter->collisionCB(FixtA);
+            }
     }
 
     void EndContact(b2Contact* contact)

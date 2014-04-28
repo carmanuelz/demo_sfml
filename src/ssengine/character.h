@@ -97,7 +97,7 @@ namespace sse
         {
             BulletList = inBulletList;
         }
-        void colitionCB(b2Fixture* inFixture);
+        void collisionCB(b2Fixture* inFixture);
 
         std::vector<b2Body*> *BulletList;
     private:
