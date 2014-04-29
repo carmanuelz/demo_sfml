@@ -43,6 +43,7 @@ class ContactListener : public b2ContactListener
     {
         b2Fixture* FixtA = contact->GetFixtureA();
         b2Fixture* FixtB = contact->GetFixtureB();
+        b2Vec2 point = contact->GetManifold()->points[0].localPoint;
         sse::UserData* userdataA = static_cast<sse::UserData*>(FixtA->GetUserData());
         sse::UserData* userdataB = static_cast<sse::UserData*>(FixtB->GetUserData());
         if(userdataA->tipo == 3 && userdataA->estado==0)
@@ -60,15 +61,17 @@ class ContactListener : public b2ContactListener
         if(userdataA->tipo == 4)
         {
             b2Body* bodyA = FixtA->GetBody();
+            b2Vec2 worldPoint = FixtB->GetBody()->GetWorldPoint(point);
             sse::Character* collCharacter = static_cast<sse::Character*>(bodyA->GetUserData());
-            collCharacter->collisionCB(FixtB);
+            collCharacter->collisionCB(FixtB,worldPoint);
         }
         else
             if(userdataB->tipo == 4)
             {
                 b2Body* bodyB = FixtB->GetBody();
+                b2Vec2 worldPoint = FixtA->GetBody()->GetWorldPoint(point);
                 sse::Character* collCharacter = static_cast<sse::Character*>(bodyB->GetUserData());
-                collCharacter->collisionCB(FixtA);
+                collCharacter->collisionCB(FixtA,worldPoint);
             }
     }
 
@@ -79,6 +82,7 @@ class ContactListener : public b2ContactListener
 
 int main()
 {
+    const sf::Time	explosionDuration	= sf::seconds(0.1f);
     std::string errMsg;
     sf::Clock stepClock;
     sf::VideoMode videomode(800, 600, 32);
@@ -96,7 +100,14 @@ int main()
                   << mode.bitsPerPixel << " bpp" << std::endl;
     }*/
 
-    //sse::ParticleSystem particles(1000);
+    sf::Texture texture;
+	if (!texture.loadFromFile("assets/bloodparticle.png"))
+		return EXIT_FAILURE;
+
+	// Instantiate particle system and add custom affector
+	thor::ParticleSystem system;
+	system.setTexture(texture);
+	system.addAffector(BloodkAffector());
 
     DebugDraw debugDraw = DebugDraw(renderWindow);
     renderWindow.setFramerateLimit(60);
@@ -146,6 +157,7 @@ int main()
     sse::AICharacter* character = new sse::AICharacter(700,400,4,"mob001",m_world,script);
     character->setRenderWindows(&renderWindow);
     character->setpathfinding(AStarta,32);
+    character->setParticleSystem(&system);
 
     sse::Player* player = new sse::Player(100,100,1,"player01",m_world,script);
     player->setRenderWindows(&renderWindow);
@@ -192,16 +204,12 @@ int main()
             return EXIT_SUCCESS;
         }
 
-        //particles.setEmitter(mousePos);
-
         sf::Time frameTime = frameClock.restart();
 		b2Vec2 playerposition = player->updatePlayer();
 		player->updatebehaviour(mousePos.x,mousePos.y);
         character->updateFind();
         character->update(frameTime);
         player->update(frameTime);
-
-        //particles.update(frameTime);
 
         m_world->Step( 0.16f, 8, 3 );
 
@@ -293,9 +301,11 @@ int main()
                 sf::Vertex(sf::Vector2f(p4.x*PPM, p4.y*PPM))
             };
 
-        renderWindow.draw(line2, 2, sf::Lines);
-        //renderWindow.draw(particles);
-        m_world->DrawDebugData();
+        system.update(frameTime);
+		renderWindow.draw(system, sf::BlendAdd);
+
+        //renderWindow.draw(line2, 2, sf::Lines);
+        //m_world->DrawDebugData();
 		renderWindow.display();
 		const float time = 1.f / frameClock.getElapsedTime().asSeconds();
 		std::stringstream stream;

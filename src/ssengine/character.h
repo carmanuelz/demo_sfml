@@ -15,11 +15,14 @@
 #include "drawableentity.h"
 #include "AStarFinder.h"
 #include "loadconf/LuaScript.h"
+#include "particlesys.h"
 
 #define M_PI 3.14159265358979323846
 #define SPEED 0.3
 #define DEGTORAD 0.0174532925199432957f
 #define RADTODEG 57.295779513082320876f
+#define PPM 64.0f               //PIXELS POR METRO
+#define MPP (1.0f/PPM)
 
 
 namespace sse
@@ -92,13 +95,18 @@ namespace sse
         sf::Sprite bulletS;
         sf::Sound soundshoot;
         b2World* world;
+        thor::ParticleSystem* system;
         bool isbusy = false;
         b2Body* createBullet(sf::Vector2f origin, sf::Vector2f vel,float angle);
         void setBulletList(std::vector<b2Body*> *inBulletList)
         {
             BulletList = inBulletList;
         }
-        void collisionCB(b2Fixture* inFixture);
+        void setParticleSystem(thor::ParticleSystem* insystem)
+        {
+            system = insystem;
+        }
+        void collisionCB(b2Fixture* inFixture,b2Vec2 worldPoint);
 
         std::vector<b2Body*> *BulletList;
     private:

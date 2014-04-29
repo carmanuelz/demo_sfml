@@ -7709,7 +7709,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1398691243 source:d:\workspace\c++\demo_sfml\src\main.cpp
+1398793170 source:d:\workspace\c++\demo_sfml\src\main.cpp
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -7723,6 +7723,7 @@
 	"ssengine/AnimatedSprite.hpp"
 	"ssengine/character.h"
 	"ssengine/loadconf/LuaScript.h"
+	"ssengine/particlesys.h"
 
 1398691243 d:\workspace\c++\demo_sfml\src\rubestuff\b2djson.h
 	<stdio.h>
@@ -7777,7 +7778,7 @@
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Texture.hpp>
 
-1398692505 d:\workspace\c++\demo_sfml\src\ssengine\character.h
+1398792987 d:\workspace\c++\demo_sfml\src\ssengine\character.h
 	<string>
 	<vector>
 	<map>
@@ -7791,6 +7792,7 @@
 	"drawableentity.h"
 	"AStarFinder.h"
 	"loadconf/LuaScript.h"
+	"particlesys.h"
 
 1398691243 d:\workspace\c++\demo_sfml\src\ssengine\drawableentity.h
 	<string>
@@ -7863,13 +7865,13 @@
 1398691243 source:d:\workspace\c++\demo_sfml\src\ssengine\animation.cpp
 	"Animation.hpp"
 
-1398691243 source:d:\workspace\c++\demo_sfml\src\ssengine\astarfinder.cpp
+1398778472 source:d:\workspace\c++\demo_sfml\src\ssengine\astarfinder.cpp
 	"AStarFinder.h"
 
 1398691243 source:d:\workspace\c++\demo_sfml\src\ssengine\loadconf\luascript.cpp
 	"LuaScript.h"
 
-1398692563 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
+1398793305 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
 	"character.h"
 
 1398723332 d:\workspace\c++\test2\src\ssengine\particlesys.h
@@ -7878,4 +7880,113 @@
 	<map>
 	<iostream>
 	<SFML/Graphics.hpp>
+
+1398792471 d:\workspace\c++\demo_sfml\src\ssengine\particlesys.h
+	<SFML/Graphics.hpp>
+	<Thor/Particles/ParticleSystem.hpp>
+	<Thor/Particles/EmissionInterface.hpp>
+	<Thor/Vectors/PolarVector.hpp>
+	<Thor/Math/Random.hpp>
+	<Thor/Time/CallbackTimer.hpp>
+	<array>
+	<memory>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\particles\particlesystem.hpp
+	<Thor/Particles/Particle.hpp>
+	<Thor/Particles/EmissionInterface.hpp>
+	<Thor/Input/Connection.hpp>
+	<Thor/Config.hpp>
+	<Aurora/Tools/Swap.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/VertexArray.hpp>
+	<vector>
+	<utility>
+	<functional>
+	<memory>
+	<array>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\particles\particle.hpp
+	<Thor/Config.hpp>
+	<SFML/System/Time.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Color.hpp>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\config.hpp
+	<Aurora/Config.hpp>
+
+1392671519 d:\workspace\c++\librerias\thor\include\aurora\config.hpp
+
+1392671519 d:\workspace\c++\librerias\thor\include\thor\particles\emissioninterface.hpp
+	<Thor/Config.hpp>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\input\connection.hpp
+	<Thor/Config.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<memory>
+
+1392671519 d:\workspace\c++\librerias\thor\include\aurora\tools\swap.hpp
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\vectors\polarvector.hpp
+	<Thor/Vectors/VectorAlgebra2D.hpp>
+	<Thor/Math/Trigonometry.hpp>
+	<Thor/Vectors/Detail/PolarVector.inl>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\vectors\vectoralgebra2d.hpp
+	<Thor/Math/Trigonometry.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+	<cassert>
+	<Thor/Vectors/Detail/VectorAlgebra2D.inl>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\math\trigonometry.hpp
+	<Thor/Config.hpp>
+	<cmath>
+
+1392671520 d:\workspace\c++\librerias\thor\include\thor\vectors\detail\vectoralgebra2d.inl
+
+1392671520 d:\workspace\c++\librerias\thor\include\thor\vectors\detail\polarvector.inl
+
+1392671519 d:\workspace\c++\librerias\thor\include\thor\math\random.hpp
+	<Thor/Config.hpp>
+
+1392671520 d:\workspace\c++\librerias\thor\include\thor\time\callbacktimer.hpp
+	<Thor/Time/Timer.hpp>
+	<Thor/Input/Detail/EventListener.hpp>
+	<Thor/Config.hpp>
+	<SFML/System/Time.hpp>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\time\timer.hpp
+	<Thor/Time/StopWatch.hpp>
+	<Thor/Config.hpp>
+	<SFML/System/Time.hpp>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\time\stopwatch.hpp
+	<Thor/Config.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/Time.hpp>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\input\detail\eventlistener.hpp
+	<Thor/Config.hpp>
+	<Aurora/Tools/ForEach.hpp>
+	<Thor/Input/Connection.hpp>
+	<Thor/Input/Detail/ConnectionImpl.hpp>
+	<functional>
+	<vector>
+	<map>
+	<algorithm>
+
+1392671519 d:\workspace\c++\librerias\thor\include\aurora\tools\foreach.hpp
+	<Aurora/Meta/Preprocessor.hpp>
+
+1392671519 d:\workspace\c++\librerias\thor\include\aurora\meta\preprocessor.hpp
+	<Aurora/Config.hpp>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\input\detail\connectionimpl.hpp
+	<algorithm>
+	<memory>
+
+1398691243 source:d:\workspace\c++\demo_sfml\src\ssengine\actionentity.cpp
 

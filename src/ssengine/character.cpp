@@ -277,7 +277,7 @@ b2Body* Character::createBullet(sf::Vector2f origin, sf::Vector2f vel,float angl
 	return bulletB;
 }
 
-void Character::collisionCB(b2Fixture* inFixture)
+void Character::collisionCB(b2Fixture* inFixture,b2Vec2 worldPoint)
 {
     sse::UserData* userdataA = static_cast<sse::UserData*>(inFixture->GetUserData());
     if(userdataA->tipo == 1)
@@ -286,9 +286,11 @@ void Character::collisionCB(b2Fixture* inFixture)
         {
             animated.PrepareTimeLine();
             animated.PushTransition(new Transition(1,Cattackcicle ,saludobegin,saludoend,beginT,endT));
-            animated.PushTransition(new Transition(2,Cruncicle,saludobegin,saludoend,beginT,endT));
+            animated.PushTransition(new Transition(1,Cruncicle,saludobegin,saludoend,beginT,endT));
             animated.StartTimeLine();
             isbusy = true;
+            sf::Vector2f position(worldPoint.x*PPM,worldPoint.y*PPM);
+            system->addEmitter(BloodEmitter(position), sf::seconds(0.1f));
         }
     }
 }
