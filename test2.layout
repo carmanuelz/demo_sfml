@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="src\ssengine\AnimatedSprite.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\ssengine\character.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="6319" topLine="57" />
+			<Cursor1 position="2788" topLine="81" />
 		</Cursor>
 	</File>
-	<File name="src\ssengine\loadconf\LuaScript.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\ssengine\drawableentity.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="508" topLine="81" />
+			<Cursor1 position="596" topLine="22" />
 		</Cursor>
 	</File>
 	<File name="src\ssengine\AStarFinder.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="6855" topLine="246" />
+			<Cursor1 position="8051" topLine="294" />
 		</Cursor>
 	</File>
-	<File name="src\ssengine\AStarFinder.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\ssengine\character.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="96" topLine="21" />
+			<Cursor1 position="7966" topLine="256" />
+		</Cursor>
+	</File>
+	<File name="src\ssengine\AnimatedSprite.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2436" topLine="75" />
 		</Cursor>
 	</File>
 	<File name="src\rubestuff\b2dJson.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -26,19 +31,14 @@
 			<Cursor1 position="1336" topLine="29" />
 		</Cursor>
 	</File>
-	<File name="src\ssengine\AnimatedSprite.hpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\ssengine\loadconf\LuaScript.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2422" topLine="72" />
+			<Cursor1 position="508" topLine="81" />
 		</Cursor>
 	</File>
-	<File name="src\main.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\ssengine\AStarFinder.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="7101" topLine="208" />
-		</Cursor>
-	</File>
-	<File name="src\ssengine\character.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4254" topLine="144" />
+			<Cursor1 position="1288" topLine="37" />
 		</Cursor>
 	</File>
 	<File name="src\debugrender.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -46,14 +46,14 @@
 			<Cursor1 position="3829" topLine="46" />
 		</Cursor>
 	</File>
-	<File name="src\ssengine\character.h" open="1" top="1" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\ssengine\AnimatedSprite.hpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2755" topLine="82" />
+			<Cursor1 position="2783" topLine="57" />
 		</Cursor>
 	</File>
-	<File name="src\ssengine\drawableentity.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="875" topLine="22" />
+			<Cursor1 position="2094" topLine="52" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

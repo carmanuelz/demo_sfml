@@ -134,28 +134,42 @@ void Character::setRight()
 
 b2Body* Character::createBody(float x, float y)
 {
+    UserData* ud = new UserData();
+    ud->tipo = Type;
+    ud->estado = 0;
+
     b2BodyDef BodyDef;
     BodyDef.type = b2_dynamicBody;
 	b2FixtureDef bodyfixtureDef;
     b2CircleShape circleshape;
-    circleshape.m_radius = 0.2;
+    circleshape.m_radius = 0.22;
     bodyfixtureDef.shape = &circleshape;
     b2Filter filter;
 	b2Body* characterbody = world->CreateBody(&BodyDef);
-    if(Type != 1)
+    bodyfixtureDef.friction = 0;
+
+	b2FixtureDef sensorPLayerdef;
+    b2CircleShape sensorshape;
+    b2Fixture* sensorPlayer;
+    if(Type == 1)
     {
+        sensorshape.m_radius = 0.35;
+        sensorPLayerdef.shape = &sensorshape;
+        sensorPlayer = characterbody->CreateFixture(&sensorPLayerdef);
+        sensorPlayer->SetUserData(ud);
+        sensorPlayer->SetSensor(true);
+    }
+    else
+    {
+        circleshape.m_radius = 0.22;
         BodyDef.linearDamping = 20;
         filter.categoryBits = 3;
     }
-    bodyfixtureDef.friction = 0;
 	b2Fixture* BodyFix = characterbody->CreateFixture(&bodyfixtureDef);
     BodyFix->SetFilterData(filter);
 	characterbody->SetBullet(false);
 	characterbody->SetTransform(b2Vec2(x*MPP, y*MPP),0);
 	characterbody->SetFixedRotation(true);
-	UserData* ud = new UserData();
-    ud->tipo = Type;
-    ud->estado = 0;
     BodyFix->SetUserData(ud);
     characterbody->SetUserData(this);
     vel.x = 0;
@@ -177,6 +191,9 @@ void Character::update(sf::Time frameTime)
         weapon.setPosition(x + ofsetanimx+CgunOffset.x, y + offsetAnimYR + CgunOffset.y);
         weapon.update(frameTime);
     }
+    if(isbusy)
+        if(!animated.isTimeLine)
+            isbusy = false;
 }
 
 void Character::updatebehaviour(float TargetX,float TargetY)
@@ -265,7 +282,14 @@ void Character::collisionCB(b2Fixture* inFixture)
     sse::UserData* userdataA = static_cast<sse::UserData*>(inFixture->GetUserData());
     if(userdataA->tipo == 1)
     {
-        setAnimCicle(3);
+        if(!isbusy)
+        {
+            animated.PrepareTimeLine();
+            animated.PushTransition(new Transition(1,Cattackcicle ,saludobegin,saludoend,beginT,endT));
+            animated.PushTransition(new Transition(2,Cruncicle,saludobegin,saludoend,beginT,endT));
+            animated.StartTimeLine();
+            isbusy = true;
+        }
     }
 }
 

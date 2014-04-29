@@ -207,7 +207,9 @@ std::vector<sf::Vector2i*> AStarFinder::findPath(int startX, int startY, int end
         node->closed = true;
 
         if(compareNode(node,EndNode))
+        {
             return smoothenPath(backtrace(node));
+        }
 
         std::vector<Nodo*> Vecinos = getNeighbors(node);
         for ( int i=0; i < Vecinos.size() ; i++)
@@ -280,8 +282,6 @@ std::vector<sf::Vector2i*> AStarFinder::smoothenPath(std::vector<sf::Vector2i*> 
 {
     std::vector<sf::Vector2i*> newPath;
     std::vector<sf::Vector2i*> line;
-    sf::Vector2i* coord;
-    sf::Vector2i* testCoord;
     int len = path.size();
     if(len>1)
     {
@@ -301,16 +301,13 @@ std::vector<sf::Vector2i*> AStarFinder::smoothenPath(std::vector<sf::Vector2i*> 
         newPath.push_back(new sf::Vector2i(sx, sy));
 
         for (int i = 2; i < len; ++i) {
-            coord = new sf::Vector2i(path[i]->x,path[i]->y);
+            sf::Vector2i* coord = new sf::Vector2i(path[i]->x,path[i]->y);
             ex = coord->x;
             ey = coord->y;
             line = getLine(sx, sy, ex, ey);
             blocked = false;
             for (int j = 1; j < line.size(); ++j) {
-                testCoord->x = line[j]->x;
-                testCoord->y = line[j]->y;
-
-                if (!isWalkableAt(testCoord->x, testCoord->y)) {
+                if (!isWalkableAt(line[j]->x, line[j]->y)) {
                     blocked = true;
                     newPath.push_back(new sf::Vector2i(lx, ly));
                     sx = lx;

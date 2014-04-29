@@ -436,7 +436,7 @@
 	<sstream>
 	<iomanip>
 
-1398634963 source:d:\workspace\c++\test2\src\main.cpp
+1398745413 source:d:\workspace\c++\test2\src\main.cpp
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -450,6 +450,7 @@
 	"ssengine/AnimatedSprite.hpp"
 	"ssengine/character.h"
 	"ssengine/loadconf/LuaScript.h"
+	"ssengine/particlesys.h"
 
 1397446597 source:d:\workspace\c++\test2\src\astarfinder.cpp
 	"AStarFinder.h"
@@ -495,15 +496,15 @@
 	<Box2D/Box2D.h>
 	<math.h>
 
-1398436623 source:d:\workspace\c++\test2\src\ssengine\astarfinder.cpp
+1398742453 source:d:\workspace\c++\test2\src\ssengine\astarfinder.cpp
 	"AStarFinder.h"
 
 1397604633 source:d:\workspace\c++\test2\src\ssengine\npc.cpp
 
-1398634995 source:d:\workspace\c++\test2\src\ssengine\character.cpp
+1398745336 source:d:\workspace\c++\test2\src\ssengine\character.cpp
 	"character.h"
 
-1398635232 d:\workspace\c++\test2\src\ssengine\character.h
+1398744051 d:\workspace\c++\test2\src\ssengine\character.h
 	<string>
 	<vector>
 	<map>
@@ -7870,4 +7871,11 @@
 
 1398692563 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
 	"character.h"
+
+1398723332 d:\workspace\c++\test2\src\ssengine\particlesys.h
+	<string>
+	<vector>
+	<map>
+	<iostream>
+	<SFML/Graphics.hpp>
 

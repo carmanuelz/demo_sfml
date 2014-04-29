@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="test2" />
+		<Option title="demo_rpg" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -14,8 +14,11 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-std=c++11" />
+					<Add option="-std=c++0x" />
 					<Add option="-g" />
 					<Add option="-DSFML_STATIC" />
+					<Add option="-DGLEW_STATIC" />
+					<Add option="-DUNICODE" />
 					<Add directory="../librerias/Box2d/include" />
 					<Add directory="../librerias/Lua/include" />
 				</Compiler>
@@ -26,6 +29,15 @@
 					<Add library="sfml-window-s-d" />
 					<Add library="sfml-system-s-d" />
 					<Add library="lua51" />
+					<Add library="sndfile" />
+					<Add library="openal32" />
+					<Add library="ws2_32" />
+					<Add library="jpeg" />
+					<Add library="glew" />
+					<Add library="freetype" />
+					<Add library="gdi32" />
+					<Add library="opengl32" />
+					<Add library="winmm" />
 					<Add directory="../librerias/Box2d/bin/Release" />
 					<Add directory="../librerias/Lua/lib" />
 				</Linker>
@@ -34,12 +46,15 @@
 				<Option output="bin/Release/test2" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option additional_output="../librerias/Box2d/Box2d.cbp;" />
-				<Option type="0" />
+				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-std=c++11" />
+					<Add option="-std=c++0x" />
 					<Add option="-DSFML_STATIC" />
+					<Add option="-DGLEW_STATIC" />
+					<Add option="-DUNICODE" />
 					<Add directory="../librerias/Box2d/include" />
 					<Add directory="../librerias/Lua/include" />
 				</Compiler>
@@ -51,6 +66,15 @@
 					<Add library="sfml-window-s" />
 					<Add library="sfml-system-s" />
 					<Add library="lua51" />
+					<Add library="sndfile" />
+					<Add library="openal32" />
+					<Add library="ws2_32" />
+					<Add library="jpeg" />
+					<Add library="glew" />
+					<Add library="freetype" />
+					<Add library="gdi32" />
+					<Add library="opengl32" />
+					<Add library="winmm" />
 					<Add directory="../librerias/Box2d/bin/Release" />
 					<Add directory="../librerias/Lua/lib" />
 				</Linker>
@@ -59,6 +83,9 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Linker>
+			<Add directory="../librerias/SFML_GIT/extlibs/libs-mingw/x86" />
+		</Linker>
 		<Unit filename="src/debugrender.cpp" />
 		<Unit filename="src/debugrender.h" />
 		<Unit filename="src/main.cpp" />

@@ -92,6 +92,7 @@ namespace sse
         sf::Sprite bulletS;
         sf::Sound soundshoot;
         b2World* world;
+        bool isbusy = false;
         b2Body* createBullet(sf::Vector2f origin, sf::Vector2f vel,float angle);
         void setBulletList(std::vector<b2Body*> *inBulletList)
         {

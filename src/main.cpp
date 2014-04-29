@@ -96,7 +96,7 @@ int main()
                   << mode.bitsPerPixel << " bpp" << std::endl;
     }*/
 
-    sse::ParticleSystem particles(1000);
+    //sse::ParticleSystem particles(1000);
 
     DebugDraw debugDraw = DebugDraw(renderWindow);
     renderWindow.setFramerateLimit(60);
@@ -192,7 +192,7 @@ int main()
             return EXIT_SUCCESS;
         }
 
-        particles.setEmitter(mousePos);
+        //particles.setEmitter(mousePos);
 
         sf::Time frameTime = frameClock.restart();
 		b2Vec2 playerposition = player->updatePlayer();
@@ -201,7 +201,7 @@ int main()
         character->update(frameTime);
         player->update(frameTime);
 
-        particles.update(frameTime);
+        //particles.update(frameTime);
 
         m_world->Step( 0.16f, 8, 3 );
 
@@ -228,8 +228,8 @@ int main()
         view.move(offsetview.x,offsetview.y);
         renderWindow.setView(view);
 
-        character->draw();
         player->draw();
+        character->draw();
 
         targetS.setPosition(mousePos);
         renderWindow.draw(targetS);
@@ -294,7 +294,7 @@ int main()
             };
 
         renderWindow.draw(line2, 2, sf::Lines);
-        renderWindow.draw(particles);
+        //renderWindow.draw(particles);
         m_world->DrawDebugData();
 		renderWindow.display();
 		const float time = 1.f / frameClock.getElapsedTime().asSeconds();
