@@ -106,7 +106,7 @@ namespace sse
         {
             system = insystem;
         }
-        void collisionCB(b2Fixture* inFixture,b2Vec2 worldPoint);
+        void collisionCB(b2Fixture* inFixture);
 
         std::vector<b2Body*> *BulletList;
     private:

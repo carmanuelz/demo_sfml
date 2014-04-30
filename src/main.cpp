@@ -43,7 +43,6 @@ class ContactListener : public b2ContactListener
     {
         b2Fixture* FixtA = contact->GetFixtureA();
         b2Fixture* FixtB = contact->GetFixtureB();
-        b2Vec2 point = contact->GetManifold()->points[0].localPoint;
         sse::UserData* userdataA = static_cast<sse::UserData*>(FixtA->GetUserData());
         sse::UserData* userdataB = static_cast<sse::UserData*>(FixtB->GetUserData());
         if(userdataA->tipo == 3 && userdataA->estado==0)
@@ -61,17 +60,15 @@ class ContactListener : public b2ContactListener
         if(userdataA->tipo == 4)
         {
             b2Body* bodyA = FixtA->GetBody();
-            b2Vec2 worldPoint = FixtB->GetBody()->GetWorldPoint(point);
             sse::Character* collCharacter = static_cast<sse::Character*>(bodyA->GetUserData());
-            collCharacter->collisionCB(FixtB,worldPoint);
+            collCharacter->collisionCB(FixtB);
         }
         else
             if(userdataB->tipo == 4)
             {
                 b2Body* bodyB = FixtB->GetBody();
-                b2Vec2 worldPoint = FixtA->GetBody()->GetWorldPoint(point);
                 sse::Character* collCharacter = static_cast<sse::Character*>(bodyB->GetUserData());
-                collCharacter->collisionCB(FixtA,worldPoint);
+                collCharacter->collisionCB(FixtA);
             }
     }
 

@@ -141,9 +141,13 @@ b2Body* Character::createBody(float x, float y)
     b2BodyDef BodyDef;
     BodyDef.type = b2_dynamicBody;
 	b2FixtureDef bodyfixtureDef;
+
     b2CircleShape circleshape;
     circleshape.m_radius = 0.22;
-    bodyfixtureDef.shape = &circleshape;
+
+    b2PolygonShape poligonshape;
+    poligonshape.SetAsBox(0.22, 0.33);
+
     b2Filter filter;
 	b2Body* characterbody = world->CreateBody(&BodyDef);
     bodyfixtureDef.friction = 0;
@@ -153,7 +157,9 @@ b2Body* Character::createBody(float x, float y)
     b2Fixture* sensorPlayer;
     if(Type == 1)
     {
-        sensorshape.m_radius = 0.35;
+
+        bodyfixtureDef.shape = &poligonshape;
+        sensorshape.m_radius = 0.37;
         sensorPLayerdef.shape = &sensorshape;
         sensorPlayer = characterbody->CreateFixture(&sensorPLayerdef);
         sensorPlayer->SetUserData(ud);
@@ -161,6 +167,8 @@ b2Body* Character::createBody(float x, float y)
     }
     else
     {
+
+        bodyfixtureDef.shape = &circleshape;
         circleshape.m_radius = 0.22;
         BodyDef.linearDamping = 20;
         filter.categoryBits = 3;
@@ -277,7 +285,7 @@ b2Body* Character::createBullet(sf::Vector2f origin, sf::Vector2f vel,float angl
 	return bulletB;
 }
 
-void Character::collisionCB(b2Fixture* inFixture,b2Vec2 worldPoint)
+void Character::collisionCB(b2Fixture* inFixture)
 {
     sse::UserData* userdataA = static_cast<sse::UserData*>(inFixture->GetUserData());
     if(userdataA->tipo == 1)
@@ -289,8 +297,8 @@ void Character::collisionCB(b2Fixture* inFixture,b2Vec2 worldPoint)
             animated.PushTransition(new Transition(1,Cruncicle,saludobegin,saludoend,beginT,endT));
             animated.StartTimeLine();
             isbusy = true;
-            sf::Vector2f position(worldPoint.x*PPM,worldPoint.y*PPM);
-            system->addEmitter(BloodEmitter(position), sf::seconds(0.1f));
+            b2Vec2 pos = inFixture->GetBody()->GetPosition();
+            system->addEmitter(BloodEmitter(sf::Vector2f(pos.x*PPM,pos.y*PPM)), sf::seconds(0.1f));
         }
     }
 }
