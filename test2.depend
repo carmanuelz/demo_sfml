@@ -7714,21 +7714,20 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1398879105 source:d:\workspace\c++\demo_sfml\src\main.cpp
+1399309209 source:d:\workspace\c++\demo_sfml\src\main.cpp
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
-	<sstream>
+	<SFGUI/SFGUI.hpp>
 	<Box2D/Box2D.h>
-	<math.h>
+	<Thor/Shapes/ConcaveShape.hpp>
+	<Thor/Shapes/Shapes.hpp>
 	"rubestuff/b2dJson.h"
 	"debugrender.h"
-	"ssengine/AStarFinder.h"
-	"ssengine/AnimatedSprite.hpp"
-	"ssengine/character.h"
-	"ssengine/loadconf/LuaScript.h"
-	"ssengine/particlesys.h"
+	"ssengine/ssengine.h"
+	<math.h>
+	<sstream>
 
 1398691243 d:\workspace\c++\demo_sfml\src\rubestuff\b2djson.h
 	<stdio.h>
@@ -7783,7 +7782,7 @@
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Texture.hpp>
 
-1398879030 d:\workspace\c++\demo_sfml\src\ssengine\character.h
+1399301231 d:\workspace\c++\demo_sfml\src\ssengine\character.h
 	<string>
 	<vector>
 	<map>
@@ -7876,7 +7875,7 @@
 1398691243 source:d:\workspace\c++\demo_sfml\src\ssengine\loadconf\luascript.cpp
 	"LuaScript.h"
 
-1398794060 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
+1399301053 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
 	"character.h"
 
 1399139820 d:\workspace\c++\test2\src\ssengine\particlesys.h
@@ -8401,4 +8400,18 @@
 
 1399239187 d:\workspace\c++\test2\src\ssengine\util.h
 	<SFML/Graphics.hpp>
+
+1399298526 source:d:\workspace\c++\demo_sfml\src\ssengine\util.cpp
+	"util.h"
+
+1399298526 d:\workspace\c++\demo_sfml\src\ssengine\util.h
+	<SFML/Graphics.hpp>
+
+1399299122 d:\workspace\c++\demo_sfml\src\ssengine\ssengine.h
+	"AStarFinder.h"
+	"AnimatedSprite.hpp"
+	"character.h"
+	"loadconf/LuaScript.h"
+	"particlesys.h"
+	"util.h"
 

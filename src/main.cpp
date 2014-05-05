@@ -3,37 +3,15 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <SFGUI/SFGUI.hpp>
-#include <sstream>
 #include <Box2D/Box2D.h>
 #include <Thor/Shapes/ConcaveShape.hpp>
 #include <Thor/Shapes/Shapes.hpp>
-#include <math.h>
 
 #include "rubestuff/b2dJson.h"
 #include "debugrender.h"
-#include "ssengine/AStarFinder.h"
-#include "ssengine/AnimatedSprite.hpp"
-#include "ssengine/character.h"
-#include "ssengine/loadconf/LuaScript.h"
-#include "ssengine/particlesys.h"
-#include "ssengine/util.h"
-
-#define DEGTORAD 0.0174532925199432957f
-#define RADTODEG 57.295779513082320876f
-
-#define TIMESTEP 1.0f/60.0f     //TIEMPO DE REFRESCO
-#define VELITER 10              //NUMERO DE ITERACION POR TICK PARA CALCULAR LA VELOCIDAD
-#define POSITER 10              //NUMERO DE ITERACIONES POR TICK PARA CALCULAR LA POSICION
-
-#define PPM 64.0f               //PIXELS POR METRO
-#define MPP (1.0f/PPM)          //METROS POR PIXEL
-#define M_PI 3.14159265358979323846
-#define SPEED 0.3
-#define PSPRITEW 48;
-#define PSPRITEH 60;
-#define RIGHT 1;
-#define LEFT 2;
-#define DSHOOT 0.04f;
+#include "ssengine/ssengine.h"
+#include <math.h>
+#include <sstream>
 
 b2World* m_world;
 
@@ -244,27 +222,33 @@ int main()
             if(event.type == sf::Event::MouseLeft)
                 isFocused = false;
 
-            if(event.type == sf::Event::MouseMoved)
+            if(isFocused)
             {
-                std::vector<sf::FloatRect> allocations;
-                allocations.push_back(window->GetAllocation());
-                hasclickplayer = sse::insideGUI(allocations, winmouseposition);
+                if(event.type == sf::Event::MouseButtonPressed)
+                {
+                    std::vector<sf::FloatRect> allocations;
+                    allocations.push_back(window->GetAllocation());
+                    hasclickplayer = sse::insideGUI(allocations, winmouseposition);
+                }
             }
+            else
+                hasclickplayer = false;
+
+            if(event.type == sf::Event::KeyPressed)
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+                {
+                    return EXIT_SUCCESS;
+                }
+
 
 		    desktop.HandleEvent( event );
         }
         sf::View view = renderWindow.getView();
         sf::Vector2f mousePos(winmouseposition.x + view.getCenter().x - screnSize.x/2 ,winmouseposition.y + view.getCenter().y - screnSize.y/2);
-
-
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-        {
-            return EXIT_SUCCESS;
-        }
-
+        sf::Vector2f playerposition = player->updatePlayer(isFocused, hasclickplayer);
+        if(isFocused)
+            player->updatebehaviour(mousePos.x,mousePos.y);
         sf::Time frameTime = frameClock.restart();
-		b2Vec2 playerposition = player->updatePlayer(hasclickplayer);
-		player->updatebehaviour(mousePos.x,mousePos.y);
         character->updateFind();
         character->update(frameTime);
         player->update(frameTime);

@@ -167,14 +167,13 @@ namespace sse
         {
         }
         void update(sf::Time frameTim);
-        b2Vec2 updatePlayer(bool hasclick);
+        sf::Vector2f updatePlayer(bool hasfocused, bool hasclick);
     private:
     };
 
     class Weapon
     {
     public:
-
     };
 }
 

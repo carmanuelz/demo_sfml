@@ -244,7 +244,7 @@ void Character::updatebehaviour(float TargetX,float TargetY)
         CgunOffset.y = 40;
         weapon.setOrigin(27,8);
         weapon.rotate(-weapon.getRotation());
-        weapon.rotate(angle - 180 - weapon.getRotation());
+        weapon.rotate(angle - 179 - weapon.getRotation());
         before = false;
     }
 
@@ -407,104 +407,107 @@ void Player::update(sf::Time frameTime)
     Character::update(frameTime);
 }
 
-b2Vec2 Player::updatePlayer(bool hasclick)
+sf::Vector2f Player::updatePlayer(bool hasfocused, bool hasclick)
 {
-    Body->SetLinearVelocity(b2Vec2(0,0));
-    vel = Body->GetLinearVelocity();
-    bool isrun = false;
-
-    setRight();
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)||
-       sf::Keyboard::isKeyPressed(sf::Keyboard::D)||
-       sf::Keyboard::isKeyPressed(sf::Keyboard::W)||
-       sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    if(hasfocused)
     {
-        setAnimCicle(2);
-        isrun = true;
-                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+                Body->SetLinearVelocity(b2Vec2(0,0));
+        vel = Body->GetLinearVelocity();
+        bool isrun = false;
+
+        setRight();
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)||
+           sf::Keyboard::isKeyPressed(sf::Keyboard::D)||
+           sf::Keyboard::isKeyPressed(sf::Keyboard::W)||
+           sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         {
-            vel.x = -SPEED;
-            if(direction == 1)
+            setAnimCicle(2);
+            isrun = true;
+                        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
             {
-                setRight();
-                animated.setReverse(true);
+                vel.x = -SPEED;
+                if(direction == 1)
+                {
+                    setRight();
+                    animated.setReverse(true);
+                }
+
+                else
+                {
+                    setLeft();
+                    animated.setReverse(false);
+                }
+
+            }
+            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+            {
+                vel.x = SPEED;
+                if(direction == 1)
+                {
+                    setRight();
+                    animated.setReverse(false);
+                }
+                else
+                {
+                    setLeft();
+                    animated.setReverse(true);
+                }
             }
 
-            else
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
             {
-                setLeft();
+                vel.y = -SPEED;
                 animated.setReverse(false);
+                if(direction == 1)
+                    setRight();
+                else
+                    setLeft();
             }
-
-        }
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-        {
-            vel.x = SPEED;
-            if(direction == 1)
+            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
             {
-                setRight();
                 animated.setReverse(false);
+                vel.y = SPEED;
+                if(direction == 1)
+                    setRight();
+                else
+                    setLeft();
             }
-            else
-            {
-                setLeft();
-                animated.setReverse(true);
-            }
+
         }
 
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+        if(!isrun)
         {
-            vel.y = -SPEED;
-            animated.setReverse(false);
-            if(direction == 1)
-                setRight();
-            else
-                setLeft();
-        }
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-        {
-            animated.setReverse(false);
-            vel.y = SPEED;
+           setAnimCicle(1);
             if(direction == 1)
                 setRight();
             else
                 setLeft();
         }
 
-    }
+        if(vel.x != 0 && vel.y!=0)
+        {
+            vel.x = vel.x*0.7;
+            vel.y = vel.y*0.7;
+        }
 
-    if(!isrun)
-    {
-       setAnimCicle(1);
-        if(direction == 1)
-            setRight();
+        weapon.play();
+        if (!hasclick || !sf::Mouse::isButtonPressed(sf::Mouse::Left))
+        {
+            weapon.stop();
+        }
+
         else
-            setLeft();
-    }
-
-    if(vel.x != 0 && vel.y!=0)
-    {
-        vel.x = vel.x*0.7;
-        vel.y = vel.y*0.7;
-    }
-
-    weapon.play();
-    if (!hasclick || !sf::Mouse::isButtonPressed(sf::Mouse::Left))
-    {
-        weapon.stop();
-    }
-
-    else
-    {
-        if(Acumulator >= 0.2)
         {
-            createBullet(bulletOrigin, bulletVU, angle);
-            Acumulator = 0;
-            soundshoot.play();
+            if(Acumulator >= 0.2)
+            {
+                createBullet(bulletOrigin, bulletVU, angle);
+                Acumulator = 0;
+                soundshoot.play();
+            }
         }
     }
 
-    return b2Vec2(x,y);
+    return sf::Vector2f(x,y);
 }
 
 
