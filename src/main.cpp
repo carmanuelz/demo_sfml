@@ -2,8 +2,11 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <SFGUI/SFGUI.hpp>
 #include <sstream>
 #include <Box2D/Box2D.h>
+#include <Thor/Shapes/ConcaveShape.hpp>
+#include <Thor/Shapes/Shapes.hpp>
 #include <math.h>
 
 #include "rubestuff/b2dJson.h"
@@ -13,6 +16,7 @@
 #include "ssengine/character.h"
 #include "ssengine/loadconf/LuaScript.h"
 #include "ssengine/particlesys.h"
+#include "ssengine/util.h"
 
 #define DEGTORAD 0.0174532925199432957f
 #define RADTODEG 57.295779513082320876f
@@ -85,7 +89,7 @@ int main()
     sf::VideoMode videomode(800, 600, 32);
 	sf::RenderWindow renderWindow(videomode, "Test"/*,sf::Style::Fullscreen*/);
 	renderWindow.setVerticalSyncEnabled(true);
-    renderWindow.setMouseCursorVisible(false);
+    //renderWindow.setMouseCursorVisible(false);
     sf::Vector2i screnSize((int)renderWindow.getSize().x,(int)renderWindow.getSize().y);
 
     /*std::vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
@@ -183,17 +187,74 @@ int main()
 	float acumulator = 0;
 	//-----------------------------------//
 
+	sf::ConvexShape roundedRecthp = thor::Shapes::roundedRect(sf::Vector2f(100.f, 15.f), 3.f, sf::Color(200, 0, 0), 0.f, sf::Color(0, 0, 0));
+	sf::ConvexShape roundedRect = thor::Shapes::roundedRect(sf::Vector2f(200.f, 15.f), 3.f, sf::Color(60, 0, 0), 3.f, sf::Color(180, 200, 200));
+
+	roundedRect.setPosition(50.f, 50.f);
+	roundedRecthp.setPosition(50.f, 50.f);
+
+	/**/
+    // Create an SFGUI. This is required before doing anything with SFGUI.
+    sfg::SFGUI m_sfgui;
+
+    // Create the label pointer here to reach it from OnButtonClick().
+    sfg::Label::Ptr m_label;
+
+    // Create the label.
+	m_label = sfg::Label::Create( "Hello world!" );
+
+	// Create a simple button and connect the click signal.
+	auto button = sfg::Button::Create( "Greet SFGUI!" );
+
+    auto box = sfg::Box::Create( sfg::Box::Orientation::VERTICAL, 5.0f );
+	box->Pack( m_label );
+	box->Pack( button, false );
+
+	// Create a window and add the box layouter to it. Also set the window's title.
+	auto window = sfg::Window::Create();
+	window->SetTitle( "Hello world!" );
+	window->SetPosition( sf::Vector2f( 100.f, 100.f ) );
+	window->Add( box );
+
+	sfg::Desktop desktop;
+	desktop.Add( window );
+
+	// We're not using SFML to render anything in this program, so reset OpenGL
+	// states. Otherwise we wouldn't see anything.
+	//render_window.resetGLStates();
+	/**/
+
+	bool isFocused = true;
+    bool hasclickplayer = true;
+
+    //poll input
+    sf::Event event;
 	while(renderWindow.isOpen())
 	{
-		//poll input
-		sf::Event event;
+	    sf::Vector2i winmouseposition = sf::Mouse::getPosition(renderWindow);
+
 		while(renderWindow.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				renderWindow.close();
+
+            if(event.type == sf::Event::MouseEntered)
+                isFocused = true;
+
+            if(event.type == sf::Event::MouseLeft)
+                isFocused = false;
+
+            if(event.type == sf::Event::MouseMoved)
+            {
+                std::vector<sf::FloatRect> allocations;
+                allocations.push_back(window->GetAllocation());
+                hasclickplayer = sse::insideGUI(allocations, winmouseposition);
+            }
+
+		    desktop.HandleEvent( event );
         }
         sf::View view = renderWindow.getView();
-        sf::Vector2f mousePos(sf::Mouse::getPosition(renderWindow).x + view.getCenter().x - screnSize.x/2 ,sf::Mouse::getPosition(renderWindow).y + view.getCenter().y - screnSize.y/2);
+        sf::Vector2f mousePos(winmouseposition.x + view.getCenter().x - screnSize.x/2 ,winmouseposition.y + view.getCenter().y - screnSize.y/2);
 
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -202,7 +263,7 @@ int main()
         }
 
         sf::Time frameTime = frameClock.restart();
-		b2Vec2 playerposition = player->updatePlayer();
+		b2Vec2 playerposition = player->updatePlayer(hasclickplayer);
 		player->updatebehaviour(mousePos.x,mousePos.y);
         character->updateFind();
         character->update(frameTime);
@@ -231,6 +292,8 @@ int main()
             offsetview.y = 0;
 
         view.move(offsetview.x,offsetview.y);
+        roundedRect.move(offsetview.x, offsetview.y);
+        roundedRecthp.move(offsetview.x, offsetview.y);
         renderWindow.setView(view);
 
         player->draw();
@@ -299,7 +362,12 @@ int main()
             };
 
         system.update(frameTime);
-		renderWindow.draw(system, sf::BlendAdd);
+		renderWindow.draw(system);
+		renderWindow.draw(roundedRect);
+		renderWindow.draw(roundedRecthp);
+
+		desktop.Update( frameTime.asSeconds() );
+		m_sfgui.Display( renderWindow );
 
         //renderWindow.draw(line2, 2, sf::Lines);
         //m_world->DrawDebugData();

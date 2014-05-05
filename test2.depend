@@ -436,13 +436,16 @@
 	<sstream>
 	<iomanip>
 
-1398745413 source:d:\workspace\c++\test2\src\main.cpp
+1399239038 source:d:\workspace\c++\test2\src\main.cpp
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
+	<SFGUI/SFGUI.hpp>
 	<sstream>
 	<Box2D/Box2D.h>
+	<Thor/Shapes/ConcaveShape.hpp>
+	<Thor/Shapes/Shapes.hpp>
 	<math.h>
 	"rubestuff/b2dJson.h"
 	"debugrender.h"
@@ -451,6 +454,7 @@
 	"ssengine/character.h"
 	"ssengine/loadconf/LuaScript.h"
 	"ssengine/particlesys.h"
+	"ssengine/util.h"
 
 1397446597 source:d:\workspace\c++\test2\src\astarfinder.cpp
 	"AStarFinder.h"
@@ -501,10 +505,10 @@
 
 1397604633 source:d:\workspace\c++\test2\src\ssengine\npc.cpp
 
-1398745336 source:d:\workspace\c++\test2\src\ssengine\character.cpp
+1399220714 source:d:\workspace\c++\test2\src\ssengine\character.cpp
 	"character.h"
 
-1398744051 d:\workspace\c++\test2\src\ssengine\character.h
+1399215287 d:\workspace\c++\test2\src\ssengine\character.h
 	<string>
 	<vector>
 	<map>
@@ -518,6 +522,7 @@
 	"drawableentity.h"
 	"AStarFinder.h"
 	"loadconf/LuaScript.h"
+	"particlesys.h"
 
 1398271983 d:\workspace\c++\test2\src\ssengine\animatedsprite.hpp
 	<SFML/Graphics/RenderTarget.hpp>
@@ -7874,12 +7879,15 @@
 1398794060 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
 	"character.h"
 
-1398723332 d:\workspace\c++\test2\src\ssengine\particlesys.h
-	<string>
-	<vector>
-	<map>
-	<iostream>
+1399139820 d:\workspace\c++\test2\src\ssengine\particlesys.h
 	<SFML/Graphics.hpp>
+	<Thor/Particles/ParticleSystem.hpp>
+	<Thor/Particles/EmissionInterface.hpp>
+	<Thor/Vectors/PolarVector.hpp>
+	<Thor/Math/Random.hpp>
+	<Thor/Time/CallbackTimer.hpp>
+	<array>
+	<memory>
 
 1398792471 d:\workspace\c++\demo_sfml\src\ssengine\particlesys.h
 	<SFML/Graphics.hpp>
@@ -7989,4 +7997,408 @@
 	<memory>
 
 1398691243 source:d:\workspace\c++\demo_sfml\src\ssengine\actionentity.cpp
+
+1398357273 source:d:\workspace\c++\test2\src\ssengine\actionentity.cpp
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\sfgui.hpp
+	<SFGUI/Bin.hpp>
+	<SFGUI/Box.hpp>
+	<SFGUI/Button.hpp>
+	<SFGUI/Context.hpp>
+	<SFGUI/Desktop.hpp>
+	<SFGUI/Engine.hpp>
+	<SFGUI/Entry.hpp>
+	<SFGUI/Fixed.hpp>
+	<SFGUI/Label.hpp>
+	<SFGUI/Range.hpp>
+	<SFGUI/Scale.hpp>
+	<SFGUI/Scrollbar.hpp>
+	<SFGUI/ScrolledWindow.hpp>
+	<SFGUI/Table.hpp>
+	<SFGUI/Window.hpp>
+	<SFGUI/ToggleButton.hpp>
+	<SFGUI/CheckButton.hpp>
+	<SFGUI/RadioButton.hpp>
+	<SFGUI/Viewport.hpp>
+	<SFGUI/ProgressBar.hpp>
+	<SFGUI/Separator.hpp>
+	<SFGUI/Frame.hpp>
+	<SFGUI/Image.hpp>
+	<SFGUI/Alignment.hpp>
+	<SFGUI/Notebook.hpp>
+	<SFGUI/Spinner.hpp>
+	<SFGUI/ComboBox.hpp>
+	<SFGUI/Canvas.hpp>
+	<SFGUI/SpinButton.hpp>
+	<SFGUI/Renderer.hpp>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\bin.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Container.hpp>
+	<memory>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\config.hpp
+	<iostream>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\container.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Widget.hpp>
+	<memory>
+	<vector>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\widget.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Object.hpp>
+	<memory>
+	<SFGUI/RenderQueue.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Window/Event.hpp>
+	<map>
+	<string>
+	<cstdint>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\object.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Signal.hpp>
+	<memory>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\signal.hpp
+	<SFGUI/Config.hpp>
+	<map>
+	<memory>
+	<functional>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\renderqueue.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Primitive.hpp>
+	<memory>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/OpenGL.hpp>
+	<vector>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\primitive.hpp
+	<SFGUI/Config.hpp>
+	<memory>
+	<SFGUI/Signal.hpp>
+	<SFGUI/RendererViewport.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/OpenGL.hpp>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\rendererviewport.hpp
+	<SFGUI/Config.hpp>
+	<memory>
+	<SFML/Graphics.hpp>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\box.hpp
+	<SFGUI/Container.hpp>
+	<memory>
+	<list>
+	<cstdint>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\button.hpp
+	<SFGUI/Bin.hpp>
+	<SFGUI/Image.hpp>
+	<memory>
+	<SFML/System/String.hpp>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\image.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Widget.hpp>
+	<SFGUI/Misc.hpp>
+	<memory>
+	<SFML/Graphics/Texture.hpp>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\misc.hpp
+	<SFGUI/Config.hpp>
+	<memory>
+	<SFML/System.hpp>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\context.hpp
+	<SFGUI/Config.hpp>
+	<memory>
+	<SFGUI/Engine.hpp>
+	<SFGUI/Engines/BREW.hpp>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\engine.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Widget.hpp>
+	<SFGUI/Selector.hpp>
+	<SFGUI/ResourceManager.hpp>
+	<SFGUI/Parsers/ThemeParser/Parse.hpp>
+	<memory>
+	<SFML/Graphics/Drawable.hpp>
+	<string>
+	<map>
+	<list>
+	<stdexcept>
+	"Engine.inl"
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\selector.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Widget.hpp>
+	<memory>
+	<string>
+	<stdexcept>
+	<cstdint>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\resourcemanager.hpp
+	<SFGUI/Config.hpp>
+	<map>
+	<string>
+	<memory>
+	"ResourceManager.inl"
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\resourcemanager.inl
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\parsers\themeparser\parse.hpp
+	<SFGUI/Config.hpp>
+	<string>
+	<vector>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\engine.inl
+	<sstream>
+	<iomanip>
+	<typeinfo>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\engines\brew.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Engine.hpp>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\desktop.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Context.hpp>
+	<SFGUI/Engine.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/View.hpp>
+	<memory>
+	<string>
+	<deque>
+	"Desktop.inl"
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\desktop.inl
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\entry.hpp
+	<SFGUI/Widget.hpp>
+	<memory>
+	<SFML/System/String.hpp>
+	<SFML/System/Clock.hpp>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\fixed.hpp
+	<SFGUI/Container.hpp>
+	<memory>
+	<map>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\label.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Widget.hpp>
+	<SFGUI/Misc.hpp>
+	<memory>
+	<SFML/System/String.hpp>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\range.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Widget.hpp>
+	<SFGUI/Adjustment.hpp>
+	<memory>
+	<cstdint>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\adjustment.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Object.hpp>
+	<SFGUI/Signal.hpp>
+	<memory>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\scale.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Range.hpp>
+	<memory>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\scrollbar.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Range.hpp>
+	<memory>
+	<SFML/System/Clock.hpp>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\scrolledwindow.hpp
+	<SFGUI/Bin.hpp>
+	<SFGUI/Adjustment.hpp>
+	<SFGUI/Scrollbar.hpp>
+	<SFGUI/Viewport.hpp>
+	<memory>
+	<cstdint>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\viewport.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Bin.hpp>
+	<SFGUI/Adjustment.hpp>
+	<memory>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\table.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/TableCell.hpp>
+	<SFGUI/TableOptions.hpp>
+	<SFGUI/Container.hpp>
+	<memory>
+	<list>
+	<vector>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\tablecell.hpp
+	<SFGUI/Widget.hpp>
+	<SFGUI/Container.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\tableoptions.hpp
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\window.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Bin.hpp>
+	<memory>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/System/String.hpp>
+	<cstdint>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\togglebutton.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Button.hpp>
+	<memory>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\checkbutton.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/ToggleButton.hpp>
+	<memory>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\radiobutton.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/CheckButton.hpp>
+	<memory>
+	<set>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\progressbar.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Widget.hpp>
+	<memory>
+	<cstdint>
+	<SFML/System/String.hpp>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\separator.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Widget.hpp>
+	<memory>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\frame.hpp
+	<SFGUI/Bin.hpp>
+	<SFGUI/Misc.hpp>
+	<memory>
+	<SFML/System/String.hpp>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\alignment.hpp
+	<SFGUI/Bin.hpp>
+	<SFGUI/Misc.hpp>
+	<memory>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\notebook.hpp
+	<SFGUI/Container.hpp>
+	<memory>
+	<deque>
+	<cstdint>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\spinner.hpp
+	<SFGUI/Widget.hpp>
+	<memory>
+	<SFML/System.hpp>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\combobox.hpp
+	<SFGUI/Bin.hpp>
+	<SFGUI/Scrollbar.hpp>
+	<memory>
+	<SFML/System/String.hpp>
+	<vector>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\canvas.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Widget.hpp>
+	<SFGUI/RendererViewport.hpp>
+	<memory>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\spinbutton.hpp
+	<SFGUI/Entry.hpp>
+	<SFGUI/Adjustment.hpp>
+	<memory>
+	<SFML/System/String.hpp>
+	<SFML/System/Clock.hpp>
+
+1392924884 d:\workspace\c++\librerias\sfgui\include\sfgui\renderer.hpp
+	<SFGUI/Config.hpp>
+	<memory>
+	<SFGUI/Primitive.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/OpenGL.hpp>
+	<vector>
+	<map>
+	<list>
+	<cstdint>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\shapes\concaveshape.hpp
+	<Thor/Math/TriangulationFigures.hpp>
+	<Thor/Config.hpp>
+	<Aurora/SmartPtr/CopiedPtr.hpp>
+	<Aurora/Tools/Swap.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/Color.hpp>
+	<vector>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\math\triangulationfigures.hpp
+	<Thor/Config.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<array>
+	<cassert>
+	<Thor/Math/Detail/TriangulationFigures.inl>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\math\detail\triangulationfigures.inl
+
+1392671519 d:\workspace\c++\librerias\thor\include\aurora\smartptr\copiedptr.hpp
+	<Aurora/SmartPtr/PtrFunctors.hpp>
+	<Aurora/SmartPtr/MakeCopied.hpp>
+	<Aurora/SmartPtr/Detail/PtrOwner.hpp>
+	<Aurora/Tools/SafeBool.hpp>
+	<Aurora/Config.hpp>
+	<algorithm>
+	<type_traits>
+	<utility>
+
+1392671519 d:\workspace\c++\librerias\thor\include\aurora\smartptr\ptrfunctors.hpp
+	<Aurora/Meta/Templates.hpp>
+
+1392671519 d:\workspace\c++\librerias\thor\include\aurora\meta\templates.hpp
+	<Aurora/Config.hpp>
+	<type_traits>
+
+1392671519 d:\workspace\c++\librerias\thor\include\aurora\smartptr\makecopied.hpp
+	<utility>
+	<Aurora/SmartPtr/Detail/Factories.hpp>
+
+1392671519 d:\workspace\c++\librerias\thor\include\aurora\smartptr\detail\factories.hpp
+	<Aurora/Meta/Preprocessor.hpp>
+
+1392671519 d:\workspace\c++\librerias\thor\include\aurora\smartptr\detail\ptrowner.hpp
+	<Aurora/Tools/NonCopyable.hpp>
+	<cassert>
+	<utility>
+
+1392671519 d:\workspace\c++\librerias\thor\include\aurora\tools\noncopyable.hpp
+
+1392671519 d:\workspace\c++\librerias\thor\include\aurora\tools\safebool.hpp
+
+1392671520 d:\workspace\c++\librerias\thor\include\thor\shapes\shapes.hpp
+	<Thor/Config.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Color.hpp>
+
+1399239192 source:d:\workspace\c++\test2\src\ssengine\util.cpp
+	"util.h"
+
+1399239187 d:\workspace\c++\test2\src\ssengine\util.h
+	<SFML/Graphics.hpp>
 

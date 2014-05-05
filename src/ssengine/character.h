@@ -167,7 +167,7 @@ namespace sse
         {
         }
         void update(sf::Time frameTim);
-        b2Vec2 updatePlayer();
+        b2Vec2 updatePlayer(bool hasclick);
     private:
     };
 

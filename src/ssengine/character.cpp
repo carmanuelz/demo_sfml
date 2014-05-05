@@ -407,7 +407,7 @@ void Player::update(sf::Time frameTime)
     Character::update(frameTime);
 }
 
-b2Vec2 Player::updatePlayer()
+b2Vec2 Player::updatePlayer(bool hasclick)
 {
     Body->SetLinearVelocity(b2Vec2(0,0));
     vel = Body->GetLinearVelocity();
@@ -489,7 +489,7 @@ b2Vec2 Player::updatePlayer()
     }
 
     weapon.play();
-    if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    if (!hasclick || !sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         weapon.stop();
     }
