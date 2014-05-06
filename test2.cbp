@@ -26,12 +26,12 @@
 				</Compiler>
 				<Linker>
 					<Add option="-lBox2D" />
-					<Add library="thor-s-d" />
 					<Add library="sfgui-s" />
 					<Add library="sfml-graphics-s-d" />
 					<Add library="sfml-audio-s-d" />
 					<Add library="sfml-window-s-d" />
 					<Add library="sfml-system-s-d" />
+					<Add library="thor-s-d" />
 					<Add library="sndfile" />
 					<Add library="openal32" />
 					<Add library="ws2_32" />
@@ -67,10 +67,12 @@
 				<Linker>
 					<Add option="-s" />
 					<Add option="-lBox2D" />
+					<Add library="sfgui-s" />
 					<Add library="sfml-graphics-s" />
 					<Add library="sfml-audio-s" />
 					<Add library="sfml-window-s" />
 					<Add library="sfml-system-s" />
+					<Add library="thor-s-d" />
 					<Add library="lua51" />
 					<Add library="sndfile" />
 					<Add library="openal32" />

@@ -436,25 +436,20 @@
 	<sstream>
 	<iomanip>
 
-1399239038 source:d:\workspace\c++\test2\src\main.cpp
+1399341554 source:d:\workspace\c++\test2\src\main.cpp
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	<SFGUI/SFGUI.hpp>
-	<sstream>
 	<Box2D/Box2D.h>
 	<Thor/Shapes/ConcaveShape.hpp>
 	<Thor/Shapes/Shapes.hpp>
-	<math.h>
 	"rubestuff/b2dJson.h"
 	"debugrender.h"
-	"ssengine/AStarFinder.h"
-	"ssengine/AnimatedSprite.hpp"
-	"ssengine/character.h"
-	"ssengine/loadconf/LuaScript.h"
-	"ssengine/particlesys.h"
-	"ssengine/util.h"
+	"ssengine/ssengine.h"
+	<math.h>
+	<sstream>
 
 1397446597 source:d:\workspace\c++\test2\src\astarfinder.cpp
 	"AStarFinder.h"
@@ -505,10 +500,10 @@
 
 1397604633 source:d:\workspace\c++\test2\src\ssengine\npc.cpp
 
-1399220714 source:d:\workspace\c++\test2\src\ssengine\character.cpp
+1399341554 source:d:\workspace\c++\test2\src\ssengine\character.cpp
 	"character.h"
 
-1399215287 d:\workspace\c++\test2\src\ssengine\character.h
+1399341554 d:\workspace\c++\test2\src\ssengine\character.h
 	<string>
 	<vector>
 	<map>
@@ -8408,6 +8403,14 @@
 	<SFML/Graphics.hpp>
 
 1399299122 d:\workspace\c++\demo_sfml\src\ssengine\ssengine.h
+	"AStarFinder.h"
+	"AnimatedSprite.hpp"
+	"character.h"
+	"loadconf/LuaScript.h"
+	"particlesys.h"
+	"util.h"
+
+1399341554 d:\workspace\c++\test2\src\ssengine\ssengine.h
 	"AStarFinder.h"
 	"AnimatedSprite.hpp"
 	"character.h"
