@@ -25,6 +25,8 @@ void Character::init()
     std::string path = script->get<std::string>(Code+".src");
     Cspritesheet.loadFromFile(path);
     hasweapon = script->get<bool>(Code+".hasweapon");
+    HP = script->get<float>(Code+".HP");
+    Damage = script->get<float>(Code+".damage");
 
     /*Cstartcile.setSpriteSheet(Cspritesheet);
     loadFrames(&Cidleicle, Code+".start");*/
@@ -60,6 +62,7 @@ void Character::init()
     setLeft();
     setAnimCicle(1);
     animated.setLooped(true);
+    //animated.setColor(sf::Color(255,0,0));
 
     Body = createBody(x,y);
 
@@ -204,7 +207,22 @@ void Character::update(sf::Time frameTime)
             isbusy = false;
 }
 
-void Character::updatebehaviour(float TargetX,float TargetY)
+void Character::takeDamage(float inDamage)
+{
+    HP -= inDamage;
+}
+
+float Character::Hit()
+{
+    return Damage;
+}
+
+float Character::getHP()
+{
+    return HP;
+}
+
+sf::Vector2f Character::updatebehaviour(float TargetX,float TargetY)
 {
     sf::Vector2f dif(TargetX - 24.0f - animated.getPosition().x,(TargetY - 39.0f - animated.getPosition().y)*-1);
     angle = fmod(atan2(dif.y, dif.x)*180/M_PI,360);
@@ -258,6 +276,8 @@ void Character::updatebehaviour(float TargetX,float TargetY)
         weapon.rotate(angle - weapon.getRotation());
         before = false;
     }
+
+    return bulletVU;
 }
 
 b2Body* Character::createBullet(sf::Vector2f origin, sf::Vector2f vel,float angle)
@@ -299,6 +319,8 @@ void Character::collisionCB(b2Fixture* inFixture)
             isbusy = true;
             b2Vec2 pos = inFixture->GetBody()->GetPosition();
             system->addEmitter(BloodEmitter(sf::Vector2f(pos.x*PPM,pos.y*PPM)), sf::seconds(0.1f));
+            Player* player = static_cast<sse::Player*>(inFixture->GetBody()->GetUserData());
+            player->takeDamage(Hit());
         }
     }
 }
@@ -409,6 +431,7 @@ void Player::update(sf::Time frameTime)
 
 sf::Vector2f Player::updatePlayer(bool hasfocused, bool hasclick)
 {
+    float result = 0;
     if(hasfocused)
     {
                 Body->SetLinearVelocity(b2Vec2(0,0));
@@ -503,8 +526,24 @@ sf::Vector2f Player::updatePlayer(bool hasfocused, bool hasclick)
                 createBullet(bulletOrigin, bulletVU, angle);
                 Acumulator = 0;
                 soundshoot.play();
+                hasshoot = true;
             }
         }
+        if(Acumulator < 0.2 && hasshoot)
+        {
+            if(Acumulator < 0.05)
+                result = pow(Acumulator,2)*600;
+            else
+                result = (Acumulator*-0.0167f+0.0033f)*600;
+
+            moveimpactview = bulletVU*-result;
+        }
+        else
+        {
+            hasshoot = false;
+            moveimpactview = sf::Vector2f(0,0);
+        }
+
     }
 
     return sf::Vector2f(x,y);

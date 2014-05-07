@@ -10,6 +10,7 @@
 #include "rubestuff/b2dJson.h"
 #include "debugrender.h"
 #include "ssengine/ssengine.h"
+#include "ssengine/tween/Accessor.h"
 #include <math.h>
 #include <sstream>
 
@@ -18,6 +19,18 @@ b2World* m_world;
 std::vector<b2Body*> RemoveList;
 std::vector<b2Body*> BulletList;
 std::vector<sse::MyRayCastCallback*> RaycastList;
+
+class AnimateAccessor : public sse::Accessor
+{
+    float getValues(AnimatedSprite* animated, int TweenType)
+    {
+        std::cout<<"hola";
+    }
+    void setValues(AnimatedSprite* animated, int TweenType, float* newvalues)
+    {
+        std::cout<<"hola";
+    }
+};
 
 class ContactListener : public b2ContactListener
 {
@@ -141,6 +154,8 @@ int main()
     sse::Player* player = new sse::Player(100,100,1,"player01",m_world,script);
     player->setRenderWindows(&renderWindow);
     player->setBulletList(&BulletList);
+    sf::Vector2f* impactview = &(player->moveimpactview);
+    float playerHP = player->getHP();
 
     sf::Sprite targetS;
     sf::Texture targetT;
@@ -162,10 +177,9 @@ int main()
     m_world->SetDebugDraw(&debugDraw);
 
 	sf::Clock frameClock;
-	float acumulator = 0;
 	//-----------------------------------//
 
-	sf::ConvexShape roundedRecthp = thor::Shapes::roundedRect(sf::Vector2f(100.f, 15.f), 3.f, sf::Color(200, 0, 0), 0.f, sf::Color(0, 0, 0));
+	sf::ConvexShape roundedRecthp = thor::Shapes::roundedRect(sf::Vector2f(200.f, 15.f), 3.f, sf::Color(200, 0, 0), 0.f, sf::Color(0, 0, 0));
 	sf::ConvexShape roundedRect = thor::Shapes::roundedRect(sf::Vector2f(200.f, 15.f), 3.f, sf::Color(60, 0, 0), 3.f, sf::Color(180, 200, 200));
 
 	roundedRect.setPosition(50.f, 50.f);
@@ -204,6 +218,7 @@ int main()
 
 	bool isFocused = true;
     bool hasclickplayer = true;
+    sf::Vector2f VURef(0,0);
 
     //poll input
     sf::Event event;
@@ -247,7 +262,7 @@ int main()
         sf::Vector2f mousePos(winmouseposition.x + view.getCenter().x - screnSize.x/2 ,winmouseposition.y + view.getCenter().y - screnSize.y/2);
         sf::Vector2f playerposition = player->updatePlayer(isFocused, hasclickplayer);
         if(isFocused)
-            player->updatebehaviour(mousePos.x,mousePos.y);
+            VURef = player->updatebehaviour(mousePos.x,mousePos.y);
         sf::Time frameTime = frameClock.restart();
         character->updateFind();
         character->update(frameTime);
@@ -269,7 +284,7 @@ int main()
 		renderWindow.draw(groundS);
 
         stepClock.restart();
-        sf::Vector2f offsetview = sf::Vector2f((playerposition.x - view.getCenter().x)*0.1f,(playerposition.y - view.getCenter().y)*0.1f);
+        sf::Vector2f offsetview = sf::Vector2f((playerposition.x - view.getCenter().x)*0.1f,(playerposition.y - view.getCenter().y)*0.1f)+ *impactview;
         if(offsetview.x<0.5 && offsetview.x > -0.5)
             offsetview.x = 0;
         if(offsetview.y<0.5 && offsetview.y > -0.5)
@@ -278,6 +293,8 @@ int main()
         view.move(offsetview.x,offsetview.y);
         roundedRect.move(offsetview.x, offsetview.y);
         roundedRecthp.move(offsetview.x, offsetview.y);
+        if(player->getHP() > 0)
+            roundedRecthp.setScale(player->getHP()/playerHP,1);
         renderWindow.setView(view);
 
         player->draw();
@@ -339,11 +356,11 @@ int main()
         }
 
 
-        sf::Vertex line2[] =
+        /*sf::Vertex line2[] =
             {
                 sf::Vertex(sf::Vector2f(p3.x*PPM, p3.y*PPM)),
                 sf::Vertex(sf::Vector2f(p4.x*PPM, p4.y*PPM))
-            };
+            };*/
 
         system.update(frameTime);
 		renderWindow.draw(system);

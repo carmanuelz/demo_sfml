@@ -84,7 +84,7 @@ namespace sse
         float offsetAnimYR = 0;
         float offsetAnimYL = 0;
         void setAnimCicle(int codecicle);
-        void updatebehaviour(float TargetX,float TargetY);
+        sf::Vector2f updatebehaviour(float TargetX,float TargetY);
         int direction = 1;
         sf::Vector2f CgunOffset;
         float angle = 0;
@@ -108,6 +108,10 @@ namespace sse
         }
         void collisionCB(b2Fixture* inFixture);
 
+        void takeDamage(float inDamage);
+        float Hit();
+        float getHP();
+
         std::vector<b2Body*> *BulletList;
     private:
         int ofsetanimx = 0;
@@ -117,6 +121,8 @@ namespace sse
         Animation Cattackcicle;
         Animation ChideIcle;
         Animation waposhootcicle;
+        float HP = 0;
+        float Damage = 0;
         sf::Texture Cspritesheet;
         sf::Texture weaponspritesheet;
         sf::SoundBuffer buffershoot;
@@ -165,9 +171,12 @@ namespace sse
     public:
         Player(float inx, float iny, int inType, std::string inCode, b2World* inworld,LuaScript *inscript):Character(inx,iny,inType,inCode,inworld,inscript)
         {
+            moveimpactview = sf::Vector2f(0,0);
         }
         void update(sf::Time frameTim);
         sf::Vector2f updatePlayer(bool hasfocused, bool hasclick);
+        sf::Vector2f moveimpactview;
+        bool hasshoot = false;
     private:
     };
 

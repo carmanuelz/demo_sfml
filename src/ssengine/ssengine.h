@@ -17,5 +17,6 @@
 
 #define PPM 64.0f               //PIXELS POR METRO
 #define MPP (1.0f/PPM)          //METROS POR PIXEL
+#define M_PI 3.14159265358979323846
 
 #endif

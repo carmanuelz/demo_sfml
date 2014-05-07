@@ -9,8 +9,10 @@ mob001 = {
 	offsetXL = -23,
 	offsetYR = -20,
 	offsetYL = -20,
-	hasweapon = false;
-	weapon  = "";
+	hasweapon = false,
+	damage = 5,
+	HP = 40,
+	weapon  = "",
 }
 
 player01 = {
@@ -22,7 +24,9 @@ player01 = {
 	offsetXL = -24,
 	offsetYR = -35,
 	offsetYL = -35,
-	hasweapon =  true,
+	hasweapon =  true,	
+	damage = 5,
+	HP = 100,
 	weapon = "w001"
 }
 
