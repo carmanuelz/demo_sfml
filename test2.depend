@@ -7710,7 +7710,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1399423178 source:d:\workspace\c++\demo_sfml\src\main.cpp
+1399569708 source:d:\workspace\c++\demo_sfml\src\main.cpp
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -7764,7 +7764,7 @@
 	<Box2D/Box2D.h>
 	<math.h>
 
-1398271983 d:\workspace\c++\demo_sfml\src\ssengine\animatedsprite.hpp
+1399556270 d:\workspace\c++\demo_sfml\src\ssengine\animatedsprite.hpp
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/System/Time.hpp>
 	<SFML/Graphics/Drawable.hpp>
@@ -7778,7 +7778,7 @@
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Texture.hpp>
 
-1399422540 d:\workspace\c++\demo_sfml\src\ssengine\character.h
+1399556270 d:\workspace\c++\demo_sfml\src\ssengine\character.h
 	<string>
 	<vector>
 	<map>
@@ -7793,6 +7793,7 @@
 	"AStarFinder.h"
 	"loadconf/LuaScript.h"
 	"particlesys.h"
+	"../AnimatedAccessor.h"
 
 1398404537 d:\workspace\c++\demo_sfml\src\ssengine\drawableentity.h
 	<string>
@@ -7859,7 +7860,7 @@
 	<sstream>
 	<iomanip>
 
-1398272611 source:d:\workspace\c++\demo_sfml\src\ssengine\animatedsprite.cpp
+1399556270 source:d:\workspace\c++\demo_sfml\src\ssengine\animatedsprite.cpp
 	"AnimatedSprite.hpp"
 
 1388940228 source:d:\workspace\c++\demo_sfml\src\ssengine\animation.cpp
@@ -7871,7 +7872,7 @@
 1398089209 source:d:\workspace\c++\demo_sfml\src\ssengine\loadconf\luascript.cpp
 	"LuaScript.h"
 
-1399478583 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
+1399569347 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
 	"character.h"
 
 1399139820 d:\workspace\c++\test2\src\ssengine\particlesys.h
@@ -8403,13 +8404,14 @@
 1399239187 d:\workspace\c++\demo_sfml\src\ssengine\util.h
 	<SFML/Graphics.hpp>
 
-1399471935 d:\workspace\c++\demo_sfml\src\ssengine\ssengine.h
+1399568851 d:\workspace\c++\demo_sfml\src\ssengine\ssengine.h
 	"AStarFinder.h"
 	"AnimatedSprite.hpp"
 	"character.h"
 	"loadconf/LuaScript.h"
 	"particlesys.h"
 	"util.h"
+	"tween/Easing/Easing.h"
 
 1399498658 d:\workspace\c++\test2\src\ssengine\ssengine.h
 	"AStarFinder.h"
@@ -8550,6 +8552,30 @@
 	"Easing/Easing.h"
 
 1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\easing.h
+	"Back.h"
+	"Bounce.h"
+	"Circ.h"
+	"Cubic.h"
+	"Elastic.h"
+	"Expo.h"
+	"Linear.h"
+	"Quad.h"
+	"Quart.h"
+	"Quint.h"
+	"Sine.h"
+
+1399556270 d:\workspace\c++\demo_sfml\src\animatedaccessor.h
+	<SFML/Graphics.hpp>
+	"ssengine/tween/Accessor.h"
+	"ssengine/AnimatedSprite.hpp"
+
+1399556270 d:\workspace\c++\demo_sfml\src\ssengine\tween\accessor.h
+
+1399565980 source:d:\workspace\c++\demo_sfml\basetween.cpp
+
+1399565923 source:d:\workspace\c++\demo_sfml\src\ssengine\tween\tween.cpp
+
+1399571084 d:\workspace\c++\demo_sfml\src\ssengine\tween\easing\easing.h
 	"Back.h"
 	"Bounce.h"
 	"Circ.h"

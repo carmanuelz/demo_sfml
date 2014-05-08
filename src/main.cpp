@@ -61,7 +61,6 @@ class ContactListener : public b2ContactListener
 
 int main()
 {
-    const sf::Time	explosionDuration = sf::seconds(0.1f);
     std::string errMsg;
     sf::Clock stepClock;
     sf::VideoMode videomode(800, 600, 32);
