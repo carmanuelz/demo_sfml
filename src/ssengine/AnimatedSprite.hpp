@@ -59,6 +59,7 @@ public:
     void stop();
     void setLooped(bool looped);
     void setColor(const sf::Color& color);
+    sf::Color getColor();
     const Animation* getAnimation() const;
     sf::FloatRect getLocalBounds() const;
     sf::FloatRect getGlobalBounds() const;

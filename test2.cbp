@@ -94,6 +94,7 @@
 		<Linker>
 			<Add directory="../librerias/SFML_GIT/extlibs/libs-mingw/x86" />
 		</Linker>
+		<Unit filename="src/AnimatedAccessor.h" />
 		<Unit filename="src/debugrender.cpp" />
 		<Unit filename="src/debugrender.h" />
 		<Unit filename="src/main.cpp" />
@@ -118,6 +119,33 @@
 		<Unit filename="src/ssengine/loadconf/LuaScript.cpp" />
 		<Unit filename="src/ssengine/loadconf/LuaScript.h" />
 		<Unit filename="src/ssengine/particlesys.h" />
+		<Unit filename="src/ssengine/ssengine.h" />
+		<Unit filename="src/ssengine/tween/Accessor.h" />
+		<Unit filename="src/ssengine/tween/Easing/Back.cpp" />
+		<Unit filename="src/ssengine/tween/Easing/Back.h" />
+		<Unit filename="src/ssengine/tween/Easing/Bounce.cpp" />
+		<Unit filename="src/ssengine/tween/Easing/Bounce.h" />
+		<Unit filename="src/ssengine/tween/Easing/Circ.cpp" />
+		<Unit filename="src/ssengine/tween/Easing/Circ.h" />
+		<Unit filename="src/ssengine/tween/Easing/Cubic.cpp" />
+		<Unit filename="src/ssengine/tween/Easing/Cubic.h" />
+		<Unit filename="src/ssengine/tween/Easing/Easing.h" />
+		<Unit filename="src/ssengine/tween/Easing/Elastic.cpp" />
+		<Unit filename="src/ssengine/tween/Easing/Elastic.h" />
+		<Unit filename="src/ssengine/tween/Easing/Expo.cpp" />
+		<Unit filename="src/ssengine/tween/Easing/Expo.h" />
+		<Unit filename="src/ssengine/tween/Easing/Linear.cpp" />
+		<Unit filename="src/ssengine/tween/Easing/Linear.h" />
+		<Unit filename="src/ssengine/tween/Easing/Quad.cpp" />
+		<Unit filename="src/ssengine/tween/Easing/Quad.h" />
+		<Unit filename="src/ssengine/tween/Easing/Quart.cpp" />
+		<Unit filename="src/ssengine/tween/Easing/Quart.h" />
+		<Unit filename="src/ssengine/tween/Easing/Quint.cpp" />
+		<Unit filename="src/ssengine/tween/Easing/Quint.h" />
+		<Unit filename="src/ssengine/tween/Easing/Sine.cpp" />
+		<Unit filename="src/ssengine/tween/Easing/Sine.h" />
+		<Unit filename="src/ssengine/tween/TweenManager.cpp" />
+		<Unit filename="src/ssengine/tween/TweenManager.h" />
 		<Unit filename="src/ssengine/util.cpp" />
 		<Unit filename="src/ssengine/util.h" />
 		<Extensions>

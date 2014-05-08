@@ -113,6 +113,10 @@ void AnimatedSprite::setColor(const sf::Color& color)
     m_vertices[2].color = color;
     m_vertices[3].color = color;
 }
+sf::Color AnimatedSprite::getColor()
+{
+    return m_vertices[0].color;
+}
 
 const Animation* AnimatedSprite::getAnimation() const
 {

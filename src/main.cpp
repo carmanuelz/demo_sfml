@@ -10,7 +10,6 @@
 #include "rubestuff/b2dJson.h"
 #include "debugrender.h"
 #include "ssengine/ssengine.h"
-#include "ssengine/tween/Accessor.h"
 #include <math.h>
 #include <sstream>
 
@@ -19,18 +18,6 @@ b2World* m_world;
 std::vector<b2Body*> RemoveList;
 std::vector<b2Body*> BulletList;
 std::vector<sse::MyRayCastCallback*> RaycastList;
-
-class AnimateAccessor : public sse::Accessor
-{
-    float getValues(AnimatedSprite* animated, int TweenType)
-    {
-        std::cout<<"hola";
-    }
-    void setValues(AnimatedSprite* animated, int TweenType, float* newvalues)
-    {
-        std::cout<<"hola";
-    }
-};
 
 class ContactListener : public b2ContactListener
 {
@@ -74,7 +61,7 @@ class ContactListener : public b2ContactListener
 
 int main()
 {
-    const sf::Time	explosionDuration	= sf::seconds(0.1f);
+    const sf::Time	explosionDuration = sf::seconds(0.1f);
     std::string errMsg;
     sf::Clock stepClock;
     sf::VideoMode videomode(800, 600, 32);

@@ -17,6 +17,8 @@
 #include "loadconf/LuaScript.h"
 #include "particlesys.h"
 
+#include "../AnimatedAccessor.h"
+
 #define M_PI 3.14159265358979323846
 #define SPEED 0.3
 #define DEGTORAD 0.0174532925199432957f

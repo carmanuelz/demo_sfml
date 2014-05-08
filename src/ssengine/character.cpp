@@ -338,6 +338,10 @@ void AICharacter::update(sf::Time frameTime)
 {
     Body->SetLinearVelocity(vel);
     Character::update(frameTime);
+    AnimatedAccessor animaccess;
+    float* values = new float[2];
+    values = animaccess.getValues(&animated,animaccess.POSITION);
+    std::cout<<values[0]<<std::endl;
 }
 
 void AICharacter::updateFind()

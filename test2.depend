@@ -436,7 +436,7 @@
 	<sstream>
 	<iomanip>
 
-1399341554 source:d:\workspace\c++\test2\src\main.cpp
+1399522125 source:d:\workspace\c++\test2\src\main.cpp
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -500,10 +500,10 @@
 
 1397604633 source:d:\workspace\c++\test2\src\ssengine\npc.cpp
 
-1399341554 source:d:\workspace\c++\test2\src\ssengine\character.cpp
+1399498658 source:d:\workspace\c++\test2\src\ssengine\character.cpp
 	"character.h"
 
-1399341554 d:\workspace\c++\test2\src\ssengine\character.h
+1399522173 d:\workspace\c++\test2\src\ssengine\character.h
 	<string>
 	<vector>
 	<map>
@@ -518,8 +518,9 @@
 	"AStarFinder.h"
 	"loadconf/LuaScript.h"
 	"particlesys.h"
+	"../AnimatedAccessor.h"
 
-1398271983 d:\workspace\c++\test2\src\ssengine\animatedsprite.hpp
+1399502215 d:\workspace\c++\test2\src\ssengine\animatedsprite.hpp
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/System/Time.hpp>
 	<SFML/Graphics/Drawable.hpp>
@@ -7654,7 +7655,7 @@
 1318294774 d:\workspace\c++\test2\src\ssengine\loadconf\config_parser.h
 	<boost/python.hpp>
 
-1398272611 source:d:\workspace\c++\test2\src\ssengine\animatedsprite.cpp
+1399502301 source:d:\workspace\c++\test2\src\ssengine\animatedsprite.cpp
 	"AnimatedSprite.hpp"
 
 1388940228 source:d:\workspace\c++\test2\src\ssengine\animation.cpp
@@ -8410,7 +8411,7 @@
 	"particlesys.h"
 	"util.h"
 
-1399341554 d:\workspace\c++\test2\src\ssengine\ssengine.h
+1399498658 d:\workspace\c++\test2\src\ssengine\ssengine.h
 	"AStarFinder.h"
 	"AnimatedSprite.hpp"
 	"character.h"
@@ -8478,4 +8479,86 @@
 	<math.h>
 
 1399477767 source:d:\workspace\c++\demo_sfml\src\ssengine\tween\tweenmanager.cpp
+
+1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\back.cpp
+	"Back.h"
+
+1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\back.h
+
+1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\bounce.cpp
+	"Bounce.h"
+
+1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\bounce.h
+
+1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\circ.cpp
+	"Circ.h"
+
+1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\circ.h
+	<math.h>
+
+1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\cubic.cpp
+	"Cubic.h"
+
+1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\cubic.h
+
+1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\elastic.cpp
+	"Elastic.h"
+
+1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\elastic.h
+	<math.h>
+
+1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\expo.cpp
+	"Expo.h"
+
+1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\expo.h
+	<math.h>
+
+1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\linear.cpp
+	"Linear.h"
+
+1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\linear.h
+
+1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\quad.cpp
+	"Quad.h"
+
+1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\quad.h
+
+1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\quart.cpp
+	"Quart.h"
+
+1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\quart.h
+
+1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\quint.cpp
+	"Quint.h"
+
+1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\quint.h
+
+1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\sine.cpp
+	"Sine.h"
+
+1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\sine.h
+	<math.h>
+
+1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\tweenmanager.cpp
+
+1399522019 d:\workspace\c++\test2\src\animatedaccessor.h
+	<SFML/Graphics.hpp>
+	"ssengine/tween/Accessor.h"
+	"ssengine/AnimatedSprite.hpp"
+
+1399521864 d:\workspace\c++\test2\src\ssengine\tween\accessor.h
+	"Easing/Easing.h"
+
+1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\easing.h
+	"Back.h"
+	"Bounce.h"
+	"Circ.h"
+	"Cubic.h"
+	"Elastic.h"
+	"Expo.h"
+	"Linear.h"
+	"Quad.h"
+	"Quart.h"
+	"Quint.h"
+	"Sine.h"
 
