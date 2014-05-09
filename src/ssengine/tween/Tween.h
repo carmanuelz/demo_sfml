@@ -1,95 +1,49 @@
 #ifndef TWEEN_H
 #define TWEEN_H
 
+#include <SFML/System.hpp>
+#include <iostream>
 #include "Easing/Easing.h"
+#include "Accessor.h"
 
-namespace see
+namespace sse
 {
     class Tween
     {
-    private:
-        static int combinedAttrsLimit;
-        static int waypointsLimit;
-
-        // Main
-        TweenEquation *equation;
-        TweenPath *pathAlgorithm;
-
-        // General
-        bool isFrom;
-        bool isRelative;
-        int combinedAttrsCnt;
-        int waypointsCnt;
-
-        // Values
-        float* startValues;
-        float* targetValues;
-        float* waypoints;
-
-        // Buffers
-        float *accessorBuffer;
-        int accessorBufferSize;
-        float *pathBuffer;
-        int pathBufferSize;
-
-        //static TweenPoolCallback *poolCallback;
-        static TweenPool &pool;
-
-        Accessor accessor;
-
-        void setup(Accessor accessor, float duration);
-
-    protected:
-        virtual void reset();
-        virtual void forceStartValues();
-        virtual void forceEndValues();
-        virtual void initializeOverride();
-        virtual void updateOverride(int step, int lastStep, bool isIterationStep, float delta);
-
     public:
-        static const int ACCESSOR_READ = 0;
-        static const int ACCESSOR_WRITE = 1;
+        Tween():tween(this){}
+        void to(Accessor* inaccessor, void *intarget, int intweentype, float (* ineasefunc) (float t,float b , float c, float d), float* into, float intotaltime, int insizevalue);
+        void from(Accessor* inaccessor, void *intarget, int intweentype, float (* ineasefunc) (float t,float b , float c, float d), float* infrom, float intotaltime, int insizevalue);
+        void update(sf::Time frameTime);
+        void resstart();
+        void stop();
+    private:
+        Accessor* accessor;
+        Tween* tween;
+        int tweentype;
+        float* destination;
+        float* origin;
+        float* currentvalues;
+        float* initialvalues;
+        float timecounter;
+        float totaltime;
+        int repeatCnt;
+        bool isIterationStep;
+        bool isYoyoFlag;
+        int valuesize;
 
-        static void setCombinedAttributesLimit(int limit);
-        static void setWaypointsLimit(int limit);
-        static const char *getVersion();
+        // Timings
+        float repeatDelay;
+        float currentTime;
+        float deltaTime;
+        bool isStartedFlag;     // true when the object is started
+        bool isInitializedFlag; // true after the delay
+        bool isFinishedFlag;    // true when all repetitions are done
+        bool isKilledFlag;      // true if kill() was called
+        bool isPausedFlag;      // true if pause() was called
 
-        static int getPoolSize();
-        static void ensurePoolCapacity(int minCapacity);
-
-        static Tween &to(Accessor accessor, float duration);
-        static Tween &from(Accessor accessor, float duration);
-        static Tween &set(Accessor accessor);
-        static Tween &call(TweenCallback &callback);
-        static Tween &mark();
-
-        Tween();
-        ~Tween();
-
-        virtual int getTweenCount();
-        virtual int getTimelineCount();
-
-        virtual Tween &build();
-        virtual void free();
-
-        Tween &ease(TweenEquation &easeEquation);
-        Tween &target(float targetValue);
-        Tween &target(float targetValue1, float targetValue2);
-        Tween &target(float targetValue1, float targetValue2, float targetValue3);
-        Tween &target(float *targetValues, int len);
-        Tween &targetRelative(float targetValue);
-        Tween &targetRelative(float targetValue1, float targetValue2);
-        Tween &targetRelative(float targetValue1, float targetValue2, float targetValue3);
-        Tween &targetRelative(float *targetValues, int len);
-        Tween &waypoint(float targetValue);
-        Tween &waypoint(float targetValue1, float targetValue2);
-        Tween &waypoint(float targetValue1, float targetValue2, float targetValue3);
-        Tween &waypoint(float *targetValues, int len);
-        Tween &path(TweenPath &path);
-        int getType();
-        TweenEquation *getEasing();
-        float *getTargetValues();
-        int getCombinedAttributesCount();
+        void *target;
+        float (*easefunc)(float t,float b , float c, float d);
     };
 }
 

@@ -171,6 +171,15 @@ int main()
 	roundedRect.setPosition(50.f, 50.f);
 	roundedRecthp.setPosition(50.f, 50.f);
 
+	AnimatedAccessor* animaccess = new AnimatedAccessor();
+    sse::Tween tween;
+    float* values= new float[3];
+    values[0] = 255;
+    values[1] = 0;
+    values[2] = 0;
+
+    tween.to(animaccess, &(player->animated), animaccess->COLOR,sse::easing::easeInLinear,values, 3, 3);
+
 	/**/
     // Create an SFGUI. This is required before doing anything with SFGUI.
     sfg::SFGUI m_sfgui;
@@ -288,6 +297,8 @@ int main()
 
         targetS.setPosition(mousePos);
         renderWindow.draw(targetS);
+
+        tween.update(frameTime);
 
         for(auto k = BulletList.cbegin() ; k != BulletList.cend() ; k++ )
         {

@@ -7710,7 +7710,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1399569708 source:d:\workspace\c++\demo_sfml\src\main.cpp
+1399658230 source:d:\workspace\c++\demo_sfml\src\main.cpp
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -8404,14 +8404,14 @@
 1399239187 d:\workspace\c++\demo_sfml\src\ssengine\util.h
 	<SFML/Graphics.hpp>
 
-1399568851 d:\workspace\c++\demo_sfml\src\ssengine\ssengine.h
+1399644961 d:\workspace\c++\demo_sfml\src\ssengine\ssengine.h
 	"AStarFinder.h"
 	"AnimatedSprite.hpp"
 	"character.h"
 	"loadconf/LuaScript.h"
 	"particlesys.h"
 	"util.h"
-	"tween/Easing/Easing.h"
+	"tween/Tween.h"
 
 1399498658 d:\workspace\c++\test2\src\ssengine\ssengine.h
 	"AStarFinder.h"
@@ -8573,7 +8573,8 @@
 
 1399565980 source:d:\workspace\c++\demo_sfml\basetween.cpp
 
-1399565923 source:d:\workspace\c++\demo_sfml\src\ssengine\tween\tween.cpp
+1399658194 source:d:\workspace\c++\demo_sfml\src\ssengine\tween\tween.cpp
+	"Tween.h"
 
 1399571084 d:\workspace\c++\demo_sfml\src\ssengine\tween\easing\easing.h
 	"Back.h"
@@ -8587,4 +8588,10 @@
 	"Quart.h"
 	"Quint.h"
 	"Sine.h"
+
+1399657458 d:\workspace\c++\demo_sfml\src\ssengine\tween\tween.h
+	<SFML/System.hpp>
+	<iostream>
+	"Easing/Easing.h"
+	"Accessor.h"
 
