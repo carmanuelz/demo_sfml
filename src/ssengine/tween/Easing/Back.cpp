@@ -5,7 +5,7 @@ float Back::easeIn (float t,float b , float c, float d) {
 	float postFix = t/=d;
 	return c*(postFix)*t*((s+1)*t - s) + b;
 }
-float Back::easeOut(float t,float b , float c, float d) {	
+float Back::easeOut(float t,float b , float c, float d) {
 	float s = 1.70158f;
 	return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
 }

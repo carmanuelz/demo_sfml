@@ -25,7 +25,6 @@
 					<Add directory="../librerias/SFGUI/include" />
 				</Compiler>
 				<Linker>
-					<Add option="-lBox2D" />
 					<Add library="sfgui-s" />
 					<Add library="sfml-graphics-s-d" />
 					<Add library="sfml-audio-s-d" />
@@ -41,8 +40,9 @@
 					<Add library="gdi32" />
 					<Add library="opengl32" />
 					<Add library="winmm" />
-					<Add library="lua51" />
-					<Add directory="../librerias/Box2d/bin/Release" />
+					<Add library="lua5.1-s" />
+					<Add library="Box2D" />
+					<Add directory="../librerias/Box2D/lib" />
 					<Add directory="../librerias/Lua/lib" />
 					<Add directory="../librerias/Thor/lib" />
 					<Add directory="../librerias/SFGUI/lib" />
