@@ -56,6 +56,19 @@ class ContactListener : public b2ContactListener
 
     void EndContact(b2Contact* contact)
     {
+        b2Fixture* FixtA = contact->GetFixtureA();
+        b2Fixture* FixtB = contact->GetFixtureB();
+        sse::UserData* userdataA = static_cast<sse::UserData*>(FixtA->GetUserData());
+        sse::UserData* userdataB = static_cast<sse::UserData*>(FixtB->GetUserData());
+        if(userdataA->tipo == 3 && userdataA->estado==0)
+        {
+            std::cout<<"hola";
+        }
+        else
+            if(userdataB->tipo == 3 && userdataB->estado==0)
+            {
+                std::cout<<"hola";
+            }
     }
 };
 
@@ -174,11 +187,21 @@ int main()
 	AnimatedAccessor* animaccess = new AnimatedAccessor();
     sse::Tween tween;
     float* values= new float[3];
-    values[0] = 255;
-    values[1] = 0;
+    values[0] = 0;
+    values[1] = 255;
     values[2] = 0;
 
-    tween.to(animaccess, &(player->animated), animaccess->COLOR,sse::easing::easeInLinear,values, 3, 3);
+    sse::tweenOptions* options = new sse::tweenOptions();
+    options->target = &(player->animated);
+    options->accessor = animaccess;
+    options->easefunc = sse::easing::easeInLinear;
+    options->tweentype = animaccess->COLOR;
+    options->destination = values;
+    options->sizevalue = 3;
+    options->yoyo = true;
+    options->repeatCnt = 0;
+    options->timeCicle = 0.2f;
+    tween.to(options);
 
 	/**/
     // Create an SFGUI. This is required before doing anything with SFGUI.

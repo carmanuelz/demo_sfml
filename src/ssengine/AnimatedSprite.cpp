@@ -297,7 +297,6 @@ void AnimatedSprite::updateTimeLineEnd()
         }
         else
         {
-
             if(TimeLine[indexTransition]->EndFunc != 0 )
                 TimeLine[indexTransition]->EndFunc();
             indexRepetition = 0;

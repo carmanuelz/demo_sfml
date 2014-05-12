@@ -8,12 +8,30 @@
 
 namespace sse
 {
+    struct tweenOptions
+    {
+        tweenOptions()
+        {
+            repeatCnt = 1;
+            yoyo = false;
+        }
+        void *target;
+        Accessor* accessor;
+        float (* easefunc) (float t,float b , float c, float d);
+        int tweentype;
+        float* destination;
+        float timeCicle;
+        int sizevalue;
+        bool yoyo;
+        int repeatCnt;
+    };
+
     class Tween
     {
     public:
         Tween():tween(this){}
-        void to(Accessor* inaccessor, void *intarget, int intweentype, float (* ineasefunc) (float t,float b , float c, float d), float* into, float intotaltime, int insizevalue);
-        void from(Accessor* inaccessor, void *intarget, int intweentype, float (* ineasefunc) (float t,float b , float c, float d), float* infrom, float intotaltime, int insizevalue);
+        void to(tweenOptions* options);
+        void from(tweenOptions* options);
         void update(sf::Time frameTime);
         void resstart();
         void stop();
@@ -26,8 +44,9 @@ namespace sse
         float* currentvalues;
         float* initialvalues;
         float timecounter;
-        float totaltime;
+        float timeCicle;
         int repeatCnt;
+        int repeatCount;
         bool isIterationStep;
         bool isYoyoFlag;
         int valuesize;
@@ -41,9 +60,12 @@ namespace sse
         bool isFinishedFlag;    // true when all repetitions are done
         bool isKilledFlag;      // true if kill() was called
         bool isPausedFlag;      // true if pause() was called
+        bool isReverse;
 
         void *target;
         float (*easefunc)(float t,float b , float c, float d);
+        void updateCicle();
+        void prepareCicle(float delta);
     };
 }
 

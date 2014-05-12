@@ -436,7 +436,7 @@
 	<sstream>
 	<iomanip>
 
-1399522125 source:d:\workspace\c++\test2\src\main.cpp
+1399762802 source:d:\workspace\c++\test2\src\main.cpp
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -500,10 +500,10 @@
 
 1397604633 source:d:\workspace\c++\test2\src\ssengine\npc.cpp
 
-1399498658 source:d:\workspace\c++\test2\src\ssengine\character.cpp
+1399847847 source:d:\workspace\c++\test2\src\ssengine\character.cpp
 	"character.h"
 
-1399522173 d:\workspace\c++\test2\src\ssengine\character.h
+1399830315 d:\workspace\c++\test2\src\ssengine\character.h
 	<string>
 	<vector>
 	<map>
@@ -7655,7 +7655,7 @@
 1318294774 d:\workspace\c++\test2\src\ssengine\loadconf\config_parser.h
 	<boost/python.hpp>
 
-1399502301 source:d:\workspace\c++\test2\src\ssengine\animatedsprite.cpp
+1399761920 source:d:\workspace\c++\test2\src\ssengine\animatedsprite.cpp
 	"AnimatedSprite.hpp"
 
 1388940228 source:d:\workspace\c++\test2\src\ssengine\animation.cpp
@@ -8413,13 +8413,14 @@
 	"util.h"
 	"tween/Tween.h"
 
-1399498658 d:\workspace\c++\test2\src\ssengine\ssengine.h
+1399668604 d:\workspace\c++\test2\src\ssengine\ssengine.h
 	"AStarFinder.h"
 	"AnimatedSprite.hpp"
 	"character.h"
 	"loadconf/LuaScript.h"
 	"particlesys.h"
 	"util.h"
+	"tween/Tween.h"
 
 1226130560 source:d:\workspace\c++\demo_sfml\src\ssengine\tween\easing\back.cpp
 	"Back.h"
@@ -8548,10 +8549,9 @@
 	"ssengine/tween/Accessor.h"
 	"ssengine/AnimatedSprite.hpp"
 
-1399521864 d:\workspace\c++\test2\src\ssengine\tween\accessor.h
-	"Easing/Easing.h"
+1399522648 d:\workspace\c++\test2\src\ssengine\tween\accessor.h
 
-1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\easing.h
+1399581972 d:\workspace\c++\test2\src\ssengine\tween\easing\easing.h
 	"Back.h"
 	"Bounce.h"
 	"Circ.h"
@@ -8594,4 +8594,15 @@
 	<iostream>
 	"Easing/Easing.h"
 	"Accessor.h"
+
+1399762653 d:\workspace\c++\test2\src\ssengine\tween\tween.h
+	<SFML/System.hpp>
+	<iostream>
+	"Easing/Easing.h"
+	"Accessor.h"
+
+1399668604 source:d:\workspace\c++\test2\src\ssengine\tween\basetween.cpp
+
+1399762645 source:d:\workspace\c++\test2\src\ssengine\tween\tween.cpp
+	"Tween.h"
 

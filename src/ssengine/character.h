@@ -29,6 +29,13 @@
 
 namespace sse
 {
+    namespace objectType
+    {
+        const static int obj_typeBullet = 3;
+        const static int obj_typePlayer = 1;
+        const static int obj_typeEnemy = 4;
+    }
+
     class MyRayCastCallback : public b2RayCastCallback
     {
         public:

@@ -1,32 +1,76 @@
 #include "Tween.h"
 namespace sse
 {
-    void Tween::to(Accessor* inaccessor, void *intarget,int intweentype, float (* ineasefunc) (float t,float b , float c, float d), float* into, float intotaltime, int insizevalue)
+    void Tween::to(tweenOptions* options)
     {
-        target = intarget;
-        accessor = inaccessor;
-        easefunc = ineasefunc;
-        tweentype = intweentype;
-        destination =  into;
+        target = options->target;
+        accessor = options->accessor;
+        easefunc = options->easefunc;
+        tweentype = options->tweentype;
+        destination = options->destination;
+        valuesize = options->sizevalue;
+        isYoyoFlag = options->yoyo;
+
+        repeatCnt = options->repeatCnt;
+        currentvalues = accessor->getValues(target,tweentype);
+        initialvalues = accessor->getValues(target,tweentype);
+        timeCicle = options->timeCicle;
+        isReverse = false;
+        repeatCount = 0;
         timecounter = 0;
-        totaltime = intotaltime;
-        currentvalues = inaccessor->getValues(target,tweentype);
-        initialvalues = inaccessor->getValues(target,tweentype);
-        valuesize = insizevalue;
     }
 
     void Tween::update(sf::Time frameTime)
     {
-        if(timecounter < totaltime)
+        if(repeatCount < repeatCnt || repeatCnt == 0)
         {
-            for(int i = 0; i < valuesize; i++)
-            {
-                currentvalues[i] = easefunc(timecounter, initialvalues[i],destination[i]-initialvalues[i],totaltime);
-            }
-            accessor->setValues(target,tweentype,currentvalues);
-            timecounter += frameTime.asSeconds();
-            std::cout<<"color: ("<<currentvalues[0]<<","<<currentvalues[1]<<","<<currentvalues[2]<<")"<<std::endl;
+            prepareCicle(frameTime.asSeconds());
         }
+    }
+
+    void Tween::prepareCicle(float delta)
+    {
+        if(!isReverse)
+        {
+            if(timecounter + delta < timeCicle)
+            {
+                timecounter += delta;
+            }
+            else
+            {
+                timecounter = timeCicle;
+                isReverse = true;
+            }
+            updateCicle();
+        }
+        else
+        {
+            if(isYoyoFlag)
+            {
+                if(timecounter - delta > 0)
+                {
+                    timecounter -= delta;
+                }
+                else
+                {
+                    timecounter = 0;
+                    isReverse = false;
+                    repeatCount++;
+                }
+                updateCicle();
+            }
+            else
+                repeatCount++;
+        }
+    }
+
+    void Tween::updateCicle()
+    {
+        for(int i = 0; i < valuesize; i++)
+            {
+                currentvalues[i] = easefunc(timecounter, initialvalues[i],destination[i]-initialvalues[i],timeCicle);
+            }
+        accessor->setValues(target,tweentype,currentvalues);
     }
 }
 

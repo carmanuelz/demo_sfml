@@ -307,9 +307,10 @@ b2Body* Character::createBullet(sf::Vector2f origin, sf::Vector2f vel,float angl
 
 void Character::collisionCB(b2Fixture* inFixture)
 {
-    sse::UserData* userdataA = static_cast<sse::UserData*>(inFixture->GetUserData());
-    if(userdataA->tipo == 1)
+    sse::UserData* userdata = static_cast<sse::UserData*>(inFixture->GetUserData());
+    switch (userdata->tipo)
     {
+    case objectType::obj_typePlayer:
         if(!isbusy)
         {
             animated.PrepareTimeLine();
