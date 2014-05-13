@@ -15,6 +15,7 @@
 #include "drawableentity.h"
 #include "AStarFinder.h"
 #include "loadconf/LuaScript.h"
+#include "UserData.h"
 #include "particlesys.h"
 
 #include "../AnimatedAccessor.h"
@@ -59,14 +60,6 @@ namespace sse
              b2Vec2 m_normal;
              float32 m_fraction;
     };
-
-    class UserData
-    {
-        public:
-            int tipo;
-            int estado;
-    };
-
     class Character : public drawableentity
     {
     public:

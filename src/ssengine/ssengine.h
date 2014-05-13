@@ -20,4 +20,8 @@
 #define MPP (1.0f/PPM)          //METROS POR PIXEL
 #define M_PI 3.14159265358979323846
 
+namespace sse
+{
+}
+
 #endif

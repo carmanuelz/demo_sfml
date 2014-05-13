@@ -1,5 +1,6 @@
 --animation arraydata: nro frame, width, height, nrorow
 mob001 = {
+	type = 4,
 	src = "assets/enemmy.png",
 	start = {5, 70, 40, 2},
 	idle = {4, 70, 40, 1},
@@ -16,6 +17,7 @@ mob001 = {
 }
 
 player01 = {
+	type = 1,
 	src = "assets/player.png",
 	run = {8, 48, 60, 0},
 	idle = {8, 48, 60, 1},
@@ -41,13 +43,3 @@ g001 = {
 	src = "bullet2.png",
 	value = 1
 }
-
-player = {
-    position = {
-    x = 32.5, y = 20.0
-    },
-    filename = "sprite.png",
-    HP = 300
-}
-
-array2 = {1, 1, 2, 3, 5, 10, 20}

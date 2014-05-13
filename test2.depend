@@ -7710,7 +7710,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1399912457 source:d:\workspace\c++\demo_sfml\src\main.cpp
+1400001619 source:d:\workspace\c++\demo_sfml\src\main.cpp
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -7722,6 +7722,7 @@
 	"rubestuff/b2dJson.h"
 	"debugrender.h"
 	"ssengine/ssengine.h"
+	"GameContext.h"
 	<math.h>
 	<sstream>
 
@@ -7778,7 +7779,7 @@
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Texture.hpp>
 
-1399900774 d:\workspace\c++\demo_sfml\src\ssengine\character.h
+1399996169 d:\workspace\c++\demo_sfml\src\ssengine\character.h
 	<string>
 	<vector>
 	<map>
@@ -7792,6 +7793,7 @@
 	"drawableentity.h"
 	"AStarFinder.h"
 	"loadconf/LuaScript.h"
+	"UserData.h"
 	"particlesys.h"
 	"../AnimatedAccessor.h"
 
@@ -8404,7 +8406,7 @@
 1399239187 d:\workspace\c++\demo_sfml\src\ssengine\util.h
 	<SFML/Graphics.hpp>
 
-1399644961 d:\workspace\c++\demo_sfml\src\ssengine\ssengine.h
+1399992565 d:\workspace\c++\demo_sfml\src\ssengine\ssengine.h
 	"AStarFinder.h"
 	"AnimatedSprite.hpp"
 	"character.h"
@@ -8455,7 +8457,7 @@
 1226130560 d:\workspace\c++\demo_sfml\src\ssengine\tween\easing\expo.h
 	<math.h>
 
-1399912278 source:d:\workspace\c++\demo_sfml\src\ssengine\tween\easing\linear.cpp
+1399912476 source:d:\workspace\c++\demo_sfml\src\ssengine\tween\easing\linear.cpp
 	"Linear.h"
 
 1399912413 d:\workspace\c++\demo_sfml\src\ssengine\tween\easing\linear.h
@@ -8607,4 +8609,22 @@
 	"Tween.h"
 
 1399641721 source:d:\workspace\c++\demo_sfml\src\ssengine\tween\basetween.cpp
+
+1399996315 d:\workspace\c++\demo_sfml\src\ssengine\userdata.h
+
+1399993788 source:d:\workspace\c++\demo_sfml\src\ssengine\userdata.cpp
+	"UserData.h"
+
+1400002097 source:d:\workspace\c++\demo_sfml\src\ssengine\gamecontext.cpp
+	"GameContext.h"
+
+1400002450 d:\workspace\c++\demo_sfml\src\ssengine\gamecontext.h
+	<string>
+	<Box2D/Box2D.h>
+	<SFML/Graphics.hpp>
+	<Thor/Particles/ParticleSystem.hpp>
+	"../rubestuff/b2dJson.h"
+	"AStarFinder.h"
+	"loadconf/LuaScript.h"
+	"UserData.h"
 

@@ -10,6 +10,7 @@
 #include "rubestuff/b2dJson.h"
 #include "debugrender.h"
 #include "ssengine/ssengine.h"
+#include "GameContext.h"
 #include <math.h>
 #include <sstream>
 
@@ -79,29 +80,24 @@ int main()
     sf::VideoMode videomode(800, 600, 32);
 	sf::RenderWindow renderWindow(videomode, "Test"/*,sf::Style::Fullscreen*/);
 	renderWindow.setVerticalSyncEnabled(true);
+    DebugDraw debugDraw = DebugDraw(renderWindow);
+    renderWindow.setFramerateLimit(60);
     //renderWindow.setMouseCursorVisible(false);
     sf::Vector2i screnSize((int)renderWindow.getSize().x,(int)renderWindow.getSize().y);
-
-    /*std::vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
-    for (std::size_t i = 0; i < modes.size(); ++i)
-    {
-        sf::VideoMode mode = modes[i];
-        std::cout << "Mode #" << i << ": "
-                  << mode.width << "x" << mode.height << " - "
-                  << mode.bitsPerPixel << " bpp" << std::endl;
-    }*/
 
     sf::Texture texture;
 	if (!texture.loadFromFile("assets/bloodparticle.png"))
 		return EXIT_FAILURE;
 
 	// Instantiate particle system and add custom affector
-	thor::ParticleSystem system;
-	system.setTexture(texture);
-	system.addAffector(BloodkAffector());
 
-    DebugDraw debugDraw = DebugDraw(renderWindow);
-    renderWindow.setFramerateLimit(60);
+	sse::GameContext* context = new sse::GameContext();
+    context->m_psystem->setTexture(texture);
+    context->m_psystem->addAffector(BloodkAffector());
+    context->m_rwindow = &renderWindow;
+    context->LoadWorld("maps/nivel1.json");
+    context->Createfinder(32,30,30);
+
 
     sf::Texture groundT;
     if(!groundT.loadFromFile("maps/area1.png"))
@@ -112,45 +108,17 @@ int main()
 	groundS.setTexture(groundT);
 	b2dJson json;
 
-	m_world = json.readFromFile("maps/nivel1.json", errMsg);
-	if ( ! m_world )
-    {
-        std::cout << "Failed to load scene"<<std::endl;
-        return false;
-    }
-
     ContactListener GameCL;
-	m_world -> SetContactListener(&GameCL);
-    std::vector<b2Fixture*> blocFixtures;
-    json.getFixturesByName("block",blocFixtures);
-
-    for (b2Body* b = m_world->GetBodyList(); b; b = b->GetNext())
-        for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
-        {
-            int tipo = json.getCustomInt(f, "tipo");
-            sse::UserData* ud = new sse::UserData();
-            ud->tipo = tipo;
-            f->SetUserData(ud);
-        }
-
-    for ( b2Body* b = m_world->GetBodyList(); b; b = b->GetNext())
-    {
-        int tipo = json.getCustomInt(b, "tipo");
-        sse::UserData* ud = new sse::UserData();
-        ud->tipo = tipo;
-        b->SetUserData(ud);
-    }
-
-    sse::AStarFinder* AStarta = new sse::AStarFinder(32,30,30,&blocFixtures);
+	context->m_world -> SetContactListener(&GameCL);
 
     LuaScript* script = new LuaScript("Player.lua");
 
-    sse::AICharacter* character = new sse::AICharacter(700,400,4,"mob001",m_world,script);
+    sse::AICharacter* character = new sse::AICharacter(700,400,4,"mob001",context->m_world,script);
     character->setRenderWindows(&renderWindow);
-    character->setpathfinding(AStarta,32);
-    character->setParticleSystem(&system);
+    character->setpathfinding(context->m_finder,32);
+    character->setParticleSystem(context->m_psystem);
 
-    sse::Player* player = new sse::Player(100,100,1,"player01",m_world,script);
+    sse::Player* player = new sse::Player(100,100,1,"player01",context->m_world,script);
     player->setRenderWindows(&renderWindow);
     player->setBulletList(&BulletList);
     sf::Vector2f* impactview = &(player->moveimpactview);
@@ -173,7 +141,7 @@ int main()
     //character->setTarget(player->Body);
 
     debugDraw.SetFlags( b2Draw::e_shapeBit );
-    m_world->SetDebugDraw(&debugDraw);
+    context->m_world->SetDebugDraw(&debugDraw);
 
 	sf::Clock frameClock;
 	//-----------------------------------//
@@ -286,12 +254,12 @@ int main()
         character->update(frameTime);
         player->update(frameTime);
 
-        m_world->Step( 0.16f, 8, 3 );
+        context->m_world->Step( 0.16f, 8, 3 );
 
         while(!RemoveList.empty())
         {
             b2Body* b = RemoveList.back();
-            m_world -> DestroyBody(b);
+            context->m_world -> DestroyBody(b);
             RemoveList.pop_back();
             std::vector<b2Body*>::iterator it = std::find(BulletList.begin(), BulletList.end(), b);
             if ( it != BulletList.end() )
@@ -359,13 +327,12 @@ int main()
         float module2 = sqrt(pow(dif2.x,2)+pow(dif2.y,2));
         b2Vec2 p4 = p3 + b2Vec2(dif2.x/module2*4,dif2.y/module2*4);
         sse::MyRayCastCallback RayCastCallback2;
-        m_world->RayCast(&RayCastCallback2, p3 , p4);
+        context->m_world->RayCast(&RayCastCallback2, p3 , p4);
         if ( RayCastCallback2.m_fixture )
         {
             if(character->Target == 0)
             {
-                b2Body* bodyB = RayCastCallback2.m_fixture->GetBody();
-                sse::UserData* userdataA = static_cast<sse::UserData*>(bodyB->GetUserData());
+                sse::UserData* userdataA = static_cast<sse::UserData*>(RayCastCallback2.m_fixture->GetUserData());
                 if(userdataA->tipo == 1)
                 {
                     character->setAnimCicle(2);
@@ -376,21 +343,22 @@ int main()
         }
 
 
-        /*sf::Vertex line2[] =
+        sf::Vertex line2[] =
             {
                 sf::Vertex(sf::Vector2f(p3.x*PPM, p3.y*PPM)),
                 sf::Vertex(sf::Vector2f(p4.x*PPM, p4.y*PPM))
-            };*/
+            };
 
-        system.update(frameTime);
-		renderWindow.draw(system);
+        context->m_psystem->update(frameTime);
+        context->DrawSysParticle();
+		//renderWindow.draw(context->obj_psystem);
 		renderWindow.draw(roundedRect);
 		renderWindow.draw(roundedRecthp);
 
 		desktop.Update( frameTime.asSeconds() );
 		m_sfgui.Display( renderWindow );
 
-        //renderWindow.draw(line2, 2, sf::Lines);
+        renderWindow.draw(line2, 2, sf::Lines);
         //m_world->DrawDebugData();
 		renderWindow.display();
 		const float time = 1.f / frameClock.getElapsedTime().asSeconds();

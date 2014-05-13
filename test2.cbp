@@ -23,6 +23,8 @@
 					<Add directory="../librerias/Lua/include" />
 					<Add directory="../librerias/Thor/include" />
 					<Add directory="../librerias/SFGUI/include" />
+					<Add directory="include" />
+					<Add directory="src/ssengine" />
 				</Compiler>
 				<Linker>
 					<Add library="sfgui-s" />
@@ -63,6 +65,8 @@
 					<Add option="-DUNICODE" />
 					<Add directory="../librerias/Box2d/include" />
 					<Add directory="../librerias/Lua/include" />
+					<Add directory="include" />
+					<Add directory="src/ssengine" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -94,6 +98,7 @@
 		<Linker>
 			<Add directory="../librerias/SFML_GIT/extlibs/libs-mingw/x86" />
 		</Linker>
+		<Unit filename="include/GameContext.h" />
 		<Unit filename="src/AnimatedAccessor.h" />
 		<Unit filename="src/debugrender.cpp" />
 		<Unit filename="src/debugrender.h" />
@@ -111,8 +116,10 @@
 		<Unit filename="src/ssengine/AnimatedSprite.hpp" />
 		<Unit filename="src/ssengine/Animation.cpp" />
 		<Unit filename="src/ssengine/Animation.hpp" />
-		<Unit filename="src/ssengine/Context.cpp" />
-		<Unit filename="src/ssengine/Context.h" />
+		<Unit filename="src/ssengine/GameContext.cpp" />
+		<Unit filename="src/ssengine/GameContext.h" />
+		<Unit filename="src/ssengine/UserData.cpp" />
+		<Unit filename="src/ssengine/UserData.h" />
 		<Unit filename="src/ssengine/actionentity.cpp" />
 		<Unit filename="src/ssengine/actionentity.h" />
 		<Unit filename="src/ssengine/character.cpp" />
