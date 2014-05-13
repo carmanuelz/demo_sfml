@@ -111,6 +111,8 @@
 		<Unit filename="src/ssengine/AnimatedSprite.hpp" />
 		<Unit filename="src/ssengine/Animation.cpp" />
 		<Unit filename="src/ssengine/Animation.hpp" />
+		<Unit filename="src/ssengine/Context.cpp" />
+		<Unit filename="src/ssengine/Context.h" />
 		<Unit filename="src/ssengine/actionentity.cpp" />
 		<Unit filename="src/ssengine/actionentity.h" />
 		<Unit filename="src/ssengine/character.cpp" />

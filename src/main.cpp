@@ -27,13 +27,13 @@ class ContactListener : public b2ContactListener
         b2Fixture* FixtB = contact->GetFixtureB();
         sse::UserData* userdataA = static_cast<sse::UserData*>(FixtA->GetUserData());
         sse::UserData* userdataB = static_cast<sse::UserData*>(FixtB->GetUserData());
-        if(userdataA->tipo == 3 && userdataA->estado==0)
+        if(userdataA->tipo == 3 /*&& userdataB->tipo == 2*/ &&userdataA->estado==0)
         {
             RemoveList.push_back(FixtA->GetBody());
             userdataA->estado=1;
         }
         else
-            if(userdataB->tipo == 3 && userdataB->estado==0)
+            if(userdataB->tipo == 3 /*&& userdataA->tipo == 2*/&& userdataB->estado==0)
             {
                 RemoveList.push_back(FixtB->GetBody());
                 userdataB->estado=1;
@@ -56,7 +56,7 @@ class ContactListener : public b2ContactListener
 
     void EndContact(b2Contact* contact)
     {
-        b2Fixture* FixtA = contact->GetFixtureA();
+        /*b2Fixture* FixtA = contact->GetFixtureA();
         b2Fixture* FixtB = contact->GetFixtureB();
         sse::UserData* userdataA = static_cast<sse::UserData*>(FixtA->GetUserData());
         sse::UserData* userdataB = static_cast<sse::UserData*>(FixtB->GetUserData());
@@ -68,7 +68,7 @@ class ContactListener : public b2ContactListener
             if(userdataB->tipo == 3 && userdataB->estado==0)
             {
                 std::cout<<"hola";
-            }
+            }*/
     }
 };
 
