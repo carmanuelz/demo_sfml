@@ -9,13 +9,9 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include <Box2D/Box2D.h>
 
-#include "AnimatedSprite.hpp"
 #include "drawableentity.h"
 #include "AStarFinder.h"
-#include "loadconf/LuaScript.h"
-#include "UserData.h"
 #include "particlesys.h"
 
 #include "../AnimatedAccessor.h"
@@ -63,28 +59,18 @@ namespace sse
     class Character : public drawableentity
     {
     public:
-        Character(float inx, float iny, int inType, std::string inCode, b2World* inworld,LuaScript *inscript) : drawableentity(1)
+        Character(float inx, float iny, std::string inCode, GameContext* incontext) : drawableentity(1,incontext)
         {
             Code = inCode;
-            Type = inType;
-            world = inworld;
             x = inx;
             y = iny;
-            script = inscript;
             init();
         }
         b2Vec2 vel;
-        LuaScript *script;
         int Type;
+        b2Body* Body;
         void update(sf::Time frameTime);
         std::string Code = "";
-        void setLeft();
-        void setRight();
-        b2Body* Body;
-        float offsetAnimXR = 0;
-        float offsetAnimXL = 0;
-        float offsetAnimYR = 0;
-        float offsetAnimYL = 0;
         void setAnimCicle(int codecicle);
         sf::Vector2f updatebehaviour(float TargetX,float TargetY);
         int direction = 1;
@@ -96,25 +82,22 @@ namespace sse
         float Acumulator = 0;
         sf::Sprite bulletS;
         sf::Sound soundshoot;
-        b2World* world;
-        thor::ParticleSystem* system;
         bool isbusy = false;
-        b2Body* createBullet(sf::Vector2f origin, sf::Vector2f vel,float angle);
-        void setBulletList(std::vector<b2Body*> *inBulletList)
-        {
-            BulletList = inBulletList;
-        }
-        void setParticleSystem(thor::ParticleSystem* insystem)
-        {
-            system = insystem;
-        }
-        void collisionCB(b2Fixture* inFixture);
-
         void takeDamage(float inDamage);
         float Hit();
         float getHP();
-
-        std::vector<b2Body*> *BulletList;
+        std::vector<b2Fixture*> CollisionList;
+        void TestCollision();
+        void addCollisionList(b2Fixture*f);
+        void removeCollisionList(b2Fixture*f);
+    protected:
+        b2Body* createBullet(sf::Vector2f origin, sf::Vector2f vel,float angle);
+        float offsetAnimXR = 0;
+        float offsetAnimXL = 0;
+        float offsetAnimYR = 0;
+        float offsetAnimYL = 0;
+        void setLeft();
+        void setRight();
     private:
         int ofsetanimx = 0;
         Animation Cstartcile;
@@ -137,8 +120,12 @@ namespace sse
     class AICharacter : public Character
     {
     public:
-        AICharacter(float inx, float iny, int inType, std::string inCode, b2World* inworld,LuaScript *inscript):Character(inx,iny,inType,inCode,inworld,inscript)
+        AICharacter(float inx, float iny, std::string inCode,  GameContext* incontext):Character(inx,iny,inCode,incontext)
         {
+            AStartF = incontext->m_finder;
+            TileSize = incontext->TileSize;
+            preenemmyX = floor(inx/TileSize);
+            preenemmyY = floor(inx/TileSize);
         }
         void findto(float intargetx, float intargety);
         void setpathfinding(AStarFinder* AStarta, float intileSize);
@@ -148,8 +135,6 @@ namespace sse
         void setPatrol(float Ax, float Ay, float Bx, float By);
         void GotoPosition(float Ax, float Bx);
         void follow(b2Body* inTarget);
-        void setRayCastCallbackList();
-        sf::Vertex debugRayCast[2];
         b2Body* Target = 0;
     private:
         AStarFinder* AStartF;
@@ -171,7 +156,7 @@ namespace sse
     class Player : public Character
     {
     public:
-        Player(float inx, float iny, int inType, std::string inCode, b2World* inworld,LuaScript *inscript):Character(inx,iny,inType,inCode,inworld,inscript)
+        Player(float inx, float iny, std::string inCode, GameContext* incontext):Character(inx,iny,inCode,incontext)
         {
             moveimpactview = sf::Vector2f(0,0);
         }

@@ -436,7 +436,7 @@
 	<sstream>
 	<iomanip>
 
-1399848442 source:d:\workspace\c++\test2\src\main.cpp
+1400042385 source:d:\workspace\c++\test2\src\main.cpp
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -448,6 +448,7 @@
 	"rubestuff/b2dJson.h"
 	"debugrender.h"
 	"ssengine/ssengine.h"
+	"GameContext.h"
 	<math.h>
 	<sstream>
 
@@ -500,10 +501,10 @@
 
 1397604633 source:d:\workspace\c++\test2\src\ssengine\npc.cpp
 
-1399847847 source:d:\workspace\c++\test2\src\ssengine\character.cpp
+1400041407 source:d:\workspace\c++\test2\src\ssengine\character.cpp
 	"character.h"
 
-1399830315 d:\workspace\c++\test2\src\ssengine\character.h
+1400041100 d:\workspace\c++\test2\src\ssengine\character.h
 	<string>
 	<vector>
 	<map>
@@ -512,11 +513,8 @@
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
-	<Box2D/Box2D.h>
-	"AnimatedSprite.hpp"
 	"drawableentity.h"
 	"AStarFinder.h"
-	"loadconf/LuaScript.h"
 	"particlesys.h"
 	"../AnimatedAccessor.h"
 
@@ -534,12 +532,15 @@
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Texture.hpp>
 
-1398404537 d:\workspace\c++\test2\src\ssengine\drawableentity.h
+1400039715 d:\workspace\c++\test2\src\ssengine\drawableentity.h
 	<string>
 	<vector>
 	<map>
 	<iostream>
 	<SFML/Graphics.hpp>
+	<Box2D/Box2D.h>
+	"GameContext.h"
+	"AnimatedSprite.hpp"
 
 1137083332 d:\workspace\c++\librerias\boost_1_55_0\boost\python.hpp
 	<boost/python/args.hpp>
@@ -8369,7 +8370,7 @@
 1392671519 d:\workspace\c++\librerias\thor\include\aurora\smartptr\ptrfunctors.hpp
 	<Aurora/Meta/Templates.hpp>
 
-1392671519 d:\workspace\c++\librerias\thor\include\aurora\meta\templates.hpp
+1400014741 d:\workspace\c++\librerias\thor\include\aurora\meta\templates.hpp
 	<Aurora/Config.hpp>
 	<type_traits>
 
@@ -8415,7 +8416,7 @@
 	"util.h"
 	"tween/Tween.h"
 
-1399668604 d:\workspace\c++\test2\src\ssengine\ssengine.h
+1400012819 d:\workspace\c++\test2\src\ssengine\ssengine.h
 	"AStarFinder.h"
 	"AnimatedSprite.hpp"
 	"character.h"
@@ -8626,5 +8627,23 @@
 	"../rubestuff/b2dJson.h"
 	"AStarFinder.h"
 	"loadconf/LuaScript.h"
+	"UserData.h"
+
+1400012819 d:\workspace\c++\test2\src\ssengine\userdata.h
+
+1400042344 d:\workspace\c++\test2\src\ssengine\gamecontext.h
+	<string>
+	<Box2D/Box2D.h>
+	<SFML/Graphics.hpp>
+	<Thor/Particles/ParticleSystem.hpp>
+	"../rubestuff/b2dJson.h"
+	"AStarFinder.h"
+	"loadconf/LuaScript.h"
+	"UserData.h"
+
+1400042333 source:d:\workspace\c++\test2\src\ssengine\gamecontext.cpp
+	"GameContext.h"
+
+1400012819 source:d:\workspace\c++\test2\src\ssengine\userdata.cpp
 	"UserData.h"
 

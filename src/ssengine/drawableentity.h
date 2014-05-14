@@ -6,25 +6,25 @@
 #include <map>
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <Box2D/Box2D.h>
+#include "GameContext.h"
+#include "AnimatedSprite.hpp"
 
 namespace sse
 {
     class drawableentity
     {
     public:
-        drawableentity(int inTypeDraw):TypeDraw(inTypeDraw){}
+        drawableentity(int inTypeDraw,GameContext* incontext):TypeDraw(inTypeDraw),context(incontext){}
         int TypeDraw;
         AnimatedSprite animated;
         AnimatedSprite weapon;
         sf::Sprite sprite;
+        GameContext* context;
         bool hasweapon = false;
         bool before = false;
         float x = 0;
         float y = 0;
-        void setRenderWindows(sf::RenderWindow* inRW)
-        {
-            RW = inRW;
-        }
         void draw()
         {
             switch(TypeDraw)
@@ -35,20 +35,19 @@ namespace sse
             }
         }
     private:
-        sf::RenderWindow* RW;
         void drawCharacter()
         {
             if(before)
             {
                 if(hasweapon)
-                    RW->draw(weapon);
-                RW->draw(animated);
+                    context->m_rwindow->draw(weapon);
+                context->m_rwindow->draw(animated);
             }
             else
             {
-                RW->draw(animated);
+                context->m_rwindow->draw(animated);
                 if(hasweapon)
-                    RW->draw(weapon);
+                    context->m_rwindow->draw(weapon);
             }
         }
 

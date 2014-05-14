@@ -14,10 +14,7 @@
 #include <math.h>
 #include <sstream>
 
-b2World* m_world;
-
-std::vector<b2Body*> RemoveList;
-std::vector<b2Body*> BulletList;
+sse::GameContext* context;
 std::vector<sse::MyRayCastCallback*> RaycastList;
 
 class ContactListener : public b2ContactListener
@@ -30,13 +27,13 @@ class ContactListener : public b2ContactListener
         sse::UserData* userdataB = static_cast<sse::UserData*>(FixtB->GetUserData());
         if(userdataA->tipo == 3 /*&& userdataB->tipo == 2*/ &&userdataA->estado==0)
         {
-            RemoveList.push_back(FixtA->GetBody());
+            context->RemoveList.push_back(FixtA->GetBody());
             userdataA->estado=1;
         }
         else
             if(userdataB->tipo == 3 /*&& userdataA->tipo == 2*/&& userdataB->estado==0)
             {
-                RemoveList.push_back(FixtB->GetBody());
+                context->RemoveList.push_back(FixtB->GetBody());
                 userdataB->estado=1;
             }
 
@@ -44,32 +41,37 @@ class ContactListener : public b2ContactListener
         {
             b2Body* bodyA = FixtA->GetBody();
             sse::Character* collCharacter = static_cast<sse::Character*>(bodyA->GetUserData());
-            collCharacter->collisionCB(FixtB);
+            collCharacter->addCollisionList(FixtB);
         }
         else
             if(userdataB->tipo == 4)
             {
                 b2Body* bodyB = FixtB->GetBody();
                 sse::Character* collCharacter = static_cast<sse::Character*>(bodyB->GetUserData());
-                collCharacter->collisionCB(FixtA);
+                collCharacter->addCollisionList(FixtA);
             }
     }
 
     void EndContact(b2Contact* contact)
     {
-        /*b2Fixture* FixtA = contact->GetFixtureA();
+        b2Fixture* FixtA = contact->GetFixtureA();
         b2Fixture* FixtB = contact->GetFixtureB();
         sse::UserData* userdataA = static_cast<sse::UserData*>(FixtA->GetUserData());
         sse::UserData* userdataB = static_cast<sse::UserData*>(FixtB->GetUserData());
-        if(userdataA->tipo == 3 && userdataA->estado==0)
+
+        if(userdataA->tipo == 4)
         {
-            std::cout<<"hola";
+            b2Body* bodyA = FixtA->GetBody();
+            sse::Character* collCharacter = static_cast<sse::Character*>(bodyA->GetUserData());
+            collCharacter->removeCollisionList(FixtB);
         }
         else
-            if(userdataB->tipo == 3 && userdataB->estado==0)
+            if(userdataB->tipo == 4)
             {
-                std::cout<<"hola";
-            }*/
+                b2Body* bodyB = FixtB->GetBody();
+                sse::Character* collCharacter = static_cast<sse::Character*>(bodyB->GetUserData());
+                collCharacter->removeCollisionList(FixtA);
+            }
     }
 };
 
@@ -91,12 +93,13 @@ int main()
 
 	// Instantiate particle system and add custom affector
 
-	sse::GameContext* context = new sse::GameContext();
+	context = new sse::GameContext();
     context->m_psystem->setTexture(texture);
     context->m_psystem->addAffector(BloodkAffector());
     context->m_rwindow = &renderWindow;
     context->LoadWorld("maps/nivel1.json");
     context->Createfinder(32,30,30);
+    context->m_script = new LuaScript("Player.lua");
 
 
     sf::Texture groundT;
@@ -111,16 +114,8 @@ int main()
     ContactListener GameCL;
 	context->m_world -> SetContactListener(&GameCL);
 
-    LuaScript* script = new LuaScript("Player.lua");
-
-    sse::AICharacter* character = new sse::AICharacter(700,400,4,"mob001",context->m_world,script);
-    character->setRenderWindows(&renderWindow);
-    character->setpathfinding(context->m_finder,32);
-    character->setParticleSystem(context->m_psystem);
-
-    sse::Player* player = new sse::Player(100,100,1,"player01",context->m_world,script);
-    player->setRenderWindows(&renderWindow);
-    player->setBulletList(&BulletList);
+    sse::AICharacter* character = new sse::AICharacter(700,400,"mob001",context);
+    sse::Player* player = new sse::Player(100,100,"player01",context);
     sf::Vector2f* impactview = &(player->moveimpactview);
     float playerHP = player->getHP();
 
@@ -256,16 +251,6 @@ int main()
 
         context->m_world->Step( 0.16f, 8, 3 );
 
-        while(!RemoveList.empty())
-        {
-            b2Body* b = RemoveList.back();
-            context->m_world -> DestroyBody(b);
-            RemoveList.pop_back();
-            std::vector<b2Body*>::iterator it = std::find(BulletList.begin(), BulletList.end(), b);
-            if ( it != BulletList.end() )
-                BulletList.erase( it );
-        }
-
 		renderWindow.clear();
 		renderWindow.draw(groundS);
 
@@ -291,7 +276,17 @@ int main()
 
         tween.update(frameTime);
 
-        for(auto k = BulletList.cbegin() ; k != BulletList.cend() ; k++ )
+        while(!context->RemoveList.empty())
+        {
+            b2Body* b = context->RemoveList.back();
+            context->m_world -> DestroyBody(b);
+            context->RemoveList.pop_back();
+            std::vector<b2Body*>::iterator it = std::find(context->BulletList.begin(), context->BulletList.end(), b);
+            if ( it != context->BulletList.end() )
+                context->BulletList.erase( it );
+        }
+
+        for(auto k = context->BulletList.cbegin() ; k != context->BulletList.cend() ; k++ )
         {
             b2Body* b = *k;
             sf::Sprite* bulletS(static_cast<sf::Sprite*>(b->GetUserData()));
@@ -299,6 +294,7 @@ int main()
             bulletS->setPosition( b->GetPosition().x*PPM, b->GetPosition().y*PPM);
             renderWindow.draw(*bulletS);
         }
+
         /*raycast*/
         b2Vec2 p1 = player->Body->GetPosition();
 

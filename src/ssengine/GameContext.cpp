@@ -38,6 +38,7 @@ namespace sse
     }
     void GameContext::Createfinder(float tilesize, int width, int height)
     {
+        TileSize = tilesize;
         std::vector<b2Fixture*> blocFixtures;
         m_b2json->getFixturesByName("block",blocFixtures);
         m_finder = new sse::AStarFinder(tilesize,width,height,&blocFixtures);

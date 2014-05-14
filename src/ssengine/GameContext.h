@@ -11,6 +11,9 @@
 #include "loadconf/LuaScript.h"
 #include "UserData.h"
 
+#define DEGTORAD 0.0174532925199432957f
+#define RADTODEG 57.295779513082320876f
+
 namespace sse
 {
     class GameContext
@@ -28,7 +31,7 @@ namespace sse
             AStarFinder* m_finder;
             thor::ParticleSystem* m_psystem = &obj_psystem;
             sf::RenderWindow* m_rwindow;
-
+            float TileSize;
             bool LoadWorld(const char* filename);
             void Createfinder(float tilesize, int width, int height);
             void DrawSysParticle();

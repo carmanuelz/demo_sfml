@@ -22,11 +22,12 @@ void endT()
 
 void Character::init()
 {
-    std::string path = script->get<std::string>(Code+".src");
+    std::string path = context->m_script->get<std::string>(Code+".src");
     Cspritesheet.loadFromFile(path);
-    hasweapon = script->get<bool>(Code+".hasweapon");
-    HP = script->get<float>(Code+".HP");
-    Damage = script->get<float>(Code+".damage");
+    hasweapon = context->m_script->get<bool>(Code+".hasweapon");
+    HP = context->m_script->get<float>(Code+".HP");
+    Damage = context->m_script->get<float>(Code+".damage");
+    Type = context->m_script->get<int>(Code+".type");
 
     /*Cstartcile.setSpriteSheet(Cspritesheet);
     loadFrames(&Cidleicle, Code+".start");*/
@@ -53,10 +54,10 @@ void Character::init()
         weapon.setLooped(true);
     }
 
-    offsetAnimXR = script->get<float>(Code+".offsetXR");
-    offsetAnimXL = script->get<float>(Code+".offsetXL");
-    offsetAnimYR = script->get<float>(Code+".offsetYR");
-    offsetAnimYL = script->get<float>(Code+".offsetYL");
+    offsetAnimXR = context->m_script->get<float>(Code+".offsetXR");
+    offsetAnimXL = context->m_script->get<float>(Code+".offsetXL");
+    offsetAnimYR = context->m_script->get<float>(Code+".offsetYR");
+    offsetAnimYL = context->m_script->get<float>(Code+".offsetYL");
 
     animated = AnimatedSprite(sf::seconds(0.1f), true, false);
     setLeft();
@@ -84,7 +85,7 @@ void Character::init()
 
 void Character::loadFrames(Animation* anim,std::string luapath)
 {
-    std::vector<int> animparams = script->getIntVector(luapath);
+    std::vector<int> animparams = context->m_script->getIntVector(luapath);
 	int nroframes = animparams[0];
 	int widhtf = animparams[1];
 	int heightf = animparams[2];
@@ -152,7 +153,7 @@ b2Body* Character::createBody(float x, float y)
     poligonshape.SetAsBox(0.22, 0.33);
 
     b2Filter filter;
-	b2Body* characterbody = world->CreateBody(&BodyDef);
+	b2Body* characterbody = context->m_world->CreateBody(&BodyDef);
     bodyfixtureDef.friction = 0;
 
 	b2FixtureDef sensorPLayerdef;
@@ -284,7 +285,7 @@ b2Body* Character::createBullet(sf::Vector2f origin, sf::Vector2f vel,float angl
 {
     b2BodyDef bulletBodyDef;
     bulletBodyDef.type = b2_dynamicBody;
-	b2Body* bulletB = world->CreateBody(&bulletBodyDef);
+	b2Body* bulletB = context->m_world->CreateBody(&bulletBodyDef);
 	b2CircleShape circle;
 	circle.m_radius = 0.1f;
 	b2FixtureDef bulletFixDef;
@@ -300,45 +301,53 @@ b2Body* Character::createBullet(sf::Vector2f origin, sf::Vector2f vel,float angl
     udBullet->tipo = 3;
     udBullet->estado = 0;
     bulletFix->SetUserData(udBullet);
-    BulletList->push_back(bulletB);
+    context->BulletList.push_back(bulletB);
     bulletB->SetUserData(&bulletS);
 	return bulletB;
 }
 
-void Character::collisionCB(b2Fixture* inFixture)
+void Character::addCollisionList(b2Fixture*f)
 {
-    sse::UserData* userdata = static_cast<sse::UserData*>(inFixture->GetUserData());
-    switch (userdata->tipo)
-    {
-    case objectType::obj_typePlayer:
-        if(!isbusy)
-        {
-            animated.PrepareTimeLine();
-            animated.PushTransition(new Transition(1,Cattackcicle ,saludobegin,saludoend,beginT,endT));
-            animated.PushTransition(new Transition(1,Cruncicle,saludobegin,saludoend,beginT,endT));
-            animated.StartTimeLine();
-            isbusy = true;
-            b2Vec2 pos = inFixture->GetBody()->GetPosition();
-            system->addEmitter(BloodEmitter(sf::Vector2f(pos.x*PPM,pos.y*PPM)), sf::seconds(0.1f));
-            Player* player = static_cast<sse::Player*>(inFixture->GetBody()->GetUserData());
-            player->takeDamage(Hit());
-        }
-    }
+    CollisionList.push_back(f);
 }
 
-/* AI Character*/
-void AICharacter::setpathfinding(AStarFinder* inAStart, float intileSize)
+void Character::removeCollisionList(b2Fixture*f)
 {
-    AStartF = inAStart;
-    TileSize = intileSize;
-	preenemmyX = floor(x/TileSize);
-	preenemmyY = floor(y/TileSize);
+    std::vector<b2Fixture*>::iterator it = std::find(CollisionList.begin(), CollisionList.end(), f);
+    if ( it != CollisionList.end() )
+        CollisionList.erase( it );
+}
+
+void Character::TestCollision()
+{
+    for(auto k = CollisionList.cbegin() ; k != CollisionList.cend() ; k++ )
+    {
+        b2Fixture* f = *k;
+        sse::UserData* userdata = static_cast<sse::UserData*>(f->GetUserData());
+        switch (userdata->tipo)
+        {
+        case objectType::obj_typePlayer:
+            if(!isbusy)
+            {
+                animated.PrepareTimeLine();
+                animated.PushTransition(new Transition(1,Cattackcicle ,saludobegin,saludoend,beginT,endT));
+                animated.PushTransition(new Transition(1,Cruncicle,saludobegin,saludoend,beginT,endT));
+                animated.StartTimeLine();
+                isbusy = true;
+                b2Vec2 pos = f->GetBody()->GetPosition();
+                context->m_psystem->addEmitter(BloodEmitter(sf::Vector2f(pos.x*PPM,pos.y*PPM)), sf::seconds(0.1f));
+                Player* player = static_cast<sse::Player*>(f->GetBody()->GetUserData());
+                player->takeDamage(Hit());
+            }
+        }
+    }
 }
 
 void AICharacter::update(sf::Time frameTime)
 {
     Body->SetLinearVelocity(vel);
     Character::update(frameTime);
+    TestCollision();
 }
 
 void AICharacter::updateFind()
