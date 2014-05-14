@@ -55,41 +55,6 @@ AStarFinder::AStarFinder(float tilesize, int inwidth, int inheight, std::vector<
             }
         }
 }
-/*AStarFinder::AStarFinder(sf::Vector2i gridsize, int **blockgrid)
-{
-    width = gridsize.x;
-    height = gridsize.y;
-    Grid = new Nodo**[gridsize.y];
-    for (int i = 0; i < gridsize.y; ++i)
-    {
-        Grid[i] = new Nodo*[gridsize.x];
-        for(int j = 0 ; j < gridsize.x; j++)
-            Grid[i][j] = new Nodo;
-    }
-
-    for (int j = 0; j < gridsize.y; j++ )
-        for (int k = 0; k < gridsize.x; k++)
-        {
-            Grid[j][k]->x = k;
-            Grid[j][k]->y = j;
-            if (blockgrid[j][k])
-            {
-                Grid[j][k]->walkable = false;
-            }
-        }
-
-    /*for (int j = 0; j < gridsize.y; j++ )
-    {
-        for (int k = 0; k < gridsize.x; k++)
-        {
-            if (Grid[j][k]->walkable)
-                std::cout<<" ";
-            else
-                std::cout<<"@";
-        }
-        std::cout<<std::endl;
-    }
-}*/
 
 bool AStarFinder::isWalkableAt(int x, int y) {
     return isInside(x, y) && Grid[y][x]->walkable;

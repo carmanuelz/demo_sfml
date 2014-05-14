@@ -6,7 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include <Thor/Particles/ParticleSystem.hpp>
 
-#include "../rubestuff/b2dJson.h"
+#include "rubestuff/b2dJson.h"
 #include "AStarFinder.h"
 #include "loadconf/LuaScript.h"
 #include "UserData.h"

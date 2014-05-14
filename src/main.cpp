@@ -7,10 +7,9 @@
 #include <Thor/Shapes/ConcaveShape.hpp>
 #include <Thor/Shapes/Shapes.hpp>
 
-#include "rubestuff/b2dJson.h"
 #include "debugrender.h"
 #include "ssengine/ssengine.h"
-#include "GameContext.h"
+#include "ssengine/GameContext.h"
 #include <math.h>
 #include <sstream>
 
@@ -85,6 +84,19 @@ int main()
     DebugDraw debugDraw = DebugDraw(renderWindow);
     renderWindow.setFramerateLimit(60);
     //renderWindow.setMouseCursorVisible(false);
+
+    sf::Texture groundT;
+    if(!groundT.loadFromFile("maps/area1.png"))
+	{
+		return EXIT_FAILURE;
+	}
+	sf::Sprite groundS;
+	groundS.setTexture(groundT);
+
+    renderWindow.clear();
+    renderWindow.draw(groundS);
+    renderWindow.display();
+
     sf::Vector2i screnSize((int)renderWindow.getSize().x,(int)renderWindow.getSize().y);
 
     sf::Texture texture;
@@ -101,14 +113,6 @@ int main()
     context->Createfinder(32,30,30);
     context->m_script = new LuaScript("Player.lua");
 
-
-    sf::Texture groundT;
-    if(!groundT.loadFromFile("maps/area1.png"))
-	{
-		return EXIT_FAILURE;
-	}
-	sf::Sprite groundS;
-	groundS.setTexture(groundT);
 	b2dJson json;
 
     ContactListener GameCL;
