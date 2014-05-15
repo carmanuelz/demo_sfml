@@ -436,21 +436,14 @@
 	<sstream>
 	<iomanip>
 
-1400042385 source:d:\workspace\c++\test2\src\main.cpp
+1400124467 source:d:\workspace\c++\test2\src\main.cpp
+	<math.h>
+	<iostream>
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
-	<SFGUI/SFGUI.hpp>
-	<Box2D/Box2D.h>
-	<Thor/Shapes/ConcaveShape.hpp>
-	<Thor/Shapes/Shapes.hpp>
-	"rubestuff/b2dJson.h"
-	"debugrender.h"
-	"ssengine/ssengine.h"
-	"GameContext.h"
-	<math.h>
-	<sstream>
+	"Level1.h"
 
 1397446597 source:d:\workspace\c++\test2\src\astarfinder.cpp
 	"AStarFinder.h"
@@ -496,12 +489,12 @@
 	<Box2D/Box2D.h>
 	<math.h>
 
-1398742453 source:d:\workspace\c++\test2\src\ssengine\astarfinder.cpp
+1400096939 source:d:\workspace\c++\test2\src\ssengine\astarfinder.cpp
 	"AStarFinder.h"
 
 1397604633 source:d:\workspace\c++\test2\src\ssengine\npc.cpp
 
-1400041407 source:d:\workspace\c++\test2\src\ssengine\character.cpp
+1400127541 source:d:\workspace\c++\test2\src\ssengine\character.cpp
 	"character.h"
 
 1400041100 d:\workspace\c++\test2\src\ssengine\character.h
@@ -8368,7 +8361,7 @@
 1392671519 d:\workspace\c++\librerias\thor\include\aurora\smartptr\ptrfunctors.hpp
 	<Aurora/Meta/Templates.hpp>
 
-1392671519 d:\workspace\c++\librerias\thor\include\aurora\meta\templates.hpp
+1400014741 d:\workspace\c++\librerias\thor\include\aurora\meta\templates.hpp
 	<Aurora/Config.hpp>
 	<type_traits>
 
@@ -8629,12 +8622,12 @@
 
 1400012819 d:\workspace\c++\test2\src\ssengine\userdata.h
 
-1400042344 d:\workspace\c++\test2\src\ssengine\gamecontext.h
+1400096939 d:\workspace\c++\test2\src\ssengine\gamecontext.h
 	<string>
 	<Box2D/Box2D.h>
 	<SFML/Graphics.hpp>
 	<Thor/Particles/ParticleSystem.hpp>
-	"../rubestuff/b2dJson.h"
+	"rubestuff/b2dJson.h"
 	"AStarFinder.h"
 	"loadconf/LuaScript.h"
 	"UserData.h"
@@ -8725,4 +8718,104 @@
 	<iostream>
 	<sstream>
 	<iomanip>
+
+1400096939 d:\workspace\c++\test2\src\ssengine\rubestuff\b2djson.h
+	<stdio.h>
+	<map>
+	<set>
+	<string>
+	<Box2D/Box2D.h>
+	"json/json.h"
+
+1400096939 d:\workspace\c++\test2\src\ssengine\rubestuff\json\json.h
+	<cpptl/config.h>
+	"config.h"
+	"forwards.h"
+	"forwards.h"
+	<string>
+	<vector>
+	<map>
+	<cpptl/smallmap.h>
+	<cpptl/forwards.h>
+	"features.h"
+	"value.h"
+	<deque>
+	<stack>
+	<string>
+	<iostream>
+	"value.h"
+	<vector>
+	<string>
+	<iostream>
+
+1400096939 source:d:\workspace\c++\test2\src\ssengine\rubestuff\b2djson.cpp
+	<istream>
+	<fstream>
+	"b2dJson.h"
+	"json/json.h"
+	"b2dJsonImage.h"
+
+1400096939 d:\workspace\c++\test2\src\ssengine\rubestuff\b2djsonimage.h
+	<string>
+	<Box2D/Box2D.h>
+
+1400096939 source:d:\workspace\c++\test2\src\ssengine\rubestuff\b2djsonimage.cpp
+	<cstring>
+	<Box2D/Box2D.h>
+	"b2dJsonImage.h"
+
+1400096939 source:d:\workspace\c++\test2\src\ssengine\rubestuff\jsoncpp.cpp
+	"json/json.h"
+	<json/reader.h>
+	<json/value.h>
+	"json_tool.h"
+	<utility>
+	<cstdio>
+	<cassert>
+	<cstring>
+	<iostream>
+	<stdexcept>
+	<stdlib.h>
+	<assert.h>
+	<json/value.h>
+	<json/writer.h>
+	"json_batchallocator.h"
+	<iostream>
+	<utility>
+	<stdexcept>
+	<cstring>
+	<cassert>
+	<cpptl/conststring.h>
+	<cstddef>
+	"json_internalarray.inl"
+	"json_internalmap.inl"
+	"json_valueiterator.inl"
+	<json/writer.h>
+	"json_tool.h"
+	<utility>
+	<assert.h>
+	<stdio.h>
+	<string.h>
+	<iostream>
+	<sstream>
+	<iomanip>
+
+1400126855 source:d:\workspace\c++\test2\src\ssengine\level1.cpp
+	"Level1.h"
+
+1400127691 d:\workspace\c++\test2\src\ssengine\level1.h
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<SFGUI/SFGUI.hpp>
+	<Box2D/Box2D.h>
+	<Thor/Shapes/ConcaveShape.hpp>
+	<Thor/Shapes/Shapes.hpp>
+	<Screen.h>
+	"../debugrender.h"
+	"ssengine.h"
+	"GameContext.h"
+
+1400096939 d:\workspace\c++\test2\src\ssengine\screen.h
 

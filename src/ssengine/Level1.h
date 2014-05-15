@@ -22,13 +22,13 @@ class ContactListener : public b2ContactListener
         b2Fixture* FixtB = contact->GetFixtureB();
         sse::UserData* userdataA = static_cast<sse::UserData*>(FixtA->GetUserData());
         sse::UserData* userdataB = static_cast<sse::UserData*>(FixtB->GetUserData());
-        if(userdataA->tipo == 3 /*&& userdataB->tipo == 2*/ &&userdataA->estado==0)
+        if(userdataA->tipo == 3 && userdataA->tipo == 2 && userdataA->estado==0)
         {
             context->RemoveList.push_back(FixtA->GetBody());
             userdataA->estado=1;
         }
         else
-            if(userdataB->tipo == 3 /*&& userdataA->tipo == 2*/&& userdataB->estado==0)
+            if(userdataB->tipo == 3 && userdataA->tipo == 2 && userdataB->estado==0)
             {
                 context->RemoveList.push_back(FixtB->GetBody());
                 userdataB->estado=1;
@@ -70,6 +70,11 @@ class ContactListener : public b2ContactListener
                 collCharacter->removeCollisionList(FixtA);
             }
     }
+
+    public:
+        ContactListener(sse::GameContext* incontext):context(incontext){}
+    private:
+        sse::GameContext* context;
 };
 
 class Level1 : public Screen
@@ -80,13 +85,42 @@ class Level1 : public Screen
         virtual int Run();
     protected:
     private:
+        DebugDraw* debugDraw;
         sf::RenderWindow* renderWindow;
         sse::GameContext* context;
+        ContactListener* GameCL;
         std::vector<sse::MyRayCastCallback*> RaycastList;
         sf::Texture groundT;
         sf::Sprite groundS;
-        sf::Vector2i screnSize;}
+        sf::Vector2i screnSize;
         sf::Texture texture;
+        sf::Vector2f VURef;
+        sf::Event event;
+        sf::Vector2f centro;
+        sf::Sprite targetS;
+        sf::Texture targetT;
+        float playerHP;
+        sse::AICharacter* character;
+        sse::Player* player;
+        sf::Vector2f* impactview;
+        sf::Clock frameClock;
+        sf::ConvexShape roundedRecthp;
+        sf::ConvexShape roundedRect;
+        AnimatedAccessor* animaccess;
+        sse::Tween tween;
+        sse::tweenOptions* options;
+        sf::Clock stepClock;
+
+        sfg::SFGUI m_sfgui;
+        sfg::Label::Ptr m_label;
+        sfg::Window::Ptr window = sfg::Window::Create();
+        sfg::Desktop desktop;
+
+        std::vector<sse::drawableentity*> DrawList;
+
+        bool isFocused = true;
+        bool hasclickplayer = true;
+        void OnButtonClick();
 };
 
 #endif // LEVEL1_H

@@ -330,8 +330,8 @@ void Character::TestCollision()
             if(!isbusy)
             {
                 animated.PrepareTimeLine();
-                animated.PushTransition(new Transition(1,Cattackcicle ,saludobegin,saludoend,beginT,endT));
-                animated.PushTransition(new Transition(1,Cruncicle,saludobegin,saludoend,beginT,endT));
+                animated.PushTransition(new Transition(1,Cattackcicle ,0,0,0,0));
+                animated.PushTransition(new Transition(1,Cruncicle,0,0,0,0));
                 animated.StartTimeLine();
                 isbusy = true;
                 b2Vec2 pos = f->GetBody()->GetPosition();
@@ -339,6 +339,13 @@ void Character::TestCollision()
                 Player* player = static_cast<sse::Player*>(f->GetBody()->GetUserData());
                 player->takeDamage(Hit());
             }
+            break;
+        case objectType::obj_typeBullet:
+            context->m_psystem->addEmitter(BloodEmitter(sf::Vector2f(x,y)), sf::seconds(0.1f));
+            context->RemoveList.push_back(f->GetBody());
+            userdata->estado=1;
+            takeDamage(5);
+            break;
         }
     }
 }
@@ -505,7 +512,6 @@ sf::Vector2f Player::updatePlayer(bool hasfocused, bool hasclick)
                 else
                     setLeft();
             }
-
         }
 
         if(!isrun)
