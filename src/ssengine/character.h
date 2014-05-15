@@ -26,151 +26,104 @@
 
 namespace sse
 {
-    namespace objectType
+namespace objectType
+{
+const static int obj_typeBullet = 3;
+const static int obj_typePlayer = 1;
+const static int obj_typeEnemy = 4;
+}
+
+class MyRayCastCallback : public b2RayCastCallback
+{
+public:
+    MyRayCastCallback()
     {
-        const static int obj_typeBullet = 3;
-        const static int obj_typePlayer = 1;
-        const static int obj_typeEnemy = 4;
+        m_fixture = NULL;
+        m_fraction = 2.0f;
+    }
+    float32 ReportFixture(b2Fixture* fixture, const b2Vec2& point, const b2Vec2& normal, float32 fraction)
+    {
+        m_fixture = fixture;
+        m_point = point;
+        m_normal = normal;
+        //m_fraction = fraction;
+
+        return fraction;
     }
 
-    class MyRayCastCallback : public b2RayCastCallback
+    b2Fixture* m_fixture;
+    b2Vec2 m_point;
+    b2Vec2 m_normal;
+    float32 m_fraction;
+};
+class Character : public drawableentity
+{
+public:
+    Character(float inx, float iny, std::string inCode, GameContext* incontext) : drawableentity(1,incontext)
     {
-        public:
-            MyRayCastCallback()
-            {
-                m_fixture = NULL;
-                m_fraction = 2.0f;
-            }
-            float32 ReportFixture(b2Fixture* fixture, const b2Vec2& point, const b2Vec2& normal, float32 fraction)
-            {
-                m_fixture = fixture;
-                m_point = point;
-                m_normal = normal;
-                //m_fraction = fraction;
-
-                return fraction;
-            }
-
-             b2Fixture* m_fixture;
-             b2Vec2 m_point;
-             b2Vec2 m_normal;
-             float32 m_fraction;
-    };
-    class Character : public drawableentity
-    {
-    public:
-        Character(float inx, float iny, std::string inCode, GameContext* incontext) : drawableentity(1,incontext)
-        {
-            Code = inCode;
-            x = inx;
-            y = iny;
-            init();
-        }
-        b2Vec2 vel;
-        int Type;
-        b2Body* Body;
-        void update(sf::Time frameTime);
-        std::string Code = "";
-        void setAnimCicle(int codecicle);
-        sf::Vector2f updatebehaviour(float TargetX,float TargetY);
-        int direction = 1;
-        sf::Vector2f CgunOffset;
-        float angle = 0;
-        sf::Vector2f bulletVU;
-        sf::Vector2f bulletOrigin;
-        void setweapon(std::string weaponcode);
-        float Acumulator = 0;
-        sf::Sprite bulletS;
-        sf::Sound soundshoot;
-        bool isbusy = false;
-        void takeDamage(float inDamage);
-        float Hit();
-        float getHP();
-        std::vector<b2Fixture*> CollisionList;
-        void TestCollision();
-        void addCollisionList(b2Fixture*f);
-        void removeCollisionList(b2Fixture*f);
-    protected:
-        b2Body* createBullet(sf::Vector2f origin, sf::Vector2f vel,float angle);
-        float offsetAnimXR = 0;
-        float offsetAnimXL = 0;
-        float offsetAnimYR = 0;
-        float offsetAnimYL = 0;
-        void setLeft();
-        void setRight();
-    private:
-        int ofsetanimx = 0;
-        Animation Cstartcile;
-        Animation Cruncicle;
-        Animation Cidleicle;
-        Animation Cattackcicle;
-        Animation ChideIcle;
-        Animation waposhootcicle;
-        float HP = 0;
-        float Damage = 0;
-        sf::Texture Cspritesheet;
-        sf::Texture weaponspritesheet;
-        sf::SoundBuffer buffershoot;
-        sf::Texture bulletT;
-        void init();
-        b2Body* createBody(float x, float y);
-        void loadFrames(Animation* anim,std::string luapath);
-    };
-
-    class AICharacter : public Character
-    {
-    public:
-        AICharacter(float inx, float iny, std::string inCode,  GameContext* incontext):Character(inx,iny,inCode,incontext)
-        {
-            AStartF = incontext->m_finder;
-            TileSize = incontext->TileSize;
-            preenemmyX = floor(inx/TileSize);
-            preenemmyY = floor(inx/TileSize);
-        }
-        void findto(float intargetx, float intargety);
-        void setpathfinding(AStarFinder* AStarta, float intileSize);
-        void update(sf::Time frameTim);
-        void updateFind();
-        void setTarget(b2Body* inTarget);
-        void setPatrol(float Ax, float Ay, float Bx, float By);
-        void GotoPosition(float Ax, float Bx);
-        void follow(b2Body* inTarget);
-        b2Body* Target = 0;
-    private:
-        AStarFinder* AStartF;
-        int preenemmyX = 0;
-        int preenemmyY = 0;
-        float TileSize = 0;
-        float facVel = 0.25;
-        bool isPatrol = false;
-    };
-
-    class Mob : public AICharacter
-    {
-    private:
-        //Mob():AICharacter(){}
-        float HP;
-    public:
-    };
-
-    class Player : public Character
-    {
-    public:
-        Player(float inx, float iny, std::string inCode, GameContext* incontext):Character(inx,iny,inCode,incontext)
-        {
-            moveimpactview = sf::Vector2f(0,0);
-        }
-        void update(sf::Time frameTim);
-        sf::Vector2f updatePlayer(bool hasfocused, bool hasclick);
-        sf::Vector2f moveimpactview;
-        bool hasshoot = false;
-    private:
-    };
-
-    class Weapon
-    {
-    public:
-    };
+        Code = inCode;
+        x = inx;
+        y = iny;
+        init();
+    }
+    b2Vec2 vel;
+    int Type;
+    b2Body* Body;
+    void update(sf::Time frameTime);
+    std::string Code = "";
+    void setAnimCicle(int codecicle);
+    sf::Vector2f updatebehaviour(float TargetX,float TargetY);
+    int direction = 1;
+    sf::Vector2f CgunOffset;
+    float angle = 0;
+    sf::Vector2f bulletVU;
+    sf::Vector2f bulletOrigin;
+    void setweapon(std::string weaponcode);
+    float Acumulator = 0;
+    sf::Sprite bulletS;
+    sf::Sound soundshoot;
+    bool isbusy = false;
+    void takeDamage(float inDamage);
+    float Hit();
+    float getHP();
+    std::vector<b2Fixture*> CollisionList;
+    void TestCollision();
+    void addCollisionList(b2Fixture*f);
+    void removeCollisionList(b2Fixture*f);
+protected:
+    b2Body* createBullet(sf::Vector2f origin, sf::Vector2f vel,float angle);
+    float offsetAnimXR = 0;
+    float offsetAnimXL = 0;
+    float offsetAnimYR = 0;
+    float offsetAnimYL = 0;
+    void setLeft();
+    void setRight();
+private:
+    int ofsetanimx = 0;
+    Animation Cstartcile;
+    Animation Cruncicle;
+    Animation Cidleicle;
+    Animation Cattackcicle;
+    Animation ChideIcle;
+    Animation waposhootcicle;
+    float HP = 0;
+    float Damage = 0;
+    sf::Texture Cspritesheet;
+    sf::Texture weaponspritesheet;
+    sf::SoundBuffer buffershoot;
+    sf::Texture bulletT;
+    void init();
+    b2Body* createBody(float x, float y);
+    void loadFrames(Animation* anim,std::string luapath);
+};
+/*
+class Mob : public AICharacter
+{
+private:
+    //Mob():AICharacter(){}
+    float HP;
+public:
+};*/
 }
 
 #endif

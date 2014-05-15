@@ -36,7 +36,7 @@
 struct Transition
 {
     Transition(int inRep, Animation anim,void (* bRep)(),void (* eRep)(),void (* SFunc)(),void (* EFunc)()):
-        repetition(inRep), animation(anim), beginRep(bRep), endRep(eRep), StartFunc(SFunc), EndFunc(EFunc){}
+        repetition(inRep), animation(anim), beginRep(bRep), endRep(eRep), StartFunc(SFunc), EndFunc(EFunc) {}
     int repetition;
     Animation animation;
     void (* beginRep) ();

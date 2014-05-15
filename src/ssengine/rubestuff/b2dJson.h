@@ -29,7 +29,8 @@
 class b2dJsonImage;
 class EditorDocument;
 
-class b2dJsonCustomProperties {
+class b2dJsonCustomProperties
+{
 public:
     std::map<std::string, int> m_customPropertyMap_int;
     std::map<std::string, float> m_customPropertyMap_float;
@@ -117,8 +118,14 @@ public:
     b2Joint* getJointByName(std::string name);
     b2dJsonImage* getImageByName(std::string name);
 
-    std::map<b2Joint*,std::string> getJointToNameMap() const { return m_jointToNameMap; }
-    std::map<b2Fixture*,std::string> getFixtureToNameMap() const { return m_fixtureToNameMap; }
+    std::map<b2Joint*,std::string> getJointToNameMap() const
+    {
+        return m_jointToNameMap;
+    }
+    std::map<b2Fixture*,std::string> getFixtureToNameMap() const
+    {
+        return m_fixtureToNameMap;
+    }
 
     std::string getBodyName(b2Body* body);
     std::string getFixtureName(b2Fixture* fixture);

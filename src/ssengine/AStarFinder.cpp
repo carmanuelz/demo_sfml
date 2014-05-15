@@ -56,15 +56,18 @@ AStarFinder::AStarFinder(float tilesize, int inwidth, int inheight, std::vector<
         }
 }
 
-bool AStarFinder::isWalkableAt(int x, int y) {
+bool AStarFinder::isWalkableAt(int x, int y)
+{
     return isInside(x, y) && Grid[y][x]->walkable;
 };
 
-bool AStarFinder::isInside(int x, int y) {
+bool AStarFinder::isInside(int x, int y)
+{
     return (x >= 0 && x < width) && (y >= 0 && y < height);
 };
 
-void AStarFinder::setWalkableAt(int x, int y, bool walkable) {
+void AStarFinder::setWalkableAt(int x, int y, bool walkable)
+{
     Grid[y][x]->walkable = walkable;
 };
 
@@ -72,9 +75,9 @@ std::vector<Nodo*> AStarFinder::getNeighbors(Nodo* node)
 {
     int x, y;
     bool s0 = false, d0 = false,
-        s1 = false, d1 = false,
-        s2 = false, d2 = false,
-        s3 = false, d3 = false;
+         s1 = false, d1 = false,
+         s2 = false, d2 = false,
+         s3 = false, d3 = false;
     x = node->x;
     y = node->y;
     std::vector<Nodo*> neighbors;
@@ -226,17 +229,21 @@ std::vector<sf::Vector2i*> AStarFinder::getLine(int x0, int y0, int x1, int y1)
 
     err = dx - dy;
 
-    while (true) {
+    while (true)
+    {
         line.push_back(new sf::Vector2i(x0, y0));
-        if (x0 == x1 && y0 == y1) {
+        if (x0 == x1 && y0 == y1)
+        {
             break;
         }
         e2 = 2 * err;
-        if (e2 > -dy) {
+        if (e2 > -dy)
+        {
             err = err - dy;
             x0 = x0 + sx;
         }
-        if (e2 < dx) {
+        if (e2 < dx)
+        {
             err = err + dx;
             y0 = y0 + sy;
         }
@@ -251,12 +258,12 @@ std::vector<sf::Vector2i*> AStarFinder::smoothenPath(std::vector<sf::Vector2i*> 
     if(len>1)
     {
         int x0 = path[0]->x,        // path start x
-        y0 = path[0]->y,        // path start y
-        x1 = path[len - 1]->x,  // path end x
-        y1 = path[len - 1]->y,  // path end y
-        sx, sy,                 // current start coordinate
-        ex, ey,                 // current end coordinate
-        lx, ly;
+            y0 = path[0]->y,        // path start y
+            x1 = path[len - 1]->x,  // path end x
+            y1 = path[len - 1]->y,  // path end y
+            sx, sy,                 // current start coordinate
+            ex, ey,                 // current end coordinate
+            lx, ly;
         bool blocked;
 
         sx = x0;
@@ -265,14 +272,17 @@ std::vector<sf::Vector2i*> AStarFinder::smoothenPath(std::vector<sf::Vector2i*> 
         ly = path[1]->y;
         newPath.push_back(new sf::Vector2i(sx, sy));
 
-        for (int i = 2; i < len; ++i) {
+        for (int i = 2; i < len; ++i)
+        {
             sf::Vector2i* coord = new sf::Vector2i(path[i]->x,path[i]->y);
             ex = coord->x;
             ey = coord->y;
             line = getLine(sx, sy, ex, ey);
             blocked = false;
-            for (int j = 1; j < line.size(); ++j) {
-                if (!isWalkableAt(line[j]->x, line[j]->y)) {
+            for (int j = 1; j < line.size(); ++j)
+            {
+                if (!isWalkableAt(line[j]->x, line[j]->y))
+                {
                     blocked = true;
                     newPath.push_back(new sf::Vector2i(lx, ly));
                     sx = lx;
@@ -280,7 +290,8 @@ std::vector<sf::Vector2i*> AStarFinder::smoothenPath(std::vector<sf::Vector2i*> 
                     break;
                 }
             }
-            if (!blocked) {
+            if (!blocked)
+            {
                 lx = ex;
                 ly = ey;
             }

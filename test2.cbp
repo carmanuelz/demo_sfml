@@ -23,7 +23,6 @@
 					<Add directory="../librerias/Lua/include" />
 					<Add directory="../librerias/Thor/include" />
 					<Add directory="../librerias/SFGUI/include" />
-					<Add directory="src/ssengine" />
 				</Compiler>
 				<Linker>
 					<Add library="sfgui-s" />
@@ -64,8 +63,6 @@
 					<Add option="-DUNICODE" />
 					<Add directory="../librerias/Box2d/include" />
 					<Add directory="../librerias/Lua/include" />
-					<Add directory="include" />
-					<Add directory="src/ssengine" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -101,6 +98,8 @@
 		<Unit filename="src/debugrender.cpp" />
 		<Unit filename="src/debugrender.h" />
 		<Unit filename="src/main.cpp" />
+		<Unit filename="src/ssengine/AICharacter.cpp" />
+		<Unit filename="src/ssengine/AICharacter.h" />
 		<Unit filename="src/ssengine/AStarFinder.cpp" />
 		<Unit filename="src/ssengine/AStarFinder.h" />
 		<Unit filename="src/ssengine/AnimatedSprite.cpp" />
@@ -111,6 +110,8 @@
 		<Unit filename="src/ssengine/GameContext.h" />
 		<Unit filename="src/ssengine/Level1.cpp" />
 		<Unit filename="src/ssengine/Level1.h" />
+		<Unit filename="src/ssengine/Player.cpp" />
+		<Unit filename="src/ssengine/Player.h" />
 		<Unit filename="src/ssengine/Screen.h" />
 		<Unit filename="src/ssengine/UserData.cpp" />
 		<Unit filename="src/ssengine/UserData.h" />

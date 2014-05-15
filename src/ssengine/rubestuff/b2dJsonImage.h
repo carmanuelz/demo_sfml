@@ -22,14 +22,16 @@
 #include <string>
 #include <Box2D/Box2D.h>
 
-enum _b2dJsonImagefilterType {
+enum _b2dJsonImagefilterType
+{
     FT_NEAREST,
     FT_LINEAR,
 
     FT_MAX
 };
 
-class b2dJsonImage {
+class b2dJsonImage
+{
 public:
     std::string name;
     std::string file;
@@ -60,7 +62,10 @@ public:
     void updateUVs(float aspect);
     b2AABB getAABB();
 
-    virtual bool loadImage() { return false; }
+    virtual bool loadImage()
+    {
+        return false;
+    }
     virtual void render() {}
 };
 

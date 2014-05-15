@@ -4,8 +4,8 @@
 
 class Screen
 {
-    public:
-        virtual int Run () = 0;
+public:
+    virtual int Run () = 0;
 };
 
 #endif // SCREEN_H

@@ -16,30 +16,30 @@
 
 namespace sse
 {
-    class GameContext
-    {
-        public:
-            GameContext();
-            virtual ~GameContext();
+class GameContext
+{
+public:
+    GameContext();
+    virtual ~GameContext();
 
-            b2dJson* m_b2json = new b2dJson();
-            std::vector<b2Body*> RemoveList;
-            std::vector<b2Body*> BulletList;
-            sf::Vector2f mousePos;
-            b2World* m_world;
-            LuaScript* m_script;
-            AStarFinder* m_finder;
-            thor::ParticleSystem* m_psystem = &obj_psystem;
-            sf::RenderWindow* m_rwindow;
-            float TileSize;
-            bool LoadWorld(const char* filename);
-            void Createfinder(float tilesize, int width, int height);
-            void DrawSysParticle();
-        protected:
-        private:
-            std::string errMsg;
-            thor::ParticleSystem obj_psystem;
-    };
+    b2dJson* m_b2json = new b2dJson();
+    std::vector<b2Body*> RemoveList;
+    std::vector<b2Body*> BulletList;
+    sf::Vector2f mousePos;
+    b2World* m_world;
+    LuaScript* m_script;
+    AStarFinder* m_finder;
+    thor::ParticleSystem* m_psystem = &obj_psystem;
+    sf::RenderWindow* m_rwindow;
+    float TileSize;
+    bool LoadWorld(const char* filename);
+    void Createfinder(float tilesize, int width, int height);
+    void DrawSysParticle();
+protected:
+private:
+    std::string errMsg;
+    thor::ParticleSystem obj_psystem;
+};
 }
 
 #endif // GAMECONTEXT_H

@@ -4,7 +4,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include "Level1.h"
+#include "ssengine/Level1.h"
 
 int main()
 {
@@ -12,8 +12,8 @@ int main()
     int screen = 0;
 
     sf::VideoMode videomode(800, 600, 32);
-	sf::RenderWindow renderWindow(videomode, "Test"/*,sf::Style::Fullscreen*/);
-	renderWindow.setVerticalSyncEnabled(true);
+    sf::RenderWindow renderWindow(videomode, "Test"/*,sf::Style::Fullscreen*/);
+    renderWindow.setVerticalSyncEnabled(true);
     renderWindow.setFramerateLimit(60);
     renderWindow.setMouseCursorVisible(false);
 
@@ -26,5 +26,5 @@ int main()
         screen = Screens[screen]->Run();
     }
 
-	return 0;
+    return 0;
 }

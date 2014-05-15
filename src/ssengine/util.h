@@ -5,6 +5,6 @@
 
 namespace sse
 {
-    bool insideGUI(std::vector<sf::FloatRect> allocations, sf::Vector2i mousepos);
+bool insideGUI(std::vector<sf::FloatRect> allocations, sf::Vector2i mousepos);
 }
 #endif

@@ -4,20 +4,32 @@
 
 namespace sse
 {
-    class UserData
+class UserData
+{
+public:
+    int tipo;
+    int estado;
+    UserData();
+    virtual ~UserData();
+    int Gettipo()
     {
-        public:
-            int tipo;
-            int estado;
-            UserData();
-            virtual ~UserData();
-            int Gettipo() { return tipo; }
-            void Settipo(int val) { tipo = val; }
-            int Getestado() { return estado; }
-            void Setestado(int val) { estado = val; }
-        protected:
-        private:
-    };
+        return tipo;
+    }
+    void Settipo(int val)
+    {
+        tipo = val;
+    }
+    int Getestado()
+    {
+        return estado;
+    }
+    void Setestado(int val)
+    {
+        estado = val;
+    }
+protected:
+private:
+};
 }
 
 #endif // USERDATA_H

@@ -2,13 +2,13 @@
 
 namespace sse
 {
-    UserData::UserData()
-    {
-        //ctor
-    }
+UserData::UserData()
+{
+    //ctor
+}
 
-    UserData::~UserData()
-    {
-        //dtor
-    }
+UserData::~UserData()
+{
+    //dtor
+}
 }

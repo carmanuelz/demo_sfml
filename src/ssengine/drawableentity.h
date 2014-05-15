@@ -12,46 +12,46 @@
 
 namespace sse
 {
-    class drawableentity
+class drawableentity
+{
+public:
+    drawableentity(int inTypeDraw,GameContext* incontext):TypeDraw(inTypeDraw),context(incontext) {}
+    int TypeDraw;
+    AnimatedSprite animated;
+    AnimatedSprite weapon;
+    sf::Sprite sprite;
+    GameContext* context;
+    bool hasweapon = false;
+    bool before = false;
+    float x = 0;
+    float y = 0;
+    void draw()
     {
-    public:
-        drawableentity(int inTypeDraw,GameContext* incontext):TypeDraw(inTypeDraw),context(incontext){}
-        int TypeDraw;
-        AnimatedSprite animated;
-        AnimatedSprite weapon;
-        sf::Sprite sprite;
-        GameContext* context;
-        bool hasweapon = false;
-        bool before = false;
-        float x = 0;
-        float y = 0;
-        void draw()
+        switch(TypeDraw)
         {
-            switch(TypeDraw)
-            {
-            case 1:
-                drawCharacter();
-                break;
-            }
+        case 1:
+            drawCharacter();
+            break;
         }
-    private:
-        void drawCharacter()
+    }
+private:
+    void drawCharacter()
+    {
+        if(before)
         {
-            if(before)
-            {
-                if(hasweapon)
-                    context->m_rwindow->draw(weapon);
-                context->m_rwindow->draw(animated);
-            }
-            else
-            {
-                context->m_rwindow->draw(animated);
-                if(hasweapon)
-                    context->m_rwindow->draw(weapon);
-            }
+            if(hasweapon)
+                context->m_rwindow->draw(weapon);
+            context->m_rwindow->draw(animated);
         }
+        else
+        {
+            context->m_rwindow->draw(animated);
+            if(hasweapon)
+                context->m_rwindow->draw(weapon);
+        }
+    }
 
-    };
+};
 }
 
 #endif

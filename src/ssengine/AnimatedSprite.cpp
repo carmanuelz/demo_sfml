@@ -225,7 +225,7 @@ void AnimatedSprite::update(sf::Time deltaTime)
                 {
                     updateTimeLineStart();
                 }
-                                // get next Frame index
+                // get next Frame index
                 if (m_currentFrame + 1 < m_animation->getSize())
                     m_currentFrame++;
                 else
@@ -277,7 +277,7 @@ void AnimatedSprite::updateTimeLineStart()
     if(indexTransition < TimeLine.size())
     {
         if(indexRepetition == 0 && TimeLine[indexTransition]->StartFunc != 0)
-           TimeLine[indexTransition]->StartFunc();
+            TimeLine[indexTransition]->StartFunc();
 
         if(TimeLine[indexTransition]->beginRep != 0)
             TimeLine[indexTransition]->beginRep();

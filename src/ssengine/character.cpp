@@ -35,8 +35,8 @@ void Character::init()
     Cidleicle.setSpriteSheet(Cspritesheet);
     loadFrames(&Cidleicle, Code+".idle");
 
-	Cruncicle.setSpriteSheet(Cspritesheet);
-	loadFrames(&Cruncicle, Code+".run");
+    Cruncicle.setSpriteSheet(Cspritesheet);
+    loadFrames(&Cruncicle, Code+".run");
 
     if(!hasweapon)
     {
@@ -67,11 +67,11 @@ void Character::init()
 
     Body = createBody(x,y);
 
-	//std::cout<<"hasta aqui todo bien";
-	bulletT.loadFromFile("assets/bullet2.png");
-	bulletS.setTexture(bulletT);
-	sf::Vector2f bulletcentro(bulletS.getTextureRect().width / 2.f,bulletS.getTextureRect().height / 2.f);
-	bulletS.setOrigin(bulletcentro);
+    //std::cout<<"hasta aqui todo bien";
+    bulletT.loadFromFile("assets/bullet2.png");
+    bulletS.setTexture(bulletT);
+    sf::Vector2f bulletcentro(bulletS.getTextureRect().width / 2.f,bulletS.getTextureRect().height / 2.f);
+    bulletS.setOrigin(bulletcentro);
 
     buffershoot.loadFromFile("assets/shoot.wav");
     soundshoot.setBuffer(buffershoot);
@@ -86,11 +86,11 @@ void Character::init()
 void Character::loadFrames(Animation* anim,std::string luapath)
 {
     std::vector<int> animparams = context->m_script->getIntVector(luapath);
-	int nroframes = animparams[0];
-	int widhtf = animparams[1];
-	int heightf = animparams[2];
-	int nrorow = animparams[3]*animparams[2];
-	for(int i = 0 ; i < nroframes ; i++)
+    int nroframes = animparams[0];
+    int widhtf = animparams[1];
+    int heightf = animparams[2];
+    int nrorow = animparams[3]*animparams[2];
+    for(int i = 0 ; i < nroframes ; i++)
     {
         int val = i*widhtf;
         anim->addFrame(sf::IntRect(val, nrorow, widhtf, heightf));
@@ -144,7 +144,7 @@ b2Body* Character::createBody(float x, float y)
 
     b2BodyDef BodyDef;
     BodyDef.type = b2_dynamicBody;
-	b2FixtureDef bodyfixtureDef;
+    b2FixtureDef bodyfixtureDef;
 
     b2CircleShape circleshape;
     circleshape.m_radius = 0.22;
@@ -153,10 +153,10 @@ b2Body* Character::createBody(float x, float y)
     poligonshape.SetAsBox(0.22, 0.33);
 
     b2Filter filter;
-	b2Body* characterbody = context->m_world->CreateBody(&BodyDef);
+    b2Body* characterbody = context->m_world->CreateBody(&BodyDef);
     bodyfixtureDef.friction = 0;
 
-	b2FixtureDef sensorPLayerdef;
+    b2FixtureDef sensorPLayerdef;
     b2CircleShape sensorshape;
     b2Fixture* sensorPlayer;
     if(Type == 1)
@@ -177,20 +177,23 @@ b2Body* Character::createBody(float x, float y)
         BodyDef.linearDamping = 20;
         filter.categoryBits = 3;
     }
-	b2Fixture* BodyFix = characterbody->CreateFixture(&bodyfixtureDef);
+    b2Fixture* BodyFix = characterbody->CreateFixture(&bodyfixtureDef);
     BodyFix->SetFilterData(filter);
-	characterbody->SetBullet(false);
-	characterbody->SetTransform(b2Vec2(x*MPP, y*MPP),0);
-	characterbody->SetFixedRotation(true);
+    characterbody->SetBullet(false);
+    characterbody->SetTransform(b2Vec2(x*MPP, y*MPP),0);
+    characterbody->SetFixedRotation(true);
     BodyFix->SetUserData(ud);
     characterbody->SetUserData(this);
     vel.x = 0;
     vel.y = 0;
-	return characterbody;
+    return characterbody;
 }
 
 void Character::update(sf::Time frameTime)
 {
+
+    Body->SetLinearVelocity(vel);
+    TestCollision();
     if(Acumulator < 100)
         Acumulator+=frameTime.asSeconds();
     b2Vec2 position = Body->GetPosition();
@@ -285,25 +288,25 @@ b2Body* Character::createBullet(sf::Vector2f origin, sf::Vector2f vel,float angl
 {
     b2BodyDef bulletBodyDef;
     bulletBodyDef.type = b2_dynamicBody;
-	b2Body* bulletB = context->m_world->CreateBody(&bulletBodyDef);
-	b2CircleShape circle;
-	circle.m_radius = 0.1f;
-	b2FixtureDef bulletFixDef;
-	bulletFixDef.shape = &circle;
-	bulletFixDef.density = 0.0f;
-	b2Fixture* bulletFix = bulletB->CreateFixture(&bulletFixDef);
-	b2Filter filter;
-	filter.maskBits = 65534;
-	bulletFix->SetFilterData(filter);
-	bulletB->SetTransform(b2Vec2(origin.x*MPP, origin.y*MPP),angle*DEGTORAD);
-	bulletB->SetLinearVelocity(b2Vec2(vel.x*1.5f,-vel.y*1.5f));
-	UserData* udBullet = new UserData();
+    b2Body* bulletB = context->m_world->CreateBody(&bulletBodyDef);
+    b2CircleShape circle;
+    circle.m_radius = 0.1f;
+    b2FixtureDef bulletFixDef;
+    bulletFixDef.shape = &circle;
+    bulletFixDef.density = 0.0f;
+    b2Fixture* bulletFix = bulletB->CreateFixture(&bulletFixDef);
+    b2Filter filter;
+    filter.maskBits = 65534;
+    bulletFix->SetFilterData(filter);
+    bulletB->SetTransform(b2Vec2(origin.x*MPP, origin.y*MPP),angle*DEGTORAD);
+    bulletB->SetLinearVelocity(b2Vec2(vel.x*1.5f,-vel.y*1.5f));
+    UserData* udBullet = new UserData();
     udBullet->tipo = 3;
     udBullet->estado = 0;
     bulletFix->SetUserData(udBullet);
     context->BulletList.push_back(bulletB);
     bulletB->SetUserData(&bulletS);
-	return bulletB;
+    return bulletB;
 }
 
 void Character::addCollisionList(b2Fixture*f)
@@ -336,13 +339,14 @@ void Character::TestCollision()
                 isbusy = true;
                 b2Vec2 pos = f->GetBody()->GetPosition();
                 context->m_psystem->addEmitter(BloodEmitter(sf::Vector2f(pos.x*PPM,pos.y*PPM)), sf::seconds(0.1f));
-                Player* player = static_cast<sse::Player*>(f->GetBody()->GetUserData());
+                Character* player = static_cast<sse::Character*>(f->GetBody()->GetUserData());
                 player->takeDamage(Hit());
             }
             break;
         case objectType::obj_typeBullet:
             context->m_psystem->addEmitter(BloodEmitter(sf::Vector2f(x,y)), sf::seconds(0.1f));
-            context->RemoveList.push_back(f->GetBody());
+            if(userdata->estado== 0)
+                context->RemoveList.push_back(f->GetBody());
             userdata->estado=1;
             takeDamage(5);
             break;
@@ -350,219 +354,5 @@ void Character::TestCollision()
     }
 }
 
-void AICharacter::update(sf::Time frameTime)
-{
-    Body->SetLinearVelocity(vel);
-    Character::update(frameTime);
-    TestCollision();
-}
-
-void AICharacter::updateFind()
-{
-    if(Target != 0)
-    {
-        b2Vec2 destination = Target->GetPosition();
-        destination.x*=PPM;
-        destination.y*=PPM;
-        findto(destination.x,destination.y);
-    }
-}
-
-void AICharacter::setTarget(b2Body* inTarget)
-{
-    Target = inTarget;
-}
-
-void AICharacter::findto(float tox, float toy)
-{
-    int endX = floor(tox/TileSize);
-    int endY = floor(toy/TileSize);
-    float floatX = x/TileSize;
-    float floatY = y/TileSize;
-    int startX;
-    int startY;
-    if((floatX - preenemmyX)>1.5f || (preenemmyX - floatX)>0.5f)
-    {
-        startX = floor(floatX);
-        preenemmyX = startX;
-    }
-    else
-    {
-        startX = preenemmyX;
-    }
-
-    if((floatY - preenemmyY)>1.5f || (preenemmyY - floatY)>0.5f)
-    {
-        startY = floor(floatY);
-        preenemmyY = startY;
-    }
-    else
-    {
-        startY = preenemmyY;
-    }
-
-    std::vector<sf::Vector2i*> route;
-    if(AStartF->isWalkableAt(startX,startY) && AStartF->isWalkableAt(endX,endY))
-    {
-        route = AStartF->findPath(startX,startY,endX,endY);
-        int len = route.size();
-        if(len>1)
-        {
-            sf::Vector2f difstep((route[len-2]->x - startX)*TileSize, (route[len-2]->y - startY)*TileSize);
-
-            float modenemy = sqrt(pow(difstep.x,2)+pow(difstep.y,2));
-
-            if(modenemy != 0)
-            {
-                sf::Vector2f enemmyVU((difstep.x)/modenemy,(difstep.y)/modenemy);
-                b2Vec2 enemyVel(enemmyVU.x*facVel,enemmyVU.y*facVel);
-                vel = enemyVel;
-                if(enemyVel.x > 0)
-                    setRight();
-                else
-                {
-                    if(enemyVel.x < 0)
-                        setLeft();
-                    else
-                    {
-                        if(tox < x)
-                            setLeft();
-
-                        else
-                            setRight();
-
-                    }
-                }
-            }
-        }
-    }
-}
-
-/*player*/
-
-void Player::update(sf::Time frameTime)
-{
-    Body->SetLinearVelocity(vel);
-    Character::update(frameTime);
-}
-
-sf::Vector2f Player::updatePlayer(bool hasfocused, bool hasclick)
-{
-    float result = 0;
-    if(hasfocused)
-    {
-                Body->SetLinearVelocity(b2Vec2(0,0));
-        vel = Body->GetLinearVelocity();
-        bool isrun = false;
-
-        setRight();
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)||
-           sf::Keyboard::isKeyPressed(sf::Keyboard::D)||
-           sf::Keyboard::isKeyPressed(sf::Keyboard::W)||
-           sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-        {
-            setAnimCicle(2);
-            isrun = true;
-                        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-            {
-                vel.x = -SPEED;
-                if(direction == 1)
-                {
-                    setRight();
-                    animated.setReverse(true);
-                }
-
-                else
-                {
-                    setLeft();
-                    animated.setReverse(false);
-                }
-
-            }
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-            {
-                vel.x = SPEED;
-                if(direction == 1)
-                {
-                    setRight();
-                    animated.setReverse(false);
-                }
-                else
-                {
-                    setLeft();
-                    animated.setReverse(true);
-                }
-            }
-
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-            {
-                vel.y = -SPEED;
-                animated.setReverse(false);
-                if(direction == 1)
-                    setRight();
-                else
-                    setLeft();
-            }
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-            {
-                animated.setReverse(false);
-                vel.y = SPEED;
-                if(direction == 1)
-                    setRight();
-                else
-                    setLeft();
-            }
-        }
-
-        if(!isrun)
-        {
-           setAnimCicle(1);
-            if(direction == 1)
-                setRight();
-            else
-                setLeft();
-        }
-
-        if(vel.x != 0 && vel.y!=0)
-        {
-            vel.x = vel.x*0.7;
-            vel.y = vel.y*0.7;
-        }
-
-        weapon.play();
-        if (!hasclick || !sf::Mouse::isButtonPressed(sf::Mouse::Left))
-        {
-            weapon.stop();
-        }
-
-        else
-        {
-            if(Acumulator >= 0.2)
-            {
-                createBullet(bulletOrigin, bulletVU, angle);
-                Acumulator = 0;
-                soundshoot.play();
-                hasshoot = true;
-            }
-        }
-        if(Acumulator < 0.2 && hasshoot)
-        {
-            if(Acumulator < 0.05)
-                result = pow(Acumulator,2)*600;
-            else
-                result = (Acumulator*-0.0167f+0.0033f)*600;
-
-            moveimpactview = bulletVU*-result;
-        }
-        else
-        {
-            hasshoot = false;
-            moveimpactview = sf::Vector2f(0,0);
-        }
-
-    }
-
-    return sf::Vector2f(x,y);
-}
 
 

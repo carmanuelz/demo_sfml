@@ -66,7 +66,8 @@ bool b2dJson::writeToFile(b2World* world, const char* filename)
 
     std::ofstream ofs;
     ofs.open(filename, std::ios::out);
-    if (!ofs) {
+    if (!ofs)
+    {
         std::cout << "Could not open file " << filename << " for writing\n";
         return false;
     }
@@ -97,7 +98,8 @@ Json::Value b2dJson::b2j(b2World* world)
     //worldValue["hasContactListener"] = world->HasContactListener();
 
     int i =  0;
-    for (b2Body* body = world->GetBodyList(); body; body = body->GetNext()) {
+    for (b2Body* body = world->GetBodyList(); body; body = body->GetNext())
+    {
         m_bodyToIndexMap[body] = i;
         worldValue["body"][i] =  b2j(body);
         i++;
@@ -105,14 +107,16 @@ Json::Value b2dJson::b2j(b2World* world)
 
     //need two passes for joints because gear joints reference other joints
     i = 0;
-    for (b2Joint* joint = world->GetJointList(); joint; joint = joint->GetNext()) {
+    for (b2Joint* joint = world->GetJointList(); joint; joint = joint->GetNext())
+    {
         if ( joint->GetType() == e_gearJoint )
             continue;
         worldValue["joint"][i] =  b2j(joint);
         m_jointToIndexMap[joint] = i;
         i++;
     }
-    for (b2Joint* joint = world->GetJointList(); joint; joint = joint->GetNext()) {
+    for (b2Joint* joint = world->GetJointList(); joint; joint = joint->GetNext())
+    {
         if ( joint->GetType() != e_gearJoint )
             continue;
         worldValue["joint"][i] =  b2j(joint);
@@ -124,7 +128,8 @@ Json::Value b2dJson::b2j(b2World* world)
     {
         std::map<b2dJsonImage*,string>::iterator it = m_imageToNameMap.begin();
         std::map<b2dJsonImage*,string>::iterator end = m_imageToNameMap.end();
-        while (it != end) {
+        while (it != end)
+        {
             b2dJsonImage* image = it->first;
             worldValue["image"][i] =  b2j(image);
             i++;
@@ -238,53 +243,53 @@ Json::Value b2dJson::b2j(b2Fixture *fixture)
     switch (shape->GetType())
     {
     case b2Shape::e_circle:
-        {
-            b2CircleShape* circle = (b2CircleShape*)shape;
-            floatToJson("radius", circle->m_radius, fixtureValue["circle"]);
-            vecToJson("center", circle->m_p, fixtureValue["circle"]);
-        }
-        break;
+    {
+        b2CircleShape* circle = (b2CircleShape*)shape;
+        floatToJson("radius", circle->m_radius, fixtureValue["circle"]);
+        vecToJson("center", circle->m_p, fixtureValue["circle"]);
+    }
+    break;
     case b2Shape::e_edge:
-        {
-            b2EdgeShape* edge = (b2EdgeShape*)shape;
-            vecToJson("vertex1", edge->m_vertex1, fixtureValue["edge"]);
-            vecToJson("vertex2", edge->m_vertex2, fixtureValue["edge"]);
-            if ( edge->m_hasVertex0 )
-                fixtureValue["edge"]["hasVertex0"] = true;
-            if ( edge->m_hasVertex3 )
-                fixtureValue["edge"]["hasVertex3"] = true;
-            if ( edge->m_hasVertex0 )
-                vecToJson("vertex0", edge->m_vertex0, fixtureValue["edge"]);
-            if ( edge->m_hasVertex3 )
-                vecToJson("vertex3", edge->m_vertex3, fixtureValue["edge"]);
-        }
-        break;
+    {
+        b2EdgeShape* edge = (b2EdgeShape*)shape;
+        vecToJson("vertex1", edge->m_vertex1, fixtureValue["edge"]);
+        vecToJson("vertex2", edge->m_vertex2, fixtureValue["edge"]);
+        if ( edge->m_hasVertex0 )
+            fixtureValue["edge"]["hasVertex0"] = true;
+        if ( edge->m_hasVertex3 )
+            fixtureValue["edge"]["hasVertex3"] = true;
+        if ( edge->m_hasVertex0 )
+            vecToJson("vertex0", edge->m_vertex0, fixtureValue["edge"]);
+        if ( edge->m_hasVertex3 )
+            vecToJson("vertex3", edge->m_vertex3, fixtureValue["edge"]);
+    }
+    break;
     case b2Shape::e_chain:
-        {
-            b2ChainShape* chain = (b2ChainShape*)shape;
-            int32 count = chain->m_count;
-            const b2Vec2* vertices = chain->m_vertices;
-            for (int32 i = 0; i < count; ++i)
-                vecToJson("vertices", vertices[i], fixtureValue["chain"], i);
-            if ( chain->m_hasPrevVertex )
-                fixtureValue["chain"]["hasPrevVertex"] = true;
-            if ( chain->m_hasNextVertex )
-                fixtureValue["chain"]["hasNextVertex"] = true;
-            if ( chain->m_hasPrevVertex )
-                vecToJson("prevVertex", chain->m_prevVertex, fixtureValue["chain"]);
-            if ( chain->m_hasNextVertex )
-                vecToJson("nextVertex", chain->m_nextVertex, fixtureValue["chain"]);
-        }
-        break;
+    {
+        b2ChainShape* chain = (b2ChainShape*)shape;
+        int32 count = chain->m_count;
+        const b2Vec2* vertices = chain->m_vertices;
+        for (int32 i = 0; i < count; ++i)
+            vecToJson("vertices", vertices[i], fixtureValue["chain"], i);
+        if ( chain->m_hasPrevVertex )
+            fixtureValue["chain"]["hasPrevVertex"] = true;
+        if ( chain->m_hasNextVertex )
+            fixtureValue["chain"]["hasNextVertex"] = true;
+        if ( chain->m_hasPrevVertex )
+            vecToJson("prevVertex", chain->m_prevVertex, fixtureValue["chain"]);
+        if ( chain->m_hasNextVertex )
+            vecToJson("nextVertex", chain->m_nextVertex, fixtureValue["chain"]);
+    }
+    break;
     case b2Shape::e_polygon:
-        {
-            b2PolygonShape* poly = (b2PolygonShape*)shape;
-            int32 vertexCount = poly->GetVertexCount();
-            b2Assert(vertexCount <= b2_maxPolygonVertices);
-            for (int32 i = 0; i < vertexCount; ++i)
-                vecToJson("vertices", poly->m_vertices[i], fixtureValue["polygon"], i);
-        }
-        break;
+    {
+        b2PolygonShape* poly = (b2PolygonShape*)shape;
+        int32 vertexCount = poly->GetVertexCount();
+        b2Assert(vertexCount <= b2_maxPolygonVertices);
+        for (int32 i = 0; i < vertexCount; ++i)
+            vecToJson("vertices", poly->m_vertices[i], fixtureValue["polygon"], i);
+    }
+    break;
     default:
         std::cout << "Unknown shape type : " << shape->GetType() << std::endl;
     }
@@ -317,150 +322,150 @@ Json::Value b2dJson::b2j(b2Joint* joint)
     switch ( joint->GetType() )
     {
     case e_revoluteJoint:
-        {
-            jointValue["type"] = "revolute";
+    {
+        jointValue["type"] = "revolute";
 
-            b2RevoluteJoint* revoluteJoint = (b2RevoluteJoint*)joint;
-            vecToJson("anchorA", bodyA->GetLocalPoint(revoluteJoint->GetAnchorA()), jointValue);
-            vecToJson("anchorB", bodyB->GetLocalPoint(revoluteJoint->GetAnchorB()), jointValue);
-            floatToJson("refAngle", bodyB->GetAngle() - bodyA->GetAngle() - revoluteJoint->GetJointAngle(), jointValue);
-            floatToJson("jointSpeed", revoluteJoint->GetJointSpeed(), jointValue);
-            jointValue["enableLimit"] = revoluteJoint->IsLimitEnabled();
-            floatToJson("lowerLimit", revoluteJoint->GetLowerLimit(), jointValue);
-            floatToJson("upperLimit", revoluteJoint->GetUpperLimit(), jointValue);
-            jointValue["enableMotor"] = revoluteJoint->IsMotorEnabled();
-            floatToJson("motorSpeed", revoluteJoint->GetMotorSpeed(), jointValue);
-            floatToJson("maxMotorTorque", revoluteJoint->GetMaxMotorTorque(), jointValue);
-        }
-        break;
+        b2RevoluteJoint* revoluteJoint = (b2RevoluteJoint*)joint;
+        vecToJson("anchorA", bodyA->GetLocalPoint(revoluteJoint->GetAnchorA()), jointValue);
+        vecToJson("anchorB", bodyB->GetLocalPoint(revoluteJoint->GetAnchorB()), jointValue);
+        floatToJson("refAngle", bodyB->GetAngle() - bodyA->GetAngle() - revoluteJoint->GetJointAngle(), jointValue);
+        floatToJson("jointSpeed", revoluteJoint->GetJointSpeed(), jointValue);
+        jointValue["enableLimit"] = revoluteJoint->IsLimitEnabled();
+        floatToJson("lowerLimit", revoluteJoint->GetLowerLimit(), jointValue);
+        floatToJson("upperLimit", revoluteJoint->GetUpperLimit(), jointValue);
+        jointValue["enableMotor"] = revoluteJoint->IsMotorEnabled();
+        floatToJson("motorSpeed", revoluteJoint->GetMotorSpeed(), jointValue);
+        floatToJson("maxMotorTorque", revoluteJoint->GetMaxMotorTorque(), jointValue);
+    }
+    break;
     case e_prismaticJoint:
-        {
-            jointValue["type"] = "prismatic";
+    {
+        jointValue["type"] = "prismatic";
 
-            b2PrismaticJoint* prismaticJoint = (b2PrismaticJoint*)joint;
-            vecToJson("anchorA", bodyA->GetLocalPoint(prismaticJoint->GetAnchorA()), jointValue);
-            vecToJson("anchorB", bodyB->GetLocalPoint(prismaticJoint->GetAnchorB()), jointValue);
-            vecToJson("localAxisA", prismaticJoint->GetLocalAxisA(), jointValue);
-            floatToJson("refAngle", prismaticJoint->GetReferenceAngle(), jointValue);
-            jointValue["enableLimit"] = prismaticJoint->IsLimitEnabled();
-            floatToJson("lowerLimit", prismaticJoint->GetLowerLimit(), jointValue);
-            floatToJson("upperLimit", prismaticJoint->GetUpperLimit(), jointValue);
-            jointValue["enableMotor"] = prismaticJoint->IsMotorEnabled();
-            floatToJson("maxMotorForce", prismaticJoint->GetMaxMotorForce(), jointValue);
-            floatToJson("motorSpeed", prismaticJoint->GetMotorSpeed(), jointValue);
-        }
-        break;
+        b2PrismaticJoint* prismaticJoint = (b2PrismaticJoint*)joint;
+        vecToJson("anchorA", bodyA->GetLocalPoint(prismaticJoint->GetAnchorA()), jointValue);
+        vecToJson("anchorB", bodyB->GetLocalPoint(prismaticJoint->GetAnchorB()), jointValue);
+        vecToJson("localAxisA", prismaticJoint->GetLocalAxisA(), jointValue);
+        floatToJson("refAngle", prismaticJoint->GetReferenceAngle(), jointValue);
+        jointValue["enableLimit"] = prismaticJoint->IsLimitEnabled();
+        floatToJson("lowerLimit", prismaticJoint->GetLowerLimit(), jointValue);
+        floatToJson("upperLimit", prismaticJoint->GetUpperLimit(), jointValue);
+        jointValue["enableMotor"] = prismaticJoint->IsMotorEnabled();
+        floatToJson("maxMotorForce", prismaticJoint->GetMaxMotorForce(), jointValue);
+        floatToJson("motorSpeed", prismaticJoint->GetMotorSpeed(), jointValue);
+    }
+    break;
     case e_distanceJoint:
-        {
-            jointValue["type"] = "distance";
+    {
+        jointValue["type"] = "distance";
 
-            b2DistanceJoint* distanceJoint = (b2DistanceJoint*)joint;
-            vecToJson("anchorA", bodyA->GetLocalPoint(distanceJoint->GetAnchorA()), jointValue);
-            vecToJson("anchorB", bodyB->GetLocalPoint(distanceJoint->GetAnchorB()), jointValue);
-            floatToJson("length", distanceJoint->GetLength(), jointValue);
-            floatToJson("frequency", distanceJoint->GetFrequency(), jointValue);
-            floatToJson("dampingRatio", distanceJoint->GetDampingRatio(), jointValue);
-        }
-        break;
+        b2DistanceJoint* distanceJoint = (b2DistanceJoint*)joint;
+        vecToJson("anchorA", bodyA->GetLocalPoint(distanceJoint->GetAnchorA()), jointValue);
+        vecToJson("anchorB", bodyB->GetLocalPoint(distanceJoint->GetAnchorB()), jointValue);
+        floatToJson("length", distanceJoint->GetLength(), jointValue);
+        floatToJson("frequency", distanceJoint->GetFrequency(), jointValue);
+        floatToJson("dampingRatio", distanceJoint->GetDampingRatio(), jointValue);
+    }
+    break;
     case e_pulleyJoint:
-        {
-            jointValue["type"] = "pulley";
+    {
+        jointValue["type"] = "pulley";
 
-            b2PulleyJoint* pulleyJoint = (b2PulleyJoint*)joint;
-            vecToJson("groundAnchorA", pulleyJoint->GetGroundAnchorA(), jointValue);
-            vecToJson("groundAnchorB", pulleyJoint->GetGroundAnchorB(), jointValue);
-            vecToJson("anchorA", bodyA->GetLocalPoint(pulleyJoint->GetAnchorA()), jointValue);
-            vecToJson("anchorB", bodyB->GetLocalPoint(pulleyJoint->GetAnchorB()), jointValue);
-            floatToJson("lengthA", (pulleyJoint->GetGroundAnchorA() - pulleyJoint->GetAnchorA()).Length(), jointValue);
-            floatToJson("lengthB", (pulleyJoint->GetGroundAnchorB() - pulleyJoint->GetAnchorB()).Length(), jointValue);
-            floatToJson("ratio", pulleyJoint->GetRatio(), jointValue);
-        }
-        break;
+        b2PulleyJoint* pulleyJoint = (b2PulleyJoint*)joint;
+        vecToJson("groundAnchorA", pulleyJoint->GetGroundAnchorA(), jointValue);
+        vecToJson("groundAnchorB", pulleyJoint->GetGroundAnchorB(), jointValue);
+        vecToJson("anchorA", bodyA->GetLocalPoint(pulleyJoint->GetAnchorA()), jointValue);
+        vecToJson("anchorB", bodyB->GetLocalPoint(pulleyJoint->GetAnchorB()), jointValue);
+        floatToJson("lengthA", (pulleyJoint->GetGroundAnchorA() - pulleyJoint->GetAnchorA()).Length(), jointValue);
+        floatToJson("lengthB", (pulleyJoint->GetGroundAnchorB() - pulleyJoint->GetAnchorB()).Length(), jointValue);
+        floatToJson("ratio", pulleyJoint->GetRatio(), jointValue);
+    }
+    break;
     case e_mouseJoint:
-        {
-            jointValue["type"] = "mouse";
+    {
+        jointValue["type"] = "mouse";
 
-            b2MouseJoint* mouseJoint = (b2MouseJoint*)joint;
-            vecToJson("target", mouseJoint->GetTarget(), jointValue);
-            vecToJson("anchorB", mouseJoint->GetAnchorB(), jointValue);
-            floatToJson("maxForce", mouseJoint->GetMaxForce(), jointValue);
-            floatToJson("frequency", mouseJoint->GetFrequency(), jointValue);
-            floatToJson("dampingRatio", mouseJoint->GetDampingRatio(), jointValue);
-        }
-        break;
+        b2MouseJoint* mouseJoint = (b2MouseJoint*)joint;
+        vecToJson("target", mouseJoint->GetTarget(), jointValue);
+        vecToJson("anchorB", mouseJoint->GetAnchorB(), jointValue);
+        floatToJson("maxForce", mouseJoint->GetMaxForce(), jointValue);
+        floatToJson("frequency", mouseJoint->GetFrequency(), jointValue);
+        floatToJson("dampingRatio", mouseJoint->GetDampingRatio(), jointValue);
+    }
+    break;
     case e_gearJoint:
-        {
-            jointValue["type"] = "gear";
+    {
+        jointValue["type"] = "gear";
 
-            b2GearJoint* gearJoint = (b2GearJoint*)joint;
-            int jointIndex1 = lookupJointIndex( gearJoint->GetJoint1() );
-            int jointIndex2 = lookupJointIndex( gearJoint->GetJoint2() );
-            jointValue["joint1"] = jointIndex1;
-            jointValue["joint2"] = jointIndex2;
-            jointValue["ratio"] = gearJoint->GetRatio();
-        }
-        break;
+        b2GearJoint* gearJoint = (b2GearJoint*)joint;
+        int jointIndex1 = lookupJointIndex( gearJoint->GetJoint1() );
+        int jointIndex2 = lookupJointIndex( gearJoint->GetJoint2() );
+        jointValue["joint1"] = jointIndex1;
+        jointValue["joint2"] = jointIndex2;
+        jointValue["ratio"] = gearJoint->GetRatio();
+    }
+    break;
     case e_wheelJoint:
-        {
-            jointValue["type"] = "wheel";
+    {
+        jointValue["type"] = "wheel";
 
-            b2WheelJoint* wheelJoint = (b2WheelJoint*)joint;
-            vecToJson("anchorA", bodyA->GetLocalPoint(wheelJoint->GetAnchorA()), jointValue);
-            vecToJson("anchorB", bodyB->GetLocalPoint(wheelJoint->GetAnchorB()), jointValue);
-            vecToJson("localAxisA", wheelJoint->GetLocalAxisA(), jointValue);
-            jointValue["enableMotor"] = wheelJoint->IsMotorEnabled();
-            floatToJson("motorSpeed", wheelJoint->GetMotorSpeed(), jointValue);
-            floatToJson("maxMotorTorque", wheelJoint->GetMaxMotorTorque(), jointValue);
-            floatToJson("springFrequency", wheelJoint->GetSpringFrequencyHz(), jointValue);
-            floatToJson("springDampingRatio", wheelJoint->GetSpringDampingRatio(), jointValue);
-        }
-        break;
+        b2WheelJoint* wheelJoint = (b2WheelJoint*)joint;
+        vecToJson("anchorA", bodyA->GetLocalPoint(wheelJoint->GetAnchorA()), jointValue);
+        vecToJson("anchorB", bodyB->GetLocalPoint(wheelJoint->GetAnchorB()), jointValue);
+        vecToJson("localAxisA", wheelJoint->GetLocalAxisA(), jointValue);
+        jointValue["enableMotor"] = wheelJoint->IsMotorEnabled();
+        floatToJson("motorSpeed", wheelJoint->GetMotorSpeed(), jointValue);
+        floatToJson("maxMotorTorque", wheelJoint->GetMaxMotorTorque(), jointValue);
+        floatToJson("springFrequency", wheelJoint->GetSpringFrequencyHz(), jointValue);
+        floatToJson("springDampingRatio", wheelJoint->GetSpringDampingRatio(), jointValue);
+    }
+    break;
     case e_motorJoint:
-        {
-            jointValue["type"] = "motor";
+    {
+        jointValue["type"] = "motor";
 
-            b2MotorJoint* motorJoint = (b2MotorJoint*)joint;
-            vecToJson("anchorA", bodyA->GetLocalPoint(motorJoint->GetAnchorA()), jointValue);
-            vecToJson("anchorB", bodyB->GetLocalPoint(motorJoint->GetAnchorB()), jointValue);
-            floatToJson("refAngle", motorJoint->GetAngularOffset(), jointValue);
-            floatToJson("maxForce", motorJoint->GetMaxForce(), jointValue);
-            floatToJson("maxTorque", motorJoint->GetMaxTorque(), jointValue);
-            //floatToJson("correctionFactor", motorJoint->GetCorrectionFactor(), jointValue);
-        }
-        break;
+        b2MotorJoint* motorJoint = (b2MotorJoint*)joint;
+        vecToJson("anchorA", bodyA->GetLocalPoint(motorJoint->GetAnchorA()), jointValue);
+        vecToJson("anchorB", bodyB->GetLocalPoint(motorJoint->GetAnchorB()), jointValue);
+        floatToJson("refAngle", motorJoint->GetAngularOffset(), jointValue);
+        floatToJson("maxForce", motorJoint->GetMaxForce(), jointValue);
+        floatToJson("maxTorque", motorJoint->GetMaxTorque(), jointValue);
+        //floatToJson("correctionFactor", motorJoint->GetCorrectionFactor(), jointValue);
+    }
+    break;
     case e_weldJoint:
-        {
-            jointValue["type"] = "weld";
+    {
+        jointValue["type"] = "weld";
 
-            b2WeldJoint* weldJoint = (b2WeldJoint*)joint;
-            vecToJson("anchorA", bodyA->GetLocalPoint(weldJoint->GetAnchorA()), jointValue);
-            vecToJson("anchorB", bodyB->GetLocalPoint(weldJoint->GetAnchorB()), jointValue);
-            floatToJson("refAngle", weldJoint->GetReferenceAngle(), jointValue);
-            floatToJson("frequency", weldJoint->GetFrequency(), jointValue);
-            floatToJson("dampingRatio", weldJoint->GetDampingRatio(), jointValue);
-        }
-        break;
+        b2WeldJoint* weldJoint = (b2WeldJoint*)joint;
+        vecToJson("anchorA", bodyA->GetLocalPoint(weldJoint->GetAnchorA()), jointValue);
+        vecToJson("anchorB", bodyB->GetLocalPoint(weldJoint->GetAnchorB()), jointValue);
+        floatToJson("refAngle", weldJoint->GetReferenceAngle(), jointValue);
+        floatToJson("frequency", weldJoint->GetFrequency(), jointValue);
+        floatToJson("dampingRatio", weldJoint->GetDampingRatio(), jointValue);
+    }
+    break;
     case e_frictionJoint:
-        {
-            jointValue["type"] = "friction";
+    {
+        jointValue["type"] = "friction";
 
-            b2FrictionJoint* frictionJoint = (b2FrictionJoint*)joint;
-            vecToJson("anchorA", bodyA->GetLocalPoint(frictionJoint->GetAnchorA()), jointValue);
-            vecToJson("anchorB", bodyB->GetLocalPoint(frictionJoint->GetAnchorB()), jointValue);
-            floatToJson("maxForce", frictionJoint->GetMaxForce(), jointValue);
-            floatToJson("maxTorque", frictionJoint->GetMaxTorque(), jointValue);
-        }
-        break;
+        b2FrictionJoint* frictionJoint = (b2FrictionJoint*)joint;
+        vecToJson("anchorA", bodyA->GetLocalPoint(frictionJoint->GetAnchorA()), jointValue);
+        vecToJson("anchorB", bodyB->GetLocalPoint(frictionJoint->GetAnchorB()), jointValue);
+        floatToJson("maxForce", frictionJoint->GetMaxForce(), jointValue);
+        floatToJson("maxTorque", frictionJoint->GetMaxTorque(), jointValue);
+    }
+    break;
     case e_ropeJoint:
-        {
-            jointValue["type"] = "rope";
+    {
+        jointValue["type"] = "rope";
 
-            b2RopeJoint* ropeJoint = (b2RopeJoint*)joint;
-            vecToJson("anchorA", bodyA->GetLocalPoint(ropeJoint->GetAnchorA()), jointValue);
-            vecToJson("anchorB", bodyB->GetLocalPoint(ropeJoint->GetAnchorB()), jointValue);
-            floatToJson("maxLength", ropeJoint->GetMaxLength(), jointValue);
-        }
-        break;
+        b2RopeJoint* ropeJoint = (b2RopeJoint*)joint;
+        vecToJson("anchorA", bodyA->GetLocalPoint(ropeJoint->GetAnchorA()), jointValue);
+        vecToJson("anchorB", bodyB->GetLocalPoint(ropeJoint->GetAnchorB()), jointValue);
+        floatToJson("maxLength", ropeJoint->GetMaxLength(), jointValue);
+    }
+    break;
     case e_unknownJoint:
     default:
         std::cout << "Unknown joint type not stored in snapshot : " << joint->GetType() << std::endl;
@@ -498,14 +503,17 @@ Json::Value b2dJson::b2j(b2dJsonImage *image)
     floatToJson("renderOrder", image->renderOrder, imageValue );
 
     bool defaultColorTint = true;
-    for (int i = 0; i < 4; i++) {
-        if ( image->colorTint[i] != 255 ) {
+    for (int i = 0; i < 4; i++)
+    {
+        if ( image->colorTint[i] != 255 )
+        {
             defaultColorTint = false;
             break;
         }
     }
 
-    if ( !defaultColorTint ) {
+    if ( !defaultColorTint )
+    {
         for (int i = 0; i < 4; i++)
             imageValue["colorTint"][i] = image->colorTint[i];
     }
@@ -515,7 +523,8 @@ Json::Value b2dJson::b2j(b2dJsonImage *image)
         vecToJson("corners", image->corners[i], imageValue, i);
 
     //image->updateUVs();
-    for (int i = 0; i < 2*image->numPoints; i++) {
+    for (int i = 0; i < 2*image->numPoints; i++)
+    {
         vecToJson("glVertexPointer", image->points[i], imageValue, i);
         vecToJson("glTexCoordPointer", image->uvCoords[i], imageValue, i);
     }
@@ -573,17 +582,47 @@ b2dJsonCustomProperties *b2dJson::getCustomPropertiesForItem(void *item, bool cr
     return props;
 }
 
-void b2dJson::setCustomInt(void* item, string propertyName, int val)        { getCustomPropertiesForItem(item, true)->m_customPropertyMap_int[propertyName] = val; }
-void b2dJson::setCustomFloat(void* item, string propertyName, float val)    { getCustomPropertiesForItem(item, true)->m_customPropertyMap_float[propertyName] = val; }
-void b2dJson::setCustomString(void* item, string propertyName, string val)  { getCustomPropertiesForItem(item, true)->m_customPropertyMap_string[propertyName] = val; }
-void b2dJson::setCustomVector(void* item, string propertyName, b2Vec2 val)  { getCustomPropertiesForItem(item, true)->m_customPropertyMap_b2Vec2[propertyName] = val; }
-void b2dJson::setCustomBool(void* item, string propertyName, bool val)      { getCustomPropertiesForItem(item, true)->m_customPropertyMap_bool[propertyName] = val; }
+void b2dJson::setCustomInt(void* item, string propertyName, int val)
+{
+    getCustomPropertiesForItem(item, true)->m_customPropertyMap_int[propertyName] = val;
+}
+void b2dJson::setCustomFloat(void* item, string propertyName, float val)
+{
+    getCustomPropertiesForItem(item, true)->m_customPropertyMap_float[propertyName] = val;
+}
+void b2dJson::setCustomString(void* item, string propertyName, string val)
+{
+    getCustomPropertiesForItem(item, true)->m_customPropertyMap_string[propertyName] = val;
+}
+void b2dJson::setCustomVector(void* item, string propertyName, b2Vec2 val)
+{
+    getCustomPropertiesForItem(item, true)->m_customPropertyMap_b2Vec2[propertyName] = val;
+}
+void b2dJson::setCustomBool(void* item, string propertyName, bool val)
+{
+    getCustomPropertiesForItem(item, true)->m_customPropertyMap_bool[propertyName] = val;
+}
 
-bool b2dJson::hasCustomInt(void *item, string propertyName)     { return getCustomPropertiesForItem(item, false) != NULL && getCustomPropertiesForItem(item, false)->m_customPropertyMap_int.count(propertyName) > 0; }
-bool b2dJson::hasCustomFloat(void *item, string propertyName)   { return getCustomPropertiesForItem(item, false) != NULL && getCustomPropertiesForItem(item, false)->m_customPropertyMap_float.count(propertyName) > 0; }
-bool b2dJson::hasCustomString(void *item, string propertyName)  { return getCustomPropertiesForItem(item, false) != NULL && getCustomPropertiesForItem(item, false)->m_customPropertyMap_string.count(propertyName) > 0; }
-bool b2dJson::hasCustomVector(void *item, string propertyName)  { return getCustomPropertiesForItem(item, false) != NULL && getCustomPropertiesForItem(item, false)->m_customPropertyMap_b2Vec2.count(propertyName) > 0; }
-bool b2dJson::hasCustomBool(void *item, string propertyName)    { return getCustomPropertiesForItem(item, false) != NULL && getCustomPropertiesForItem(item, false)->m_customPropertyMap_bool.count(propertyName) > 0; }
+bool b2dJson::hasCustomInt(void *item, string propertyName)
+{
+    return getCustomPropertiesForItem(item, false) != NULL && getCustomPropertiesForItem(item, false)->m_customPropertyMap_int.count(propertyName) > 0;
+}
+bool b2dJson::hasCustomFloat(void *item, string propertyName)
+{
+    return getCustomPropertiesForItem(item, false) != NULL && getCustomPropertiesForItem(item, false)->m_customPropertyMap_float.count(propertyName) > 0;
+}
+bool b2dJson::hasCustomString(void *item, string propertyName)
+{
+    return getCustomPropertiesForItem(item, false) != NULL && getCustomPropertiesForItem(item, false)->m_customPropertyMap_string.count(propertyName) > 0;
+}
+bool b2dJson::hasCustomVector(void *item, string propertyName)
+{
+    return getCustomPropertiesForItem(item, false) != NULL && getCustomPropertiesForItem(item, false)->m_customPropertyMap_b2Vec2.count(propertyName) > 0;
+}
+bool b2dJson::hasCustomBool(void *item, string propertyName)
+{
+    return getCustomPropertiesForItem(item, false) != NULL && getCustomPropertiesForItem(item, false)->m_customPropertyMap_bool.count(propertyName) > 0;
+}
 
 int b2dJson::getCustomInt(void *item, string propertyName, int defaultVal)
 {
@@ -744,7 +783,8 @@ Json::Value b2dJson::writeCustomPropertiesToJson(void* item)
     //FILL_CUSTOM_PROPERTY_JSON_VALUE(vec2,b2Vec2) handled separately below
     FILL_CUSTOM_PROPERTY_JSON_VALUE(bool,bool)
 
-    for (std::map<string,b2Vec2>::iterator it = props->m_customPropertyMap_b2Vec2.begin(); it != props->m_customPropertyMap_b2Vec2.end(); ++it) {
+    for (std::map<string,b2Vec2>::iterator it = props->m_customPropertyMap_b2Vec2.begin(); it != props->m_customPropertyMap_b2Vec2.end(); ++it)
+    {
         Json::Value propValue;
         propValue["name"] = it->first;
         vecToJson("vec2", it->second, propValue);
@@ -809,7 +849,8 @@ void b2dJson::floatToJson(const char* name, float f, Json::Value& value)
         value[name] = 0;
     else if ( f == 1 )
         value[name] = 1;
-    else {
+    else
+    {
         if ( m_useHumanReadableFloats )
             value[name] = f;
         else
@@ -827,11 +868,14 @@ inline void b2dJson::vecToJson(const char* name, unsigned int v, Json::Value& va
 
 void b2dJson::vecToJson(const char *name, float v, Json::Value &value, int index)
 {
-    if (index > -1) {
-        if ( m_useHumanReadableFloats ) {
+    if (index > -1)
+    {
+        if ( m_useHumanReadableFloats )
+        {
             value[name][index] = v;
         }
-        else {
+        else
+        {
             if ( v == 0 )
                 value[name][index] = 0;
             else if ( v == 1 )
@@ -846,12 +890,15 @@ void b2dJson::vecToJson(const char *name, float v, Json::Value &value, int index
 
 inline void b2dJson::vecToJson(const char* name, b2Vec2 vec, Json::Value& value, int index)
 {
-    if (index > -1) {
-        if ( m_useHumanReadableFloats ) {
+    if (index > -1)
+    {
+        if ( m_useHumanReadableFloats )
+        {
             value[name]["x"][index] = vec.x;
             value[name]["y"][index] = vec.y;
         }
-        else {
+        else
+        {
             if ( vec.x == 0 )
                 value[name]["x"][index] = 0;
             else if ( vec.x == 1 )
@@ -866,10 +913,12 @@ inline void b2dJson::vecToJson(const char* name, b2Vec2 vec, Json::Value& value,
                 value[name]["y"][index] = floatToHex(vec.y);
         }
     }
-    else {
+    else
+    {
         if ( vec.x == 0 && vec.y == 0 )
             value[name] = 0;//cut down on file space for common values
-        else {
+        else
+        {
             floatToJson("x", vec.x, value[name]);
             floatToJson("y", vec.y, value[name]);
         }
@@ -934,7 +983,8 @@ b2World* b2dJson::readFromFile(const char* filename, std::string& errorMsg)
 
     std::ifstream ifs;
     ifs.open(filename, std::ios::in);
-    if (!ifs) {
+    if (!ifs)
+    {
         //std::cout << "Could not open file " << filename << " for reading\n";
         errorMsg = string("Could not open file '") + string(filename) + string("' for reading");
         return NULL;
@@ -981,7 +1031,8 @@ b2World* b2dJson::j2b2World(Json::Value worldValue)
 
     int i = 0;
     Json::Value bodyValue = worldValue["body"][i];
-    while ( !bodyValue.isNull() ) {
+    while ( !bodyValue.isNull() )
+    {
         b2Body* body = j2b2Body(world, bodyValue);
         readCustomPropertiesFromJson(body, bodyValue);
         m_bodies.push_back(body);
@@ -994,8 +1045,10 @@ b2World* b2dJson::j2b2World(Json::Value worldValue)
     //need two passes for joints because gear joints reference other joints
     i = 0;
     Json::Value jointValue = worldValue["joint"][i++];
-    while ( !jointValue.isNull() ) {
-        if ( jointValue["type"].asString() != "gear" ) {
+    while ( !jointValue.isNull() )
+    {
+        if ( jointValue["type"].asString() != "gear" )
+        {
             b2Joint* joint = j2b2Joint(world, jointValue);
             readCustomPropertiesFromJson(joint, jointValue);
             m_joints.push_back(joint);
@@ -1004,8 +1057,10 @@ b2World* b2dJson::j2b2World(Json::Value worldValue)
     }
     i = 0;
     jointValue = worldValue["joint"][i++];
-    while ( !jointValue.isNull() ) {
-        if ( jointValue["type"].asString() == "gear" ) {
+    while ( !jointValue.isNull() )
+    {
+        if ( jointValue["type"].asString() == "gear" )
+        {
             b2Joint* joint = j2b2Joint(world, jointValue);
             readCustomPropertiesFromJson(joint, jointValue);
             m_joints.push_back(joint);
@@ -1015,7 +1070,8 @@ b2World* b2dJson::j2b2World(Json::Value worldValue)
 
     i = 0;
     Json::Value imageValue = worldValue["image"][i++];
-    while ( !imageValue.isNull() ) {
+    while ( !imageValue.isNull() )
+    {
         b2dJsonImage* img = j2b2dJsonImage(imageValue);
         readCustomPropertiesFromJson(img, imageValue);
         m_images.push_back(img);
@@ -1056,14 +1112,16 @@ b2Body* b2dJson::j2b2Body(b2World* world, Json::Value bodyValue)
     body = world->CreateBody(&bodyDef);
 
     string bodyName = bodyValue.get("name","").asString();
-    if ( bodyName != "" ) {
+    if ( bodyName != "" )
+    {
         //printf("Found named body: %s\n",bodyName.c_str());
         setBodyName(body, bodyName.c_str());
     }
 
     int i = 0;
     Json::Value fixtureValue = bodyValue["fixture"][i++];
-    while ( !fixtureValue.isNull() ) {
+    while ( !fixtureValue.isNull() )
+    {
         b2Fixture* fixture = j2b2Fixture(body, fixtureValue);
         readCustomPropertiesFromJson(fixture, fixtureValue);
 
@@ -1099,7 +1157,8 @@ b2Fixture* b2dJson::j2b2Fixture(b2Body* body, Json::Value fixtureValue)
     if ( fixtureValue.isNull() )
         return NULL;
 
-    if ( !fixtureValue["circle"].isNull() ) {
+    if ( !fixtureValue["circle"].isNull() )
+    {
         b2CircleShape circleShape;
         circleShape.m_radius = jsonToFloat("radius", fixtureValue["circle"]);
 
@@ -1109,7 +1168,8 @@ b2Fixture* b2dJson::j2b2Fixture(b2Body* body, Json::Value fixtureValue)
         fixtureDef.shape = &circleShape;
         fixture = body->CreateFixture(&fixtureDef);
     }
-    else if ( !fixtureValue["edge"].isNull() ) {
+    else if ( !fixtureValue["edge"].isNull() )
+    {
         b2EdgeShape edgeShape;
 
         b2Vec2 vertex1aux = jsonToVec("vertex1", fixtureValue["edge"]);
@@ -1120,22 +1180,26 @@ b2Fixture* b2dJson::j2b2Fixture(b2Body* body, Json::Value fixtureValue)
 
         edgeShape.m_hasVertex0 = fixtureValue["edge"].get("hasVertex0",false).asBool();
         edgeShape.m_hasVertex3 = fixtureValue["edge"].get("hasVertex3",false).asBool();
-        if ( edgeShape.m_hasVertex0 ){
+        if ( edgeShape.m_hasVertex0 )
+        {
             b2Vec2 vertex0aux = jsonToVec("vertex0", fixtureValue["edge"]);
             edgeShape.m_vertex0 = b2Vec2(vertex0aux.x, vertex0aux.y*-1);
         }
-        if ( edgeShape.m_hasVertex3 ){
+        if ( edgeShape.m_hasVertex3 )
+        {
             b2Vec2 vertex3aux = jsonToVec("vertex3", fixtureValue["edge"]);
             edgeShape.m_vertex3 = b2Vec2(vertex3aux.x, vertex3aux.y*-1);
         }
         fixtureDef.shape = &edgeShape;
         fixture = body->CreateFixture(&fixtureDef);
     }
-    else if ( !fixtureValue["loop"].isNull() ) { //support old format (r197)
+    else if ( !fixtureValue["loop"].isNull() )   //support old format (r197)
+    {
         b2ChainShape chainShape;
         int numVertices = fixtureValue["loop"]["vertices"]["x"].size();
         b2Vec2* vertices = new b2Vec2[numVertices];
-        for (int i = 0; i < numVertices; i++){
+        for (int i = 0; i < numVertices; i++)
+        {
             b2Vec2 verticeaux = jsonToVec("vertices", fixtureValue["loop"], i);
             vertices[i] = b2Vec2(verticeaux.x,verticeaux.y*-1);
         }
@@ -1144,22 +1208,26 @@ b2Fixture* b2dJson::j2b2Fixture(b2Body* body, Json::Value fixtureValue)
         fixture = body->CreateFixture(&fixtureDef);
         delete[] vertices;
     }
-    else if ( !fixtureValue["chain"].isNull() ) {
+    else if ( !fixtureValue["chain"].isNull() )
+    {
         b2ChainShape chainShape;
         int numVertices = fixtureValue["chain"]["vertices"]["x"].size();
         b2Vec2* vertices = new b2Vec2[numVertices];
-        for (int i = 0; i < numVertices; i++){
+        for (int i = 0; i < numVertices; i++)
+        {
             b2Vec2 verticeaux = jsonToVec("vertices", fixtureValue["chain"], i);
             vertices[i] = b2Vec2(verticeaux.x,verticeaux.y*-1);
         }
         chainShape.CreateChain(vertices, numVertices);
         chainShape.m_hasPrevVertex = fixtureValue["chain"].get("hasPrevVertex",false).asBool();
         chainShape.m_hasNextVertex = fixtureValue["chain"].get("hasNextVertex",false).asBool();
-        if ( chainShape.m_hasPrevVertex ){
+        if ( chainShape.m_hasPrevVertex )
+        {
             b2Vec2 verticeaux = jsonToVec("prevVertex", fixtureValue["chain"]);
             chainShape.m_prevVertex = b2Vec2(verticeaux.x,verticeaux.y*-1);
         }
-        if ( chainShape.m_hasNextVertex ){
+        if ( chainShape.m_hasNextVertex )
+        {
             b2Vec2 verticeaux = jsonToVec("nextVertex", fixtureValue["chain"]);
             chainShape.m_nextVertex = b2Vec2(verticeaux.x,verticeaux.y*-1);
         }
@@ -1167,16 +1235,20 @@ b2Fixture* b2dJson::j2b2Fixture(b2Body* body, Json::Value fixtureValue)
         fixture = body->CreateFixture(&fixtureDef);
         delete[] vertices;
     }
-    else if ( !fixtureValue["polygon"].isNull() ) {
+    else if ( !fixtureValue["polygon"].isNull() )
+    {
         b2Vec2 vertices[b2_maxPolygonVertices];
         int numVertices = fixtureValue["polygon"]["vertices"]["x"].size();
-        if ( numVertices > b2_maxPolygonVertices ) {
+        if ( numVertices > b2_maxPolygonVertices )
+        {
             std::cout << "Ignoring polygon fixture with too many vertices.\n";
         }
-        else if ( numVertices < 2 ) {
+        else if ( numVertices < 2 )
+        {
             std::cout << "Ignoring polygon fixture less than two vertices.\n";
         }
-        else if ( numVertices == 2 ) {
+        else if ( numVertices == 2 )
+        {
             std::cout << "Creating edge shape instead of polygon with two vertices.\n";
             b2EdgeShape edgeShape;
 
@@ -1188,9 +1260,11 @@ b2Fixture* b2dJson::j2b2Fixture(b2Body* body, Json::Value fixtureValue)
             fixtureDef.shape = &edgeShape;
             fixture = body->CreateFixture(&fixtureDef);
         }
-        else {
+        else
+        {
             b2PolygonShape polygonShape;
-            for (int i = 0; i < numVertices; i++){
+            for (int i = 0; i < numVertices; i++)
+            {
                 b2Vec2 verticeaux = jsonToVec("vertices", fixtureValue["polygon"], i);
                 vertices[i] = b2Vec2(verticeaux.x,verticeaux.y*-1);
             }
@@ -1201,7 +1275,8 @@ b2Fixture* b2dJson::j2b2Fixture(b2Body* body, Json::Value fixtureValue)
     }
 
     string fixtureName = fixtureValue.get("name","").asString();
-    if ( fixtureName != "" ) {
+    if ( fixtureName != "" )
+    {
         setFixtureName(fixture, fixtureName.c_str());
     }
 
@@ -1349,7 +1424,8 @@ b2Joint* b2dJson::j2b2Joint(b2World* world, Json::Value jointValue)
         ropeDef.maxLength = jsonToFloat("maxLength", jointValue);
     }
 
-    if ( jointDef ) {
+    if ( jointDef )
+    {
         //set features common to all joints
         jointDef->bodyA = m_bodies[bodyIndexA];
         jointDef->bodyB = m_bodies[bodyIndexB];
@@ -1361,7 +1437,8 @@ b2Joint* b2dJson::j2b2Joint(b2World* world, Json::Value jointValue)
             ((b2MouseJoint*)joint)->SetTarget(mouseJointTarget);
 
         string jointName = jointValue.get("name","").asString();
-        if ( jointName != "" ) {
+        if ( jointName != "" )
+        {
             setJointName(joint, jointName.c_str());
         }
     }
@@ -1376,7 +1453,8 @@ b2dJsonImage* b2dJson::j2b2dJsonImage(Json::Value imageValue)
     if ( imageValue["body"].isInt() )
         img->body = lookupBodyFromIndex( imageValue["body"].asInt() );
 
-    if ( imageValue["name"].isString() ) {
+    if ( imageValue["name"].isString() )
+    {
         img->name = imageValue["name"].asString();
         setImageName(img, img->name.c_str());
     }
@@ -1391,8 +1469,10 @@ b2dJsonImage* b2dJson::j2b2dJsonImage(Json::Value imageValue)
     img->opacity = jsonToFloat("opacity", imageValue);
     img->renderOrder = jsonToFloat("renderOrder", imageValue);
 
-    if ( imageValue.isMember("colorTint") ) {
-        for (int i = 0; i < 4; i++) {
+    if ( imageValue.isMember("colorTint") )
+    {
+        for (int i = 0; i < 4; i++)
+        {
             if ( imageValue["colorTint"][i].isInt() )
                 img->colorTint[i] = imageValue["colorTint"][i].asInt();
         }
@@ -1408,18 +1488,21 @@ b2dJsonImage* b2dJson::j2b2dJsonImage(Json::Value imageValue)
         img->corners[i] = jsonToVec("corners", imageValue, i);
 
     if ( imageValue["glVertexPointer"].isArray() && imageValue["glTexCoordPointer"].isArray() &&
-         (imageValue["glVertexPointer"].size()  ==  imageValue["glTexCoordPointer"].size()) ) {
+            (imageValue["glVertexPointer"].size()  ==  imageValue["glTexCoordPointer"].size()) )
+    {
         int numFloats = imageValue["glVertexPointer"].size();
         img->numPoints = numFloats / 2;
         img->points = new float[numFloats];
         img->uvCoords = new float[numFloats];
-        for (int i = 0; i < numFloats; i++) {
+        for (int i = 0; i < numFloats; i++)
+        {
             img->points[i] = jsonToFloat("glVertexPointer", imageValue, i);
             img->uvCoords[i] = jsonToFloat("glTexCoordPointer", imageValue, i);
         }
     }
 
-    if ( imageValue["glDrawElements"].isArray() ) {
+    if ( imageValue["glDrawElements"].isArray() )
+    {
         img->numIndices = imageValue["glDrawElements"].size();
         img->indices = new unsigned short[img->numIndices];
         for (int i = 0; i < img->numIndices; i++)
@@ -1434,7 +1517,8 @@ float b2dJson::jsonToFloat(const char* name, Json::Value& value, int index, floa
     if ( ! value.isMember(name) )
         return defaultValue;
 
-    if ( index > -1 ) {
+    if ( index > -1 )
+    {
         if ( value[name][index].isNull() )
             return defaultValue;
         else if ( value[name][index].isInt() )
@@ -1444,7 +1528,8 @@ float b2dJson::jsonToFloat(const char* name, Json::Value& value, int index, floa
         else
             return value[name][index].asFloat();
     }
-    else {
+    else
+    {
         if ( value[name].isNull() )
             return defaultValue;
         else if ( value[name].isInt() )
@@ -1463,7 +1548,8 @@ b2Vec2 b2dJson::jsonToVec(const char* name, Json::Value& value, int index, b2Vec
     if ( ! value.isMember(name) )
         return defaultValue;
 
-    if (index > -1) {
+    if (index > -1)
+    {
 
         if ( value[name]["x"][index].isInt() ) //usually 0 or 1
             vec.x = value[name]["x"][index].asInt();
@@ -1479,11 +1565,13 @@ b2Vec2 b2dJson::jsonToVec(const char* name, Json::Value& value, int index, b2Vec
         else
             vec.y = value[name]["y"][index].asFloat();
     }
-    else {
+    else
+    {
 
         if ( value[name].isInt() ) //zero vector
             vec.Set(0,0);
-        else {
+        else
+        {
             vec.x = jsonToFloat("x", value[name]);
             vec.y = jsonToFloat("y", value[name]);
         }
@@ -1525,7 +1613,8 @@ float b2dJson::hexToFloat(std::string str)
     unsigned char bytes[4];
     int bptr = (strLen / 2) - 1;
 
-    for (int i = 0; i < strLen; i++){
+    for (int i = 0; i < strLen; i++)
+    {
         unsigned char   c;
         c = str[i];
         if (c > '9') c -= 7;
@@ -1612,7 +1701,8 @@ int b2dJson::getBodiesByName(string name, vector<b2Body*>& bodies)
 {
     map<b2Body*,string>::iterator it = m_bodyToNameMap.begin();
     map<b2Body*,string>::iterator end = m_bodyToNameMap.end();
-    while (it != end) {
+    while (it != end)
+    {
         if ( it->second == name )
             bodies.push_back(it->first);
         ++it;
@@ -1624,7 +1714,8 @@ int b2dJson::getFixturesByName(string name, vector<b2Fixture*>& fixtures)
 {
     map<b2Fixture*,string>::iterator it = m_fixtureToNameMap.begin();
     map<b2Fixture*,string>::iterator end = m_fixtureToNameMap.end();
-    while (it != end) {
+    while (it != end)
+    {
         if ( it->second == name )
             fixtures.push_back(it->first);
         ++it;
@@ -1636,7 +1727,8 @@ int b2dJson::getJointsByName(string name, vector<b2Joint*>& joints)
 {
     map<b2Joint*,string>::iterator it = m_jointToNameMap.begin();
     map<b2Joint*,string>::iterator end = m_jointToNameMap.end();
-    while (it != end) {
+    while (it != end)
+    {
         if ( it->second == name )
             joints.push_back(it->first);
         ++it;
@@ -1648,7 +1740,8 @@ int b2dJson::getImagesByName(string name, vector<b2dJsonImage*> &images)
 {
     map<b2dJsonImage*,string>::iterator it = m_imageToNameMap.begin();
     map<b2dJsonImage*,string>::iterator end = m_imageToNameMap.end();
-    while (it != end) {
+    while (it != end)
+    {
         if ( it->second == name )
             images.push_back(it->first);
         ++it;
@@ -1668,7 +1761,8 @@ b2Body* b2dJson::getBodyByName(string name)
 {
     map<b2Body*,string>::iterator it = m_bodyToNameMap.begin();
     map<b2Body*,string>::iterator end = m_bodyToNameMap.end();
-    while (it != end) {
+    while (it != end)
+    {
         if ( it->second == name )
             return it->first;
         ++it;
@@ -1680,7 +1774,8 @@ b2Fixture* b2dJson::getFixtureByName(string name)
 {
     map<b2Fixture*,string>::iterator it = m_fixtureToNameMap.begin();
     map<b2Fixture*,string>::iterator end = m_fixtureToNameMap.end();
-    while (it != end) {
+    while (it != end)
+    {
         if ( it->second == name )
             return it->first;
         ++it;
@@ -1692,7 +1787,8 @@ b2Joint* b2dJson::getJointByName(string name)
 {
     map<b2Joint*,string>::iterator it = m_jointToNameMap.begin();
     map<b2Joint*,string>::iterator end = m_jointToNameMap.end();
-    while (it != end) {
+    while (it != end)
+    {
         if ( it->second == name )
             return it->first;
         ++it;
@@ -1704,7 +1800,8 @@ b2dJsonImage* b2dJson::getImageByName(string name)
 {
     map<b2dJsonImage*,string>::iterator it = m_imageToNameMap.begin();
     map<b2dJsonImage*,string>::iterator end = m_imageToNameMap.end();
-    while (it != end) {
+    while (it != end)
+    {
         if ( it->second == name )
             return it->first;
         ++it;

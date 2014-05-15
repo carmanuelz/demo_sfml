@@ -36,8 +36,10 @@ void _setMat33Rotation(b2Mat33& mat, float angle)
 {
     mat.SetZero();
     float32 c = cosf(angle), s = sinf(angle);
-    mat.ex.x = c; mat.ey.x = -s;
-    mat.ex.y = s; mat.ey.y = c;
+    mat.ex.x = c;
+    mat.ey.x = -s;
+    mat.ex.y = s;
+    mat.ey.y = c;
     mat.ez.z = 1;
 }
 
@@ -134,7 +136,8 @@ void b2dJsonImage::updateCorners(float aspect)
     _setMat33Scale(s, scale, scale);
     b2Mat33 m = _b2Mul(r,s);
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++)
+    {
         corners[i] = _b2Mul(m, corners[i]);
         corners[i] += center;
     }
@@ -158,7 +161,8 @@ void b2dJsonImage::updateUVs(float aspect)
     _setMat33Scale(s, scale, scale);
     b2Mat33 m = _b2Mul(r,s);
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++)
+    {
         verts[i] = _b2Mul(m, verts[i]);
         verts[i] += center;
     }
@@ -183,7 +187,8 @@ void b2dJsonImage::updateUVs(float aspect)
     uvCoords = new float[2 * numPoints];
     indices = new unsigned short[numIndices];
 
-    for (int i = 0; i < numPoints; i++) {
+    for (int i = 0; i < numPoints; i++)
+    {
         points[2*i+0] = verts[i].x;
         points[2*i+1] = verts[i].y;
         uvCoords[2*i+0] = uvs[i].x;
@@ -201,7 +206,8 @@ void b2dJsonImage::updateUVs(float aspect)
 b2AABB b2dJsonImage::getAABB()
 {
     b2Mat33 r, t, m;
-    if ( body ) {
+    if ( body )
+    {
         _setMat33Rotation(r, body->GetAngle());
         _setMat33Translation(t, body->GetPosition());
         m = _b2Mul(r,t);
@@ -212,7 +218,8 @@ b2AABB b2dJsonImage::getAABB()
     b2AABB aabb;
     aabb.lowerBound.Set(FLT_MAX, FLT_MAX);
     aabb.upperBound.Set(-FLT_MAX, -FLT_MAX);
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++)
+    {
         aabb.lowerBound = b2Min(aabb.lowerBound, _b2Mul(m, corners[i]));
         aabb.upperBound = b2Max(aabb.upperBound, _b2Mul(m, corners[i]));
     }
