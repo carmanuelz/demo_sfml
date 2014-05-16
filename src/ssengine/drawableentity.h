@@ -23,6 +23,8 @@ public:
     GameContext* context;
     bool hasweapon = false;
     bool before = false;
+    bool finished = false;
+    bool needremove = false;
     float x = 0;
     float y = 0;
     void draw()
@@ -52,6 +54,7 @@ private:
     }
 
 };
+
 }
 
 #endif

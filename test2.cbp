@@ -132,8 +132,6 @@
 		<Unit filename="src/ssengine/rubestuff/jsoncpp.cpp" />
 		<Unit filename="src/ssengine/ssengine.h" />
 		<Unit filename="src/ssengine/tween/Accessor.h" />
-		<Unit filename="src/ssengine/tween/BaseTween.cpp" />
-		<Unit filename="src/ssengine/tween/BaseTween.h" />
 		<Unit filename="src/ssengine/tween/Easing/Back.cpp" />
 		<Unit filename="src/ssengine/tween/Easing/Back.h" />
 		<Unit filename="src/ssengine/tween/Easing/Bounce.cpp" />

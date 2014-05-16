@@ -15,6 +15,7 @@ class AICharacter : public Character
             preenemmyX = floor(inx/TileSize);
             preenemmyY = floor(inx/TileSize);
         }
+        virtual ~AICharacter();
         void findto(float intargetx, float intargety);
         void setpathfinding(AStarFinder* AStarta, float intileSize);
         void updateFind();
@@ -22,14 +23,15 @@ class AICharacter : public Character
         void setPatrol(float Ax, float Ay, float Bx, float By);
         void GotoPosition(float Ax, float Bx);
         void follow(b2Body* inTarget);
-        b2Body* Target = 0;
+        bool gotoflag = false;
     private:
         AStarFinder* AStartF;
         int preenemmyX = 0;
         int preenemmyY = 0;
         float TileSize = 0;
         float facVel = 0.25;
-        bool isPatrol = false;
+        bool patrolflag = false;
+        sf::Vector2f findposition;
     };
 }
 

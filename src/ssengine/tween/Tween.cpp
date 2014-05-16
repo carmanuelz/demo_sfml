@@ -16,8 +16,14 @@ void Tween::to(tweenOptions* options)
     initialvalues = accessor->getValues(target,tweentype);
     timeCicle = options->timeCicle;
     isReverse = false;
+    isFinishedFlag = false;
     repeatCount = 0;
     timecounter = 0;
+}
+
+bool Tween::isFinished()
+{
+    return isFinishedFlag;
 }
 
 void Tween::update(sf::Time frameTime)
@@ -26,6 +32,8 @@ void Tween::update(sf::Time frameTime)
     {
         prepareCicle(frameTime.asSeconds());
     }
+    else
+        isFinishedFlag = true;
 }
 
 void Tween::prepareCicle(float delta)

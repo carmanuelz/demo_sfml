@@ -10,6 +10,7 @@
 #include "AStarFinder.h"
 #include "loadconf/LuaScript.h"
 #include "UserData.h"
+#include "tween/TweenManager.h"
 
 #define DEGTORAD 0.0174532925199432957f
 #define RADTODEG 57.295779513082320876f
@@ -31,6 +32,7 @@ public:
     AStarFinder* m_finder;
     thor::ParticleSystem* m_psystem = &obj_psystem;
     sf::RenderWindow* m_rwindow;
+    TweenManager* m_tweenmanager;
     float TileSize;
     bool LoadWorld(const char* filename);
     void Createfinder(float tilesize, int width, int height);

@@ -20,6 +20,12 @@ void endT()
     std::cout<<"end Transition"<<std::endl;
 }
 
+Character::~Character()
+{
+    context->m_tweenmanager->kill(&tween);
+    context->m_world -> DestroyBody(Body);
+}
+
 void Character::init()
 {
     std::string path = context->m_script->get<std::string>(Code+".src");
@@ -76,11 +82,23 @@ void Character::init()
     buffershoot.loadFromFile("assets/shoot.wav");
     soundshoot.setBuffer(buffershoot);
 
-    /*animated.PrepareTimeLine();
-    animated.PushTransition(new Transition(10,Cidleicle,saludobegin,saludoend,beginT,endT));
-    animated.PushTransition(new Transition(9,Cruncicle,saludobegin,saludoend,beginT,endT));
-    animated.PushTransition(new Transition(10,Cidleicle,saludobegin,saludoend,beginT,endT));
-    animated.StartTimeLine();*/
+    animaccess = new AnimatedAccessor();
+    float* values= new float[3];
+    values[0] = 255;
+    values[1] = 0;
+    values[2] = 0;
+
+    options = new sse::tweenOptions();
+    options->target = &(animated);
+    options->accessor = animaccess;
+    options->easefunc = sse::easing::easeInLinear;
+    options->tweentype = animaccess->COLOR;
+    options->destination = values;
+    options->sizevalue = 3;
+    options->yoyo = true;
+    options->repeatCnt = 0;
+    options->timeCicle = 0.2f;
+    tween.to(options);
 }
 
 void Character::loadFrames(Animation* anim,std::string luapath)
@@ -191,11 +209,14 @@ b2Body* Character::createBody(float x, float y)
 
 void Character::update(sf::Time frameTime)
 {
-
     Body->SetLinearVelocity(vel);
     TestCollision();
     if(Acumulator < 100)
         Acumulator+=frameTime.asSeconds();
+
+    if(Target != 0)
+        currenttimefind+=frameTime.asSeconds();
+
     b2Vec2 position = Body->GetPosition();
     x = position.x*PPM;
     y = position.y*PPM;
@@ -218,6 +239,7 @@ void Character::takeDamage(float inDamage)
 
 float Character::Hit()
 {
+    currenttimefind = 0;
     return Damage;
 }
 
@@ -345,12 +367,20 @@ void Character::TestCollision()
             break;
         case objectType::obj_typeBullet:
             context->m_psystem->addEmitter(BloodEmitter(sf::Vector2f(x,y)), sf::seconds(0.1f));
-            if(userdata->estado== 0)
+            if(userdata->estado == 0)
                 context->RemoveList.push_back(f->GetBody());
             userdata->estado=1;
             takeDamage(5);
             break;
         }
+
+        if(HP<15 && finished == false)
+        {
+            context->m_tweenmanager->add(&tween);
+            finished = true;
+        }
+        if(HP <= 0 && Type != 1)
+            needremove = true;
     }
 }
 

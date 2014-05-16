@@ -2,16 +2,49 @@
 
 namespace sse
 {
+AICharacter::~AICharacter()
+{
+}
 
 void AICharacter::updateFind()
 {
     if(Target != 0)
     {
-        b2Vec2 destination = Target->GetPosition();
-        destination.x*=PPM;
-        destination.y*=PPM;
-        findto(destination.x,destination.y);
+        if(currenttimefind > limittimefind)
+        {
+            Target = 0;
+            GotoPosition(Origin.x, Origin.y);
+        }
+        else
+        {
+            b2Vec2 destination = Target->GetPosition();
+            destination.x*=PPM;
+            destination.y*=PPM;
+            findto(destination.x,destination.y);
+        }
     }
+    else
+    {
+        if(gotoflag)
+        {
+            if(floor(x/TileSize)==floor(findposition.x/TileSize) && floor(y/TileSize)==floor(findposition.y/TileSize))
+            {
+                vel = b2Vec2(0,0);
+                setAnimCicle(1);
+                gotoflag = false;
+                currenttimefind = 0;
+            }
+            else
+                findto(findposition.x,findposition.y);
+        }
+    }
+}
+
+void AICharacter::GotoPosition(float Ax, float Bx)
+{
+    gotoflag = true;
+    findposition = sf::Vector2f(Ax,Bx);
+    setAnimCicle(2);
 }
 
 void AICharacter::setTarget(b2Body* inTarget)
@@ -27,24 +60,34 @@ void AICharacter::findto(float tox, float toy)
     float floatY = y/TileSize;
     int startX;
     int startY;
-    if((floatX - preenemmyX)>1.5f || (preenemmyX - floatX)>0.5f)
-    {
+    if(abs(endX - floatX) <= 1)
         startX = floor(floatX);
-        preenemmyX = startX;
-    }
     else
     {
-        startX = preenemmyX;
+        if((floatX - preenemmyX)>1.5f || (preenemmyX - floatX)>0.5f)
+        {
+            startX = floor(floatX);
+            preenemmyX = startX;
+        }
+        else
+        {
+            startX = preenemmyX;
+        }
     }
 
-    if((floatY - preenemmyY)>1.5f || (preenemmyY - floatY)>0.5f)
-    {
+    if(abs(endY - floatY) <= 1)
         startY = floor(floatY);
-        preenemmyY = startY;
-    }
     else
     {
-        startY = preenemmyY;
+        if((floatY - preenemmyY)>1.5f || (preenemmyY - floatY)>0.5f)
+        {
+            startY = floor(floatY);
+            preenemmyY = startY;
+        }
+        else
+        {
+            startY = preenemmyY;
+        }
     }
 
     std::vector<sf::Vector2i*> route;

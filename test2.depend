@@ -346,10 +346,10 @@
 1382546500 d:\workspace\c++\librerias\box2d\include\box2d\dynamics\joints\b2wheeljoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
-1386967499 source:d:\workspace\c++\test2\src\debugrender.cpp
+1400187426 source:d:\workspace\c++\test2\src\debugrender.cpp
 	"debugrender.h"
 
-1386966707 d:\workspace\c++\test2\src\debugrender.h
+1400187426 d:\workspace\c++\test2\src\debugrender.h
 	<Box2D/Box2D.h>
 	<iostream>
 	<SFML/System.hpp>
@@ -436,14 +436,14 @@
 	<sstream>
 	<iomanip>
 
-1400124467 source:d:\workspace\c++\test2\src\main.cpp
+1400201900 source:d:\workspace\c++\test2\src\main.cpp
 	<math.h>
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
-	"Level1.h"
+	"ssengine/Level1.h"
 
 1397446597 source:d:\workspace\c++\test2\src\astarfinder.cpp
 	"AStarFinder.h"
@@ -479,7 +479,7 @@
 
 1397604633 source:d:\workspace\c++\test2\src\npc.cpp
 
-1398436601 d:\workspace\c++\test2\src\ssengine\astarfinder.h
+1400187426 d:\workspace\c++\test2\src\ssengine\astarfinder.h
 	<string>
 	<vector>
 	<map>
@@ -489,15 +489,15 @@
 	<Box2D/Box2D.h>
 	<math.h>
 
-1400096939 source:d:\workspace\c++\test2\src\ssengine\astarfinder.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\astarfinder.cpp
 	"AStarFinder.h"
 
 1397604633 source:d:\workspace\c++\test2\src\ssengine\npc.cpp
 
-1400127541 source:d:\workspace\c++\test2\src\ssengine\character.cpp
+1400207736 source:d:\workspace\c++\test2\src\ssengine\character.cpp
 	"character.h"
 
-1400041100 d:\workspace\c++\test2\src\ssengine\character.h
+1400209460 d:\workspace\c++\test2\src\ssengine\character.h
 	<string>
 	<vector>
 	<map>
@@ -511,7 +511,7 @@
 	"particlesys.h"
 	"../AnimatedAccessor.h"
 
-1399502215 d:\workspace\c++\test2\src\ssengine\animatedsprite.hpp
+1400187426 d:\workspace\c++\test2\src\ssengine\animatedsprite.hpp
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/System/Time.hpp>
 	<SFML/Graphics/Drawable.hpp>
@@ -525,7 +525,7 @@
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Texture.hpp>
 
-1400039715 d:\workspace\c++\test2\src\ssengine\drawableentity.h
+1400192295 d:\workspace\c++\test2\src\ssengine\drawableentity.h
 	<string>
 	<vector>
 	<map>
@@ -7649,13 +7649,13 @@
 1318294774 d:\workspace\c++\test2\src\ssengine\loadconf\config_parser.h
 	<boost/python.hpp>
 
-1399761920 source:d:\workspace\c++\test2\src\ssengine\animatedsprite.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\animatedsprite.cpp
 	"AnimatedSprite.hpp"
 
 1388940228 source:d:\workspace\c++\test2\src\ssengine\animation.cpp
 	"Animation.hpp"
 
-1398089153 d:\workspace\c++\test2\src\ssengine\loadconf\luascript.h
+1400187426 d:\workspace\c++\test2\src\ssengine\loadconf\luascript.h
 	<string>
 	<vector>
 	<iostream>
@@ -7692,7 +7692,7 @@
 	<stdio.h>
 	"lua.h"
 
-1398089209 source:d:\workspace\c++\test2\src\ssengine\loadconf\luascript.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\loadconf\luascript.cpp
 	"LuaScript.h"
 
 1400165126 source:d:\workspace\c++\demo_sfml\src\debugrender.cpp
@@ -7863,7 +7863,7 @@
 1400176794 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
 	"character.h"
 
-1399139820 d:\workspace\c++\test2\src\ssengine\particlesys.h
+1400187426 d:\workspace\c++\test2\src\ssengine\particlesys.h
 	<SFML/Graphics.hpp>
 	<Thor/Particles/ParticleSystem.hpp>
 	<Thor/Particles/EmissionInterface.hpp>
@@ -8355,7 +8355,7 @@
 1392671519 d:\workspace\c++\librerias\thor\include\aurora\smartptr\ptrfunctors.hpp
 	<Aurora/Meta/Templates.hpp>
 
-1392671519 d:\workspace\c++\librerias\thor\include\aurora\meta\templates.hpp
+1400014741 d:\workspace\c++\librerias\thor\include\aurora\meta\templates.hpp
 	<Aurora/Config.hpp>
 	<type_traits>
 
@@ -8380,10 +8380,10 @@
 	<SFML/System/Vector2.hpp>
 	<SFML/Graphics/Color.hpp>
 
-1399239192 source:d:\workspace\c++\test2\src\ssengine\util.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\util.cpp
 	"util.h"
 
-1399239187 d:\workspace\c++\test2\src\ssengine\util.h
+1400187426 d:\workspace\c++\test2\src\ssengine\util.h
 	<SFML/Graphics.hpp>
 
 1400165127 source:d:\workspace\c++\demo_sfml\src\ssengine\util.cpp
@@ -8402,14 +8402,15 @@
 	"AICharacter.h"
 	"Player.h"
 
-1400012819 d:\workspace\c++\test2\src\ssengine\ssengine.h
+1400187426 d:\workspace\c++\test2\src\ssengine\ssengine.h
 	"AStarFinder.h"
 	"AnimatedSprite.hpp"
-	"character.h"
 	"loadconf/LuaScript.h"
 	"particlesys.h"
 	"util.h"
 	"tween/Tween.h"
+	"AICharacter.h"
+	"Player.h"
 
 1400165127 source:d:\workspace\c++\demo_sfml\src\ssengine\tween\easing\back.cpp
 	"Back.h"
@@ -8472,75 +8473,76 @@
 
 1400082464 source:d:\workspace\c++\demo_sfml\src\ssengine\tween\tweenmanager.cpp
 
-1399938186 source:d:\workspace\c++\test2\src\ssengine\tween\easing\back.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\tween\easing\back.cpp
 	"Back.h"
 
-1399938186 d:\workspace\c++\test2\src\ssengine\tween\easing\back.h
+1400187426 d:\workspace\c++\test2\src\ssengine\tween\easing\back.h
 
-1399938186 source:d:\workspace\c++\test2\src\ssengine\tween\easing\bounce.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\tween\easing\bounce.cpp
 	"Bounce.h"
 
-1399938186 d:\workspace\c++\test2\src\ssengine\tween\easing\bounce.h
+1400187426 d:\workspace\c++\test2\src\ssengine\tween\easing\bounce.h
 
-1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\circ.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\tween\easing\circ.cpp
 	"Circ.h"
 
-1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\circ.h
+1400187426 d:\workspace\c++\test2\src\ssengine\tween\easing\circ.h
 	<math.h>
 
-1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\cubic.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\tween\easing\cubic.cpp
 	"Cubic.h"
 
-1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\cubic.h
+1400187426 d:\workspace\c++\test2\src\ssengine\tween\easing\cubic.h
 
-1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\elastic.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\tween\easing\elastic.cpp
 	"Elastic.h"
 
-1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\elastic.h
+1400187426 d:\workspace\c++\test2\src\ssengine\tween\easing\elastic.h
 	<math.h>
 
-1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\expo.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\tween\easing\expo.cpp
 	"Expo.h"
 
-1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\expo.h
+1400187426 d:\workspace\c++\test2\src\ssengine\tween\easing\expo.h
 	<math.h>
 
-1399938186 source:d:\workspace\c++\test2\src\ssengine\tween\easing\linear.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\tween\easing\linear.cpp
 	"Linear.h"
 
-1399938186 d:\workspace\c++\test2\src\ssengine\tween\easing\linear.h
+1400187426 d:\workspace\c++\test2\src\ssengine\tween\easing\linear.h
 
-1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\quad.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\tween\easing\quad.cpp
 	"Quad.h"
 
-1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\quad.h
+1400187426 d:\workspace\c++\test2\src\ssengine\tween\easing\quad.h
 
-1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\quart.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\tween\easing\quart.cpp
 	"Quart.h"
 
-1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\quart.h
+1400187426 d:\workspace\c++\test2\src\ssengine\tween\easing\quart.h
 
-1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\quint.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\tween\easing\quint.cpp
 	"Quint.h"
 
-1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\quint.h
+1400187426 d:\workspace\c++\test2\src\ssengine\tween\easing\quint.h
 
-1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\easing\sine.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\tween\easing\sine.cpp
 	"Sine.h"
 
-1399498658 d:\workspace\c++\test2\src\ssengine\tween\easing\sine.h
+1400187426 d:\workspace\c++\test2\src\ssengine\tween\easing\sine.h
 	<math.h>
 
-1399498658 source:d:\workspace\c++\test2\src\ssengine\tween\tweenmanager.cpp
+1400204135 source:d:\workspace\c++\test2\src\ssengine\tween\tweenmanager.cpp
+	"TweenManager.h"
 
-1399522019 d:\workspace\c++\test2\src\animatedaccessor.h
+1400187426 d:\workspace\c++\test2\src\animatedaccessor.h
 	<SFML/Graphics.hpp>
 	"ssengine/tween/Accessor.h"
 	"ssengine/AnimatedSprite.hpp"
 
 1399522648 d:\workspace\c++\test2\src\ssengine\tween\accessor.h
 
-1399581972 d:\workspace\c++\test2\src\ssengine\tween\easing\easing.h
+1400187426 d:\workspace\c++\test2\src\ssengine\tween\easing\easing.h
 	"Back.h"
 	"Bounce.h"
 	"Circ.h"
@@ -8584,7 +8586,7 @@
 	"Easing/Easing.h"
 	"Accessor.h"
 
-1399762653 d:\workspace\c++\test2\src\ssengine\tween\tween.h
+1400196637 d:\workspace\c++\test2\src\ssengine\tween\tween.h
 	<SFML/System.hpp>
 	<iostream>
 	"Easing/Easing.h"
@@ -8592,7 +8594,7 @@
 
 1399668604 source:d:\workspace\c++\test2\src\ssengine\tween\basetween.cpp
 
-1399762645 source:d:\workspace\c++\test2\src\ssengine\tween\tween.cpp
+1400196450 source:d:\workspace\c++\test2\src\ssengine\tween\tween.cpp
 	"Tween.h"
 
 1400082464 source:d:\workspace\c++\demo_sfml\src\ssengine\tween\basetween.cpp
@@ -8615,9 +8617,9 @@
 	"loadconf/LuaScript.h"
 	"UserData.h"
 
-1400012819 d:\workspace\c++\test2\src\ssengine\userdata.h
+1400187426 d:\workspace\c++\test2\src\ssengine\userdata.h
 
-1400096939 d:\workspace\c++\test2\src\ssengine\gamecontext.h
+1400196887 d:\workspace\c++\test2\src\ssengine\gamecontext.h
 	<string>
 	<Box2D/Box2D.h>
 	<SFML/Graphics.hpp>
@@ -8626,11 +8628,12 @@
 	"AStarFinder.h"
 	"loadconf/LuaScript.h"
 	"UserData.h"
+	"tween/TweenManager.h"
 
-1400042333 source:d:\workspace\c++\test2\src\ssengine\gamecontext.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\gamecontext.cpp
 	"GameContext.h"
 
-1400012819 source:d:\workspace\c++\test2\src\ssengine\userdata.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\userdata.cpp
 	"UserData.h"
 
 1400165126 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\b2djson.h
@@ -8714,7 +8717,7 @@
 	<sstream>
 	<iomanip>
 
-1400096939 d:\workspace\c++\test2\src\ssengine\rubestuff\b2djson.h
+1400187426 d:\workspace\c++\test2\src\ssengine\rubestuff\b2djson.h
 	<stdio.h>
 	<map>
 	<set>
@@ -8722,7 +8725,7 @@
 	<Box2D/Box2D.h>
 	"json/json.h"
 
-1400096939 d:\workspace\c++\test2\src\ssengine\rubestuff\json\json.h
+1400187426 d:\workspace\c++\test2\src\ssengine\rubestuff\json\json.h
 	<cpptl/config.h>
 	"config.h"
 	"forwards.h"
@@ -8743,23 +8746,23 @@
 	<string>
 	<iostream>
 
-1400096939 source:d:\workspace\c++\test2\src\ssengine\rubestuff\b2djson.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\rubestuff\b2djson.cpp
 	<istream>
 	<fstream>
 	"b2dJson.h"
 	"json/json.h"
 	"b2dJsonImage.h"
 
-1400096939 d:\workspace\c++\test2\src\ssengine\rubestuff\b2djsonimage.h
+1400187426 d:\workspace\c++\test2\src\ssengine\rubestuff\b2djsonimage.h
 	<string>
 	<Box2D/Box2D.h>
 
-1400096939 source:d:\workspace\c++\test2\src\ssengine\rubestuff\b2djsonimage.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\rubestuff\b2djsonimage.cpp
 	<cstring>
 	<Box2D/Box2D.h>
 	"b2dJsonImage.h"
 
-1400096939 source:d:\workspace\c++\test2\src\ssengine\rubestuff\jsoncpp.cpp
+1400187426 source:d:\workspace\c++\test2\src\ssengine\rubestuff\jsoncpp.cpp
 	"json/json.h"
 	<json/reader.h>
 	<json/value.h>
@@ -8795,10 +8798,10 @@
 	<sstream>
 	<iomanip>
 
-1400126855 source:d:\workspace\c++\test2\src\ssengine\level1.cpp
+1400208616 source:d:\workspace\c++\test2\src\ssengine\level1.cpp
 	"Level1.h"
 
-1400127691 d:\workspace\c++\test2\src\ssengine\level1.h
+1400203730 d:\workspace\c++\test2\src\ssengine\level1.h
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -8807,12 +8810,17 @@
 	<Box2D/Box2D.h>
 	<Thor/Shapes/ConcaveShape.hpp>
 	<Thor/Shapes/Shapes.hpp>
-	<Screen.h>
+	<Thor/Input/Action.hpp>
+	<Thor/Input/ActionMap.hpp>
 	"../debugrender.h"
 	"ssengine.h"
+	"Screen.h"
 	"GameContext.h"
+	"Player.h"
+	"AICharacter.h"
+	"tween/TweenManager.h"
 
-1400096939 d:\workspace\c++\test2\src\ssengine\screen.h
+1400187426 d:\workspace\c++\test2\src\ssengine\screen.h
 
 1400176245 d:\workspace\c++\demo_sfml\src\ssengine\level1.h
 	<SFML/System.hpp>
@@ -8846,4 +8854,52 @@
 
 1400176163 source:d:\workspace\c++\demo_sfml\src\ssengine\player.cpp
 	"Player.h"
+
+1400208584 d:\workspace\c++\test2\src\ssengine\aicharacter.h
+	"character.h"
+
+1400187426 d:\workspace\c++\test2\src\ssengine\player.h
+	"character.h"
+
+1400209946 source:d:\workspace\c++\test2\src\ssengine\aicharacter.cpp
+	"AICharacter.h"
+
+1400187426 source:d:\workspace\c++\test2\src\ssengine\player.cpp
+	"Player.h"
+
+1400200543 d:\workspace\c++\test2\src\ssengine\tween\tweenmanager.h
+	"Tween.h"
+
+1392671519 d:\workspace\c++\librerias\thor\include\thor\input\action.hpp
+	<Thor/Input/Detail/ActionOperations.hpp>
+	<Thor/Config.hpp>
+	<functional>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\input\detail\actionoperations.hpp
+	<Thor/Input/Joystick.hpp>
+	<Thor/Config.hpp>
+	<Aurora/SmartPtr/CopiedPtr.hpp>
+	<SFML/Window/Event.hpp>
+	<SFML/Window/Keyboard.hpp>
+	<SFML/Window/Mouse.hpp>
+	<SFML/Window/Joystick.hpp>
+	<vector>
+	<functional>
+
+1392671519 d:\workspace\c++\librerias\thor\include\thor\input\joystick.hpp
+	<Thor/Config.hpp>
+	<SFML/Window/Joystick.hpp>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\input\actionmap.hpp
+	<Thor/Input/Action.hpp>
+	<Thor/Input/ActionContext.hpp>
+	<Thor/Input/Detail/ActionOperations.hpp>
+	<Aurora/Tools/NonCopyable.hpp>
+	<Aurora/Tools/ForEach.hpp>
+	<map>
+	<Thor/Input/Detail/ActionMap.inl>
+
+1392671519 d:\workspace\c++\librerias\thor\include\thor\input\actioncontext.hpp
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\input\detail\actionmap.inl
 

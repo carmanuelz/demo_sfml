@@ -9,12 +9,20 @@
 #include <Box2D/Box2D.h>
 #include <Thor/Shapes/ConcaveShape.hpp>
 #include <Thor/Shapes/Shapes.hpp>
+#include <Thor/Input/Action.hpp>
+#include <Thor/Input/ActionMap.hpp>
 #include "../debugrender.h"
 #include "ssengine.h"
 #include "Screen.h"
 #include "GameContext.h"
 #include "Player.h"
 #include "AICharacter.h"
+#include "tween/TweenManager.h"
+
+enum MyAction
+{
+	Debug
+};
 
 class ContactListener : public b2ContactListener
 {
@@ -85,7 +93,6 @@ public:
 protected:
 private:
     DebugDraw* debugDraw;
-    sf::RenderWindow* renderWindow;
     sse::GameContext* context;
     ContactListener* GameCL;
     std::vector<sse::MyRayCastCallback*> RaycastList;
@@ -94,7 +101,6 @@ private:
     sf::Vector2i screnSize;
     sf::Texture texture;
     sf::Vector2f VURef;
-    sf::Event event;
     sf::Vector2f centro;
     sf::Sprite targetS;
     sf::Texture targetT;
@@ -107,9 +113,6 @@ private:
     sf::Clock frameClock;
     sf::ConvexShape roundedRecthp;
     sf::ConvexShape roundedRect;
-    AnimatedAccessor* animaccess;
-    sse::Tween tween;
-    sse::tweenOptions* options;
     sf::Clock stepClock;
 
     sfg::SFGUI m_sfgui;
@@ -123,7 +126,10 @@ private:
 
     bool isFocused = true;
     bool hasclickplayer = true;
+    bool debugflag = false;
     void OnButtonClick();
+    static bool compareByY(const sse::drawableentity* a,const sse::drawableentity* b);
+    thor::ActionMap<MyAction> map;
 };
 
 #endif // LEVEL1_H

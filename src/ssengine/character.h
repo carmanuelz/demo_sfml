@@ -64,8 +64,11 @@ public:
         Code = inCode;
         x = inx;
         y = iny;
+        Origin = sf::Vector2f(inx,iny);
         init();
     }
+    virtual ~Character();
+
     b2Vec2 vel;
     int Type;
     b2Body* Body;
@@ -90,14 +93,20 @@ public:
     void TestCollision();
     void addCollisionList(b2Fixture*f);
     void removeCollisionList(b2Fixture*f);
+    b2Body* Target = 0;
 protected:
     b2Body* createBullet(sf::Vector2f origin, sf::Vector2f vel,float angle);
     float offsetAnimXR = 0;
     float offsetAnimXL = 0;
     float offsetAnimYR = 0;
     float offsetAnimYL = 0;
+    float currenttimefind = 0;
+    float limittimefind = 4;
+    float HP = 0;
+    float Damage = 0;
     void setLeft();
     void setRight();
+    sf::Vector2f Origin;
 private:
     int ofsetanimx = 0;
     Animation Cstartcile;
@@ -106,8 +115,6 @@ private:
     Animation Cattackcicle;
     Animation ChideIcle;
     Animation waposhootcicle;
-    float HP = 0;
-    float Damage = 0;
     sf::Texture Cspritesheet;
     sf::Texture weaponspritesheet;
     sf::SoundBuffer buffershoot;
@@ -115,6 +122,9 @@ private:
     void init();
     b2Body* createBody(float x, float y);
     void loadFrames(Animation* anim,std::string luapath);
+    AnimatedAccessor* animaccess;
+    sse::Tween tween;
+    sse::tweenOptions* options;
 };
 /*
 class Mob : public AICharacter

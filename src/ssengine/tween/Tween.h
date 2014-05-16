@@ -35,6 +35,7 @@ public:
     void update(sf::Time frameTime);
     void resstart();
     void stop();
+    bool isFinished();
 private:
     Accessor* accessor;
     Tween* tween;
