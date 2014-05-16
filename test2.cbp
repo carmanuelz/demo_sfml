@@ -25,6 +25,7 @@
 					<Add directory="../librerias/SFGUI/include" />
 				</Compiler>
 				<Linker>
+					<Add option="-lBox2D" />
 					<Add library="sfgui-s" />
 					<Add library="sfml-graphics-s-d" />
 					<Add library="sfml-audio-s-d" />
@@ -41,7 +42,6 @@
 					<Add library="opengl32" />
 					<Add library="winmm" />
 					<Add library="lua5.1-s" />
-					<Add library="Box2D" />
 					<Add directory="../librerias/Box2D/lib" />
 					<Add directory="../librerias/Lua/lib" />
 					<Add directory="../librerias/Thor/lib" />
@@ -52,28 +52,28 @@
 				<Option output="bin/Release/test2" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option additional_output="../librerias/Box2d/Box2d.cbp;" />
-				<Option type="1" />
+				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-std=c++11" />
-					<Add option="-std=c++0x" />
 					<Add option="-DSFML_STATIC" />
 					<Add option="-DGLEW_STATIC" />
+					<Add option="-DSFGUI_STATIC" />
 					<Add option="-DUNICODE" />
-					<Add directory="../librerias/Box2d/include" />
 					<Add directory="../librerias/Lua/include" />
+					<Add directory="../librerias/Thor/include" />
+					<Add directory="../librerias/SFGUI/include" />
+					<Add directory="../librerias/Box2d/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add option="-lBox2D" />
 					<Add library="sfgui-s" />
 					<Add library="sfml-graphics-s" />
 					<Add library="sfml-audio-s" />
 					<Add library="sfml-window-s" />
 					<Add library="sfml-system-s" />
-					<Add library="thor-s-d" />
-					<Add library="lua51" />
+					<Add library="thor-s" />
 					<Add library="sndfile" />
 					<Add library="openal32" />
 					<Add library="ws2_32" />
@@ -83,8 +83,12 @@
 					<Add library="gdi32" />
 					<Add library="opengl32" />
 					<Add library="winmm" />
-					<Add directory="../librerias/Box2d/bin/Release" />
+					<Add library="lua5.1-s" />
+					<Add library="Box2D-s" />
 					<Add directory="../librerias/Lua/lib" />
+					<Add directory="../librerias/Thor/lib" />
+					<Add directory="../librerias/SFGUI/lib" />
+					<Add directory="../librerias/Box2D/lib" />
 				</Linker>
 			</Target>
 		</Build>
@@ -106,8 +110,14 @@
 		<Unit filename="src/ssengine/AnimatedSprite.hpp" />
 		<Unit filename="src/ssengine/Animation.cpp" />
 		<Unit filename="src/ssengine/Animation.hpp" />
+		<Unit filename="src/ssengine/AssetManager.h" />
+		<Unit filename="src/ssengine/Bullet.cpp" />
+		<Unit filename="src/ssengine/Bullet.h" />
+		<Unit filename="src/ssengine/ContactListener.h" />
 		<Unit filename="src/ssengine/GameContext.cpp" />
 		<Unit filename="src/ssengine/GameContext.h" />
+		<Unit filename="src/ssengine/Level.cpp" />
+		<Unit filename="src/ssengine/Level.h" />
 		<Unit filename="src/ssengine/Level1.cpp" />
 		<Unit filename="src/ssengine/Level1.h" />
 		<Unit filename="src/ssengine/Player.cpp" />

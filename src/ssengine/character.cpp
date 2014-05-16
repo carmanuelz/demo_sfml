@@ -51,8 +51,9 @@ void Character::init()
     }
     else
     {
-        weaponspritesheet.loadFromFile("assets/rifle.png");
-        waposhootcicle.setSpriteSheet(weaponspritesheet);
+        wspritesheet = context->getPrtTexture("rifle");
+        //weaponspritesheet.loadFromFile("assets/rifle.png");
+        waposhootcicle.setSpriteSheet(*wspritesheet);
         loadFrames(&waposhootcicle, "w001.shoot");
         weapon = AnimatedSprite(sf::seconds(0.05f), true, false);
         weapon.setAnimation(waposhootcicle);

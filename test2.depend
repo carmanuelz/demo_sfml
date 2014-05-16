@@ -7766,7 +7766,7 @@
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Texture.hpp>
 
-1400169812 d:\workspace\c++\demo_sfml\src\ssengine\character.h
+1400257719 d:\workspace\c++\demo_sfml\src\ssengine\character.h
 	<string>
 	<vector>
 	<map>
@@ -7780,7 +7780,7 @@
 	"particlesys.h"
 	"../AnimatedAccessor.h"
 
-1400165128 d:\workspace\c++\demo_sfml\src\ssengine\drawableentity.h
+1400246461 d:\workspace\c++\demo_sfml\src\ssengine\drawableentity.h
 	<string>
 	<vector>
 	<map>
@@ -7860,7 +7860,7 @@
 1400165128 source:d:\workspace\c++\demo_sfml\src\ssengine\loadconf\luascript.cpp
 	"LuaScript.h"
 
-1400176794 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
+1400262024 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
 	"character.h"
 
 1400187426 d:\workspace\c++\test2\src\ssengine\particlesys.h
@@ -8355,7 +8355,7 @@
 1392671519 d:\workspace\c++\librerias\thor\include\aurora\smartptr\ptrfunctors.hpp
 	<Aurora/Meta/Templates.hpp>
 
-1400014741 d:\workspace\c++\librerias\thor\include\aurora\meta\templates.hpp
+1392671519 d:\workspace\c++\librerias\thor\include\aurora\meta\templates.hpp
 	<Aurora/Config.hpp>
 	<type_traits>
 
@@ -8471,7 +8471,8 @@
 1400165127 d:\workspace\c++\demo_sfml\src\ssengine\tween\easing\sine.h
 	<math.h>
 
-1400082464 source:d:\workspace\c++\demo_sfml\src\ssengine\tween\tweenmanager.cpp
+1400246462 source:d:\workspace\c++\demo_sfml\src\ssengine\tween\tweenmanager.cpp
+	"TweenManager.h"
 
 1400187426 source:d:\workspace\c++\test2\src\ssengine\tween\easing\back.cpp
 	"Back.h"
@@ -8564,7 +8565,7 @@
 
 1399565980 source:d:\workspace\c++\demo_sfml\basetween.cpp
 
-1400165127 source:d:\workspace\c++\demo_sfml\src\ssengine\tween\tween.cpp
+1400246462 source:d:\workspace\c++\demo_sfml\src\ssengine\tween\tween.cpp
 	"Tween.h"
 
 1400165126 d:\workspace\c++\demo_sfml\src\ssengine\tween\easing\easing.h
@@ -8580,7 +8581,7 @@
 	"Quint.h"
 	"Sine.h"
 
-1400165127 d:\workspace\c++\demo_sfml\src\ssengine\tween\tween.h
+1400246462 d:\workspace\c++\demo_sfml\src\ssengine\tween\tween.h
 	<SFML/System.hpp>
 	<iostream>
 	"Easing/Easing.h"
@@ -8604,18 +8605,21 @@
 1400165127 source:d:\workspace\c++\demo_sfml\src\ssengine\userdata.cpp
 	"UserData.h"
 
-1400165127 source:d:\workspace\c++\demo_sfml\src\ssengine\gamecontext.cpp
+1400260773 source:d:\workspace\c++\demo_sfml\src\ssengine\gamecontext.cpp
 	"GameContext.h"
 
-1400165127 d:\workspace\c++\demo_sfml\src\ssengine\gamecontext.h
+1400261484 d:\workspace\c++\demo_sfml\src\ssengine\gamecontext.h
 	<string>
 	<Box2D/Box2D.h>
 	<SFML/Graphics.hpp>
 	<Thor/Particles/ParticleSystem.hpp>
+	<Thor/Resources.hpp>
 	"rubestuff/b2dJson.h"
 	"AStarFinder.h"
 	"loadconf/LuaScript.h"
 	"UserData.h"
+	"tween/TweenManager.h"
+	"AssetManager.h"
 
 1400187426 d:\workspace\c++\test2\src\ssengine\userdata.h
 
@@ -8822,7 +8826,7 @@
 
 1400187426 d:\workspace\c++\test2\src\ssengine\screen.h
 
-1400176245 d:\workspace\c++\demo_sfml\src\ssengine\level1.h
+1400246461 d:\workspace\c++\demo_sfml\src\ssengine\level1.h
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -8831,25 +8835,28 @@
 	<Box2D/Box2D.h>
 	<Thor/Shapes/ConcaveShape.hpp>
 	<Thor/Shapes/Shapes.hpp>
+	<Thor/Input/Action.hpp>
+	<Thor/Input/ActionMap.hpp>
 	"../debugrender.h"
 	"ssengine.h"
 	"Screen.h"
 	"GameContext.h"
 	"Player.h"
 	"AICharacter.h"
+	"tween/TweenManager.h"
 
 1400165127 d:\workspace\c++\demo_sfml\src\ssengine\screen.h
 
-1400176432 source:d:\workspace\c++\demo_sfml\src\ssengine\level1.cpp
+1400246461 source:d:\workspace\c++\demo_sfml\src\ssengine\level1.cpp
 	"Level1.h"
 
-1400176103 d:\workspace\c++\demo_sfml\src\ssengine\aicharacter.h
+1400246461 d:\workspace\c++\demo_sfml\src\ssengine\aicharacter.h
 	"character.h"
 
 1400176168 d:\workspace\c++\demo_sfml\src\ssengine\player.h
 	"character.h"
 
-1400176172 source:d:\workspace\c++\demo_sfml\src\ssengine\aicharacter.cpp
+1400246461 source:d:\workspace\c++\demo_sfml\src\ssengine\aicharacter.cpp
 	"AICharacter.h"
 
 1400176163 source:d:\workspace\c++\demo_sfml\src\ssengine\player.cpp
@@ -8902,4 +8909,131 @@
 1392671519 d:\workspace\c++\librerias\thor\include\thor\input\actioncontext.hpp
 
 1396888840 d:\workspace\c++\librerias\thor\include\thor\input\detail\actionmap.inl
+
+1400246462 d:\workspace\c++\demo_sfml\src\ssengine\tween\tweenmanager.h
+	"Tween.h"
+
+1392671520 d:\workspace\c++\librerias\thor\include\thor\resources.hpp
+	<Thor/Resources/MultiResourceCache.hpp>
+	<Thor/Resources/ResourceCache.hpp>
+	<Thor/Resources/ResourceKey.hpp>
+	<Thor/Resources/ResourceStrategies.hpp>
+	<Thor/Resources/SfmlLoaders.hpp>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\resources\multiresourcecache.hpp
+	<Thor/Resources/ResourceCache.hpp>
+	<Thor/Config.hpp>
+	<map>
+	<memory>
+	<typeindex>
+	<Thor/Resources/Detail/MultiResourceCache.inl>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\resources\resourcecache.hpp
+	<Thor/Resources/ResourceKey.hpp>
+	<Thor/Resources/ResourceStrategies.hpp>
+	<Thor/Resources/ResourceLoadingException.hpp>
+	<Thor/Resources/Detail/ResourceSlot.hpp>
+	<Thor/Config.hpp>
+	<Aurora/Tools/NonCopyable.hpp>
+	<Aurora/Tools/ForEach.hpp>
+	<Aurora/SmartPtr/CopiedPtr.hpp>
+	<functional>
+	<type_traits>
+	<map>
+	<Thor/Resources/Detail/ResourceCache.inl>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\resources\resourcekey.hpp
+	<Thor/Config.hpp>
+	<functional>
+	<memory>
+	<string>
+
+1392671520 d:\workspace\c++\librerias\thor\include\thor\resources\resourcestrategies.hpp
+
+1392671520 d:\workspace\c++\librerias\thor\include\thor\resources\resourceloadingexception.hpp
+	<Aurora/Tools/Exceptions.hpp>
+
+1392671519 d:\workspace\c++\librerias\thor\include\aurora\tools\exceptions.hpp
+	<Aurora/Config.hpp>
+	<stdexcept>
+	<string>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\resources\detail\resourceslot.hpp
+	<Aurora/Tools/ForEach.hpp>
+	<Aurora/Meta/Templates.hpp>
+	<Thor/Config.hpp>
+	<memory>
+	<cassert>
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\resources\detail\resourcecache.inl
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\resources\detail\multiresourcecache.inl
+
+1396888840 d:\workspace\c++\librerias\thor\include\thor\resources\sfmlloaders.hpp
+	<Thor/Resources/ResourceKey.hpp>
+	<Thor/Resources/Detail/ResourceKeyHelpers.hpp>
+	<Aurora/Meta/Templates.hpp>
+
+1392671520 d:\workspace\c++\librerias\thor\include\thor\resources\detail\resourcekeyhelpers.hpp
+	<Thor/Resources/ResourceKey.hpp>
+	<Thor/Graphics/ToString.hpp>
+	<Thor/Config.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<functional>
+	<memory>
+	<sstream>
+	<cstring>
+	<type_traits>
+
+1392671519 d:\workspace\c++\librerias\thor\include\thor\graphics\tostring.hpp
+	<Thor/Config.hpp>
+	<Aurora/Tools/Exceptions.hpp>
+	<sstream>
+	<Thor/Graphics/Detail/ToString.inl>
+
+1392671519 d:\workspace\c++\librerias\thor\include\thor\graphics\detail\tostring.inl
+
+1400257031 source:d:\workspace\c++\demo_sfml\src\ssengine\bullet.cpp
+	"Bullet.h"
+
+1400257014 d:\workspace\c++\demo_sfml\src\ssengine\bullet.h
+	<SFML/Graphics.hpp>
+	"AnimatedSprite.hpp"
+	"GameContext.h"
+	"UserData.h"
+
+1400257369 source:d:\workspace\c++\demo_sfml\src\ssengine\level.cpp
+	"Level.h"
+
+1400257150 d:\workspace\c++\demo_sfml\src\ssengine\level.h
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<SFGUI/SFGUI.hpp>
+	<Box2D/Box2D.h>
+	<Thor/Shapes/ConcaveShape.hpp>
+	<Thor/Shapes/Shapes.hpp>
+	<Thor/Input/Action.hpp>
+	<Thor/Input/ActionMap.hpp>
+	"../debugrender.h"
+	"ssengine.h"
+	"Screen.h"
+	"GameContext.h"
+	"Player.h"
+	"AICharacter.h"
+	"tween/TweenManager.h"
+	"ContactListener.h"
+
+1400251389 d:\workspace\c++\demo_sfml\src\ssengine\contactlistener.h
+	<Box2D/Box2D.h>
+	"GameContext.h"
+
+1400261449 d:\workspace\c++\demo_sfml\src\ssengine\assetmanager.h
+	<map>
+	<utility>
+	<exception>
+	<string>
+	<type_traits>
 

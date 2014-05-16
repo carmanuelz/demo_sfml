@@ -117,6 +117,7 @@ private:
     Animation waposhootcicle;
     sf::Texture Cspritesheet;
     sf::Texture weaponspritesheet;
+    std::shared_ptr<sf::Texture> wspritesheet;
     sf::SoundBuffer buffershoot;
     sf::Texture bulletT;
     void init();

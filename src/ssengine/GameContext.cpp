@@ -4,7 +4,7 @@ namespace sse
 {
 GameContext::GameContext()
 {
-    //ctor
+    registerResurces();
 }
 
 GameContext::~GameContext()
@@ -48,5 +48,25 @@ void GameContext::DrawSysParticle()
 {
     m_rwindow->draw(obj_psystem);
 }
+
+void GameContext::registerResurces()
+{
+    textureKeys.add("rifle",thor::Resources::fromFile<sf::Texture>("assets/rifle.png"));
+    textureKeys.add("bullet", thor::Resources::fromFile<sf::Texture>("assets/bullet2.png"));
+}
+
+std::shared_ptr<sf::Texture> GameContext::getPrtTexture(std::string key)
+{
+    try
+	{
+		return cache.acquire(textureKeys.get(key));
+	}
+	catch (thor::ResourceLoadingException& e)
+	{
+		std::cout << e.what() << std::endl;
+		return 0;
+	}
+}
+
 }
 

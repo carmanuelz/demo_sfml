@@ -40,6 +40,7 @@ w001 = {
 }
 
 g001 = {
-	src = "bullet2.png",
+	animatedflag = false,
+	src = "assets/bullet2.png",
 	value = 1
 }

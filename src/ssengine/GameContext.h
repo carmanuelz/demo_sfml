@@ -5,12 +5,14 @@
 #include <Box2D/Box2D.h>
 #include <SFML/Graphics.hpp>
 #include <Thor/Particles/ParticleSystem.hpp>
+#include <Thor/Resources.hpp>
 
 #include "rubestuff/b2dJson.h"
 #include "AStarFinder.h"
 #include "loadconf/LuaScript.h"
 #include "UserData.h"
 #include "tween/TweenManager.h"
+#include "AssetManager.h"
 
 #define DEGTORAD 0.0174532925199432957f
 #define RADTODEG 57.295779513082320876f
@@ -37,10 +39,14 @@ public:
     bool LoadWorld(const char* filename);
     void Createfinder(float tilesize, int width, int height);
     void DrawSysParticle();
+    std::shared_ptr<sf::Texture> getPrtTexture(std::string key);
 protected:
 private:
+    thor::MultiResourceCache cache;
+    AssetManager<std::string, thor::ResourceKey<sf::Texture>> textureKeys;
     std::string errMsg;
     thor::ParticleSystem obj_psystem;
+    void registerResurces();
 };
 }
 
