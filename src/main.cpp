@@ -5,21 +5,34 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "ssengine/Level1.h"
+#include "ssengine/LoaderScreen.h"
+
+void RenderLoader(LoaderScreen* loader)
+{
+    int screen = 1;
+    while(screen>0)
+        screen = loader->Run();
+}
 
 int main()
 {
-    std::vector<Screen*> Screens;
     int screen = 0;
-
     sf::VideoMode videomode(800, 600, 32);
+    std::vector<Screen*> Screens;
     sf::RenderWindow renderWindow(videomode, "Test"/*,sf::Style::Fullscreen*/);
     renderWindow.setVerticalSyncEnabled(true);
     renderWindow.setFramerateLimit(60);
     renderWindow.setMouseCursorVisible(false);
+    renderWindow.setActive(false);
+    LoaderScreen loader(&renderWindow);
+    sf::Thread thread(std::bind(&RenderLoader,&loader));
 
-    Level1* s0 = new Level1(&renderWindow);
-    Screens.push_back(s0);
+    thread.launch();
 
+    renderWindow.setActive(false);
+    Screens.push_back(new Level1(&renderWindow));
+
+    loader.loaderFlag = false;
     //Main loop
     while (screen >= 0)
     {

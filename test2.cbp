@@ -120,6 +120,8 @@
 		<Unit filename="src/ssengine/Level.h" />
 		<Unit filename="src/ssengine/Level1.cpp" />
 		<Unit filename="src/ssengine/Level1.h" />
+		<Unit filename="src/ssengine/LoaderScreen.cpp" />
+		<Unit filename="src/ssengine/LoaderScreen.h" />
 		<Unit filename="src/ssengine/Player.cpp" />
 		<Unit filename="src/ssengine/Player.h" />
 		<Unit filename="src/ssengine/Screen.h" />

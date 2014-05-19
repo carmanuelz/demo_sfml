@@ -26,8 +26,6 @@ public:
     virtual ~GameContext();
 
     b2dJson* m_b2json = new b2dJson();
-    std::vector<b2Body*> RemoveList;
-    std::vector<b2Body*> BulletList;
     sf::Vector2f mousePos;
     b2World* m_world;
     LuaScript* m_script;

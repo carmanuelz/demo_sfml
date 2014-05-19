@@ -51,6 +51,8 @@ void GameContext::DrawSysParticle()
 
 void GameContext::registerResurces()
 {
+    textureKeys.add("target",thor::Resources::fromFile<sf::Texture>("assets/target.png"));
+    textureKeys.add("pinter",thor::Resources::fromFile<sf::Texture>("assets/pointer.png"));
     textureKeys.add("rifle",thor::Resources::fromFile<sf::Texture>("assets/rifle.png"));
     textureKeys.add("bullet", thor::Resources::fromFile<sf::Texture>("assets/bullet2.png"));
 }

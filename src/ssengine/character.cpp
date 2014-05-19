@@ -74,12 +74,6 @@ void Character::init()
 
     Body = createBody(x,y);
 
-    //std::cout<<"hasta aqui todo bien";
-    bulletT.loadFromFile("assets/bullet2.png");
-    bulletS.setTexture(bulletT);
-    sf::Vector2f bulletcentro(bulletS.getTextureRect().width / 2.f,bulletS.getTextureRect().height / 2.f);
-    bulletS.setOrigin(bulletcentro);
-
     buffershoot.loadFromFile("assets/shoot.wav");
     soundshoot.setBuffer(buffershoot);
 
@@ -307,29 +301,9 @@ sf::Vector2f Character::updatebehaviour(float TargetX,float TargetY)
     return bulletVU;
 }
 
-b2Body* Character::createBullet(sf::Vector2f origin, sf::Vector2f vel,float angle)
+b2Body* Character::createBullet(sf::Vector2f origin, sf::Vector2f bvel,float angle)
 {
-    b2BodyDef bulletBodyDef;
-    bulletBodyDef.type = b2_dynamicBody;
-    b2Body* bulletB = context->m_world->CreateBody(&bulletBodyDef);
-    b2CircleShape circle;
-    circle.m_radius = 0.1f;
-    b2FixtureDef bulletFixDef;
-    bulletFixDef.shape = &circle;
-    bulletFixDef.density = 0.0f;
-    b2Fixture* bulletFix = bulletB->CreateFixture(&bulletFixDef);
-    b2Filter filter;
-    filter.maskBits = 65534;
-    bulletFix->SetFilterData(filter);
-    bulletB->SetTransform(b2Vec2(origin.x*MPP, origin.y*MPP),angle*DEGTORAD);
-    bulletB->SetLinearVelocity(b2Vec2(vel.x*1.5f,-vel.y*1.5f));
-    UserData* udBullet = new UserData();
-    udBullet->tipo = 3;
-    udBullet->estado = 0;
-    bulletFix->SetUserData(udBullet);
-    context->BulletList.push_back(bulletB);
-    bulletB->SetUserData(&bulletS);
-    return bulletB;
+    BulletList->push_back(new Bullet(context,origin,bvel,angle,"g001"));
 }
 
 void Character::addCollisionList(b2Fixture*f)
@@ -367,11 +341,13 @@ void Character::TestCollision()
             }
             break;
         case objectType::obj_typeBullet:
-            context->m_psystem->addEmitter(BloodEmitter(sf::Vector2f(x,y)), sf::seconds(0.1f));
-            if(userdata->estado == 0)
-                context->RemoveList.push_back(f->GetBody());
-            userdata->estado=1;
-            takeDamage(5);
+            Bullet* bullet = static_cast<sse::Bullet*>(f->GetBody()->GetUserData());
+            if(bullet->estado == 0)
+            {
+                context->m_psystem->addEmitter(BloodEmitter(sf::Vector2f(x,y)), sf::seconds(0.1f));
+                bullet->estado = 1;
+                takeDamage(5);
+            }
             break;
         }
 

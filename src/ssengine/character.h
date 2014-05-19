@@ -13,6 +13,7 @@
 #include "drawableentity.h"
 #include "AStarFinder.h"
 #include "particlesys.h"
+#include "Bullet.h"
 
 #include "../AnimatedAccessor.h"
 
@@ -93,9 +94,10 @@ public:
     void TestCollision();
     void addCollisionList(b2Fixture*f);
     void removeCollisionList(b2Fixture*f);
+    void setBulletList(std::vector<Bullet*>* inBulletList){BulletList = inBulletList;}
     b2Body* Target = 0;
 protected:
-    b2Body* createBullet(sf::Vector2f origin, sf::Vector2f vel,float angle);
+    b2Body* createBullet(sf::Vector2f origin, sf::Vector2f bvel,float angle);
     float offsetAnimXR = 0;
     float offsetAnimXL = 0;
     float offsetAnimYR = 0;
@@ -107,6 +109,7 @@ protected:
     void setLeft();
     void setRight();
     sf::Vector2f Origin;
+    std::vector<Bullet*>* BulletList;
 private:
     int ofsetanimx = 0;
     Animation Cstartcile;
@@ -119,7 +122,6 @@ private:
     sf::Texture weaponspritesheet;
     std::shared_ptr<sf::Texture> wspritesheet;
     sf::SoundBuffer buffershoot;
-    sf::Texture bulletT;
     void init();
     b2Body* createBody(float x, float y);
     void loadFrames(Animation* anim,std::string luapath);

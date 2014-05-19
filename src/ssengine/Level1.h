@@ -16,72 +16,14 @@
 #include "Screen.h"
 #include "GameContext.h"
 #include "Player.h"
+#include "Bullet.h"
 #include "AICharacter.h"
 #include "tween/TweenManager.h"
+#include "ContactListener.h"
 
 enum MyAction
 {
 	Debug
-};
-
-class ContactListener : public b2ContactListener
-{
-    void BeginContact(b2Contact* contact)
-    {
-        b2Fixture* FixtA = contact->GetFixtureA();
-        b2Fixture* FixtB = contact->GetFixtureB();
-        sse::UserData* userdataA = static_cast<sse::UserData*>(FixtA->GetUserData());
-        sse::UserData* userdataB = static_cast<sse::UserData*>(FixtB->GetUserData());
-        if(userdataA->tipo == 3 && userdataA->tipo == 2 && userdataA->estado==0)
-        {
-            context->RemoveList.push_back(FixtA->GetBody());
-            userdataA->estado=1;
-        }
-        else if(userdataB->tipo == 3 && userdataA->tipo == 2 && userdataB->estado==0)
-        {
-            context->RemoveList.push_back(FixtB->GetBody());
-            userdataB->estado=1;
-        }
-
-        if(userdataA->tipo == 4)
-        {
-            b2Body* bodyA = FixtA->GetBody();
-            sse::Character* collCharacter = static_cast<sse::Character*>(bodyA->GetUserData());
-            collCharacter->addCollisionList(FixtB);
-        }
-        else if(userdataB->tipo == 4)
-        {
-            b2Body* bodyB = FixtB->GetBody();
-            sse::Character* collCharacter = static_cast<sse::Character*>(bodyB->GetUserData());
-            collCharacter->addCollisionList(FixtA);
-        }
-    }
-
-    void EndContact(b2Contact* contact)
-    {
-        b2Fixture* FixtA = contact->GetFixtureA();
-        b2Fixture* FixtB = contact->GetFixtureB();
-        sse::UserData* userdataA = static_cast<sse::UserData*>(FixtA->GetUserData());
-        sse::UserData* userdataB = static_cast<sse::UserData*>(FixtB->GetUserData());
-
-        if(userdataA->tipo == 4)
-        {
-            b2Body* bodyA = FixtA->GetBody();
-            sse::Character* collCharacter = static_cast<sse::Character*>(bodyA->GetUserData());
-            collCharacter->removeCollisionList(FixtB);
-        }
-        else if(userdataB->tipo == 4)
-        {
-            b2Body* bodyB = FixtB->GetBody();
-            sse::Character* collCharacter = static_cast<sse::Character*>(bodyB->GetUserData());
-            collCharacter->removeCollisionList(FixtA);
-        }
-    }
-
-public:
-    ContactListener(sse::GameContext* incontext):context(incontext) {}
-private:
-    sse::GameContext* context;
 };
 
 class Level1 : public Screen
@@ -94,8 +36,7 @@ protected:
 private:
     DebugDraw* debugDraw;
     sse::GameContext* context;
-    ContactListener* GameCL;
-    std::vector<sse::MyRayCastCallback*> RaycastList;
+    sse::ContactListener* GameCL;
     sf::Texture groundT;
     sf::Sprite groundS;
     sf::Vector2i screnSize;
@@ -123,6 +64,8 @@ private:
     std::vector<sse::drawableentity*> DrawList;
     std::vector<sse::AICharacter*> EnemmyList;
     std::vector<sse::Character*> CharacterList;
+    std::vector<b2Body*> RemoveList;
+    std::vector<sse::Bullet*> BulletList;
 
     bool isFocused = true;
     bool hasclickplayer = true;

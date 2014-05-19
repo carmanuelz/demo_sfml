@@ -436,7 +436,7 @@
 	<sstream>
 	<iomanip>
 
-1400201900 source:d:\workspace\c++\test2\src\main.cpp
+1400465264 source:d:\workspace\c++\test2\src\main.cpp
 	<math.h>
 	<iostream>
 	<SFML/System.hpp>
@@ -444,6 +444,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"ssengine/Level1.h"
+	"ssengine/LoaderScreen.h"
 
 1397446597 source:d:\workspace\c++\test2\src\astarfinder.cpp
 	"AStarFinder.h"
@@ -494,10 +495,10 @@
 
 1397604633 source:d:\workspace\c++\test2\src\ssengine\npc.cpp
 
-1400207736 source:d:\workspace\c++\test2\src\ssengine\character.cpp
+1400347837 source:d:\workspace\c++\test2\src\ssengine\character.cpp
 	"character.h"
 
-1400209460 d:\workspace\c++\test2\src\ssengine\character.h
+1400347912 d:\workspace\c++\test2\src\ssengine\character.h
 	<string>
 	<vector>
 	<map>
@@ -509,6 +510,7 @@
 	"drawableentity.h"
 	"AStarFinder.h"
 	"particlesys.h"
+	"Bullet.h"
 	"../AnimatedAccessor.h"
 
 1400187426 d:\workspace\c++\test2\src\ssengine\animatedsprite.hpp
@@ -8623,18 +8625,20 @@
 
 1400187426 d:\workspace\c++\test2\src\ssengine\userdata.h
 
-1400196887 d:\workspace\c++\test2\src\ssengine\gamecontext.h
+1400344097 d:\workspace\c++\test2\src\ssengine\gamecontext.h
 	<string>
 	<Box2D/Box2D.h>
 	<SFML/Graphics.hpp>
 	<Thor/Particles/ParticleSystem.hpp>
+	<Thor/Resources.hpp>
 	"rubestuff/b2dJson.h"
 	"AStarFinder.h"
 	"loadconf/LuaScript.h"
 	"UserData.h"
 	"tween/TweenManager.h"
+	"AssetManager.h"
 
-1400187426 source:d:\workspace\c++\test2\src\ssengine\gamecontext.cpp
+1400364302 source:d:\workspace\c++\test2\src\ssengine\gamecontext.cpp
 	"GameContext.h"
 
 1400187426 source:d:\workspace\c++\test2\src\ssengine\userdata.cpp
@@ -8802,10 +8806,10 @@
 	<sstream>
 	<iomanip>
 
-1400208616 source:d:\workspace\c++\test2\src\ssengine\level1.cpp
+1400347513 source:d:\workspace\c++\test2\src\ssengine\level1.cpp
 	"Level1.h"
 
-1400203730 d:\workspace\c++\test2\src\ssengine\level1.h
+1400363987 d:\workspace\c++\test2\src\ssengine\level1.h
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -8821,8 +8825,10 @@
 	"Screen.h"
 	"GameContext.h"
 	"Player.h"
+	"Bullet.h"
 	"AICharacter.h"
 	"tween/TweenManager.h"
+	"ContactListener.h"
 
 1400187426 d:\workspace\c++\test2\src\ssengine\screen.h
 
@@ -9036,4 +9042,59 @@
 	<exception>
 	<string>
 	<type_traits>
+
+1400271529 d:\workspace\c++\test2\src\ssengine\assetmanager.h
+	<map>
+	<utility>
+	<exception>
+	<string>
+	<type_traits>
+
+1400349816 source:d:\workspace\c++\test2\src\ssengine\bullet.cpp
+	"Bullet.h"
+
+1400344522 d:\workspace\c++\test2\src\ssengine\bullet.h
+	<SFML/Graphics.hpp>
+	"AnimatedSprite.hpp"
+	"GameContext.h"
+	"UserData.h"
+
+1400345868 source:d:\workspace\c++\test2\src\ssengine\level.cpp
+	"Level.h"
+
+1400345119 d:\workspace\c++\test2\src\ssengine\level.h
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<SFGUI/SFGUI.hpp>
+	<Box2D/Box2D.h>
+	<Thor/Shapes/ConcaveShape.hpp>
+	<Thor/Shapes/Shapes.hpp>
+	<Thor/Input/Action.hpp>
+	<Thor/Input/ActionMap.hpp>
+	"../debugrender.h"
+	"ssengine.h"
+	"Screen.h"
+	"GameContext.h"
+	"Player.h"
+	"AICharacter.h"
+	"tween/TweenManager.h"
+	"ContactListener.h"
+
+1400347378 d:\workspace\c++\test2\src\ssengine\contactlistener.h
+	<Box2D/Box2D.h>
+	"GameContext.h"
+	"Bullet.h"
+
+1400448278 source:d:\workspace\c++\test2\src\ssengine\loaderscreen.cpp
+	"LoaderScreen.h"
+
+1400448134 d:\workspace\c++\test2\src\ssengine\loaderscreen.h
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"AnimatedSprite.hpp"
+	"Screen.h"
 

@@ -38,7 +38,7 @@ Level1::Level1(sf::RenderWindow* rw)
     debugDraw->SetFlags(b2Draw::e_shapeBit);
     context->m_world->SetDebugDraw(debugDraw);
 
-    GameCL = new ContactListener(context);
+    GameCL = new sse::ContactListener(context);
     context->m_world -> SetContactListener(GameCL);
 
     EnemmyList.push_back(new sse::AICharacter(700,400,"mob001",context));
@@ -56,6 +56,7 @@ Level1::Level1(sf::RenderWindow* rw)
     for(auto c = CharacterList.cbegin() ; c != CharacterList.cend() ; c++ )
     {
         sse::Character* character = *c;
+        character->setBulletList(&BulletList);
         DrawList.push_back(character);
     }
 
@@ -229,23 +230,24 @@ int Level1::Run()
 
         context->m_tweenmanager->update(frameTime);
 
-        while(!context->RemoveList.empty())
+        while(!RemoveList.empty())
         {
-            b2Body* b = context->RemoveList.back();
+            b2Body* b = RemoveList.back();
             context->m_world -> DestroyBody(b);
-            context->RemoveList.pop_back();
-            std::vector<b2Body*>::iterator it = std::find(context->BulletList.begin(), context->BulletList.end(), b);
-            if ( it != context->BulletList.end() )
-                context->BulletList.erase( it );
+            RemoveList.pop_back();
         }
 
-        for(auto k = context->BulletList.cbegin() ; k != context->BulletList.cend() ; k++ )
+        for(std::vector<sse::Bullet*>::iterator k = BulletList.begin() ; k != BulletList.end() ; k++ )
         {
-            b2Body* b = *k;
-            sf::Sprite* bulletS(static_cast<sf::Sprite*>(b->GetUserData()));
-            bulletS->setRotation(b->GetAngle()*RADTODEG);
-            bulletS->setPosition( b->GetPosition().x*PPM, b->GetPosition().y*PPM);
-            context->m_rwindow->draw(*bulletS);
+            sse::Bullet* b = *k;
+            if(b->estado == 0)
+                b->draw(frameTime);
+            else
+            {
+                delete(b);
+                BulletList.erase( k );
+                k--;
+            }
         }
 
         b2Vec2 p1 = player->Body->GetPosition();

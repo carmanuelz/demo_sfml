@@ -67,6 +67,8 @@ private:
     std::vector<sse::drawableentity*> DrawList;
     std::vector<sse::AICharacter*> EnemyList;
     std::vector<sse::Character*> CharacterList;
+    std::vector<b2Body*> RemoveList;
+    std::vector<sse::Bullet*> BulletList;
 
     bool isFocused = true;
     bool hasclickplayer = true;

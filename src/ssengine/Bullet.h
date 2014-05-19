@@ -11,9 +11,10 @@ namespace sse
 class Bullet
 {
 public:
-    Bullet(GameContext* inContex,sf::Vector2f origin, sf::Vector2f vel,float angle, std::string incode);
+    Bullet(GameContext* incontext,sf::Vector2f origin, sf::Vector2f vel, float angle, std::string incode);
     virtual ~Bullet();
-    void draw(sf::Time frameTime delta);
+    void draw(sf::Time delta);
+    int estado = 0;
 private:
     std::string code;
     GameContext* context;
