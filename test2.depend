@@ -7706,7 +7706,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1400168058 source:d:\workspace\c++\demo_sfml\src\main.cpp
+1400522109 source:d:\workspace\c++\demo_sfml\src\main.cpp
 	<math.h>
 	<iostream>
 	<SFML/System.hpp>
@@ -7714,6 +7714,9 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"ssengine/Level1.h"
+	"ssengine/MenuScreen.h"
+	"ssengine/LoaderScreen.h"
+	"icon.h"
 
 1374108588 d:\workspace\c++\demo_sfml\src\rubestuff\b2djson.h
 	<stdio.h>
@@ -7768,7 +7771,7 @@
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Texture.hpp>
 
-1400257719 d:\workspace\c++\demo_sfml\src\ssengine\character.h
+1400505640 d:\workspace\c++\demo_sfml\src\ssengine\character.h
 	<string>
 	<vector>
 	<map>
@@ -7780,6 +7783,7 @@
 	"drawableentity.h"
 	"AStarFinder.h"
 	"particlesys.h"
+	"Bullet.h"
 	"../AnimatedAccessor.h"
 
 1400246461 d:\workspace\c++\demo_sfml\src\ssengine\drawableentity.h
@@ -7862,7 +7866,7 @@
 1400165128 source:d:\workspace\c++\demo_sfml\src\ssengine\loadconf\luascript.cpp
 	"LuaScript.h"
 
-1400262024 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
+1400505640 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
 	"character.h"
 
 1400187426 d:\workspace\c++\test2\src\ssengine\particlesys.h
@@ -8607,10 +8611,10 @@
 1400165127 source:d:\workspace\c++\demo_sfml\src\ssengine\userdata.cpp
 	"UserData.h"
 
-1400260773 source:d:\workspace\c++\demo_sfml\src\ssengine\gamecontext.cpp
+1400505640 source:d:\workspace\c++\demo_sfml\src\ssengine\gamecontext.cpp
 	"GameContext.h"
 
-1400261484 d:\workspace\c++\demo_sfml\src\ssengine\gamecontext.h
+1400505640 d:\workspace\c++\demo_sfml\src\ssengine\gamecontext.h
 	<string>
 	<Box2D/Box2D.h>
 	<SFML/Graphics.hpp>
@@ -8832,7 +8836,7 @@
 
 1400187426 d:\workspace\c++\test2\src\ssengine\screen.h
 
-1400246461 d:\workspace\c++\demo_sfml\src\ssengine\level1.h
+1400514941 d:\workspace\c++\demo_sfml\src\ssengine\level1.h
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -8848,12 +8852,14 @@
 	"Screen.h"
 	"GameContext.h"
 	"Player.h"
+	"Bullet.h"
 	"AICharacter.h"
 	"tween/TweenManager.h"
+	"ContactListener.h"
 
 1400165127 d:\workspace\c++\demo_sfml\src\ssengine\screen.h
 
-1400246461 source:d:\workspace\c++\demo_sfml\src\ssengine\level1.cpp
+1400519923 source:d:\workspace\c++\demo_sfml\src\ssengine\level1.cpp
 	"Level1.h"
 
 1400246461 d:\workspace\c++\demo_sfml\src\ssengine\aicharacter.h
@@ -9000,19 +9006,19 @@
 
 1392671519 d:\workspace\c++\librerias\thor\include\thor\graphics\detail\tostring.inl
 
-1400257031 source:d:\workspace\c++\demo_sfml\src\ssengine\bullet.cpp
+1400505640 source:d:\workspace\c++\demo_sfml\src\ssengine\bullet.cpp
 	"Bullet.h"
 
-1400257014 d:\workspace\c++\demo_sfml\src\ssengine\bullet.h
+1400505640 d:\workspace\c++\demo_sfml\src\ssengine\bullet.h
 	<SFML/Graphics.hpp>
 	"AnimatedSprite.hpp"
 	"GameContext.h"
 	"UserData.h"
 
-1400257369 source:d:\workspace\c++\demo_sfml\src\ssengine\level.cpp
+1400505640 source:d:\workspace\c++\demo_sfml\src\ssengine\level.cpp
 	"Level.h"
 
-1400257150 d:\workspace\c++\demo_sfml\src\ssengine\level.h
+1400505640 d:\workspace\c++\demo_sfml\src\ssengine\level.h
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -9032,9 +9038,10 @@
 	"tween/TweenManager.h"
 	"ContactListener.h"
 
-1400251389 d:\workspace\c++\demo_sfml\src\ssengine\contactlistener.h
+1400505640 d:\workspace\c++\demo_sfml\src\ssengine\contactlistener.h
 	<Box2D/Box2D.h>
 	"GameContext.h"
+	"Bullet.h"
 
 1400261449 d:\workspace\c++\demo_sfml\src\ssengine\assetmanager.h
 	<map>
@@ -9097,4 +9104,28 @@
 	<SFML/Audio.hpp>
 	"AnimatedSprite.hpp"
 	"Screen.h"
+
+1400505640 source:d:\workspace\c++\demo_sfml\src\ssengine\loaderscreen.cpp
+	"LoaderScreen.h"
+
+1400505640 d:\workspace\c++\demo_sfml\src\ssengine\loaderscreen.h
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"AnimatedSprite.hpp"
+	"Screen.h"
+
+1400516378 d:\workspace\c++\demo_sfml\src\ssengine\menuscreen.h
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<SFGUI/SFGUI.hpp>
+	"Screen.h"
+
+1400518851 source:d:\workspace\c++\demo_sfml\src\ssengine\menuscreen.cpp
+	"MenuScreen.h"
+
+1400522087 d:\workspace\c++\demo_sfml\src\icon.h
 

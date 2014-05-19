@@ -21,10 +21,6 @@ Level1::Level1(sf::RenderWindow* rw)
     groundT.loadFromFile("maps/area1.png");
     groundS.setTexture(groundT);
 
-    context->m_rwindow->clear();
-    context->m_rwindow->draw(groundS);
-    context->m_rwindow->display();
-
     screnSize = sf::Vector2i((int)context->m_rwindow->getSize().x,(int)context->m_rwindow->getSize().y);
 
     texture.loadFromFile("assets/bloodparticle.png");
@@ -291,16 +287,19 @@ int Level1::Run()
         context->m_rwindow->draw(roundedRect);
         context->m_rwindow->draw(roundedRecthp);
 
-        desktop.Update( frameTime.asSeconds() );
-        m_sfgui.Display(*(context->m_rwindow));
+        /*desktop.Update( frameTime.asSeconds() );
+        m_sfgui.Display(*(context->m_rwindow));*/
+
         if(debugflag)
+        {
             context->m_world->DrawDebugData();
+            std::stringstream stream;
+            stream << "April's Quest. Current fps: " << time << std::endl;
+            context->m_rwindow->setTitle(stream.str());
+        }
+
         context->m_rwindow->draw(*CurrentTargetS);
         context->m_rwindow->display();
-        const float time = 1.f / frameClock.getElapsedTime().asSeconds();
-        std::stringstream stream;
-        stream << "Use the cursor keys to move the view. Current fps: " << time << std::endl;
-        context->m_rwindow->setTitle(stream.str());
     }
     return (-1);
 }

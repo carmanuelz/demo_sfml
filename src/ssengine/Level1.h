@@ -51,10 +51,10 @@ private:
     float playerHP;
     sse::Player* player;
     sf::Vector2f* impactview;
-    sf::Clock frameClock;
     sf::ConvexShape roundedRecthp;
     sf::ConvexShape roundedRect;
     sf::Clock stepClock;
+    sf::Clock frameClock;
 
     sfg::SFGUI m_sfgui;
     sfg::Label::Ptr m_label;
