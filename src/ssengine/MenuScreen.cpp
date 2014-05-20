@@ -6,24 +6,26 @@ MenuScreen::MenuScreen(sf::RenderWindow* rw):renderwindow(rw)
     pointerT.loadFromFile("assets/pointer.png");
     pointerS.setTexture(pointerT);
 
-    m_label = sfg::Label::Create( "Menu" );
+    //m_label = sfg::Label::Create( "Menu" );
     // Create a simple button and connect the click signal.
-    auto star_button = sfg::Button::Create( "Start Game" );
+    auto star_button = sfg::Button::Create( "  Start Game  " );
     star_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &MenuScreen::OnButtonClick, this ) );
     auto exit_button = sfg::Button::Create( "Exit" );
     exit_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &MenuScreen::ExitClick, this ) );
 
+
     auto box = sfg::Box::Create( sfg::Box::Orientation::VERTICAL, 5.0f );
-    box->Pack( m_label );
+    //box->Pack( m_label );
     box->Pack( star_button, false );
     box->Pack( exit_button, false );
 
-    // Create a window and add the box layouter to it. Also set the window's title.
-    window->SetStyle( window->GetStyle() ^ sfg::Window::TITLEBAR );
-    window->SetStyle( window->GetStyle() ^ sfg::Window::BACKGROUND);
-    window->SetStyle( window->GetStyle() ^ sfg::Window::RESIZE );
-    window->SetPosition( sf::Vector2f( 350.f, 190.f ) );
     window->Add( box );
+    // Create a window and add the box layouter to it. Also set the window's title.
+    sf::FloatRect allocation = window->GetAllocation();
+    window->SetStyle( window->GetStyle() ^ sfg::Window::TITLEBAR );
+    //window->SetStyle( window->GetStyle() ^ sfg::Window::BACKGROUND);
+    window->SetStyle( window->GetStyle() ^ sfg::Window::RESIZE );
+    window->SetPosition( sf::Vector2f( screnSize.x/2 - allocation.width, screnSize.y/2-allocation.height ) );
 
     desktop.LoadThemeFromFile( "assets/example.theme" );
     desktop.Add( window );

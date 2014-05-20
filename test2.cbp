@@ -101,6 +101,7 @@
 		<Unit filename="src/AnimatedAccessor.h" />
 		<Unit filename="src/debugrender.cpp" />
 		<Unit filename="src/debugrender.h" />
+		<Unit filename="src/icon.h" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/ssengine/AICharacter.cpp" />
 		<Unit filename="src/ssengine/AICharacter.h" />
@@ -122,6 +123,8 @@
 		<Unit filename="src/ssengine/Level1.h" />
 		<Unit filename="src/ssengine/LoaderScreen.cpp" />
 		<Unit filename="src/ssengine/LoaderScreen.h" />
+		<Unit filename="src/ssengine/MenuScreen.cpp" />
+		<Unit filename="src/ssengine/MenuScreen.h" />
 		<Unit filename="src/ssengine/Player.cpp" />
 		<Unit filename="src/ssengine/Player.h" />
 		<Unit filename="src/ssengine/Screen.h" />
