@@ -161,8 +161,8 @@ int Level::Run()
         sf::Vector2f mousePos(winmouseposition.x + view.getCenter().x - screnSize.x/2 ,winmouseposition.y + view.getCenter().y - screnSize.y/2);
         sf::Vector2f playerposition = player->updatePlayer(isFocused, hasclickplayer);
 
-        if(isFocused)
-            VURef = player->updatebehaviour(mousePos.x,mousePos.y);
+        if(!player->isDead() && isFocused)
+            player->updatebehaviour(mousePos.x,mousePos.y);
 
         sf::Time frameTime = frameClock.restart();
 

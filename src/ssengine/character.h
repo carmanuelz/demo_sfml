@@ -76,7 +76,7 @@ public:
     void update(sf::Time frameTime);
     std::string Code = "";
     void setAnimCicle(int codecicle);
-    sf::Vector2f updatebehaviour(float TargetX,float TargetY);
+    void updatebehaviour(float TargetX,float TargetY);
     int direction = 1;
     sf::Vector2f CgunOffset;
     float angle = 0;

@@ -156,7 +156,7 @@ int Level1::Run()
         sf::Vector2f playerposition = player->updatePlayer(isFocused, hasclickplayer);
 
         if(isFocused)
-            VURef = player->updatebehaviour(mousePos.x,mousePos.y);
+            player->updatebehaviour(mousePos.x,mousePos.y);
 
         sf::Time frameTime = frameClock.restart();
 
@@ -264,8 +264,12 @@ int Level1::Run()
                     sse::UserData* userdataA = static_cast<sse::UserData*>(RayCastCallback2.m_fixture->GetUserData());
                     if(userdataA->tipo == 1)
                     {
-                        enemmy->setAnimCicle(2);
-                        enemmy->setTarget(player->Body);
+                        if(!player->isDead())
+                        {
+                            enemmy->setAnimCicle(2);
+                            enemmy->setTarget(player->Body);
+                        }
+
                     }
                 }
                 p4 = b2Vec2(RayCastCallback2.m_point.x, RayCastCallback2.m_point.y);
@@ -280,6 +284,13 @@ int Level1::Run()
                 context->m_rwindow->draw(line2, 2, sf::Lines);
             }
         }
+
+        if(player->isDead())
+            for(auto e = EnemmyList.cbegin() ; e != EnemmyList.cend() ; e++ )
+            {
+                sse::AICharacter* enemmy = *e;
+                enemmy->GoToOrigin();
+            }
 
         context->m_psystem->update(frameTime);
         context->DrawSysParticle();

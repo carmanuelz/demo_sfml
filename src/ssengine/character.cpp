@@ -244,6 +244,7 @@ void Character::update(sf::Time frameTime)
             animated.StartTimeLine();
             animated.stoptimelineflag = true;
             isdeadflag = true;
+            hasweapon = false;
             blockbehaviour = true;
         }
     }
@@ -265,7 +266,7 @@ float Character::getHP()
     return HP;
 }
 
-sf::Vector2f Character::updatebehaviour(float TargetX,float TargetY)
+void Character::updatebehaviour(float TargetX,float TargetY)
 {
     sf::Vector2f dif(TargetX - 24.0f - animated.getPosition().x,(TargetY - 39.0f - animated.getPosition().y)*-1);
     angle = fmod(atan2(dif.y, dif.x)*180/M_PI,360);
@@ -319,8 +320,6 @@ sf::Vector2f Character::updatebehaviour(float TargetX,float TargetY)
         weapon.rotate(angle - weapon.getRotation());
         before = false;
     }
-
-    return bulletVU;
 }
 
 b2Body* Character::createBullet(sf::Vector2f origin, sf::Vector2f bvel,float angle)

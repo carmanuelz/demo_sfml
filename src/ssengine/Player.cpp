@@ -122,5 +122,12 @@ sf::Vector2f Player::updatePlayer(bool hasfocused, bool hasclick)
     return sf::Vector2f(x,y);
 }
 
+bool Player::isDead()
+{
+    if(HP<=0)
+        return true;
+    return false;
+}
+
 }
 

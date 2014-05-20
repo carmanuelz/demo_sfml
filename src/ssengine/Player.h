@@ -15,6 +15,7 @@ public:
     sf::Vector2f updatePlayer(bool hasfocused, bool hasclick);
     sf::Vector2f moveimpactview;
     bool hasshoot = false;
+    bool isDead();
 private:
 };
 }

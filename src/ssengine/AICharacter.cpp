@@ -47,6 +47,14 @@ void AICharacter::GotoPosition(float Ax, float Bx)
     setAnimCicle(2);
 }
 
+void AICharacter::GoToOrigin()
+{
+    Target = 0;
+    gotoflag = true;
+    findposition = sf::Vector2f(Origin.x,Origin.y);
+    setAnimCicle(2);
+}
+
 void AICharacter::setTarget(b2Body* inTarget)
 {
     Target = inTarget;

@@ -22,6 +22,7 @@ class AICharacter : public Character
         void setTarget(b2Body* inTarget);
         void setPatrol(float Ax, float Ay, float Bx, float By);
         void GotoPosition(float Ax, float Bx);
+        void GoToOrigin();
         void follow(b2Body* inTarget);
         bool gotoflag = false;
     private:

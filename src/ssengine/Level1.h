@@ -41,7 +41,6 @@ private:
     sf::Sprite groundS;
     sf::Vector2i screnSize;
     sf::Texture texture;
-    sf::Vector2f VURef;
     sf::Vector2f centro;
     sf::Sprite targetS;
     sf::Texture targetT;

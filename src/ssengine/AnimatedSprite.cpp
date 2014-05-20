@@ -268,7 +268,8 @@ void AnimatedSprite::update(sf::Time deltaTime)
 
             }
             // set the current frame, not reseting the time
-            setFrame(m_currentFrame, false);
+            if(!m_isPaused)
+                setFrame(m_currentFrame, false);
         }
     }
 }
@@ -310,7 +311,7 @@ void AnimatedSprite::updateTimeLineEnd()
         isTimeLine = false;
         if(stoptimelineflag)
         {
-             stop();
+             m_isLooped = false;
              stoptimelineflag = false;
         }
 
