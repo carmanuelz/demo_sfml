@@ -7708,7 +7708,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1400522109 source:d:\workspace\c++\demo_sfml\src\main.cpp
+1400592171 source:d:\workspace\c++\demo_sfml\src\main.cpp
 	<math.h>
 	<iostream>
 	<SFML/System.hpp>
@@ -7759,7 +7759,7 @@
 	<Box2D/Box2D.h>
 	<math.h>
 
-1400165127 d:\workspace\c++\demo_sfml\src\ssengine\animatedsprite.hpp
+1400606043 d:\workspace\c++\demo_sfml\src\ssengine\animatedsprite.hpp
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/System/Time.hpp>
 	<SFML/Graphics/Drawable.hpp>
@@ -7773,7 +7773,7 @@
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Texture.hpp>
 
-1400505640 d:\workspace\c++\demo_sfml\src\ssengine\character.h
+1400608085 d:\workspace\c++\demo_sfml\src\ssengine\character.h
 	<string>
 	<vector>
 	<map>
@@ -7856,7 +7856,7 @@
 	<sstream>
 	<iomanip>
 
-1400165127 source:d:\workspace\c++\demo_sfml\src\ssengine\animatedsprite.cpp
+1400606321 source:d:\workspace\c++\demo_sfml\src\ssengine\animatedsprite.cpp
 	"AnimatedSprite.hpp"
 
 1400082464 source:d:\workspace\c++\demo_sfml\src\ssengine\animation.cpp
@@ -7868,7 +7868,7 @@
 1400165128 source:d:\workspace\c++\demo_sfml\src\ssengine\loadconf\luascript.cpp
 	"LuaScript.h"
 
-1400505640 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
+1400608329 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
 	"character.h"
 
 1400543680 d:\workspace\c++\test2\src\ssengine\particlesys.h
@@ -8394,7 +8394,7 @@
 1400187426 d:\workspace\c++\test2\src\ssengine\util.h
 	<SFML/Graphics.hpp>
 
-1400165127 source:d:\workspace\c++\demo_sfml\src\ssengine\util.cpp
+1400592171 source:d:\workspace\c++\demo_sfml\src\ssengine\util.cpp
 	"util.h"
 
 1400165128 d:\workspace\c++\demo_sfml\src\ssengine\util.h
@@ -8873,7 +8873,7 @@
 1400246461 source:d:\workspace\c++\demo_sfml\src\ssengine\aicharacter.cpp
 	"AICharacter.h"
 
-1400176163 source:d:\workspace\c++\demo_sfml\src\ssengine\player.cpp
+1400608253 source:d:\workspace\c++\demo_sfml\src\ssengine\player.cpp
 	"Player.h"
 
 1400208584 d:\workspace\c++\test2\src\ssengine\aicharacter.h
@@ -9126,7 +9126,7 @@
 	<SFGUI/SFGUI.hpp>
 	"Screen.h"
 
-1400518851 source:d:\workspace\c++\demo_sfml\src\ssengine\menuscreen.cpp
+1400592309 source:d:\workspace\c++\demo_sfml\src\ssengine\menuscreen.cpp
 	"MenuScreen.h"
 
 1400522087 d:\workspace\c++\demo_sfml\src\icon.h

@@ -25,10 +25,10 @@ MenuScreen::MenuScreen(sf::RenderWindow* rw):renderwindow(rw)
     window->SetStyle( window->GetStyle() ^ sfg::Window::TITLEBAR );
     //window->SetStyle( window->GetStyle() ^ sfg::Window::BACKGROUND);
     window->SetStyle( window->GetStyle() ^ sfg::Window::RESIZE );
-    window->SetPosition( sf::Vector2f( screnSize.x/2 - allocation.width, screnSize.y/2-allocation.height ) );
 
     desktop.LoadThemeFromFile( "assets/example.theme" );
     desktop.Add( window );
+    window->SetPosition( sf::Vector2f( screnSize.x/2 - allocation.width, screnSize.y/2-allocation.height ) );
 }
 
 MenuScreen::~MenuScreen()

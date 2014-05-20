@@ -308,6 +308,12 @@ void AnimatedSprite::updateTimeLineEnd()
     if(indexTransition == TimeLine.size())
     {
         isTimeLine = false;
+        if(stoptimelineflag)
+        {
+             stop();
+             stoptimelineflag = false;
+        }
+
     }
 }
 

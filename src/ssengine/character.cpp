@@ -38,11 +38,17 @@ void Character::init()
     /*Cstartcile.setSpriteSheet(Cspritesheet);
     loadFrames(&Cidleicle, Code+".start");*/
 
-    Cidleicle.setSpriteSheet(Cspritesheet);
-    loadFrames(&Cidleicle, Code+".idle");
+    Cidlecile.setSpriteSheet(Cspritesheet);
+    loadFrames(&Cidlecile, Code+".idle");
 
     Cruncicle.setSpriteSheet(Cspritesheet);
     loadFrames(&Cruncicle, Code+".run");
+
+    if(Type == 1)
+    {
+        Cdeadcile.setSpriteSheet(Cspritesheet);
+        loadFrames(&Cdeadcile, Code+".dead");
+    }
 
     if(!hasweapon)
     {
@@ -123,7 +129,7 @@ void Character::setAnimCicle(int codecicle)
         animated.play(Cstartcile);
         break;
     case 1:
-        animated.play(Cidleicle);
+        animated.play(Cidlecile);
         break;
     case 2:
         animated.play(Cruncicle);
@@ -133,6 +139,9 @@ void Character::setAnimCicle(int codecicle)
         break;
     case 4:
         animated.play(ChideIcle);
+        break;
+    case 5:
+        animated.play(Cdeadcile);
         break;
     }
 }
@@ -225,6 +234,19 @@ void Character::update(sf::Time frameTime)
     if(isbusy)
         if(!animated.isTimeLine)
             isbusy = false;
+
+    if(Type == 1 && !isdeadflag)
+    {
+        if(HP <= 0)
+        {
+            animated.PrepareTimeLine();
+            animated.PushTransition(new Transition(1,Cdeadcile ,0,0,0,0));
+            animated.StartTimeLine();
+            animated.stoptimelineflag = true;
+            isdeadflag = true;
+            blockbehaviour = true;
+        }
+    }
 }
 
 void Character::takeDamage(float inDamage)

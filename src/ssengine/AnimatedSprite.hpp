@@ -78,6 +78,7 @@ public:
     int indexTransition = 0;
     bool isStart = false;
     bool isEnd = true;
+    bool stoptimelineflag = false;
 
 
 private:

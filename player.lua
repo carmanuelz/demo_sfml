@@ -18,9 +18,10 @@ mob001 = {
 
 player01 = {
 	type = 1,
-	src = "assets/player.png",
+	src = "assets/player2.png",
 	run = {8, 48, 60, 0},
-	idle = {8, 48, 60, 1},
+	idle = {8, 48, 60, 1},	
+	dead = {9, 72, 60, 2},
 	attack = {},	
 	offsetXR = -24,
 	offsetXL = -24,

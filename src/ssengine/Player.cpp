@@ -6,7 +6,7 @@ namespace sse
 sf::Vector2f Player::updatePlayer(bool hasfocused, bool hasclick)
 {
     float result = 0;
-    if(hasfocused)
+    if(hasfocused && !blockbehaviour)
     {
         Body->SetLinearVelocity(b2Vec2(0,0));
         vel = Body->GetLinearVelocity();

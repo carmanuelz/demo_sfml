@@ -96,6 +96,7 @@ public:
     void removeCollisionList(b2Fixture*f);
     void setBulletList(std::vector<Bullet*>* inBulletList){BulletList = inBulletList;}
     b2Body* Target = 0;
+    bool blockbehaviour = false;
 protected:
     b2Body* createBullet(sf::Vector2f origin, sf::Vector2f bvel,float angle);
     float offsetAnimXR = 0;
@@ -111,12 +112,14 @@ protected:
     sf::Vector2f Origin;
     std::vector<Bullet*>* BulletList;
 private:
+    bool isdeadflag = false;
     int ofsetanimx = 0;
     Animation Cstartcile;
     Animation Cruncicle;
-    Animation Cidleicle;
+    Animation Cidlecile;
     Animation Cattackcicle;
     Animation ChideIcle;
+    Animation Cdeadcile;
     Animation waposhootcicle;
     sf::Texture Cspritesheet;
     sf::Texture weaponspritesheet;
