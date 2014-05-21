@@ -57,7 +57,6 @@ private:
     sf::Clock frameClock;
     sf::ConvexShape roundedRecthp;
     sf::ConvexShape roundedRect;
-    sf::Clock stepClock;
 
     sfg::SFGUI m_sfgui;
     sfg::Label::Ptr m_label;

@@ -108,6 +108,7 @@ void Level1::OnButtonClick()
 
 int Level1::Run()
 {
+    bool isFinish = false;
     while(context->m_rwindow->isOpen())
     {
         map.clearEvents();
@@ -155,9 +156,6 @@ int Level1::Run()
         sf::Vector2f mousePos(winmouseposition.x + view.getCenter().x - screnSize.x/2 ,winmouseposition.y + view.getCenter().y - screnSize.y/2);
         sf::Vector2f playerposition = player->updatePlayer(isFocused, hasclickplayer);
 
-        if(isFocused)
-            player->updatebehaviour(mousePos.x,mousePos.y);
-
         sf::Time frameTime = frameClock.restart();
 
         for(std::vector<sse::AICharacter*>::iterator e = EnemmyList.begin() ; e != EnemmyList.end() ; e++ )
@@ -184,6 +182,9 @@ int Level1::Run()
             else
                 character->update(frameTime);
         }
+
+        if(!player->isDead() && isFocused)
+            player->updatebehaviour(mousePos.x,mousePos.y);
 
         context->m_world->Step( 0.16f, 8, 3 );
 
@@ -248,49 +249,50 @@ int Level1::Run()
 
         b2Vec2 p1 = player->Body->GetPosition();
 
-        for(auto e = EnemmyList.cbegin() ; e != EnemmyList.cend() ; e++ )
-        {
-            sse::AICharacter* enemmy = *e;
-            b2Vec2 p3 = enemmy->Body->GetPosition();
-            b2Vec2 dif2 = p1 - p3;
-            float module2 = sqrt(pow(dif2.x,2)+pow(dif2.y,2));
-            b2Vec2 p4 = p3 + b2Vec2(dif2.x/module2*4,dif2.y/module2*4);
-            sse::MyRayCastCallback RayCastCallback2;
-            context->m_world->RayCast(&RayCastCallback2, p3 , p4);
-            if ( RayCastCallback2.m_fixture )
+        if(!player->isDead())
+            for(auto e = EnemmyList.cbegin() ; e != EnemmyList.cend() ; e++ )
             {
-                if(enemmy->Target == 0 && !enemmy->gotoflag)
+                sse::AICharacter* enemmy = *e;
+                b2Vec2 p3 = enemmy->Body->GetPosition();
+                b2Vec2 dif2 = p1 - p3;
+                float module2 = sqrt(pow(dif2.x,2)+pow(dif2.y,2));
+                b2Vec2 p4 = p3 + b2Vec2(dif2.x/module2*4,dif2.y/module2*4);
+                sse::MyRayCastCallback RayCastCallback2;
+                context->m_world->RayCast(&RayCastCallback2, p3 , p4);
+                if ( RayCastCallback2.m_fixture )
                 {
-                    sse::UserData* userdataA = static_cast<sse::UserData*>(RayCastCallback2.m_fixture->GetUserData());
-                    if(userdataA->tipo == 1)
+                    if(enemmy->Target == 0 && !enemmy->gotoflag)
                     {
-                        if(!player->isDead())
+                        sse::UserData* userdataA = static_cast<sse::UserData*>(RayCastCallback2.m_fixture->GetUserData());
+                        if(userdataA->tipo == 1)
                         {
                             enemmy->setAnimCicle(2);
                             enemmy->setTarget(player->Body);
                         }
-
                     }
+                    p4 = b2Vec2(RayCastCallback2.m_point.x, RayCastCallback2.m_point.y);
                 }
-                p4 = b2Vec2(RayCastCallback2.m_point.x, RayCastCallback2.m_point.y);
-            }
-            if(debugflag)
-            {
-                sf::Vertex line2[] =
+                if(debugflag)
                 {
-                    sf::Vertex(sf::Vector2f(p3.x*PPM, p3.y*PPM)),
-                    sf::Vertex(sf::Vector2f(p4.x*PPM, p4.y*PPM))
-                };
-                context->m_rwindow->draw(line2, 2, sf::Lines);
+                    sf::Vertex line2[] =
+                    {
+                        sf::Vertex(sf::Vector2f(p3.x*PPM, p3.y*PPM)),
+                        sf::Vertex(sf::Vector2f(p4.x*PPM, p4.y*PPM))
+                    };
+                    context->m_rwindow->draw(line2, 2, sf::Lines);
+                }
             }
-        }
 
-        if(player->isDead())
+        if(player->isDead() && !isFinish)
+        {
             for(auto e = EnemmyList.cbegin() ; e != EnemmyList.cend() ; e++ )
             {
                 sse::AICharacter* enemmy = *e;
                 enemmy->GoToOrigin();
             }
+            isFinish = true;
+        }
+
 
         context->m_psystem->update(frameTime);
         context->DrawSysParticle();
@@ -305,6 +307,7 @@ int Level1::Run()
         {
             context->m_world->DrawDebugData();
             std::stringstream stream;
+            const float time = 1.f / frameTime.asSeconds();
             stream << "April's Quest. Current fps: " << time << std::endl;
             context->m_rwindow->setTitle(stream.str());
         }

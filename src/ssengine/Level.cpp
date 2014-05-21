@@ -196,7 +196,6 @@ int Level::Run()
         context->m_rwindow->clear();
         context->m_rwindow->draw(groundS);
 
-        stepClock.restart();
         sf::Vector2f offsetview = sf::Vector2f((playerposition.x - view.getCenter().x)*0.1f,(playerposition.y - view.getCenter().y)*0.1f)+ *impactview;
         if(offsetview.x<0.5 && offsetview.x > -0.5)
             offsetview.x = 0;

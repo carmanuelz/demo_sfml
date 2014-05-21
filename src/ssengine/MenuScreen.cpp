@@ -23,7 +23,7 @@ MenuScreen::MenuScreen(sf::RenderWindow* rw):renderwindow(rw)
     // Create a window and add the box layouter to it. Also set the window's title.
     sf::FloatRect allocation = window->GetAllocation();
     window->SetStyle( window->GetStyle() ^ sfg::Window::TITLEBAR );
-    //window->SetStyle( window->GetStyle() ^ sfg::Window::BACKGROUND);
+    window->SetStyle( window->GetStyle() ^ sfg::Window::BACKGROUND);
     window->SetStyle( window->GetStyle() ^ sfg::Window::RESIZE );
 
     desktop.LoadThemeFromFile( "assets/example.theme" );

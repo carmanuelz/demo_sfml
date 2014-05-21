@@ -239,7 +239,7 @@ void Character::update(sf::Time frameTime)
     {
         if(HP <= 0)
         {
-
+            vel = b2Vec2(0,0);
             setAnimCicle(5);
             animated.setLooped(false);
             isdeadflag = true;
