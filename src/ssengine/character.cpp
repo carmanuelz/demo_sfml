@@ -239,10 +239,9 @@ void Character::update(sf::Time frameTime)
     {
         if(HP <= 0)
         {
-            animated.PrepareTimeLine();
-            animated.PushTransition(new Transition(1,Cdeadcile ,0,0,0,0));
-            animated.StartTimeLine();
-            animated.stoptimelineflag = true;
+
+            setAnimCicle(5);
+            animated.setLooped(false);
             isdeadflag = true;
             hasweapon = false;
             blockbehaviour = true;
