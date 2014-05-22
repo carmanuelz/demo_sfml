@@ -11,7 +11,6 @@
 #include <Thor/Shapes/Shapes.hpp>
 #include <Thor/Input/Action.hpp>
 #include <Thor/Input/ActionMap.hpp>
-#include "../debugrender.h"
 #include "ssengine.h"
 #include "Screen.h"
 #include "GameContext.h"
@@ -22,7 +21,8 @@
 
 namespace sse
 {
-enum Actions
+
+enum MyAction
 {
 	Debug
 };
@@ -30,33 +30,24 @@ enum Actions
 class Level : public Screen
 {
 public:
-    Level(sf::RenderWindow* rw);
+    Level(sf::RenderWindow* rw, thor::MultiResourceCache* incache);
     virtual ~Level();
     virtual int Run();
 protected:
     void CastEnemy();
 private:
-    DebugDraw* debugDraw;
     sse::GameContext* context;
-    ContactListener* GameCL;
-    std::vector<sse::MyRayCastCallback*> RaycastList;
-    sf::Texture groundT;
+    sse::ContactListener* GameCL;
     sf::Sprite groundS;
-    sf::Vector2i screnSize;
-    sf::Texture texture;
-    sf::Vector2f VURef;
-    sf::Vector2f centro;
     sf::Sprite targetS;
-    sf::Texture targetT;
     sf::Sprite pointerS;
-    sf::Texture pointerT;
     sf::Sprite* CurrentTargetS;
     float playerHP;
     sse::Player* player;
-    sf::Vector2f* impactview;
-    sf::Clock frameClock;
     sf::ConvexShape roundedRecthp;
     sf::ConvexShape roundedRect;
+    sf::Clock stepClock;
+    sf::Clock frameClock;
 
     sfg::SFGUI m_sfgui;
     sfg::Label::Ptr m_label;
@@ -64,7 +55,7 @@ private:
     sfg::Desktop desktop;
 
     std::vector<sse::drawableentity*> DrawList;
-    std::vector<sse::AICharacter*> EnemyList;
+    std::vector<sse::AICharacter*> EnemmyList;
     std::vector<sse::Character*> CharacterList;
     std::vector<b2Body*> RemoveList;
     std::vector<sse::Bullet*> BulletList;
@@ -72,9 +63,11 @@ private:
     bool isFocused = true;
     bool hasclickplayer = true;
     bool debugflag = false;
-    void OnButtonClick();
+    void ExitClick();
+    void GotoMenu();
+    int gotoWin = -2;
     static bool compareByY(const sse::drawableentity* a,const sse::drawableentity* b);
-    thor::ActionMap<Actions> map;
+    thor::ActionMap<MyAction> map;
 };
 }
 #endif // LEVEL_H

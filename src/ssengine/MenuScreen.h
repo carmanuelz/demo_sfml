@@ -20,10 +20,12 @@ class MenuScreen : public Screen
         sf::RenderWindow* renderwindow;
         void OnButtonClick();
         void ExitClick();
+
         sfg::SFGUI m_sfgui;
         sfg::Label::Ptr m_label;
         sfg::Window::Ptr window = sfg::Window::Create();
         sfg::Desktop desktop;
+
         sf::Clock frameClock;
         sf::Sprite pointerS;
         sf::Texture pointerT;

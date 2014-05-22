@@ -23,9 +23,11 @@
 					<Add directory="../librerias/Lua/include" />
 					<Add directory="../librerias/Thor/include" />
 					<Add directory="../librerias/SFGUI/include" />
+					<Add directory="../librerias/Jsoncpp/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-lBox2D" />
+					<Add option="-ljsoncpp" />
 					<Add library="sfgui-s" />
 					<Add library="sfml-graphics-s-d" />
 					<Add library="sfml-audio-s-d" />
@@ -46,6 +48,7 @@
 					<Add directory="../librerias/Lua/lib" />
 					<Add directory="../librerias/Thor/lib" />
 					<Add directory="../librerias/SFGUI/lib" />
+					<Add directory="../librerias/Jsoncpp/lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -98,25 +101,23 @@
 		<Linker>
 			<Add directory="../librerias/SFML_GIT/extlibs/libs-mingw/x86" />
 		</Linker>
-		<Unit filename="src/AnimatedAccessor.h" />
-		<Unit filename="src/debugrender.cpp" />
-		<Unit filename="src/debugrender.h" />
 		<Unit filename="src/icon.h" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/ssengine/AICharacter.cpp" />
 		<Unit filename="src/ssengine/AICharacter.h" />
 		<Unit filename="src/ssengine/AStarFinder.cpp" />
 		<Unit filename="src/ssengine/AStarFinder.h" />
+		<Unit filename="src/ssengine/AnimatedAccessor.h" />
 		<Unit filename="src/ssengine/AnimatedSprite.cpp" />
 		<Unit filename="src/ssengine/AnimatedSprite.hpp" />
 		<Unit filename="src/ssengine/Animation.cpp" />
 		<Unit filename="src/ssengine/Animation.hpp" />
-		<Unit filename="src/ssengine/AssetManager.h" />
 		<Unit filename="src/ssengine/Bullet.cpp" />
 		<Unit filename="src/ssengine/Bullet.h" />
 		<Unit filename="src/ssengine/ContactListener.h" />
 		<Unit filename="src/ssengine/GameContext.cpp" />
 		<Unit filename="src/ssengine/GameContext.h" />
+		<Unit filename="src/ssengine/KeyManager.h" />
 		<Unit filename="src/ssengine/Level.cpp" />
 		<Unit filename="src/ssengine/Level.h" />
 		<Unit filename="src/ssengine/Level1.cpp" />
@@ -134,6 +135,8 @@
 		<Unit filename="src/ssengine/actionentity.h" />
 		<Unit filename="src/ssengine/character.cpp" />
 		<Unit filename="src/ssengine/character.h" />
+		<Unit filename="src/ssengine/debugrender.cpp" />
+		<Unit filename="src/ssengine/debugrender.h" />
 		<Unit filename="src/ssengine/drawableentity.h" />
 		<Unit filename="src/ssengine/loadconf/LuaScript.cpp" />
 		<Unit filename="src/ssengine/loadconf/LuaScript.h" />
@@ -142,9 +145,6 @@
 		<Unit filename="src/ssengine/rubestuff/b2dJson.h" />
 		<Unit filename="src/ssengine/rubestuff/b2dJsonImage.cpp" />
 		<Unit filename="src/ssengine/rubestuff/b2dJsonImage.h" />
-		<Unit filename="src/ssengine/rubestuff/json/json-forwards.h" />
-		<Unit filename="src/ssengine/rubestuff/json/json.h" />
-		<Unit filename="src/ssengine/rubestuff/jsoncpp.cpp" />
 		<Unit filename="src/ssengine/ssengine.h" />
 		<Unit filename="src/ssengine/tween/Accessor.h" />
 		<Unit filename="src/ssengine/tween/Easing/Back.cpp" />

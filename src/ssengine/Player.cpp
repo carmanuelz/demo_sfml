@@ -98,7 +98,7 @@ sf::Vector2f Player::updatePlayer(bool hasfocused, bool hasclick)
             {
                 createBullet(bulletOrigin, bulletVU, angle);
                 Acumulator = 0;
-                soundshoot.play();
+                //soundshoot.play();
                 hasshoot = true;
             }
         }
@@ -109,12 +109,12 @@ sf::Vector2f Player::updatePlayer(bool hasfocused, bool hasclick)
             else
                 result = (Acumulator*-0.0167f+0.0033f)*600;
 
-            moveimpactview = bulletVU*-result;
+            context->impactview = bulletVU*-result;
         }
         else
         {
             hasshoot = false;
-            moveimpactview = sf::Vector2f(0,0);
+            context->impactview = sf::Vector2f(0,0);
         }
 
     }

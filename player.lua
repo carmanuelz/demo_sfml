@@ -29,7 +29,7 @@ player01 = {
 	offsetYL = -35,
 	hasweapon =  true,	
 	damage = 5,
-	HP = 100,
+	HP = 20,
 	weapon = "w001"
 }
 

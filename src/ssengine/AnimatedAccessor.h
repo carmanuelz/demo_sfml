@@ -2,8 +2,8 @@
 #define ANIMATED_ACCESSOR
 
 #include <SFML/Graphics.hpp>
-#include "ssengine/tween/Accessor.h"
-#include "ssengine/AnimatedSprite.hpp"
+#include "tween/Accessor.h"
+#include "AnimatedSprite.hpp"
 
 class AnimatedAccessor : public Accessor
 {

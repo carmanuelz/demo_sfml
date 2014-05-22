@@ -2,8 +2,9 @@
 
 namespace sse
 {
-GameContext::GameContext()
+GameContext::GameContext(sf::RenderWindow* inrw):m_rwindow(inrw)
 {
+    m_screensize = sf::Vector2i((int)inrw->getSize().x,(int)inrw->getSize().y);
     registerResurces();
 }
 
@@ -12,7 +13,7 @@ GameContext::~GameContext()
     //dtor
 }
 
-bool GameContext::LoadWorld(const char* filename)
+bool GameContext::LoadWorld(const char* filename, float tilesize, int width, int height)
 {
     m_world = m_b2json->readFromFile(filename, errMsg);
     if ( ! m_world )
@@ -34,14 +35,16 @@ bool GameContext::LoadWorld(const char* filename)
             f->SetUserData(ud);
         }
     }
-    return true;
-}
-void GameContext::Createfinder(float tilesize, int width, int height)
-{
+
+    debugDraw = new DebugDraw(*(m_rwindow));
+    debugDraw->SetFlags(b2Draw::e_shapeBit);
+    m_world->SetDebugDraw(debugDraw);
+
     TileSize = tilesize;
     std::vector<b2Fixture*> blocFixtures;
     m_b2json->getFixturesByName("block",blocFixtures);
     m_finder = new sse::AStarFinder(tilesize,width,height,&blocFixtures);
+    return true;
 }
 
 void GameContext::DrawSysParticle()
@@ -51,8 +54,10 @@ void GameContext::DrawSysParticle()
 
 void GameContext::registerResurces()
 {
+    textureKeys.add("blood",thor::Resources::fromFile<sf::Texture>("assets/bloodparticle.png"));
+    textureKeys.add("floor",thor::Resources::fromFile<sf::Texture>("maps/area1.png"));
     textureKeys.add("target",thor::Resources::fromFile<sf::Texture>("assets/target.png"));
-    textureKeys.add("pinter",thor::Resources::fromFile<sf::Texture>("assets/pointer.png"));
+    textureKeys.add("pointer",thor::Resources::fromFile<sf::Texture>("assets/pointer.png"));
     textureKeys.add("rifle",thor::Resources::fromFile<sf::Texture>("assets/rifle.png"));
     textureKeys.add("bullet", thor::Resources::fromFile<sf::Texture>("assets/bullet2.png"));
 }
@@ -61,7 +66,7 @@ std::shared_ptr<sf::Texture> GameContext::getPrtTexture(std::string key)
 {
     try
 	{
-		return cache.acquire(textureKeys.get(key));
+		return cache->acquire(textureKeys.get(key));
 	}
 	catch (thor::ResourceLoadingException& e)
 	{

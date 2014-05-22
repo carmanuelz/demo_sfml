@@ -21,14 +21,15 @@ MenuScreen::MenuScreen(sf::RenderWindow* rw):renderwindow(rw)
 
     window->Add( box );
     // Create a window and add the box layouter to it. Also set the window's title.
-    sf::FloatRect allocation = window->GetAllocation();
     window->SetStyle( window->GetStyle() ^ sfg::Window::TITLEBAR );
     window->SetStyle( window->GetStyle() ^ sfg::Window::BACKGROUND);
     window->SetStyle( window->GetStyle() ^ sfg::Window::RESIZE );
 
     desktop.LoadThemeFromFile( "assets/example.theme" );
     desktop.Add( window );
-    window->SetPosition( sf::Vector2f( screnSize.x/2 - allocation.width, screnSize.y/2-allocation.height ) );
+
+    sf::FloatRect allocation = window->GetAllocation();
+    window->SetPosition( sf::Vector2f( screnSize.x - allocation.width, screnSize.y-allocation.height )/2.0f );
 }
 
 MenuScreen::~MenuScreen()
@@ -38,13 +39,23 @@ MenuScreen::~MenuScreen()
 
 int MenuScreen::Run()
 {
+    window->Show(true);
     while(renderwindow->isOpen())
     {
         if(gotoWin != 0)
-            return gotoWin;
+        {
+            int rvalue = gotoWin;
+            gotoWin = 0;
+            return rvalue;
+        }
+
         sf::Event event;
         while(renderwindow->pollEvent(event))
         {
+            if (event.type == sf::Event::Closed)
+            {
+                return (-1);
+            }
             if(event.type == sf::Event::KeyPressed)
             {
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))

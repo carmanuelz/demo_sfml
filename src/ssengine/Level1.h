@@ -11,7 +11,7 @@
 #include <Thor/Shapes/Shapes.hpp>
 #include <Thor/Input/Action.hpp>
 #include <Thor/Input/ActionMap.hpp>
-#include "../debugrender.h"
+#include "debugrender.h"
 #include "ssengine.h"
 #include "Screen.h"
 #include "GameContext.h"
@@ -29,27 +29,20 @@ enum MyAction
 class Level1 : public Screen
 {
 public:
-    Level1(sf::RenderWindow* rw);
+    Level1(sf::RenderWindow* rw, thor::MultiResourceCache* incache);
     virtual ~Level1();
     virtual int Run();
+    bool Prepare();
 protected:
 private:
-    DebugDraw* debugDraw;
     sse::GameContext* context;
     sse::ContactListener* GameCL;
-    sf::Texture groundT;
     sf::Sprite groundS;
-    sf::Vector2i screnSize;
-    sf::Texture texture;
-    sf::Vector2f centro;
     sf::Sprite targetS;
-    sf::Texture targetT;
     sf::Sprite pointerS;
-    sf::Texture pointerT;
     sf::Sprite* CurrentTargetS;
     float playerHP;
     sse::Player* player;
-    sf::Vector2f* impactview;
     sf::ConvexShape roundedRecthp;
     sf::ConvexShape roundedRect;
     sf::Clock stepClock;
@@ -69,7 +62,9 @@ private:
     bool isFocused = true;
     bool hasclickplayer = true;
     bool debugflag = false;
-    void OnButtonClick();
+    void ExitClick();
+    void GotoMenu();
+    int gotoWin = -2;
     static bool compareByY(const sse::drawableentity* a,const sse::drawableentity* b);
     thor::ActionMap<MyAction> map;
 };

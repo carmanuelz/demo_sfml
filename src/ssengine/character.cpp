@@ -58,7 +58,6 @@ void Character::init()
     else
     {
         wspritesheet = context->getPrtTexture("rifle");
-        //weaponspritesheet.loadFromFile("assets/rifle.png");
         waposhootcicle.setSpriteSheet(*wspritesheet);
         loadFrames(&waposhootcicle, "w001.shoot");
         weapon = AnimatedSprite(sf::seconds(0.05f), true, false);
@@ -80,8 +79,8 @@ void Character::init()
 
     Body = createBody(x,y);
 
-    buffershoot.loadFromFile("assets/shoot.wav");
-    soundshoot.setBuffer(buffershoot);
+    /*buffershoot.loadFromFile("assets/shoot.wav");
+    soundshoot.setBuffer(buffershoot);*/
 
     animaccess = new AnimatedAccessor();
     float* values= new float[3];
@@ -241,6 +240,7 @@ void Character::update(sf::Time frameTime)
         {
             vel = b2Vec2(0,0);
             setAnimCicle(5);
+            animated.setReverse(false);
             animated.setLooped(false);
             isdeadflag = true;
             hasweapon = false;

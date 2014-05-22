@@ -5,34 +5,32 @@ bool Level1::compareByY(const sse::drawableentity* a, const sse::drawableentity*
     return a->y < b->y;
 }
 
-Level1::Level1(sf::RenderWindow* rw)
+Level1::Level1(sf::RenderWindow* rw, thor::MultiResourceCache* incache)
 {
-
-    context = new sse::GameContext();
-    context->m_psystem->setTexture(texture);
+    context = new sse::GameContext(rw);
     context->m_psystem->addAffector(BloodkAffector());
-
+    context->cache = incache;
     context->m_tweenmanager = new sse::TweenManager();
-    context->m_rwindow = rw;
-    context->LoadWorld("maps/nivel1.json");
-    context->Createfinder(32,30,30);
-    context->m_script = new LuaScript("Player.lua");
-
-    groundT.loadFromFile("maps/area1.png");
-    groundS.setTexture(groundT);
-
-    screnSize = sf::Vector2i((int)context->m_rwindow->getSize().x,(int)context->m_rwindow->getSize().y);
-
-    texture.loadFromFile("assets/bloodparticle.png");
-
     map[Debug] = thor::Action(sf::Keyboard::B, thor::Action::PressOnce);
 
-    // Instantiate particle system and add custom affector
+    roundedRecthp = thor::Shapes::roundedRect(sf::Vector2f(200.f, 15.f), 3.f, sf::Color(200, 0, 0), 0.f, sf::Color(0, 0, 0));
+    roundedRect = thor::Shapes::roundedRect(sf::Vector2f(200.f, 15.f), 3.f, sf::Color(60, 0, 0), 3.f, sf::Color(180, 200, 200));
 
-    debugDraw = new DebugDraw(*(context->m_rwindow));
+    roundedRect.setPosition(50.f, 50.f);
+    roundedRecthp.setPosition(50.f, 50.f);
+}
 
-    debugDraw->SetFlags(b2Draw::e_shapeBit);
-    context->m_world->SetDebugDraw(debugDraw);
+Level1::~Level1()
+{
+    //dtor
+}
+
+bool Level1::Prepare()
+{
+    context->LoadWorld("maps/nivel1.json",32,30,30);
+    context->m_script = new LuaScript("Player.lua");
+    context->m_psystem->setTexture(*(context->getPrtTexture("blood")));
+    groundS.setTexture(*(context->getPrtTexture("floor")));
 
     GameCL = new sse::ContactListener(context);
     context->m_world -> SetContactListener(GameCL);
@@ -56,61 +54,69 @@ Level1::Level1(sf::RenderWindow* rw)
         DrawList.push_back(character);
     }
 
-    impactview = &(player->moveimpactview);
     playerHP = player->getHP();
 
-    targetT.loadFromFile("assets/target.png");
-    pointerT.loadFromFile("assets/pointer.png");
+    targetS.setTexture(*(context->getPrtTexture("target")));
+    pointerS.setTexture(*(context->getPrtTexture("pointer")));
 
-    targetS.setTexture(targetT);
-    pointerS.setTexture(pointerT);
-
-    centro.x = targetS.getTextureRect().width / 2.f;
-    centro.y = targetS.getTextureRect().height / 2.f;
-    targetS.setOrigin(centro);
+    targetS.setOrigin(targetS.getTextureRect().width / 2.f, targetS.getTextureRect().height / 2.f);
     CurrentTargetS = &targetS;
-    //-----------------------------------//
 
-    roundedRecthp = thor::Shapes::roundedRect(sf::Vector2f(200.f, 15.f), 3.f, sf::Color(200, 0, 0), 0.f, sf::Color(0, 0, 0));
-    roundedRect = thor::Shapes::roundedRect(sf::Vector2f(200.f, 15.f), 3.f, sf::Color(60, 0, 0), 3.f, sf::Color(180, 200, 200));
+    /* GUI */
+    auto star_button = sfg::Button::Create( "  Menu  " );
+    star_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &Level1::GotoMenu, this ) );
+    auto exit_button = sfg::Button::Create( "Exit" );
+    exit_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &Level1::ExitClick, this ) );
 
-    roundedRect.setPosition(50.f, 50.f);
-    roundedRecthp.setPosition(50.f, 50.f);
-
-    m_label = sfg::Label::Create( "Hello world!" );
-
-    // Create a simple button and connect the click signal.
-    auto button = sfg::Button::Create( "Greet SFGUI!" );
-    button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &Level1::OnButtonClick, this ) );
 
     auto box = sfg::Box::Create( sfg::Box::Orientation::VERTICAL, 5.0f );
-    box->Pack( m_label );
-    box->Pack( button, false );
+    //box->Pack( m_label );
+    box->Pack( star_button, false );
+    box->Pack( exit_button, false );
 
-    // Create a window and add the box layouter to it. Also set the window's title.
-    window->SetTitle( "Hello world!" );
-    window->SetPosition( sf::Vector2f( 100.f, 100.f ) );
     window->Add( box );
+    // Create a window and add the box layouter to it. Also set the window's title.
+    window->SetStyle( window->GetStyle() ^ sfg::Window::TITLEBAR );
+    //window->SetStyle( window->GetStyle() ^ sfg::Window::BACKGROUND);
+    window->SetStyle( window->GetStyle() ^ sfg::Window::RESIZE );
 
+    desktop.LoadThemeFromFile( "assets/example.theme" );
     desktop.Add( window );
+
+    window->Show(false);
+    sf::FloatRect allocation = window->GetAllocation();
+    window->SetPosition( sf::Vector2f( context->m_screensize.x - allocation.width, context->m_screensize.y-allocation.height )/2.0f );
+    /* Fin GUI */
+
+    return true;
 }
 
-Level1::~Level1()
+void Level1::ExitClick()
 {
-    //dtor
+    window->Show(false);
+    gotoWin = -1;
 }
 
-
-void Level1::OnButtonClick()
+void Level1::GotoMenu()
 {
-    m_label->SetText( "Hello SFGUI, pleased to meet you!" );
+    window->Show(false);
+    gotoWin = 0;
 }
+
 
 int Level1::Run()
 {
+    if(!Prepare())
+        std::cout<<"Ocurrio un error!!!";
     bool isFinish = false;
     while(context->m_rwindow->isOpen())
     {
+        if(gotoWin >-2)
+        {
+            int rvalue = gotoWin;
+            gotoWin = -2;
+            return rvalue;
+        }
         map.clearEvents();
         sf::Event event;
         sf::Vector2i winmouseposition = sf::Mouse::getPosition(*context->m_rwindow);
@@ -143,7 +149,7 @@ int Level1::Run()
             {
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
                 {
-                    return -1;
+                    window->Show(!window->IsGloballyVisible());
                 }
                 if (map.isActive(Debug))
                     debugflag = !debugflag;
@@ -153,7 +159,7 @@ int Level1::Run()
             desktop.HandleEvent( event );
         }
         sf::View view = context->m_rwindow->getView();
-        sf::Vector2f mousePos(winmouseposition.x + view.getCenter().x - screnSize.x/2 ,winmouseposition.y + view.getCenter().y - screnSize.y/2);
+        sf::Vector2f mousePos(winmouseposition.x + view.getCenter().x - context->m_screensize.x/2 ,winmouseposition.y + view.getCenter().y - context->m_screensize.y/2);
         sf::Vector2f playerposition = player->updatePlayer(isFocused, hasclickplayer);
 
         sf::Time frameTime = frameClock.restart();
@@ -192,7 +198,7 @@ int Level1::Run()
         context->m_rwindow->draw(groundS);
 
         stepClock.restart();
-        sf::Vector2f offsetview = sf::Vector2f((playerposition.x - view.getCenter().x)*0.1f,(playerposition.y - view.getCenter().y)*0.1f)+ *impactview;
+        sf::Vector2f offsetview = sf::Vector2f((playerposition.x - view.getCenter().x)*0.1f,(playerposition.y - view.getCenter().y)*0.1f)+ context->impactview;
         if(offsetview.x<0.5 && offsetview.x > -0.5)
             offsetview.x = 0;
         if(offsetview.y<0.5 && offsetview.y > -0.5)
@@ -300,8 +306,8 @@ int Level1::Run()
         context->m_rwindow->draw(roundedRect);
         context->m_rwindow->draw(roundedRecthp);
 
-        /*desktop.Update( frameTime.asSeconds() );
-        m_sfgui.Display(*(context->m_rwindow));*/
+        desktop.Update( frameTime.asSeconds() );
+        m_sfgui.Display(*(context->m_rwindow));
 
         if(debugflag)
         {

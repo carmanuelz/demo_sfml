@@ -15,7 +15,7 @@
 #include "particlesys.h"
 #include "Bullet.h"
 
-#include "../AnimatedAccessor.h"
+#include "AnimatedAccessor.h"
 
 #define M_PI 3.14159265358979323846
 #define SPEED 0.3
@@ -85,7 +85,7 @@ public:
     void setweapon(std::string weaponcode);
     float Acumulator = 0;
     sf::Sprite bulletS;
-    sf::Sound soundshoot;
+    //sf::Sound soundshoot;
     bool isbusy = false;
     void takeDamage(float inDamage);
     float Hit();
@@ -124,7 +124,7 @@ private:
     sf::Texture Cspritesheet;
     sf::Texture weaponspritesheet;
     std::shared_ptr<sf::Texture> wspritesheet;
-    sf::SoundBuffer buffershoot;
+    //sf::SoundBuffer buffershoot;
     void init();
     b2Body* createBody(float x, float y);
     void loadFrames(Animation* anim,std::string luapath);

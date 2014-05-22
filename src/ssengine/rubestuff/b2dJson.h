@@ -24,7 +24,7 @@
 #include <set>
 #include <string>
 #include <Box2D/Box2D.h>
-#include "json/json.h"
+#include <jsoncpp/json.h>"
 
 class b2dJsonImage;
 class EditorDocument;

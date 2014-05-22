@@ -19,7 +19,7 @@
 #include <istream>
 #include <fstream>
 #include "b2dJson.h"
-#include "json/json.h"
+#include <jsoncpp/json.h>
 #include "b2dJsonImage.h"
 
 using namespace std;

@@ -7708,7 +7708,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1400692063 source:d:\workspace\c++\demo_sfml\src\main.cpp
+1400781520 source:d:\workspace\c++\demo_sfml\src\main.cpp
 	<math.h>
 	<iostream>
 	<SFML/System.hpp>
@@ -7773,7 +7773,7 @@
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Texture.hpp>
 
-1400681061 d:\workspace\c++\demo_sfml\src\ssengine\character.h
+1400780413 d:\workspace\c++\demo_sfml\src\ssengine\character.h
 	<string>
 	<vector>
 	<map>
@@ -7786,7 +7786,7 @@
 	"AStarFinder.h"
 	"particlesys.h"
 	"Bullet.h"
-	"../AnimatedAccessor.h"
+	"AnimatedAccessor.h"
 
 1400246461 d:\workspace\c++\demo_sfml\src\ssengine\drawableentity.h
 	<string>
@@ -7868,7 +7868,7 @@
 1400165128 source:d:\workspace\c++\demo_sfml\src\ssengine\loadconf\luascript.cpp
 	"LuaScript.h"
 
-1400682024 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
+1400780396 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
 	"character.h"
 
 1400543680 d:\workspace\c++\test2\src\ssengine\particlesys.h
@@ -8613,21 +8613,22 @@
 1400165127 source:d:\workspace\c++\demo_sfml\src\ssengine\userdata.cpp
 	"UserData.h"
 
-1400505640 source:d:\workspace\c++\demo_sfml\src\ssengine\gamecontext.cpp
+1400775093 source:d:\workspace\c++\demo_sfml\src\ssengine\gamecontext.cpp
 	"GameContext.h"
 
-1400505640 d:\workspace\c++\demo_sfml\src\ssengine\gamecontext.h
+1400775853 d:\workspace\c++\demo_sfml\src\ssengine\gamecontext.h
 	<string>
 	<Box2D/Box2D.h>
 	<SFML/Graphics.hpp>
 	<Thor/Particles/ParticleSystem.hpp>
 	<Thor/Resources.hpp>
+	"debugrender.h"
 	"rubestuff/b2dJson.h"
 	"AStarFinder.h"
 	"loadconf/LuaScript.h"
 	"UserData.h"
 	"tween/TweenManager.h"
-	"AssetManager.h"
+	"KeyManager.h"
 
 1400187426 d:\workspace\c++\test2\src\ssengine\userdata.h
 
@@ -8650,13 +8651,13 @@
 1400187426 source:d:\workspace\c++\test2\src\ssengine\userdata.cpp
 	"UserData.h"
 
-1400165126 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\b2djson.h
+1400770362 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\b2djson.h
 	<stdio.h>
 	<map>
 	<set>
 	<string>
 	<Box2D/Box2D.h>
-	"json/json.h"
+	<jsoncpp/json.h>
 
 1400165126 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\json\json.h
 	<cpptl/config.h>
@@ -8679,11 +8680,11 @@
 	<string>
 	<iostream>
 
-1400165126 source:d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\b2djson.cpp
+1400770382 source:d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\b2djson.cpp
 	<istream>
 	<fstream>
 	"b2dJson.h"
-	"json/json.h"
+	<jsoncpp/json.h>
 	"b2dJsonImage.h"
 
 1400165126 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\b2djsonimage.h
@@ -8838,7 +8839,7 @@
 
 1400187426 d:\workspace\c++\test2\src\ssengine\screen.h
 
-1400681061 d:\workspace\c++\demo_sfml\src\ssengine\level1.h
+1400779606 d:\workspace\c++\demo_sfml\src\ssengine\level1.h
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -8849,7 +8850,7 @@
 	<Thor/Shapes/Shapes.hpp>
 	<Thor/Input/Action.hpp>
 	<Thor/Input/ActionMap.hpp>
-	"../debugrender.h"
+	"debugrender.h"
 	"ssengine.h"
 	"Screen.h"
 	"GameContext.h"
@@ -8861,19 +8862,19 @@
 
 1400165127 d:\workspace\c++\demo_sfml\src\ssengine\screen.h
 
-1400692211 source:d:\workspace\c++\demo_sfml\src\ssengine\level1.cpp
+1400781471 source:d:\workspace\c++\demo_sfml\src\ssengine\level1.cpp
 	"Level1.h"
 
 1400681061 d:\workspace\c++\demo_sfml\src\ssengine\aicharacter.h
 	"character.h"
 
-1400681061 d:\workspace\c++\demo_sfml\src\ssengine\player.h
+1400775789 d:\workspace\c++\demo_sfml\src\ssengine\player.h
 	"character.h"
 
 1400681507 source:d:\workspace\c++\demo_sfml\src\ssengine\aicharacter.cpp
 	"AICharacter.h"
 
-1400681061 source:d:\workspace\c++\demo_sfml\src\ssengine\player.cpp
+1400780478 source:d:\workspace\c++\demo_sfml\src\ssengine\player.cpp
 	"Player.h"
 
 1400622584 d:\workspace\c++\test2\src\ssengine\aicharacter.h
@@ -9017,10 +9018,10 @@
 	"GameContext.h"
 	"UserData.h"
 
-1400692231 source:d:\workspace\c++\demo_sfml\src\ssengine\level.cpp
+1400778464 source:d:\workspace\c++\demo_sfml\src\ssengine\level.cpp
 	"Level.h"
 
-1400692238 d:\workspace\c++\demo_sfml\src\ssengine\level.h
+1400778400 d:\workspace\c++\demo_sfml\src\ssengine\level.h
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -9031,7 +9032,6 @@
 	<Thor/Shapes/Shapes.hpp>
 	<Thor/Input/Action.hpp>
 	<Thor/Input/ActionMap.hpp>
-	"../debugrender.h"
 	"ssengine.h"
 	"Screen.h"
 	"GameContext.h"
@@ -9045,7 +9045,7 @@
 	"GameContext.h"
 	"Bullet.h"
 
-1400261449 d:\workspace\c++\demo_sfml\src\ssengine\assetmanager.h
+1400766315 d:\workspace\c++\demo_sfml\src\ssengine\assetmanager.h
 	<map>
 	<utility>
 	<exception>
@@ -9118,7 +9118,7 @@
 	"AnimatedSprite.hpp"
 	"Screen.h"
 
-1400516378 d:\workspace\c++\demo_sfml\src\ssengine\menuscreen.h
+1400778197 d:\workspace\c++\demo_sfml\src\ssengine\menuscreen.h
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -9126,7 +9126,7 @@
 	<SFGUI/SFGUI.hpp>
 	"Screen.h"
 
-1400681280 source:d:\workspace\c++\demo_sfml\src\ssengine\menuscreen.cpp
+1400781596 source:d:\workspace\c++\demo_sfml\src\ssengine\menuscreen.cpp
 	"MenuScreen.h"
 
 1400522087 d:\workspace\c++\demo_sfml\src\icon.h
@@ -9143,4 +9143,160 @@
 
 1400617590 source:d:\workspace\c++\test2\src\ssengine\menuscreen.cpp
 	"MenuScreen.h"
+
+1400766315 d:\workspace\c++\demo_sfml\src\ssengine\keymanager.h
+	<map>
+	<utility>
+	<exception>
+	<string>
+	<type_traits>
+
+1304372844 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\jsoncpp\json.h
+	"autolink.h"
+	"value.h"
+	"reader.h"
+	"writer.h"
+	"features.h"
+
+1304372844 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\jsoncpp\autolink.h
+	"config.h"
+	<cpptl/cpptl_autolink.h>
+	"autolink.h"
+
+1304372844 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\jsoncpp\config.h
+	<cpptl/config.h>
+
+1304372844 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\jsoncpp\value.h
+	"forwards.h"
+	<string>
+	<vector>
+	<map>
+	<cpptl/smallmap.h>
+	<cpptl/forwards.h>
+
+1304372844 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\jsoncpp\forwards.h
+	"config.h"
+
+1304372844 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\jsoncpp\reader.h
+	"features.h"
+	"value.h"
+	<deque>
+	<stack>
+	<string>
+	<iostream>
+
+1304372818 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\jsoncpp\features.h
+	"forwards.h"
+
+1304372844 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\jsoncpp\writer.h
+	"value.h"
+	<vector>
+	<string>
+	<iostream>
+
+1400769534 source:d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\jsoncpp\json_reader.cpp
+	"reader.h"
+	"value.h"
+	"json_tool.h"
+	<utility>
+	<cstdio>
+	<cassert>
+	<cstring>
+	<iostream>
+	<stdexcept>
+
+1293471924 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\jsoncpp\json_tool.h
+
+1400769551 source:d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\jsoncpp\json_value.cpp
+	"value.h"
+	"writer.h"
+	"json_batchallocator.h"
+	<iostream>
+	<utility>
+	<stdexcept>
+	<cstring>
+	<cassert>
+	<cpptl/conststring.h>
+	<cstddef>
+	"json_internalarray.inl"
+	"json_internalmap.inl"
+	"json_valueiterator.inl"
+
+1304372844 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\jsoncpp\json_batchallocator.h
+	<stdlib.h>
+	<assert.h>
+
+1304372844 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\jsoncpp\json_internalarray.inl
+
+1304372844 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\jsoncpp\json_internalmap.inl
+
+1304372844 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\jsoncpp\json_valueiterator.inl
+
+1304372844 d:\workspace\c++\librerias\jsoncpp\include\jsoncpp\json.h
+	"autolink.h"
+	"value.h"
+	"reader.h"
+	"writer.h"
+	"features.h"
+
+1304372844 d:\workspace\c++\librerias\jsoncpp\include\jsoncpp\autolink.h
+	"config.h"
+	<cpptl/cpptl_autolink.h>
+	"autolink.h"
+
+1304372844 d:\workspace\c++\librerias\jsoncpp\include\jsoncpp\config.h
+	<cpptl/config.h>
+
+1304372844 d:\workspace\c++\librerias\jsoncpp\include\jsoncpp\value.h
+	"forwards.h"
+	<string>
+	<vector>
+	<map>
+	<cpptl/smallmap.h>
+	<cpptl/forwards.h>
+
+1304372844 d:\workspace\c++\librerias\jsoncpp\include\jsoncpp\forwards.h
+	"config.h"
+
+1304372844 d:\workspace\c++\librerias\jsoncpp\include\jsoncpp\reader.h
+	"features.h"
+	"value.h"
+	<deque>
+	<stack>
+	<string>
+	<iostream>
+
+1304372818 d:\workspace\c++\librerias\jsoncpp\include\jsoncpp\features.h
+	"forwards.h"
+
+1304372844 d:\workspace\c++\librerias\jsoncpp\include\jsoncpp\writer.h
+	"value.h"
+	<vector>
+	<string>
+	<iostream>
+
+1375567754 d:\workspace\c++\demo_sfml\src\debugdraw.h
+	<Box2D/Box2D.h>
+
+1375567724 source:d:\workspace\c++\demo_sfml\src\debugdraw.cpp
+	"DebugDraw.h"
+	<GLUT/glut.h>
+	<GL/gl.h>
+	<cstdio>
+	<cstdarg>
+	<cstring>
+
+1400167720 d:\workspace\c++\demo_sfml\src\ssengine\debugrender.h
+	<Box2D/Box2D.h>
+	<iostream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+
+1400774960 d:\workspace\c++\demo_sfml\src\ssengine\animatedaccessor.h
+	<SFML/Graphics.hpp>
+	"tween/Accessor.h"
+	"AnimatedSprite.hpp"
+
+1400165126 source:d:\workspace\c++\demo_sfml\src\ssengine\debugrender.cpp
+	"debugrender.h"
 

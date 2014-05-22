@@ -1,5 +1,5 @@
-#ifndef ASSETMANAGER_H
-#define ASSETMANAGER_H
+#ifndef KEYMANAGER_H
+#define KEYMANAGER_H
 
 #include <map>
 #include <utility>
@@ -10,10 +10,10 @@
 namespace sse
 {
 template<typename K, typename V>
-class AssetManager
+class KeyManager
 {
 public:
-    AssetManager() {}
+    KeyManager() {}
 
     std::map<K, V> map;
 
@@ -51,4 +51,4 @@ public:
 };
 }
 
-#endif // ASSETMANAGER_H
+#endif // KEYMANAGER_H

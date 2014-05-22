@@ -30,6 +30,7 @@ int main()
     renderWindow.setMouseCursorVisible(false);
     renderWindow.setTitle("April's Quest");
     renderWindow.setIcon(sfml_icon.width,  sfml_icon.height,  sfml_icon.pixel_data);
+    thor::MultiResourceCache cache;
     //renderWindow.setActive(false);
     //LoaderScreen loader(&renderWindow);
     //sf::Thread thread(std::bind(&RenderLoader,&loader,&renderWindow));
@@ -42,7 +43,7 @@ int main()
     renderWindow.draw(backgroundS);
     renderWindow.display();
     Screens.push_back(new MenuScreen(&renderWindow));
-    Screens.push_back(new Level1(&renderWindow));
+    Screens.push_back(new Level1(&renderWindow,&cache));
     //loader.loaderFlag = false;
     //Main loop
     //renderWindow.setActive(true);
