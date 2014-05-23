@@ -85,7 +85,7 @@ public:
     void setweapon(std::string weaponcode);
     float Acumulator = 0;
     sf::Sprite bulletS;
-    //sf::Sound soundshoot;
+    sf::Sound soundshoot;
     bool isbusy = false;
     void takeDamage(float inDamage);
     float Hit();
@@ -106,6 +106,7 @@ protected:
     float currenttimefind = 0;
     float limittimefind = 4;
     float HP = 0;
+    float FullHP;
     float Damage = 0;
     void setLeft();
     void setRight();
@@ -124,7 +125,7 @@ private:
     sf::Texture Cspritesheet;
     sf::Texture weaponspritesheet;
     std::shared_ptr<sf::Texture> wspritesheet;
-    //sf::SoundBuffer buffershoot;
+    sf::SoundBuffer buffershoot;
     void init();
     b2Body* createBody(float x, float y);
     void loadFrames(Animation* anim,std::string luapath);

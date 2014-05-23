@@ -2,14 +2,14 @@
 mob001 = {
 	type = 4,
 	src = "assets/enemmy.png",
-	start = {5, 70, 40, 2},
-	idle = {4, 70, 40, 1},
-	run = {4, 70, 40, 0},
-	attack  = {4, 70, 40, 3},
+	start = {5, 70, 44, 2},
+	idle = {8, 70, 44, 1},
+	run = {4, 70, 44, 0},
+	attack  = {4, 70, 44, 3},
 	offsetXR = -47,
 	offsetXL = -23,
-	offsetYR = -20,
-	offsetYL = -20,
+	offsetYR = -24,
+	offsetYL = -24,
 	hasweapon = false,
 	damage = 5,
 	HP = 40,
@@ -29,7 +29,7 @@ player01 = {
 	offsetYL = -35,
 	hasweapon =  true,	
 	damage = 5,
-	HP = 20,
+	HP = 100,
 	weapon = "w001"
 }
 

@@ -98,7 +98,7 @@ sf::Vector2f Player::updatePlayer(bool hasfocused, bool hasclick)
             {
                 createBullet(bulletOrigin, bulletVU, angle);
                 Acumulator = 0;
-                //soundshoot.play();
+                soundshoot.play();
                 hasshoot = true;
             }
         }

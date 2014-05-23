@@ -79,8 +79,8 @@ void Character::init()
 
     Body = createBody(x,y);
 
-    /*buffershoot.loadFromFile("assets/shoot.wav");
-    soundshoot.setBuffer(buffershoot);*/
+    buffershoot.loadFromFile("assets/shoot.wav");
+    soundshoot.setBuffer(buffershoot);
 
     animaccess = new AnimatedAccessor();
     float* values= new float[3];

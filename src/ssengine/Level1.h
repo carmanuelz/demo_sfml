@@ -32,7 +32,8 @@ public:
     Level1(sf::RenderWindow* rw, thor::MultiResourceCache* incache);
     virtual ~Level1();
     virtual int Run();
-    bool Prepare();
+    void Prepare();
+    void Restart();
 protected:
 private:
     sse::GameContext* context;
@@ -40,9 +41,11 @@ private:
     sf::Sprite groundS;
     sf::Sprite targetS;
     sf::Sprite pointerS;
+    sf::Sprite hpbar;
+
     sf::Sprite* CurrentTargetS;
     float playerHP;
-    sse::Player* player;
+    sse::Player* player = 0;
     sf::ConvexShape roundedRecthp;
     sf::ConvexShape roundedRect;
     sf::Clock stepClock;
@@ -53,6 +56,8 @@ private:
     sfg::Window::Ptr window = sfg::Window::Create();
     sfg::Desktop desktop;
 
+    sfg::Window::Ptr dead_window = sfg::Window::Create();
+
     std::vector<sse::drawableentity*> DrawList;
     std::vector<sse::AICharacter*> EnemmyList;
     std::vector<sse::Character*> CharacterList;
@@ -62,6 +67,7 @@ private:
     bool isFocused = true;
     bool hasclickplayer = true;
     bool debugflag = false;
+    bool isReady = false;
     void ExitClick();
     void GotoMenu();
     int gotoWin = -2;

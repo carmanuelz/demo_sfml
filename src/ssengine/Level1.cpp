@@ -13,11 +13,11 @@ Level1::Level1(sf::RenderWindow* rw, thor::MultiResourceCache* incache)
     context->m_tweenmanager = new sse::TweenManager();
     map[Debug] = thor::Action(sf::Keyboard::B, thor::Action::PressOnce);
 
-    roundedRecthp = thor::Shapes::roundedRect(sf::Vector2f(200.f, 15.f), 3.f, sf::Color(200, 0, 0), 0.f, sf::Color(0, 0, 0));
-    roundedRect = thor::Shapes::roundedRect(sf::Vector2f(200.f, 15.f), 3.f, sf::Color(60, 0, 0), 3.f, sf::Color(180, 200, 200));
+    roundedRecthp = thor::Shapes::roundedRect(sf::Vector2f(200.f, 30.f), 15.f, sf::Color(200, 0, 0), 0.f, sf::Color(0, 0, 0));
+    roundedRect = thor::Shapes::roundedRect(sf::Vector2f(200.f, 30.f), 15.f, sf::Color(60, 0, 0), 0.f, sf::Color(0, 0, 0));
 
-    roundedRect.setPosition(50.f, 50.f);
-    roundedRecthp.setPosition(50.f, 50.f);
+    roundedRect.setPosition(80.f, 40.f);
+    roundedRecthp.setPosition(80.f, 40.f);
 }
 
 Level1::~Level1()
@@ -25,7 +25,7 @@ Level1::~Level1()
     //dtor
 }
 
-bool Level1::Prepare()
+void Level1::Prepare()
 {
     context->LoadWorld("maps/nivel1.json",32,30,30);
     context->m_script = new LuaScript("Player.lua");
@@ -35,29 +35,10 @@ bool Level1::Prepare()
     GameCL = new sse::ContactListener(context);
     context->m_world -> SetContactListener(GameCL);
 
-    EnemmyList.push_back(new sse::AICharacter(700,400,"mob001",context));
-    EnemmyList.push_back(new sse::AICharacter(700,500,"mob001",context));
-    EnemmyList.push_back(new sse::AICharacter(700,600,"mob001",context));
-
-    for(auto e = EnemmyList.cbegin() ; e != EnemmyList.cend() ; e++ )
-    {
-        sse::AICharacter* enemmy = *e;
-        CharacterList.push_back(enemmy);
-    }
-    player = new sse::Player(100,100,"player01",context);
-    CharacterList.push_back(player);
-
-    for(auto c = CharacterList.cbegin() ; c != CharacterList.cend() ; c++ )
-    {
-        sse::Character* character = *c;
-        character->setBulletList(&BulletList);
-        DrawList.push_back(character);
-    }
-
-    playerHP = player->getHP();
-
     targetS.setTexture(*(context->getPrtTexture("target")));
     pointerS.setTexture(*(context->getPrtTexture("pointer")));
+    hpbar.setTexture(*(context->getPrtTexture("hpbar")));
+    hpbar.setPosition(10.f, 10.f);
 
     targetS.setOrigin(targetS.getTextureRect().width / 2.f, targetS.getTextureRect().height / 2.f);
     CurrentTargetS = &targetS;
@@ -67,7 +48,6 @@ bool Level1::Prepare()
     star_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &Level1::GotoMenu, this ) );
     auto exit_button = sfg::Button::Create( "Exit" );
     exit_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &Level1::ExitClick, this ) );
-
 
     auto box = sfg::Box::Create( sfg::Box::Orientation::VERTICAL, 5.0f );
     //box->Pack( m_label );
@@ -86,9 +66,64 @@ bool Level1::Prepare()
     window->Show(false);
     sf::FloatRect allocation = window->GetAllocation();
     window->SetPosition( sf::Vector2f( context->m_screensize.x - allocation.width, context->m_screensize.y-allocation.height )/2.0f );
-    /* Fin GUI */
 
-    return true;
+    sf::Image sfgui_logo;
+	auto image = sfg::Image::Create();
+	if( sfgui_logo.loadFromFile( "assets/icon_dead.png" ) ) {
+		image->SetImage( sfgui_logo );
+	}
+    auto box_dead = sfg::Box::Create( sfg::Box::Orientation::VERTICAL, 5.0f );
+    auto continuar_button = sfg::Button::Create( "  Continuar?  " );
+    continuar_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &Level1::GotoMenu, this ) );
+    box_dead->Pack(image,false);
+    box_dead->Pack(continuar_button,false);
+    dead_window->Add( box_dead );
+    dead_window->SetStyle( dead_window->GetStyle() ^ sfg::Window::TITLEBAR );
+    dead_window->SetStyle( dead_window->GetStyle() ^ sfg::Window::RESIZE );
+    desktop.Add( dead_window );
+    dead_window->Show(false);
+    /* Fin GUI */
+    sf::FloatRect dallocation = dead_window->GetAllocation();
+    dead_window->SetPosition( sf::Vector2f( context->m_screensize.x - dallocation.width, context->m_screensize.y-dallocation.height - 200.0f )/2.0f );
+    isReady = true;
+}
+
+void Level1::Restart()
+{
+    CharacterList.clear();
+    DrawList.clear();
+    while(!EnemmyList.empty())
+    {
+        sse::AICharacter* enemmy = EnemmyList.back();
+        EnemmyList.pop_back();
+        delete enemmy;
+    }
+    if(player != 0)
+        delete player;
+
+    EnemmyList.push_back(new sse::AICharacter(700,400,"mob001",context));
+    EnemmyList.push_back(new sse::AICharacter(700,500,"mob001",context));
+    EnemmyList.push_back(new sse::AICharacter(700,600,"mob001",context));
+    EnemmyList.push_back(new sse::AICharacter(650,400,"mob001",context));
+    EnemmyList.push_back(new sse::AICharacter(650,350,"mob001",context));
+    EnemmyList.push_back(new sse::AICharacter(400,350,"mob001",context));
+
+    for(auto e = EnemmyList.cbegin() ; e != EnemmyList.cend() ; e++ )
+    {
+        sse::AICharacter* enemmy = *e;
+        CharacterList.push_back(enemmy);
+    }
+    player = new sse::Player(100,100,"player01",context);
+    CharacterList.push_back(player);
+
+    for(auto c = CharacterList.cbegin() ; c != CharacterList.cend() ; c++ )
+    {
+        sse::Character* character = *c;
+        character->setBulletList(&BulletList);
+        DrawList.push_back(character);
+    }
+
+    playerHP = player->getHP();
 }
 
 void Level1::ExitClick()
@@ -99,6 +134,7 @@ void Level1::ExitClick()
 
 void Level1::GotoMenu()
 {
+    dead_window->Show(false);
     window->Show(false);
     gotoWin = 0;
 }
@@ -106,8 +142,9 @@ void Level1::GotoMenu()
 
 int Level1::Run()
 {
-    if(!Prepare())
-        std::cout<<"Ocurrio un error!!!";
+    if(!isReady)
+        Prepare();
+    Restart();
     bool isFinish = false;
     while(context->m_rwindow->isOpen())
     {
@@ -138,7 +175,10 @@ int Level1::Run()
                 if(event.type == sf::Event::MouseMoved)
                 {
                     std::vector<sf::FloatRect> allocations;
-                    allocations.push_back(window->GetAllocation());
+                    if(window->IsGloballyVisible())
+                        allocations.push_back(window->GetAllocation());
+                    if(dead_window->IsGloballyVisible())
+                        allocations.push_back(dead_window->GetAllocation());
                     hasclickplayer = sse::insideGUI(allocations, winmouseposition);
                 }
             }
@@ -147,7 +187,7 @@ int Level1::Run()
 
             if(event.type == sf::Event::KeyPressed)
             {
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+                if(!player->isDead() && sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
                 {
                     window->Show(!window->IsGloballyVisible());
                 }
@@ -207,6 +247,7 @@ int Level1::Run()
         view.move(offsetview.x,offsetview.y);
         roundedRect.move(offsetview.x, offsetview.y);
         roundedRecthp.move(offsetview.x, offsetview.y);
+        hpbar.move(offsetview.x, offsetview.y);
         if(player->getHP() >= 0)
             roundedRecthp.setScale(player->getHP()/playerHP,1);
         context->m_rwindow->setView(view);
@@ -262,7 +303,7 @@ int Level1::Run()
                 b2Vec2 p3 = enemmy->Body->GetPosition();
                 b2Vec2 dif2 = p1 - p3;
                 float module2 = sqrt(pow(dif2.x,2)+pow(dif2.y,2));
-                b2Vec2 p4 = p3 + b2Vec2(dif2.x/module2*4,dif2.y/module2*4);
+                b2Vec2 p4 = p3 + b2Vec2(dif2.x/module2*6,dif2.y/module2*6);
                 sse::MyRayCastCallback RayCastCallback2;
                 context->m_world->RayCast(&RayCastCallback2, p3 , p4);
                 if ( RayCastCallback2.m_fixture )
@@ -291,6 +332,7 @@ int Level1::Run()
 
         if(player->isDead() && !isFinish)
         {
+            dead_window->Show(true);
             for(auto e = EnemmyList.cbegin() ; e != EnemmyList.cend() ; e++ )
             {
                 sse::AICharacter* enemmy = *e;
@@ -305,6 +347,7 @@ int Level1::Run()
 
         context->m_rwindow->draw(roundedRect);
         context->m_rwindow->draw(roundedRecthp);
+        context->m_rwindow->draw(hpbar);
 
         desktop.Update( frameTime.asSeconds() );
         m_sfgui.Display(*(context->m_rwindow));

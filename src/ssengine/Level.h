@@ -33,6 +33,7 @@ public:
     Level(sf::RenderWindow* rw, thor::MultiResourceCache* incache);
     virtual ~Level();
     virtual int Run();
+    bool Prepare();
 protected:
     void CastEnemy();
 private:
@@ -63,6 +64,7 @@ private:
     bool isFocused = true;
     bool hasclickplayer = true;
     bool debugflag = false;
+    bool isReady = false;
     void ExitClick();
     void GotoMenu();
     int gotoWin = -2;

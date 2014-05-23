@@ -24,7 +24,7 @@ int main()
     int screen = 0;
     sf::VideoMode videomode(800, 600, 32);
     std::vector<Screen*> Screens;
-    sf::RenderWindow renderWindow(videomode, "Test",sf::Style::Close);
+    sf::RenderWindow renderWindow(videomode, "Test",sf::Style::None);
     //renderWindow.setVerticalSyncEnabled(true);
     renderWindow.setFramerateLimit(60);
     renderWindow.setMouseCursorVisible(false);

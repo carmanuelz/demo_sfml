@@ -54,6 +54,7 @@ void GameContext::DrawSysParticle()
 
 void GameContext::registerResurces()
 {
+    textureKeys.add("hpbar",thor::Resources::fromFile<sf::Texture>("assets/hpbar.png"));
     textureKeys.add("blood",thor::Resources::fromFile<sf::Texture>("assets/bloodparticle.png"));
     textureKeys.add("floor",thor::Resources::fromFile<sf::Texture>("maps/area1.png"));
     textureKeys.add("target",thor::Resources::fromFile<sf::Texture>("assets/target.png"));

@@ -1,5 +1,6 @@
 Window {
-	BackgroundColor: #000000FF;
+	BorderColor: #00000066;
+	BackgroundColor: #00000066;
 	Color: #F7FFF4FF;
 }
 

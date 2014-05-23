@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/test2" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/demo" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option additional_output="../librerias/Box2d/Box2d.cbp;" />
 				<Option type="1" />
@@ -26,8 +26,7 @@
 					<Add directory="../librerias/Jsoncpp/include" />
 				</Compiler>
 				<Linker>
-					<Add option="-lBox2D" />
-					<Add option="-ljsoncpp" />
+					<Add option="-ljsoncpp-s" />
 					<Add library="sfgui-s" />
 					<Add library="sfml-graphics-s-d" />
 					<Add library="sfml-audio-s-d" />
@@ -44,6 +43,7 @@
 					<Add library="opengl32" />
 					<Add library="winmm" />
 					<Add library="lua5.1-s" />
+					<Add library="Box2D-s" />
 					<Add directory="../librerias/Box2D/lib" />
 					<Add directory="../librerias/Lua/lib" />
 					<Add directory="../librerias/Thor/lib" />
@@ -52,7 +52,7 @@
 				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/test2" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/demo" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option additional_output="../librerias/Box2d/Box2d.cbp;" />
 				<Option type="0" />
@@ -68,9 +68,11 @@
 					<Add directory="../librerias/Thor/include" />
 					<Add directory="../librerias/SFGUI/include" />
 					<Add directory="../librerias/Box2d/include" />
+					<Add directory="../librerias/Jsoncpp/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="-ljsoncpp-s" />
 					<Add library="sfgui-s" />
 					<Add library="sfml-graphics-s" />
 					<Add library="sfml-audio-s" />
@@ -92,6 +94,7 @@
 					<Add directory="../librerias/Thor/lib" />
 					<Add directory="../librerias/SFGUI/lib" />
 					<Add directory="../librerias/Box2D/lib" />
+					<Add directory="../librerias/Jsoncpp/lib" />
 				</Linker>
 			</Target>
 		</Build>
