@@ -54,13 +54,14 @@ void GameContext::DrawSysParticle()
 
 void GameContext::registerResurces()
 {
-    textureKeys.add("hpbar",thor::Resources::fromFile<sf::Texture>("assets/hpbar.png"));
-    textureKeys.add("blood",thor::Resources::fromFile<sf::Texture>("assets/bloodparticle.png"));
-    textureKeys.add("floor",thor::Resources::fromFile<sf::Texture>("maps/area1.png"));
-    textureKeys.add("target",thor::Resources::fromFile<sf::Texture>("assets/target.png"));
-    textureKeys.add("pointer",thor::Resources::fromFile<sf::Texture>("assets/pointer.png"));
-    textureKeys.add("rifle",thor::Resources::fromFile<sf::Texture>("assets/rifle.png"));
-    textureKeys.add("bullet", thor::Resources::fromFile<sf::Texture>("assets/bullet2.png"));
+    //textureKeys.add("icon_dead",thor::Resources::fromFile<sf::Texture>("assets/images/others/icon_dead.png"));
+    textureKeys.add("hpbar",thor::Resources::fromFile<sf::Texture>("assets/images/others/hpbar.png"));
+    textureKeys.add("blood",thor::Resources::fromFile<sf::Texture>("assets/images/particles/bloodparticle.png"));
+    textureKeys.add("floor",thor::Resources::fromFile<sf::Texture>("assets/maps/area1.png"));
+    textureKeys.add("target",thor::Resources::fromFile<sf::Texture>("assets/images/others/target.png"));
+    textureKeys.add("pointer",thor::Resources::fromFile<sf::Texture>("assets/images/others/pointer.png"));
+    textureKeys.add("rifle",thor::Resources::fromFile<sf::Texture>("assets/images/weapon/rifle.png"));
+    textureKeys.add("bullet", thor::Resources::fromFile<sf::Texture>("assets/images/bullets/bullet2.png"));
 }
 
 std::shared_ptr<sf::Texture> GameContext::getPrtTexture(std::string key)

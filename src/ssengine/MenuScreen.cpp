@@ -3,7 +3,7 @@
 MenuScreen::MenuScreen(sf::RenderWindow* rw):renderwindow(rw)
 {
     screnSize = sf::Vector2i((int)renderwindow->getSize().x,(int)renderwindow->getSize().y);
-    pointerT.loadFromFile("assets/pointer.png");
+    pointerT.loadFromFile("assets/images/others/pointer.png");
     pointerS.setTexture(pointerT);
 
     //m_label = sfg::Label::Create( "Menu" );
@@ -19,8 +19,8 @@ MenuScreen::MenuScreen(sf::RenderWindow* rw):renderwindow(rw)
     auto box = sfg::Box::Create( sfg::Box::Orientation::VERTICAL, 5.0f );
     //box->Pack( m_label );
     box->Pack( star_button, false );
-    box->Pack( exit_button, false );
     box->Pack( instrucciones_button, false );
+    box->Pack( exit_button, false );
 
     window->Add( box );
     // Create a window and add the box layouter to it. Also set the window's title.
@@ -28,7 +28,7 @@ MenuScreen::MenuScreen(sf::RenderWindow* rw):renderwindow(rw)
     window->SetStyle( window->GetStyle() ^ sfg::Window::BACKGROUND);
     window->SetStyle( window->GetStyle() ^ sfg::Window::RESIZE );
 
-    desktop.LoadThemeFromFile( "assets/example.theme" );
+    desktop.LoadThemeFromFile( "assets/main.theme" );
     desktop.Add( window );
 
     sf::FloatRect allocation = window->GetAllocation();

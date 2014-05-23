@@ -38,7 +38,7 @@ int main()
     //thread.launch();
     sf::Texture backgroundT;
     sf::Sprite backgroundS;
-    backgroundT.loadFromFile("assets/loadingground.png");
+    backgroundT.loadFromFile("assets/images/others/loadingground.png");
     backgroundS.setTexture(backgroundT);
     renderWindow.clear();
     renderWindow.draw(backgroundS);

@@ -7709,7 +7709,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1400781520 source:d:\workspace\c++\demo_sfml\src\main.cpp
+1400856709 source:d:\workspace\c++\demo_sfml\src\main.cpp
 	<math.h>
 	<iostream>
 	<SFML/System.hpp>
@@ -7719,6 +7719,7 @@
 	"ssengine/Level1.h"
 	"ssengine/MenuScreen.h"
 	"ssengine/LoaderScreen.h"
+	"ssengine/InstruccionesScreen.h"
 	"icon.h"
 
 1374108588 d:\workspace\c++\demo_sfml\src\rubestuff\b2djson.h
@@ -7774,7 +7775,7 @@
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Texture.hpp>
 
-1400780413 d:\workspace\c++\demo_sfml\src\ssengine\character.h
+1400852329 d:\workspace\c++\demo_sfml\src\ssengine\character.h
 	<string>
 	<vector>
 	<map>
@@ -7869,7 +7870,7 @@
 1400165128 source:d:\workspace\c++\demo_sfml\src\ssengine\loadconf\luascript.cpp
 	"LuaScript.h"
 
-1400780396 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
+1400857161 source:d:\workspace\c++\demo_sfml\src\ssengine\character.cpp
 	"character.h"
 
 1400543680 d:\workspace\c++\test2\src\ssengine\particlesys.h
@@ -8614,7 +8615,7 @@
 1400165127 source:d:\workspace\c++\demo_sfml\src\ssengine\userdata.cpp
 	"UserData.h"
 
-1400775093 source:d:\workspace\c++\demo_sfml\src\ssengine\gamecontext.cpp
+1400866191 source:d:\workspace\c++\demo_sfml\src\ssengine\gamecontext.cpp
 	"GameContext.h"
 
 1400775853 d:\workspace\c++\demo_sfml\src\ssengine\gamecontext.h
@@ -8653,7 +8654,7 @@
 1400187426 source:d:\workspace\c++\test2\src\ssengine\userdata.cpp
 	"UserData.h"
 
-1400770362 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\b2djson.h
+1400852329 d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\b2djson.h
 	<stdio.h>
 	<map>
 	<set>
@@ -8682,8 +8683,9 @@
 	<string>
 	<iostream>
 
-1400770382 source:d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\b2djson.cpp
+1400862903 source:d:\workspace\c++\demo_sfml\src\ssengine\rubestuff\b2djson.cpp
 	<istream>
+	<fstream>
 	<fstream>
 	"b2dJson.h"
 	<jsoncpp/json.h>
@@ -8841,7 +8843,7 @@
 
 1400187426 d:\workspace\c++\test2\src\ssengine\screen.h
 
-1400779606 d:\workspace\c++\demo_sfml\src\ssengine\level1.h
+1400866566 d:\workspace\c++\demo_sfml\src\ssengine\level1.h
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -8861,22 +8863,23 @@
 	"AICharacter.h"
 	"tween/TweenManager.h"
 	"ContactListener.h"
+	"JSonLevel.h"
 
 1400165127 d:\workspace\c++\demo_sfml\src\ssengine\screen.h
 
-1400781471 source:d:\workspace\c++\demo_sfml\src\ssengine\level1.cpp
+1400864943 source:d:\workspace\c++\demo_sfml\src\ssengine\level1.cpp
 	"Level1.h"
 
-1400681061 d:\workspace\c++\demo_sfml\src\ssengine\aicharacter.h
+1400852329 d:\workspace\c++\demo_sfml\src\ssengine\aicharacter.h
 	"character.h"
 
-1400775789 d:\workspace\c++\demo_sfml\src\ssengine\player.h
+1400865404 d:\workspace\c++\demo_sfml\src\ssengine\player.h
 	"character.h"
 
 1400681507 source:d:\workspace\c++\demo_sfml\src\ssengine\aicharacter.cpp
 	"AICharacter.h"
 
-1400780478 source:d:\workspace\c++\demo_sfml\src\ssengine\player.cpp
+1400852329 source:d:\workspace\c++\demo_sfml\src\ssengine\player.cpp
 	"Player.h"
 
 1400814155 d:\workspace\c++\test2\src\ssengine\aicharacter.h
@@ -9011,7 +9014,7 @@
 
 1392671519 d:\workspace\c++\librerias\thor\include\thor\graphics\detail\tostring.inl
 
-1400505640 source:d:\workspace\c++\demo_sfml\src\ssengine\bullet.cpp
+1400852329 source:d:\workspace\c++\demo_sfml\src\ssengine\bullet.cpp
 	"Bullet.h"
 
 1400505640 d:\workspace\c++\demo_sfml\src\ssengine\bullet.h
@@ -9023,7 +9026,7 @@
 1400778464 source:d:\workspace\c++\demo_sfml\src\ssengine\level.cpp
 	"Level.h"
 
-1400778400 d:\workspace\c++\demo_sfml\src\ssengine\level.h
+1400852329 d:\workspace\c++\demo_sfml\src\ssengine\level.h
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -9119,7 +9122,7 @@
 	"AnimatedSprite.hpp"
 	"Screen.h"
 
-1400778197 d:\workspace\c++\demo_sfml\src\ssengine\menuscreen.h
+1400852329 d:\workspace\c++\demo_sfml\src\ssengine\menuscreen.h
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -9127,7 +9130,7 @@
 	<SFGUI/SFGUI.hpp>
 	"Screen.h"
 
-1400781596 source:d:\workspace\c++\demo_sfml\src\ssengine\menuscreen.cpp
+1400857067 source:d:\workspace\c++\demo_sfml\src\ssengine\menuscreen.cpp
 	"MenuScreen.h"
 
 1400522087 d:\workspace\c++\demo_sfml\src\icon.h
@@ -9332,4 +9335,25 @@
 
 1400818715 source:d:\workspace\c++\test2\src\ssengine\instruccionesscreen.cpp
 	"InstruccionesScreen.h"
+
+1400852329 d:\workspace\c++\demo_sfml\src\ssengine\instruccionesscreen.h
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<SFGUI/SFGUI.hpp>
+	"Screen.h"
+
+1400857092 source:d:\workspace\c++\demo_sfml\src\ssengine\instruccionesscreen.cpp
+	"InstruccionesScreen.h"
+
+1400865565 source:d:\workspace\c++\demo_sfml\src\ssengine\jsonlevel.cpp
+	"JSonLevel.h"
+
+1400865617 d:\workspace\c++\demo_sfml\src\ssengine\jsonlevel.h
+	<string>
+	<istream>
+	<fstream>
+	<SFML/Graphics.hpp>
+	<jsoncpp/json.h>
 

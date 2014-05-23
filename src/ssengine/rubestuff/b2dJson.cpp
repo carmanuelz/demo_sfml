@@ -17,6 +17,7 @@
 */
 
 #include <istream>
+#include <fstream>#include <istream>
 #include <fstream>
 #include "b2dJson.h"
 #include <jsoncpp/json.h>

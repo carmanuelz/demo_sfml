@@ -18,6 +18,7 @@
 #include "AICharacter.h"
 #include "tween/TweenManager.h"
 #include "ContactListener.h"
+#include "JSonLevel.h"
 
 namespace sse
 {
@@ -30,7 +31,7 @@ enum MyAction
 class Level : public Screen
 {
 public:
-    Level(sf::RenderWindow* rw, thor::MultiResourceCache* incache);
+    Level(sf::RenderWindow* rw, thor::MultiResourceCache* incache, std::string inlevel);
     virtual ~Level();
     virtual int Run();
     bool Prepare();
@@ -38,13 +39,18 @@ protected:
     void CastEnemy();
 private:
     sse::GameContext* context;
+    JSonLevel* leveldata;
+    std::string name_level;
+
     sse::ContactListener* GameCL;
     sf::Sprite groundS;
     sf::Sprite targetS;
     sf::Sprite pointerS;
+    sf::Sprite hpbar;
+
     sf::Sprite* CurrentTargetS;
     float playerHP;
-    sse::Player* player;
+    sse::Player* player = 0;
     sf::ConvexShape roundedRecthp;
     sf::ConvexShape roundedRect;
     sf::Clock stepClock;
@@ -55,21 +61,27 @@ private:
     sfg::Window::Ptr window = sfg::Window::Create();
     sfg::Desktop desktop;
 
+    sfg::Window::Ptr dead_window = sfg::Window::Create();
+
     std::vector<sse::drawableentity*> DrawList;
     std::vector<sse::AICharacter*> EnemmyList;
     std::vector<sse::Character*> CharacterList;
     std::vector<b2Body*> RemoveList;
     std::vector<sse::Bullet*> BulletList;
 
+    int gotoWin = -2;
+    thor::ActionMap<MyAction> map;
     bool isFocused = true;
     bool hasclickplayer = true;
     bool debugflag = false;
     bool isReady = false;
     void ExitClick();
     void GotoMenu();
-    int gotoWin = -2;
+    void Prepare();
+    void Restart();
+    void CreateGUI();
+    void CreateHPBar();
     static bool compareByY(const sse::drawableentity* a,const sse::drawableentity* b);
-    thor::ActionMap<MyAction> map;
 };
 }
 #endif // LEVEL_H

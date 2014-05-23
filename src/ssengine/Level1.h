@@ -20,6 +20,7 @@
 #include "AICharacter.h"
 #include "tween/TweenManager.h"
 #include "ContactListener.h"
+#include "JSonLevel.h"
 
 enum MyAction
 {
@@ -37,6 +38,8 @@ public:
 protected:
 private:
     sse::GameContext* context;
+    JSonLevel* leveldata;
+
     sse::ContactListener* GameCL;
     sf::Sprite groundS;
     sf::Sprite targetS;
@@ -71,8 +74,9 @@ private:
     void ExitClick();
     void GotoMenu();
     int gotoWin = -2;
-    static bool compareByY(const sse::drawableentity* a,const sse::drawableentity* b);
     thor::ActionMap<MyAction> map;
+    static bool compareByY(const sse::drawableentity* a,const sse::drawableentity* b);
+    void castEnemy();
 };
 
 #endif // LEVEL1_H

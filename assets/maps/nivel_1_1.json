@@ -1,0 +1,50 @@
+{    
+  "rubesource": "assets/maps/nivel1.json",
+  "codeplayer": "player01",
+  "tilesize": 32,
+  "tileswidth": 30,
+  "tilesheight": 30,
+  "originplayer":
+  {
+      "x":100,
+      "y":100
+  },
+  "characterlist": [
+    {
+        "code":"mob001",
+        "x":700,
+        "y":400,
+        "reset":false
+    },
+    {
+        "code":"mob001",
+        "x":700,
+        "y":500,
+        "reset":false
+    },
+    {
+        "code":"mob001",
+        "x":700,
+        "y":600,
+        "reset":false
+    },
+    {
+        "code":"mob001",
+        "x":650,
+        "y":400,
+        "reset":false
+    },
+    {
+        "code":"mob001",
+        "x":650,
+        "y":350,
+        "reset":false
+    },
+    {
+        "code":"mob001",
+        "x":400,
+        "y":350,
+        "reset":false
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 --animation arraydata: nro frame, width, height, nrorow
 mob001 = {
 	type = 4,
-	src = "assets/enemmy.png",
+	src = "assets/images/characters/enemmy.png",
 	start = {5, 70, 44, 2},
 	idle = {8, 70, 44, 1},
 	run = {4, 70, 44, 0},
@@ -18,7 +18,7 @@ mob001 = {
 
 player01 = {
 	type = 1,
-	src = "assets/player2.png",
+	src = "assets/images/characters/player2.png",
 	run = {8, 48, 60, 0},
 	idle = {8, 48, 60, 1},	
 	dead = {9, 72, 60, 2},

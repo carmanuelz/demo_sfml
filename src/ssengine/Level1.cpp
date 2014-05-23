@@ -12,12 +12,6 @@ Level1::Level1(sf::RenderWindow* rw, thor::MultiResourceCache* incache)
     context->cache = incache;
     context->m_tweenmanager = new sse::TweenManager();
     map[Debug] = thor::Action(sf::Keyboard::B, thor::Action::PressOnce);
-
-    roundedRecthp = thor::Shapes::roundedRect(sf::Vector2f(200.f, 30.f), 15.f, sf::Color(200, 0, 0), 0.f, sf::Color(0, 0, 0));
-    roundedRect = thor::Shapes::roundedRect(sf::Vector2f(200.f, 30.f), 15.f, sf::Color(60, 0, 0), 0.f, sf::Color(0, 0, 0));
-
-    roundedRect.setPosition(80.f, 40.f);
-    roundedRecthp.setPosition(80.f, 40.f);
 }
 
 Level1::~Level1()
@@ -27,8 +21,13 @@ Level1::~Level1()
 
 void Level1::Prepare()
 {
-    context->LoadWorld("maps/nivel1.json",32,30,30);
-    context->m_script = new LuaScript("Player.lua");
+    leveldata = new JSonLevel("nivel_1_1");
+    context->LoadWorld(leveldata->getRubeSource(),
+                       leveldata->getTileSize(),
+                       leveldata->getDimWidth(),
+                       leveldata->getDimHeight());
+
+    context->m_script = new LuaScript("assets/Player.lua");
     context->m_psystem->setTexture(*(context->getPrtTexture("blood")));
     groundS.setTexture(*(context->getPrtTexture("floor")));
 
@@ -69,7 +68,7 @@ void Level1::Prepare()
 
     sf::Image sfgui_logo;
 	auto image = sfg::Image::Create();
-	if( sfgui_logo.loadFromFile( "assets/icon_dead.png" ) ) {
+	if( sfgui_logo.loadFromFile( "assets/images/others/icon_dead.png" ) ) {
 		image->SetImage( sfgui_logo );
 	}
     auto box_dead = sfg::Box::Create( sfg::Box::Orientation::VERTICAL, 5.0f );
@@ -86,6 +85,11 @@ void Level1::Prepare()
     sf::FloatRect dallocation = dead_window->GetAllocation();
     dead_window->SetPosition( sf::Vector2f( context->m_screensize.x - dallocation.width, context->m_screensize.y-dallocation.height - 200.0f )/2.0f );
     isReady = true;
+
+    roundedRecthp = thor::Shapes::roundedRect(sf::Vector2f(200.f, 30.f), 15.f, sf::Color(200, 0, 0), 0.f, sf::Color(0, 0, 0));
+    roundedRect = thor::Shapes::roundedRect(sf::Vector2f(200.f, 30.f), 15.f, sf::Color(60, 0, 0), 0.f, sf::Color(0, 0, 0));
+    roundedRect.setPosition(80.f, 40.f);
+    roundedRecthp.setPosition(80.f, 40.f);
 }
 
 void Level1::Restart()
@@ -101,19 +105,23 @@ void Level1::Restart()
     if(player != 0)
         delete player;
 
-    EnemmyList.push_back(new sse::AICharacter(700,400,"mob001",context));
-    EnemmyList.push_back(new sse::AICharacter(700,500,"mob001",context));
-    EnemmyList.push_back(new sse::AICharacter(700,600,"mob001",context));
-    EnemmyList.push_back(new sse::AICharacter(650,400,"mob001",context));
-    EnemmyList.push_back(new sse::AICharacter(650,350,"mob001",context));
-    EnemmyList.push_back(new sse::AICharacter(400,350,"mob001",context));
+    for(auto chd = leveldata->CharacterList.cbegin() ; chd != leveldata->CharacterList.cend() ; chd++ )
+    {
+        dataCharacter* datacharacter = *chd;
+        EnemmyList.push_back(new sse::AICharacter(datacharacter->x,
+                                                  datacharacter->y,
+                                                  datacharacter->code,context));
+    }
 
     for(auto e = EnemmyList.cbegin() ; e != EnemmyList.cend() ; e++ )
     {
         sse::AICharacter* enemmy = *e;
         CharacterList.push_back(enemmy);
     }
-    player = new sse::Player(100,100,"player01",context);
+    player = new sse::Player(leveldata->getOriginCharacter().x,
+                             leveldata->getOriginCharacter().y,
+                             leveldata->getCodePlayer(),
+                             context);
     CharacterList.push_back(player);
 
     for(auto c = CharacterList.cbegin() ; c != CharacterList.cend() ; c++ )
@@ -294,41 +302,8 @@ int Level1::Run()
             }
         }
 
-        b2Vec2 p1 = player->Body->GetPosition();
-
         if(!player->isDead())
-            for(auto e = EnemmyList.cbegin() ; e != EnemmyList.cend() ; e++ )
-            {
-                sse::AICharacter* enemmy = *e;
-                b2Vec2 p3 = enemmy->Body->GetPosition();
-                b2Vec2 dif2 = p1 - p3;
-                float module2 = sqrt(pow(dif2.x,2)+pow(dif2.y,2));
-                b2Vec2 p4 = p3 + b2Vec2(dif2.x/module2*6,dif2.y/module2*6);
-                sse::MyRayCastCallback RayCastCallback2;
-                context->m_world->RayCast(&RayCastCallback2, p3 , p4);
-                if ( RayCastCallback2.m_fixture )
-                {
-                    if(enemmy->Target == 0 && !enemmy->gotoflag)
-                    {
-                        sse::UserData* userdataA = static_cast<sse::UserData*>(RayCastCallback2.m_fixture->GetUserData());
-                        if(userdataA->tipo == 1)
-                        {
-                            enemmy->setAnimCicle(2);
-                            enemmy->setTarget(player->Body);
-                        }
-                    }
-                    p4 = b2Vec2(RayCastCallback2.m_point.x, RayCastCallback2.m_point.y);
-                }
-                if(debugflag)
-                {
-                    sf::Vertex line2[] =
-                    {
-                        sf::Vertex(sf::Vector2f(p3.x*PPM, p3.y*PPM)),
-                        sf::Vertex(sf::Vector2f(p4.x*PPM, p4.y*PPM))
-                    };
-                    context->m_rwindow->draw(line2, 2, sf::Lines);
-                }
-            }
+            castEnemy();
 
         if(player->isDead() && !isFinish)
         {
@@ -365,4 +340,41 @@ int Level1::Run()
         context->m_rwindow->display();
     }
     return (-1);
+}
+
+void Level1::castEnemy()
+{
+    b2Vec2 p1 = player->Body->GetPosition();
+    for(auto e = EnemmyList.cbegin() ; e != EnemmyList.cend() ; e++ )
+    {
+        sse::AICharacter* enemmy = *e;
+        b2Vec2 p3 = enemmy->Body->GetPosition();
+        b2Vec2 dif2 = p1 - p3;
+        float module2 = sqrt(pow(dif2.x,2)+pow(dif2.y,2));
+        b2Vec2 p4 = p3 + b2Vec2(dif2.x/module2*6,dif2.y/module2*6);
+        sse::MyRayCastCallback RayCastCallback2;
+        context->m_world->RayCast(&RayCastCallback2, p3 , p4);
+        if ( RayCastCallback2.m_fixture )
+        {
+            if(enemmy->Target == 0 && !enemmy->gotoflag)
+            {
+                sse::UserData* userdataA = static_cast<sse::UserData*>(RayCastCallback2.m_fixture->GetUserData());
+                if(userdataA->tipo == 1)
+                {
+                    enemmy->setAnimCicle(2);
+                    enemmy->setTarget(player->Body);
+                }
+            }
+            p4 = b2Vec2(RayCastCallback2.m_point.x, RayCastCallback2.m_point.y);
+        }
+        if(debugflag)
+        {
+            sf::Vertex line2[] =
+            {
+                sf::Vertex(sf::Vector2f(p3.x*PPM, p3.y*PPM)),
+                sf::Vertex(sf::Vector2f(p4.x*PPM, p4.y*PPM))
+            };
+            context->m_rwindow->draw(line2, 2, sf::Lines);
+        }
+    }
 }
