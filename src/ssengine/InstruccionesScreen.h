@@ -1,5 +1,5 @@
-#ifndef MENUSCREEN_H
-#define MENUSCREEN_H
+#ifndef INSTRUCCIONESSCREEN_H
+#define INSTRUCCIONESSCREEN_H
 
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
@@ -8,19 +8,16 @@
 #include <SFGUI/SFGUI.hpp>
 #include "Screen.h"
 
-
-class MenuScreen : public Screen
+class InstruccionesScreen : public Screen
 {
     public:
-        MenuScreen(sf::RenderWindow* rw);
-        virtual ~MenuScreen();
+        InstruccionesScreen(sf::RenderWindow* rw);
+        virtual ~InstruccionesScreen();
         virtual int Run();
     protected:
     private:
         sf::RenderWindow* renderwindow;
-        void OnButtonClick();
-        void ExitClick();
-        void InstruccionesClick();
+        void ReturnClick();
 
         sfg::SFGUI m_sfgui;
         sfg::Label::Ptr m_label;
@@ -34,4 +31,4 @@ class MenuScreen : public Screen
         int gotoWin = -2;
 };
 
-#endif // MENUSCREEN_H
+#endif // INSTRUCCIONESSCREEN_H

@@ -7,6 +7,7 @@
 #include "ssengine/Level1.h"
 #include "ssengine/MenuScreen.h"
 #include "ssengine/LoaderScreen.h"
+#include "ssengine/InstruccionesScreen.h"
 #include "icon.h"
 
 void RenderLoader(LoaderScreen* loader, sf::RenderWindow* rw)
@@ -44,6 +45,7 @@ int main()
     renderWindow.display();
     Screens.push_back(new MenuScreen(&renderWindow));
     Screens.push_back(new Level1(&renderWindow,&cache));
+    Screens.push_back(new InstruccionesScreen(&renderWindow));
     //loader.loaderFlag = false;
     //Main loop
     //renderWindow.setActive(true);

@@ -8,7 +8,7 @@ Window {
 /* This is NOT equivalent to "Window Label" */
 Window Label {
 	FontSize: 24;
-	FontName: assets/fonts/Pixel_Square_10.ttf;
+	FontName: assets/fonts/PressStart2P.ttf;
 }
 
 Button {

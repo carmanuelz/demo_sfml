@@ -1,26 +1,23 @@
-#include "MenuScreen.h"
+#include "InstruccionesScreen.h"
 
-MenuScreen::MenuScreen(sf::RenderWindow* rw):renderwindow(rw)
+InstruccionesScreen::InstruccionesScreen(sf::RenderWindow* rw):renderwindow(rw)
 {
     screnSize = sf::Vector2i((int)renderwindow->getSize().x,(int)renderwindow->getSize().y);
     pointerT.loadFromFile("assets/pointer.png");
     pointerS.setTexture(pointerT);
-
-    //m_label = sfg::Label::Create( "Menu" );
     // Create a simple button and connect the click signal.
-    auto star_button = sfg::Button::Create( "  Start Game  " );
-    star_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &MenuScreen::OnButtonClick, this ) );
-    auto exit_button = sfg::Button::Create( "Exit" );
-    exit_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &MenuScreen::ExitClick, this ) );
-    auto instrucciones_button = sfg::Button::Create( "Instrucciones" );
-    instrucciones_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &MenuScreen::InstruccionesClick, this ) );
+    auto return_button = sfg::Button::Create( " Volver " );
+    return_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &InstruccionesScreen::ReturnClick, this ) );
 
 
     auto box = sfg::Box::Create( sfg::Box::Orientation::VERTICAL, 5.0f );
-    //box->Pack( m_label );
-    box->Pack( star_button, false );
-    box->Pack( exit_button, false );
-    box->Pack( instrucciones_button, false );
+    box->Pack( sfg::Label::Create( "Instrucciones:" ), false );
+    box->Pack( sfg::Label::Create( " " ), false );
+    box->Pack( sfg::Label::Create( "Movimiento: A/S/W/D \n"
+                                  "Objetivo: Puntero \n"
+                                  "Menu: Esc"), false );
+    box->Pack( sfg::Label::Create( " " ), false );
+    box->Pack( return_button, false );
 
     window->Add( box );
     // Create a window and add the box layouter to it. Also set the window's title.
@@ -35,12 +32,12 @@ MenuScreen::MenuScreen(sf::RenderWindow* rw):renderwindow(rw)
     window->SetPosition( sf::Vector2f( screnSize.x - allocation.width, screnSize.y-allocation.height )/2.0f );
 }
 
-MenuScreen::~MenuScreen()
+InstruccionesScreen::~InstruccionesScreen()
 {
     //dtor
 }
 
-int MenuScreen::Run()
+int InstruccionesScreen::Run()
 {
     window->Show(true);
     while(renderwindow->isOpen())
@@ -82,19 +79,8 @@ int MenuScreen::Run()
     return -1;
 }
 
-void MenuScreen::OnButtonClick()
+void InstruccionesScreen::ReturnClick()
 {
     window->Show(false);
-    gotoWin = 1;
-}
-void MenuScreen::ExitClick()
-{
-    window->Show(false);
-    gotoWin = -1;
-}
-
-void MenuScreen::InstruccionesClick()
-{
-    window->Show(false);
-    gotoWin = 2;
+    gotoWin = 0;
 }

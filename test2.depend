@@ -436,7 +436,7 @@
 	<sstream>
 	<iomanip>
 
-1400813640 source:d:\workspace\c++\test2\src\main.cpp
+1400817958 source:d:\workspace\c++\test2\src\main.cpp
 	<math.h>
 	<iostream>
 	<SFML/System.hpp>
@@ -446,6 +446,7 @@
 	"ssengine/Level1.h"
 	"ssengine/MenuScreen.h"
 	"ssengine/LoaderScreen.h"
+	"ssengine/InstruccionesScreen.h"
 	"icon.h"
 
 1397446597 source:d:\workspace\c++\test2\src\astarfinder.cpp
@@ -9131,7 +9132,7 @@
 
 1400522087 d:\workspace\c++\demo_sfml\src\icon.h
 
-1400792124 d:\workspace\c++\test2\src\ssengine\menuscreen.h
+1400819035 d:\workspace\c++\test2\src\ssengine\menuscreen.h
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -9141,7 +9142,7 @@
 
 1400537530 d:\workspace\c++\test2\src\icon.h
 
-1400792124 source:d:\workspace\c++\test2\src\ssengine\menuscreen.cpp
+1400819023 source:d:\workspace\c++\test2\src\ssengine\menuscreen.cpp
 	"MenuScreen.h"
 
 1400766315 d:\workspace\c++\demo_sfml\src\ssengine\keymanager.h
@@ -9320,4 +9321,15 @@
 
 1400792124 source:d:\workspace\c++\test2\src\ssengine\debugrender.cpp
 	"debugrender.h"
+
+1400818592 d:\workspace\c++\test2\src\ssengine\instruccionesscreen.h
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<SFGUI/SFGUI.hpp>
+	"Screen.h"
+
+1400818715 source:d:\workspace\c++\test2\src\ssengine\instruccionesscreen.cpp
+	"InstruccionesScreen.h"
 

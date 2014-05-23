@@ -120,6 +120,8 @@
 		<Unit filename="src/ssengine/ContactListener.h" />
 		<Unit filename="src/ssengine/GameContext.cpp" />
 		<Unit filename="src/ssengine/GameContext.h" />
+		<Unit filename="src/ssengine/InstruccionesScreen.cpp" />
+		<Unit filename="src/ssengine/InstruccionesScreen.h" />
 		<Unit filename="src/ssengine/KeyManager.h" />
 		<Unit filename="src/ssengine/Level.cpp" />
 		<Unit filename="src/ssengine/Level.h" />
