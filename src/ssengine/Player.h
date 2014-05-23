@@ -11,7 +11,7 @@ public:
     Player(float inx, float iny, std::string inCode, GameContext* incontext):Character(inx,iny,inCode,incontext)
     {
     }
-    sf::Vector2f updatePlayer(bool hasfocused, bool hasclick);
+    sf::Vector2f updatePlayer(bool hasfocused = true, bool hasclick = true);
     bool hasshoot = false;
     bool isDead();
 private:

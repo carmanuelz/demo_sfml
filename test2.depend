@@ -436,14 +436,14 @@
 	<sstream>
 	<iomanip>
 
-1400817958 source:d:\workspace\c++\test2\src\main.cpp
+1400885150 source:d:\workspace\c++\test2\src\main.cpp
 	<math.h>
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
-	"ssengine/Level1.h"
+	"ssengine/Level.h"
 	"ssengine/MenuScreen.h"
 	"ssengine/LoaderScreen.h"
 	"ssengine/InstruccionesScreen.h"
@@ -498,7 +498,7 @@
 
 1397604633 source:d:\workspace\c++\test2\src\ssengine\npc.cpp
 
-1400792400 source:d:\workspace\c++\test2\src\ssengine\character.cpp
+1400874718 source:d:\workspace\c++\test2\src\ssengine\character.cpp
 	"character.h"
 
 1400805035 d:\workspace\c++\test2\src\ssengine\character.h
@@ -8648,7 +8648,7 @@
 	"tween/TweenManager.h"
 	"KeyManager.h"
 
-1400812908 source:d:\workspace\c++\test2\src\ssengine\gamecontext.cpp
+1400874718 source:d:\workspace\c++\test2\src\ssengine\gamecontext.cpp
 	"GameContext.h"
 
 1400187426 source:d:\workspace\c++\test2\src\ssengine\userdata.cpp
@@ -8765,8 +8765,9 @@
 	<string>
 	<iostream>
 
-1400792124 source:d:\workspace\c++\test2\src\ssengine\rubestuff\b2djson.cpp
+1400874718 source:d:\workspace\c++\test2\src\ssengine\rubestuff\b2djson.cpp
 	<istream>
+	<fstream>
 	<fstream>
 	"b2dJson.h"
 	<jsoncpp/json.h>
@@ -8817,10 +8818,10 @@
 	<sstream>
 	<iomanip>
 
-1400813814 source:d:\workspace\c++\test2\src\ssengine\level1.cpp
+1400881853 source:d:\workspace\c++\test2\src\ssengine\level1.cpp
 	"Level1.h"
 
-1400812652 d:\workspace\c++\test2\src\ssengine\level1.h
+1400881600 d:\workspace\c++\test2\src\ssengine\level1.h
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -8840,6 +8841,7 @@
 	"AICharacter.h"
 	"tween/TweenManager.h"
 	"ContactListener.h"
+	"JSonLevel.h"
 
 1400187426 d:\workspace\c++\test2\src\ssengine\screen.h
 
@@ -8885,13 +8887,13 @@
 1400814155 d:\workspace\c++\test2\src\ssengine\aicharacter.h
 	"character.h"
 
-1400792124 d:\workspace\c++\test2\src\ssengine\player.h
+1400883488 d:\workspace\c++\test2\src\ssengine\player.h
 	"character.h"
 
 1400622755 source:d:\workspace\c++\test2\src\ssengine\aicharacter.cpp
 	"AICharacter.h"
 
-1400792335 source:d:\workspace\c++\test2\src\ssengine\player.cpp
+1400883979 source:d:\workspace\c++\test2\src\ssengine\player.cpp
 	"Player.h"
 
 1400200543 d:\workspace\c++\test2\src\ssengine\tween\tweenmanager.h
@@ -9073,10 +9075,10 @@
 	"GameContext.h"
 	"UserData.h"
 
-1400792124 source:d:\workspace\c++\test2\src\ssengine\level.cpp
+1400885050 source:d:\workspace\c++\test2\src\ssengine\level.cpp
 	"Level.h"
 
-1400792534 d:\workspace\c++\test2\src\ssengine\level.h
+1400884532 d:\workspace\c++\test2\src\ssengine\level.h
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
@@ -9087,13 +9089,16 @@
 	<Thor/Shapes/Shapes.hpp>
 	<Thor/Input/Action.hpp>
 	<Thor/Input/ActionMap.hpp>
+	"debugrender.h"
 	"ssengine.h"
 	"Screen.h"
 	"GameContext.h"
 	"Player.h"
+	"Bullet.h"
 	"AICharacter.h"
 	"tween/TweenManager.h"
 	"ContactListener.h"
+	"JSonLevel.h"
 
 1400347378 d:\workspace\c++\test2\src\ssengine\contactlistener.h
 	<Box2D/Box2D.h>
@@ -9145,7 +9150,7 @@
 
 1400537530 d:\workspace\c++\test2\src\icon.h
 
-1400819023 source:d:\workspace\c++\test2\src\ssengine\menuscreen.cpp
+1400885030 source:d:\workspace\c++\test2\src\ssengine\menuscreen.cpp
 	"MenuScreen.h"
 
 1400766315 d:\workspace\c++\demo_sfml\src\ssengine\keymanager.h
@@ -9333,7 +9338,7 @@
 	<SFGUI/SFGUI.hpp>
 	"Screen.h"
 
-1400818715 source:d:\workspace\c++\test2\src\ssengine\instruccionesscreen.cpp
+1400874718 source:d:\workspace\c++\test2\src\ssengine\instruccionesscreen.cpp
 	"InstruccionesScreen.h"
 
 1400852329 d:\workspace\c++\demo_sfml\src\ssengine\instruccionesscreen.h
@@ -9356,4 +9361,14 @@
 	<fstream>
 	<SFML/Graphics.hpp>
 	<jsoncpp/json.h>
+
+1400874718 d:\workspace\c++\test2\src\ssengine\jsonlevel.h
+	<string>
+	<istream>
+	<fstream>
+	<SFML/Graphics.hpp>
+	<jsoncpp/json.h>
+
+1400874718 source:d:\workspace\c++\test2\src\ssengine\jsonlevel.cpp
+	"JSonLevel.h"
 

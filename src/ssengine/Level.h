@@ -11,17 +11,16 @@
 #include <Thor/Shapes/Shapes.hpp>
 #include <Thor/Input/Action.hpp>
 #include <Thor/Input/ActionMap.hpp>
+#include "debugrender.h"
 #include "ssengine.h"
 #include "Screen.h"
 #include "GameContext.h"
 #include "Player.h"
+#include "Bullet.h"
 #include "AICharacter.h"
 #include "tween/TweenManager.h"
 #include "ContactListener.h"
 #include "JSonLevel.h"
-
-namespace sse
-{
 
 enum MyAction
 {
@@ -31,12 +30,10 @@ enum MyAction
 class Level : public Screen
 {
 public:
-    Level(sf::RenderWindow* rw, thor::MultiResourceCache* incache, std::string inlevel);
+    Level(sf::RenderWindow* rw, thor::MultiResourceCache* incache,std::string inmane_level);
     virtual ~Level();
     virtual int Run();
-    bool Prepare();
 protected:
-    void CastEnemy();
 private:
     sse::GameContext* context;
     JSonLevel* leveldata;
@@ -47,13 +44,14 @@ private:
     sf::Sprite targetS;
     sf::Sprite pointerS;
     sf::Sprite hpbar;
+    sf::Vector2i winmouseposition;
+    sf::Vector2f playerposition;
 
     sf::Sprite* CurrentTargetS;
     float playerHP;
     sse::Player* player = 0;
     sf::ConvexShape roundedRecthp;
     sf::ConvexShape roundedRect;
-    sf::Clock stepClock;
     sf::Clock frameClock;
 
     sfg::SFGUI m_sfgui;
@@ -69,20 +67,27 @@ private:
     std::vector<b2Body*> RemoveList;
     std::vector<sse::Bullet*> BulletList;
 
-    int gotoWin = -2;
-    thor::ActionMap<MyAction> map;
     bool isFocused = true;
     bool hasclickplayer = true;
     bool debugflag = false;
     bool isReady = false;
+    bool isFinish = false;
     void ExitClick();
     void GotoMenu();
     void Prepare();
     void Restart();
     void CreateGUI();
     void CreateHPBar();
+    void CastEnemy();
+    void Clear();
+    void EventManagement();
+    void DrawObjects(sf::Time delta);
+    void DrawPointer(sf::Vector2f mousePos);
+    sf::View ViewManagement();
+    void UpdateLists(sf::Time delta);
+    int gotoWin = -2;
+    thor::ActionMap<MyAction> map;
     static bool compareByY(const sse::drawableentity* a,const sse::drawableentity* b);
 };
-}
-#endif // LEVEL_H
 
+#endif // LEVEL_H
