@@ -45,6 +45,7 @@ AStarFinder::AStarFinder(float tilesize, int inwidth, int inheight, std::vector<
     }
 
     for (int j = 0; j < height; j++ )
+    {
         for (int k = 0; k < height; k++)
         {
             Grid[j][k]->x = k;
@@ -52,8 +53,13 @@ AStarFinder::AStarFinder(float tilesize, int inwidth, int inheight, std::vector<
             if (blockgrid[j][k])
             {
                 Grid[j][k]->walkable = false;
+                std::cout<<"0";
             }
+            else
+                std::cout<<" ";
         }
+        std::cout<<std::endl;
+    }
 }
 
 bool AStarFinder::isWalkableAt(int x, int y)

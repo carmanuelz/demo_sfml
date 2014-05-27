@@ -31,6 +31,7 @@ void Level::Prepare()
     context->m_script = new LuaScript("assets/Player.lua");
     context->m_psystem->setTexture(*(context->getPrtTexture("blood")));
     groundS.setTexture(*(context->getPrtTexture("floor")));
+    topS.setTexture(*(context->getPrtTexture("top")));
 
     GameCL = new sse::ContactListener(context);
     context->m_world -> SetContactListener(GameCL);
@@ -349,13 +350,14 @@ int Level::Run()
 
         context->m_world->Step( 0.16f, 8, 3 );
 
-        context->m_rwindow->clear();
-        context->m_rwindow->draw(groundS);
+        context->m_rwindow->clear(sf::Color(44, 48, 65));
 
         context->m_rwindow->setView(view);
         context->m_tweenmanager->update(frameTime);
 
+        context->m_rwindow->draw(groundS);
         DrawObjects(frameTime);
+        context->m_rwindow->draw(topS);
 
         if(player->isDead() && !isFinish)
         {

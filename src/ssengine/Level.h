@@ -41,6 +41,7 @@ private:
 
     sse::ContactListener* GameCL;
     sf::Sprite groundS;
+    sf::Sprite topS;
     sf::Sprite targetS;
     sf::Sprite pointerS;
     sf::Sprite hpbar;

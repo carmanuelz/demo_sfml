@@ -58,6 +58,7 @@ void GameContext::registerResurces()
     textureKeys.add("hpbar",thor::Resources::fromFile<sf::Texture>("assets/images/others/hpbar.png"));
     textureKeys.add("blood",thor::Resources::fromFile<sf::Texture>("assets/images/particles/bloodparticle.png"));
     textureKeys.add("floor",thor::Resources::fromFile<sf::Texture>("assets/maps/area1.png"));
+    textureKeys.add("top",thor::Resources::fromFile<sf::Texture>("assets/maps/top.png"));
     textureKeys.add("target",thor::Resources::fromFile<sf::Texture>("assets/images/others/target.png"));
     textureKeys.add("pointer",thor::Resources::fromFile<sf::Texture>("assets/images/others/pointer.png"));
     textureKeys.add("rifle",thor::Resources::fromFile<sf::Texture>("assets/images/weapon/rifle.png"));

@@ -29,9 +29,9 @@ Bullet::Bullet(GameContext* incontext,sf::Vector2f origin, sf::Vector2f vel, flo
     circle.m_radius = 0.1f;
     b2FixtureDef bulletFixDef;
     bulletFixDef.shape = &circle;
-    bulletFixDef.density = 0.0f;
+    bulletFixDef.density = 5.0f;
     bulletFix = bulletB->CreateFixture(&bulletFixDef);
-    bulletFix->SetSensor(true);
+    //bulletFix->SetSensor(true);
     b2Filter filter;
     filter.maskBits = 65534;
     bulletFix->SetFilterData(filter);

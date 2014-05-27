@@ -180,10 +180,11 @@ b2Body* Character::createBody(float x, float y)
     b2FixtureDef sensorPLayerdef;
     b2CircleShape sensorshape;
     b2Fixture* sensorPlayer;
+    bodyfixtureDef.shape = &circleshape;
     if(Type == 1)
     {
-
-        bodyfixtureDef.shape = &poligonshape;
+        circleshape.m_p.Set(0 ,0.12f);
+        circleshape.m_radius = 0.25;
         sensorshape.m_radius = 0.37;
         sensorPLayerdef.shape = &sensorshape;
         sensorPlayer = characterbody->CreateFixture(&sensorPLayerdef);
@@ -193,7 +194,6 @@ b2Body* Character::createBody(float x, float y)
     else
     {
 
-        bodyfixtureDef.shape = &circleshape;
         circleshape.m_radius = 0.22;
         BodyDef.linearDamping = 20;
         filter.categoryBits = 3;
