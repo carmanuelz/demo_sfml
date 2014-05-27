@@ -336,17 +336,20 @@ int Level::Run()
         }
 
         winmouseposition = sf::Mouse::getPosition(*context->m_rwindow);
+
         EventManagement();
+
         sf::View view = ViewManagement();
         sf::Vector2f mousePos(winmouseposition.x + view.getCenter().x - context->m_screensize.x/2 ,winmouseposition.y + view.getCenter().y - context->m_screensize.y/2);
 
+        if(!player->isDead() && isFocused)
+            player->updatebehaviour(mousePos.x,mousePos.y);
+
         playerposition = player->updatePlayer(isFocused, hasclickplayer);
+
         sf::Time frameTime = frameClock.restart();
 
         UpdateLists(frameTime);
-
-        if(!player->isDead() && isFocused)
-            player->updatebehaviour(mousePos.x,mousePos.y);
 
         context->m_world->Step( 0.16f, 8, 3 );
 
@@ -356,7 +359,9 @@ int Level::Run()
         context->m_tweenmanager->update(frameTime);
 
         context->m_rwindow->draw(groundS);
+
         DrawObjects(frameTime);
+
         context->m_rwindow->draw(topS);
 
         if(player->isDead() && !isFinish)

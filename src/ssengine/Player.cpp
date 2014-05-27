@@ -12,7 +12,6 @@ sf::Vector2f Player::updatePlayer(bool hasfocused, bool hasclick)
         vel = Body->GetLinearVelocity();
         bool isrun = false;
 
-        setRight();
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)||
                 sf::Keyboard::isKeyPressed(sf::Keyboard::D)||
                 sf::Keyboard::isKeyPressed(sf::Keyboard::W)||
@@ -34,7 +33,6 @@ sf::Vector2f Player::updatePlayer(bool hasfocused, bool hasclick)
                     setLeft();
                     animated.setReverse(false);
                 }
-
             }
             else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
             {

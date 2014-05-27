@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="20" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tiles2" tilewidth="32" tileheight="32">
+  <image source="tiles2.png" width="256" height="1024"/>
+ </tileset>
+ <layer name="Capa de Patrones 1" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjZWBgYKUy5qUSpra7hgoeDY9RPIqHLh5JZRoA0oQIyQ==
+  </data>
+ </layer>
+ <layer name="Capa de patrones 3" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFgw2wIGFqAGYg5oFiagBuKpkDA8xUNm+kuW8UjIKBAgA4xwBP
+  </data>
+ </layer>
+ <layer name="Capa de patrones 4" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFgw2wILEFoZgSwAOlRYBYEoopAUJALAzEMhSagw5EqGTOSHXfKBgF9AYAN7MBZA==
+  </data>
+ </layer>
+ <layer name="Capa de patrones 5" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBj8gAmIucjUx4RDfBTQB4DCWgKIxaloHgcQs5OoTwiIhXGYxwvFyECOdKeBAa50imyeNBZ5ZPeRmj6VsYgxoWFSALI+cvIdIUCMmVxI6vD5gRQ/cpGonpAaSsIYGyDVffQ2DxsAAL34Abs=
+  </data>
+ </layer>
+ <layer name="Capa de patrones 2" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJwTYGBgYKMi5gNiNSphfhqYJwDEYliwOANpANk8bOHATqZ5+PxLTfPUKTCPFKBBZfNwhQMl5uEKX0rMwxa+5JiHz56RaB6u/EtqHiaUf0nNw8SWV9Q0j5Q8jGwervAjFYPMAwBqCRIr
+  </data>
+ </layer>
+</map>
