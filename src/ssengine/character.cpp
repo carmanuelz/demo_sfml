@@ -62,8 +62,8 @@ void Character::init()
         loadFrames(&waposhootcicle, "w001.shoot");
         weapon = AnimatedSprite(sf::seconds(0.05f), true, false);
         weapon.setAnimation(waposhootcicle);
+        //weapon.setLooped(true);
         weapon.play();
-        weapon.setLooped(true);
     }
 
     offsetAnimXR = context->m_script->get<float>(Code+".offsetXR");
@@ -149,12 +149,14 @@ void Character::setLeft()
 {
     animated.FlipX();
     ofsetanimx = offsetAnimXL;
+    isright = false;
 }
 
 void Character::setRight()
 {
     animated.unFlipX();
     ofsetanimx = offsetAnimXR;
+    isright = true;
 }
 
 b2Body* Character::createBody(float x, float y)
@@ -183,20 +185,22 @@ b2Body* Character::createBody(float x, float y)
     bodyfixtureDef.shape = &circleshape;
     if(Type == 1)
     {
-        circleshape.m_p.Set(0 ,0.12f);
         circleshape.m_radius = 0.25;
         sensorshape.m_radius = 0.37;
         sensorPLayerdef.shape = &sensorshape;
         sensorPlayer = characterbody->CreateFixture(&sensorPLayerdef);
         sensorPlayer->SetUserData(ud);
         sensorPlayer->SetSensor(true);
+        filter.maskBits = 65533;
+        filter.categoryBits = 5;
     }
     else
     {
 
         circleshape.m_radius = 0.22;
         BodyDef.linearDamping = 20;
-        filter.categoryBits = 3;
+        filter.maskBits = 65534;
+        filter.categoryBits = 4;
     }
     b2Fixture* BodyFix = characterbody->CreateFixture(&bodyfixtureDef);
     BodyFix->SetFilterData(filter);
@@ -231,8 +235,15 @@ void Character::update(sf::Time frameTime)
         weapon.update(frameTime);
     }
     if(isbusy)
-        if(!animated.isTimeLine)
+       if(!animated.isTimeLine)
             isbusy = false;
+
+    if(shootbusy)
+        if(Acumulator > 1.0f)
+        {
+            shootbusy = false;
+            Acumulator = 0;
+        }
 
     if(Type == 1 && !isdeadflag)
     {
@@ -323,7 +334,10 @@ void Character::updatebehaviour(float TargetX,float TargetY)
 
 b2Body* Character::createBullet(sf::Vector2f origin, sf::Vector2f bvel,float angle)
 {
-    BulletList->push_back(new Bullet(context,origin,bvel,angle,"g001"));
+    bool shootflag = true;
+    if (Type != 1)
+        shootflag = false;
+    BulletList->push_back(new Bullet(context,origin,bvel,angle,"g001",shootflag));
 }
 
 void Character::addCollisionList(b2Fixture*f)
@@ -349,15 +363,18 @@ void Character::TestCollision()
         case objectType::obj_typePlayer:
             if(!isbusy)
             {
-                animated.PrepareTimeLine();
-                animated.PushTransition(new Transition(1,Cattackcicle ,0,0,0,0));
-                animated.PushTransition(new Transition(1,Cruncicle,0,0,0,0));
-                animated.StartTimeLine();
-                isbusy = true;
-                b2Vec2 pos = f->GetBody()->GetPosition();
-                context->m_psystem->addEmitter(BloodEmitter(sf::Vector2f(pos.x*PPM,pos.y*PPM)), sf::seconds(0.1f));
-                Character* player = static_cast<sse::Character*>(f->GetBody()->GetUserData());
-                player->takeDamage(Hit());
+                if(!hasweapon)
+                {
+                    animated.PrepareTimeLine();
+                    animated.PushTransition(new Transition(1,Cattackcicle ,0,0,0,0));
+                    animated.PushTransition(new Transition(1,Cruncicle,0,0,0,0));
+                    animated.StartTimeLine();
+                    isbusy = true;
+                    b2Vec2 pos = f->GetBody()->GetPosition();
+                    context->m_psystem->addEmitter(BloodEmitter(sf::Vector2f(pos.x*PPM,pos.y*PPM)), sf::seconds(0.1f));
+                    Character* player = static_cast<sse::Character*>(f->GetBody()->GetUserData());
+                    player->takeDamage(Hit());
+                }
             }
             break;
         case objectType::obj_typeBullet:

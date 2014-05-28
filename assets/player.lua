@@ -16,6 +16,23 @@ mob001 = {
 	weapon  = "",
 }
 
+mob002 = {
+	type = 4,
+	src = "assets/images/characters/player2.png",
+	run = {8, 48, 60, 0},
+	idle = {8, 48, 60, 1},	
+	dead = {9, 72, 60, 2},
+	attack = {8, 48, 60, 0},	
+	offsetXR = -24,
+	offsetXL = -24,
+	offsetYR = -43,
+	offsetYL = -43,
+	hasweapon =  true,	
+	damage = 5,
+	HP = 100,
+	weapon = "w001"
+}
+
 player01 = {
 	type = 1,
 	src = "assets/images/characters/player2.png",
@@ -25,8 +42,8 @@ player01 = {
 	attack = {},	
 	offsetXR = -24,
 	offsetXL = -24,
-	offsetYR = -35,
-	offsetYL = -35,
+	offsetYR = -43,
+	offsetYL = -43,
 	hasweapon =  true,	
 	damage = 5,
 	HP = 100,

@@ -32,13 +32,13 @@ class ContactListener : public b2ContactListener
             }
         }
 
-        if(userdataA->tipo == 4)
+        if(userdataA->tipo == 4 || userdataA->tipo == 1)
         {
             b2Body* bodyA = FixtA->GetBody();
             sse::Character* collCharacter = static_cast<sse::Character*>(bodyA->GetUserData());
             collCharacter->addCollisionList(FixtB);
         }
-        else if(userdataB->tipo == 4)
+        else if(userdataB->tipo == 4 || userdataA->tipo == 1)
         {
             b2Body* bodyB = FixtB->GetBody();
             sse::Character* collCharacter = static_cast<sse::Character*>(bodyB->GetUserData());

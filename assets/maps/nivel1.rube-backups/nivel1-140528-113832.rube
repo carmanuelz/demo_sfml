@@ -303,7 +303,7 @@
               }
             ],
             "density" : 1,
-            "filter-categoryBits" : 7,
+            "filter-categoryBits" : 3,
             "id" : 4,
             "name" : "block",
             "shapes" : 

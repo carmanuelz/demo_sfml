@@ -22,9 +22,11 @@ class AICharacter : public Character
         void setTarget(b2Body* inTarget);
         void setPatrol(float Ax, float Ay, float Bx, float By);
         void GotoPosition(float Ax, float Bx);
+        sf::Vector2f CastTarget(b2Body* inTarget);
         void GoToOrigin();
         void follow(b2Body* inTarget);
         bool gotoflag = false;
+        bool findflag = true;
     private:
         AStarFinder* AStartF;
         int preenemmyX = 0;

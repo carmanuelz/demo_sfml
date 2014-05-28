@@ -17,10 +17,19 @@ void AICharacter::updateFind()
         }
         else
         {
-            b2Vec2 destination = Target->GetPosition();
-            destination.x*=PPM;
-            destination.y*=PPM;
-            findto(destination.x,destination.y);
+            if(findflag)
+            {
+                setAnimCicle(2);
+                b2Vec2 destination = Target->GetPosition();
+                destination.x*=PPM;
+                destination.y*=PPM;
+                findto(destination.x,destination.y);
+            }
+            else
+            {
+                vel = b2Vec2(0,0);
+                setAnimCicle(1);
+            }
         }
     }
     else
@@ -68,34 +77,24 @@ void AICharacter::findto(float tox, float toy)
     float floatY = y/TileSize;
     int startX;
     int startY;
-    if(abs(endX - floatX) <= 1)
+    if((floatX - preenemmyX)>1.5f || (preenemmyX - floatX)>0.5f)
+    {
         startX = floor(floatX);
+        preenemmyX = startX;
+    }
     else
     {
-        if((floatX - preenemmyX)>1.5f || (preenemmyX - floatX)>0.5f)
-        {
-            startX = floor(floatX);
-            preenemmyX = startX;
-        }
-        else
-        {
-            startX = preenemmyX;
-        }
+        startX = preenemmyX;
     }
 
-    if(abs(endY - floatY) <= 1)
+    if((floatY - preenemmyY)>1.5f || (preenemmyY - floatY)>0.5f)
+    {
         startY = floor(floatY);
+        preenemmyY = startY;
+    }
     else
     {
-        if((floatY - preenemmyY)>1.5f || (preenemmyY - floatY)>0.5f)
-        {
-            startY = floor(floatY);
-            preenemmyY = startY;
-        }
-        else
-        {
-            startY = preenemmyY;
-        }
+        startY = preenemmyY;
     }
 
     std::vector<sf::Vector2i*> route;
@@ -133,6 +132,63 @@ void AICharacter::findto(float tox, float toy)
             }
         }
     }
+}
+
+sf::Vector2f AICharacter::CastTarget(b2Body* inTarget)
+{
+    b2Vec2 p1 = inTarget->GetPosition();
+    b2Vec2 p3 = Body->GetPosition();
+    b2Vec2 dif2 = p1 - p3;
+    float module2 = sqrt(pow(dif2.x,2)+pow(dif2.y,2));
+    b2Vec2 p4 = p3 + b2Vec2(dif2.x/module2*6,dif2.y/module2*6);
+    sf::Vector2f targetbehaviour;
+        if(isright)
+            targetbehaviour = sf::Vector2f(p3.x*PPM+50, p3.y*PPM);
+        else
+            targetbehaviour = sf::Vector2f(p3.x*PPM-50, p3.y*PPM);
+    sse::MyRayCastCallback RayCastCallback2;
+    context->m_world->RayCast(&RayCastCallback2, p3 , p4);
+    if ( RayCastCallback2.m_fixture )
+    {
+        sse::UserData* userdataA = static_cast<sse::UserData*>(RayCastCallback2.m_fixture->GetUserData());
+        if(Target == 0 && !gotoflag)
+        {
+            if(userdataA->tipo == 1)
+            {
+                setAnimCicle(2);
+                setTarget(inTarget);
+            }
+        }
+        if(hasweapon)
+        {
+            if(userdataA->tipo == 1)
+                findflag = false;
+            else
+                findflag = true;
+            std::cout<<!findflag<<std::endl;
+        }
+        p4 = b2Vec2(RayCastCallback2.m_point.x, RayCastCallback2.m_point.y);
+
+        if(!gotoflag)
+            targetbehaviour = sf::Vector2f(p4.x*PPM, p4.y*PPM);
+    }
+    else
+        findflag = true;
+    if(hasweapon)
+    {
+        updatebehaviour(targetbehaviour.x, targetbehaviour.y);
+        if(!shootbusy && Target != 0)
+        {
+            if(!findflag)
+            {
+                currenttimefind = 0;
+                createBullet(bulletOrigin, bulletVU, angle);
+                weapon.play();
+                shootbusy = true;
+            }
+        }
+    }
+    return sf::Vector2f(p4.x*PPM, p4.y*PPM);
 }
 
 }

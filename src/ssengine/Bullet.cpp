@@ -2,7 +2,7 @@
 
 namespace sse
 {
-Bullet::Bullet(GameContext* incontext,sf::Vector2f origin, sf::Vector2f vel, float angle, std::string incode):context(incontext)
+Bullet::Bullet(GameContext* incontext,sf::Vector2f origin, sf::Vector2f vel, float angle, std::string incode, bool fromplayer):context(incontext)
 {
     code = incode;
     animatedflag = context->m_script->get<bool>(code+".animatedflag");
@@ -33,7 +33,16 @@ Bullet::Bullet(GameContext* incontext,sf::Vector2f origin, sf::Vector2f vel, flo
     bulletFix = bulletB->CreateFixture(&bulletFixDef);
     //bulletFix->SetSensor(true);
     b2Filter filter;
-    filter.maskBits = 65534;
+    if(fromplayer)
+    {
+        filter.maskBits = 65534;
+        filter.categoryBits = 2;
+    }
+    else
+    {
+        filter.maskBits = 65533;
+        filter.categoryBits = 1;
+    }
     bulletFix->SetFilterData(filter);
     bulletB->SetTransform(b2Vec2(origin.x*MPP, origin.y*MPP),angle*DEGTORAD);
     bulletB->SetLinearVelocity(b2Vec2(vel.x*1.5f,-vel.y*1.5f));

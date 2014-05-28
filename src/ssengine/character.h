@@ -87,6 +87,7 @@ public:
     sf::Sprite bulletS;
     sf::Sound soundshoot;
     bool isbusy = false;
+    bool shootbusy = false;
     void takeDamage(float inDamage);
     float Hit();
     float getHP();
@@ -112,6 +113,7 @@ protected:
     void setRight();
     sf::Vector2f Origin;
     std::vector<Bullet*>* BulletList;
+    bool isright = false;
 private:
     bool isdeadflag = false;
     int ofsetanimx = 0;

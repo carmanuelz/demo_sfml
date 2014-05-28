@@ -98,7 +98,7 @@
               }
             ],
             "density" : 1,
-            "filter-categoryBits" : 7,
+            "filter-categoryBits" : 3,
             "id" : 1,
             "name" : "block",
             "shapes" : 
@@ -179,7 +179,7 @@
               }
             ],
             "density" : 1,
-            "filter-categoryBits" : 7,
+            "filter-categoryBits" : 3,
             "id" : 2,
             "name" : "block",
             "shapes" : 
@@ -244,7 +244,7 @@
               }
             ],
             "density" : 1,
-            "filter-categoryBits" : 7,
+            "filter-categoryBits" : 3,
             "id" : 3,
             "name" : "block",
             "shapes" : 
@@ -303,7 +303,7 @@
               }
             ],
             "density" : 1,
-            "filter-categoryBits" : 7,
+            "filter-categoryBits" : 3,
             "id" : 4,
             "name" : "block",
             "shapes" : 
@@ -362,7 +362,7 @@
               }
             ],
             "density" : 1,
-            "filter-categoryBits" : 7,
+            "filter-categoryBits" : 3,
             "id" : 5,
             "name" : "block",
             "shapes" : 

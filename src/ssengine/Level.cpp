@@ -155,35 +155,17 @@ void Level::CreateGUI()
 
 void Level::CastEnemy()
 {
-    b2Vec2 p1 = player->Body->GetPosition();
     for(auto e = EnemmyList.cbegin() ; e != EnemmyList.cend() ; e++ )
     {
         sse::AICharacter* enemmy = *e;
         b2Vec2 p3 = enemmy->Body->GetPosition();
-        b2Vec2 dif2 = p1 - p3;
-        float module2 = sqrt(pow(dif2.x,2)+pow(dif2.y,2));
-        b2Vec2 p4 = p3 + b2Vec2(dif2.x/module2*6,dif2.y/module2*6);
-        sse::MyRayCastCallback RayCastCallback2;
-        context->m_world->RayCast(&RayCastCallback2, p3 , p4);
-        if ( RayCastCallback2.m_fixture )
-        {
-            if(enemmy->Target == 0 && !enemmy->gotoflag)
-            {
-                sse::UserData* userdataA = static_cast<sse::UserData*>(RayCastCallback2.m_fixture->GetUserData());
-                if(userdataA->tipo == 1)
-                {
-                    enemmy->setAnimCicle(2);
-                    enemmy->setTarget(player->Body);
-                }
-            }
-            p4 = b2Vec2(RayCastCallback2.m_point.x, RayCastCallback2.m_point.y);
-        }
+        sf::Vector2f p4 = enemmy->CastTarget(player->Body);
         if(debugflag)
         {
             sf::Vertex line2[] =
             {
                 sf::Vertex(sf::Vector2f(p3.x*PPM, p3.y*PPM)),
-                sf::Vertex(sf::Vector2f(p4.x*PPM, p4.y*PPM))
+                sf::Vertex(p4)
             };
             context->m_rwindow->draw(line2, 2, sf::Lines);
         }

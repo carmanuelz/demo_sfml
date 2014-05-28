@@ -54,6 +54,7 @@ public:
     void setAnimation(const Animation& animation);
     void setFrameTime(sf::Time time);
     void play();
+    void refresh();
     void play(const Animation& animation);
     void pause();
     void stop();

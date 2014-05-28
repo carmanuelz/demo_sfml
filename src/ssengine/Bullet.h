@@ -11,7 +11,7 @@ namespace sse
 class Bullet
 {
 public:
-    Bullet(GameContext* incontext,sf::Vector2f origin, sf::Vector2f vel, float angle, std::string incode);
+    Bullet(GameContext* incontext,sf::Vector2f origin, sf::Vector2f vel, float angle, std::string incode, bool fromplayer);
     virtual ~Bullet();
     void draw(sf::Time delta);
     int estado = 0;
