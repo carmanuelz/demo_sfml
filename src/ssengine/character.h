@@ -44,12 +44,19 @@ public:
     }
     float32 ReportFixture(b2Fixture* fixture, const b2Vec2& point, const b2Vec2& normal, float32 fraction)
     {
-        m_fixture = fixture;
-        m_point = point;
-        m_normal = normal;
-        //m_fraction = fraction;
-
-        return fraction;
+        UserData* userdata = static_cast<sse::UserData*>(fixture->GetUserData());
+        if(userdata->tipo == 3)
+        {
+            return 1.0f;
+        }
+        if(fraction <= 1.0f)
+        {
+            m_fixture = fixture;
+            m_point = point;
+            m_normal = normal;
+            m_fraction = fraction;
+        }
+        return 1.0f;
     }
 
     b2Fixture* m_fixture;

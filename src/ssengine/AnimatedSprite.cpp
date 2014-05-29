@@ -83,7 +83,7 @@ void AnimatedSprite::play()
 
 void AnimatedSprite::refresh()
 {
-    setFrame(m_currentFrame);
+    setFrame(m_currentFrame,false);
 }
 
 void AnimatedSprite::play(const Animation& animation)
@@ -273,7 +273,7 @@ void AnimatedSprite::update(sf::Time deltaTime)
 
             }
             // set the current frame, not reseting the time
-            //if(!m_isPaused)
+            if(!m_isPaused)
                 setFrame(m_currentFrame, false);
         }
     }

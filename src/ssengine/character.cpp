@@ -193,6 +193,7 @@ b2Body* Character::createBody(float x, float y)
         sensorPlayer->SetSensor(true);
         filter.maskBits = 65533;
         filter.categoryBits = 5;
+        sensorPlayer->SetFilterData(filter);
     }
     else
     {
@@ -330,6 +331,9 @@ void Character::updatebehaviour(float TargetX,float TargetY)
         weapon.rotate(angle - weapon.getRotation());
         before = false;
     }
+
+    weapon.refresh();
+
 }
 
 b2Body* Character::createBullet(sf::Vector2f origin, sf::Vector2f bvel,float angle)

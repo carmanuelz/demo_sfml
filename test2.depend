@@ -436,7 +436,7 @@
 	<sstream>
 	<iomanip>
 
-1400885352 source:d:\workspace\c++\test2\src\main.cpp
+1401240767 source:d:\workspace\c++\test2\src\main.cpp
 	<math.h>
 	<iostream>
 	<SFML/System.hpp>
@@ -498,10 +498,10 @@
 
 1397604633 source:d:\workspace\c++\test2\src\ssengine\npc.cpp
 
-1401153958 source:d:\workspace\c++\test2\src\ssengine\character.cpp
+1401320145 source:d:\workspace\c++\test2\src\ssengine\character.cpp
 	"character.h"
 
-1400805035 d:\workspace\c++\test2\src\ssengine\character.h
+1401335784 d:\workspace\c++\test2\src\ssengine\character.h
 	<string>
 	<vector>
 	<map>
@@ -516,7 +516,7 @@
 	"Bullet.h"
 	"AnimatedAccessor.h"
 
-1400708499 d:\workspace\c++\test2\src\ssengine\animatedsprite.hpp
+1401308956 d:\workspace\c++\test2\src\ssengine\animatedsprite.hpp
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/System/Time.hpp>
 	<SFML/Graphics/Drawable.hpp>
@@ -7654,7 +7654,7 @@
 1318294774 d:\workspace\c++\test2\src\ssengine\loadconf\config_parser.h
 	<boost/python.hpp>
 
-1400708499 source:d:\workspace\c++\test2\src\ssengine\animatedsprite.cpp
+1401310469 source:d:\workspace\c++\test2\src\ssengine\animatedsprite.cpp
 	"AnimatedSprite.hpp"
 
 1388940228 source:d:\workspace\c++\test2\src\ssengine\animation.cpp
@@ -8884,16 +8884,16 @@
 1401293192 source:d:\workspace\c++\demo_sfml\src\ssengine\player.cpp
 	"Player.h"
 
-1400814155 d:\workspace\c++\test2\src\ssengine\aicharacter.h
+1401308956 d:\workspace\c++\test2\src\ssengine\aicharacter.h
 	"character.h"
 
 1400883488 d:\workspace\c++\test2\src\ssengine\player.h
 	"character.h"
 
-1400622755 source:d:\workspace\c++\test2\src\ssengine\aicharacter.cpp
+1401320352 source:d:\workspace\c++\test2\src\ssengine\aicharacter.cpp
 	"AICharacter.h"
 
-1400883979 source:d:\workspace\c++\test2\src\ssengine\player.cpp
+1401310036 source:d:\workspace\c++\test2\src\ssengine\player.cpp
 	"Player.h"
 
 1400200543 d:\workspace\c++\test2\src\ssengine\tween\tweenmanager.h
@@ -9069,16 +9069,16 @@
 	<string>
 	<type_traits>
 
-1401154395 source:d:\workspace\c++\test2\src\ssengine\bullet.cpp
+1401320286 source:d:\workspace\c++\test2\src\ssengine\bullet.cpp
 	"Bullet.h"
 
-1400344522 d:\workspace\c++\test2\src\ssengine\bullet.h
+1401308956 d:\workspace\c++\test2\src\ssengine\bullet.h
 	<SFML/Graphics.hpp>
 	"AnimatedSprite.hpp"
 	"GameContext.h"
 	"UserData.h"
 
-1401057003 source:d:\workspace\c++\test2\src\ssengine\level.cpp
+1401308956 source:d:\workspace\c++\test2\src\ssengine\level.cpp
 	"Level.h"
 
 1401056585 d:\workspace\c++\test2\src\ssengine\level.h
@@ -9103,7 +9103,7 @@
 	"ContactListener.h"
 	"JSonLevel.h"
 
-1400347378 d:\workspace\c++\test2\src\ssengine\contactlistener.h
+1401337797 d:\workspace\c++\test2\src\ssengine\contactlistener.h
 	<Box2D/Box2D.h>
 	"GameContext.h"
 	"Bullet.h"

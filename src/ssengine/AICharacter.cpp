@@ -19,7 +19,8 @@ void AICharacter::updateFind()
         {
             if(findflag)
             {
-                setAnimCicle(2);
+                if(hasweapon)
+                    setAnimCicle(2);
                 b2Vec2 destination = Target->GetPosition();
                 destination.x*=PPM;
                 destination.y*=PPM;
@@ -165,7 +166,6 @@ sf::Vector2f AICharacter::CastTarget(b2Body* inTarget)
                 findflag = false;
             else
                 findflag = true;
-            std::cout<<!findflag<<std::endl;
         }
         p4 = b2Vec2(RayCastCallback2.m_point.x, RayCastCallback2.m_point.y);
 
@@ -183,6 +183,7 @@ sf::Vector2f AICharacter::CastTarget(b2Body* inTarget)
             {
                 currenttimefind = 0;
                 createBullet(bulletOrigin, bulletVU, angle);
+                //std::cout<<"enemy: "<<p3.x*PPM<<"-"<<p3.y*PPM<<"//"<<bulletOrigin.x<<"-"<<bulletOrigin.y<<"target:"<<targetbehaviour.x<<"-"<<targetbehaviour.y<<std::endl;
                 weapon.play();
                 shootbusy = true;
             }

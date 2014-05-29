@@ -83,7 +83,7 @@ sf::Vector2f Player::updatePlayer(bool hasfocused, bool hasclick)
             vel.x = vel.x*0.7;
             vel.y = vel.y*0.7;
         }
-        weapon.refresh();
+
         if (hasclick && sf::Mouse::isButtonPressed(sf::Mouse::Left))
         {
             if(Acumulator >= 0.2)
