@@ -158,17 +158,7 @@ void Level::CastEnemy()
     for(auto e = EnemmyList.cbegin() ; e != EnemmyList.cend() ; e++ )
     {
         sse::AICharacter* enemmy = *e;
-        b2Vec2 p3 = enemmy->Body->GetPosition();
-        sf::Vector2f p4 = enemmy->CastTarget(player->Body);
-        if(debugflag)
-        {
-            sf::Vertex line2[] =
-            {
-                sf::Vertex(sf::Vector2f(p3.x*PPM, p3.y*PPM)),
-                sf::Vertex(p4)
-            };
-            context->m_rwindow->draw(line2, 2, sf::Lines);
-        }
+        enemmy->CastTarget(player->Body, debugflag);
     }
 }
 
@@ -231,17 +221,19 @@ void Level::DrawObjects(sf::Time delta)
         else
             entity->draw();
     }
-
     for(std::vector<sse::Bullet*>::iterator k = BulletList.begin() ; k != BulletList.end() ; k++ )
     {
         sse::Bullet* b = *k;
-        if(b->estado == 0)
-            b->draw(delta);
+        if(b->estado == 1)
+        {
+            BulletList.erase( k );
+            delete(b);
+            k--;
+        }
+
         else
         {
-            delete(b);
-            BulletList.erase( k );
-            k--;
+            b->draw(delta);
         }
     }
 }
@@ -341,9 +333,7 @@ int Level::Run()
         context->m_tweenmanager->update(frameTime);
 
         context->m_rwindow->draw(groundS);
-
         DrawObjects(frameTime);
-
         context->m_rwindow->draw(topS);
 
         if(player->isDead() && !isFinish)
@@ -358,8 +348,11 @@ int Level::Run()
         }
         else
         {
-            roundedRecthp.setScale(player->getHP()/playerHP,1);
-            CastEnemy();
+            if(!player->isDead())
+            {
+                roundedRecthp.setScale(player->getHP()/playerHP,1);
+                CastEnemy();
+            }
         }
 
         context->m_psystem->update(frameTime);

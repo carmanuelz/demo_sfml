@@ -44,20 +44,17 @@ class ContactListener : public b2ContactListener
             sse::Character* collCharacter = static_cast<sse::Character*>(bodyB->GetUserData());
             collCharacter->addCollisionList(FixtA);
         }
-        else
+       if(userdataA->tipo == 1 && userdataB->tipo == 3)
         {
-            if(userdataA->tipo == 1)
-            {
-                b2Body* bodyA = FixtA->GetBody();
-                sse::Character* collCharacter = static_cast<sse::Character*>(bodyA->GetUserData());
-                collCharacter->addCollisionList(FixtB);
-            }
-            else if(userdataB->tipo == 1)
-            {
-                b2Body* bodyB = FixtB->GetBody();
-                sse::Character* collCharacter = static_cast<sse::Character*>(bodyB->GetUserData());
-                collCharacter->addCollisionList(FixtA);
-            }
+            b2Body* bodyA = FixtA->GetBody();
+            sse::Character* collCharacter = static_cast<sse::Character*>(bodyA->GetUserData());
+            collCharacter->addCollisionList(FixtB);
+        }
+        else if(userdataB->tipo == 1 && userdataA->tipo == 3)
+        {
+            b2Body* bodyB = FixtB->GetBody();
+            sse::Character* collCharacter = static_cast<sse::Character*>(bodyB->GetUserData());
+            collCharacter->addCollisionList(FixtA);
         }
     }
 
@@ -75,6 +72,18 @@ class ContactListener : public b2ContactListener
             collCharacter->removeCollisionList(FixtB);
         }
         else if(userdataB->tipo == 4)
+        {
+            b2Body* bodyB = FixtB->GetBody();
+            sse::Character* collCharacter = static_cast<sse::Character*>(bodyB->GetUserData());
+            collCharacter->removeCollisionList(FixtA);
+        }
+        if(userdataA->tipo == 1 && userdataB->tipo == 3)
+        {
+            b2Body* bodyA = FixtA->GetBody();
+            sse::Character* collCharacter = static_cast<sse::Character*>(bodyA->GetUserData());
+            collCharacter->removeCollisionList(FixtB);
+        }
+        else if(userdataB->tipo == 1 && userdataA->tipo == 3)
         {
             b2Body* bodyB = FixtB->GetBody();
             sse::Character* collCharacter = static_cast<sse::Character*>(bodyB->GetUserData());

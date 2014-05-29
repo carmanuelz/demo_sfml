@@ -49,14 +49,11 @@ public:
         {
             return 1.0f;
         }
-        if(fraction <= 1.0f)
-        {
-            m_fixture = fixture;
-            m_point = point;
-            m_normal = normal;
-            m_fraction = fraction;
-        }
-        return 1.0f;
+        m_fixture = fixture;
+        m_point = point;
+        m_normal = normal;
+        m_fraction = fraction;
+        return m_fraction;
     }
 
     b2Fixture* m_fixture;

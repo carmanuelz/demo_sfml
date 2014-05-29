@@ -179,29 +179,34 @@ b2Body* Character::createBody(float x, float y)
     b2Body* characterbody = context->m_world->CreateBody(&BodyDef);
     bodyfixtureDef.friction = 0;
 
-    b2FixtureDef sensorPLayerdef;
+    b2FixtureDef sensordef;
     b2CircleShape sensorshape;
-    b2Fixture* sensorPlayer;
+    b2Fixture* sensor;
     bodyfixtureDef.shape = &circleshape;
     if(Type == 1)
     {
         circleshape.m_radius = 0.25;
         sensorshape.m_radius = 0.37;
-        sensorPLayerdef.shape = &sensorshape;
-        sensorPlayer = characterbody->CreateFixture(&sensorPLayerdef);
-        sensorPlayer->SetUserData(ud);
-        sensorPlayer->SetSensor(true);
+        sensordef.shape = &sensorshape;
+        sensor = characterbody->CreateFixture(&sensordef);
+        sensor->SetUserData(ud);
+        sensor->SetSensor(true);
         filter.maskBits = 65533;
         filter.categoryBits = 5;
-        sensorPlayer->SetFilterData(filter);
+        sensor->SetFilterData(filter);
     }
     else
     {
-
-        circleshape.m_radius = 0.22;
+        circleshape.m_radius = 0.18;
+        sensorshape.m_radius = 0.37;
+        sensordef.shape = &sensorshape;
+        sensor = characterbody->CreateFixture(&sensordef);
+        sensor->SetUserData(ud);
+        sensor->SetSensor(true);
         BodyDef.linearDamping = 20;
         filter.maskBits = 65534;
         filter.categoryBits = 4;
+        sensor->SetFilterData(filter);
     }
     b2Fixture* BodyFix = characterbody->CreateFixture(&bodyfixtureDef);
     BodyFix->SetFilterData(filter);
@@ -240,10 +245,9 @@ void Character::update(sf::Time frameTime)
             isbusy = false;
 
     if(shootbusy)
-        if(Acumulator > 1.0f)
+        if(Acumulator > 0.5f)
         {
             shootbusy = false;
-            Acumulator = 0;
         }
 
     if(Type == 1 && !isdeadflag)

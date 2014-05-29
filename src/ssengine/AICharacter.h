@@ -22,7 +22,7 @@ class AICharacter : public Character
         void setTarget(b2Body* inTarget);
         void setPatrol(float Ax, float Ay, float Bx, float By);
         void GotoPosition(float Ax, float Bx);
-        sf::Vector2f CastTarget(b2Body* inTarget);
+        void CastTarget(b2Body* inTarget, bool isdebug);
         void GoToOrigin();
         void follow(b2Body* inTarget);
         bool gotoflag = false;
@@ -32,7 +32,7 @@ class AICharacter : public Character
         int preenemmyX = 0;
         int preenemmyY = 0;
         float TileSize = 0;
-        float facVel = 0.30;
+        float facVel = 0.27;
         bool patrolflag = false;
         sf::Vector2f findposition;
     };
