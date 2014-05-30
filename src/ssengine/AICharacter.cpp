@@ -184,6 +184,7 @@ void AICharacter::CastTarget(b2Body* inTarget, bool isdebug)
                     findflag = true;
             }
             FinishA = b2Vec2(RayCastCallbackA.m_point.x, RayCastCallbackA.m_point.y);
+            FinishB = b2Vec2(RayCastCallbackB.m_point.x, RayCastCallbackB.m_point.y);
 
             if(!gotoflag)
                 targetbehaviour = sf::Vector2f(FinishC.x*PPM, FinishC.y*PPM);
@@ -196,7 +197,7 @@ void AICharacter::CastTarget(b2Body* inTarget, bool isdebug)
         context->m_world->RayCast(&RayCastCallbackC, originpos , FinishC);
         if ( RayCastCallbackC.m_fixture)
         {
-            sse::UserData* userdataA = static_cast<sse::UserData*>(RayCastCallbackA.m_fixture->GetUserData());
+            sse::UserData* userdataA = static_cast<sse::UserData*>(RayCastCallbackC.m_fixture->GetUserData());
             if(Target == 0 && !gotoflag)
             {
                 if(userdataA->tipo == 1)
