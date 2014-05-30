@@ -45,7 +45,7 @@ public:
     float32 ReportFixture(b2Fixture* fixture, const b2Vec2& point, const b2Vec2& normal, float32 fraction)
     {
         UserData* userdata = static_cast<sse::UserData*>(fixture->GetUserData());
-        if(userdata->tipo == 3)
+        if(userdata->tipo == 3 || userdata->tipo == 4)
         {
             return 1.0f;
         }
@@ -64,6 +64,13 @@ public:
 class Character : public drawableentity
 {
 public:
+    const int   State_Inactive = 0,
+                State_Patrol = 1,
+                State_Finding = 2,
+                State_Runaway = 3,
+                State_Atack = 4,
+                State_Busy = 5;
+
     Character(float inx, float iny, std::string inCode, GameContext* incontext) : drawableentity(1,incontext)
     {
         Code = inCode;

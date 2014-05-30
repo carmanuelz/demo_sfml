@@ -3,7 +3,13 @@
 namespace sse
 {
 
-sf::Vector2f Player::updatePlayer(bool hasfocused, bool hasclick)
+void Player::update(sf::Time frameTime)
+{
+    Character::update(frameTime);
+}
+
+
+sf::Vector2f Player::updateEventListener(bool hasfocused, bool hasclick)
 {
     float result = 0;
     if(hasfocused && !blockbehaviour)

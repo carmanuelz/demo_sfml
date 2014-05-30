@@ -2,7 +2,7 @@
 
 namespace sse
 {
-Bullet::Bullet(GameContext* incontext,sf::Vector2f origin, sf::Vector2f vel, float angle, std::string incode, bool fromplayer):context(incontext)
+Bullet::Bullet(GameContext* incontext,sf::Vector2f origin, sf::Vector2f vel, float angle, std::string incode, bool fromplayer, void* infromcharacter):context(incontext),fromcharacter(infromcharacter)
 {
     code = incode;
     animatedflag = context->m_script->get<bool>(code+".animatedflag");

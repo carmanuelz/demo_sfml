@@ -21,30 +21,30 @@
         "x":800,
         "y":850,
         "reset":false
-    },
+    }*/,
     {
-        "code":"mob001",
-        "x":800,
+        "code":"mob002",
+        "x":50,
         "y":600,
         "reset":false
-    }*/,
+    },
     {
         "code":"mob002",
         "x":800,
         "y":450,
         "reset":false
-    }/*,
-    {
-        "code":"mob001",
-        "x":800,
-        "y":350,
-        "reset":false
     },
     {
         "code":"mob001",
         "x":800,
+        "y":700,
+        "reset":false
+    },
+    {
+        "code":"mob002",
+        "x":800,
         "y":800,
         "reset":false
-    }*/
+    }
   ]
 }

@@ -77,7 +77,7 @@ void Level::Restart()
         character->setBulletList(&BulletList);
         DrawList.push_back(character);
     }
-    playerposition = player->updatePlayer();
+    playerposition = player->updateEventListener();
     playerHP = player->getHP();
     isFinish = false;
 }
@@ -132,12 +132,9 @@ void Level::CreateGUI()
     sf::FloatRect allocation = window->GetAllocation();
     window->SetPosition( sf::Vector2f( context->m_screensize.x - allocation.width, context->m_screensize.y-allocation.height )/2.0f );
 
-    sf::Image sfgui_logo;
-    auto image = sfg::Image::Create();
-    if( sfgui_logo.loadFromFile( "assets/images/others/icon_dead.png" ) )
-    {
-        image->SetImage( sfgui_logo );
-    }
+    sfgui_dead.loadFromFile( "assets/images/others/icon_dead.png" );
+    sfgui_coup.loadFromFile( "assets/images/others/coup.png" );
+
     auto box_dead = sfg::Box::Create( sfg::Box::Orientation::VERTICAL, 5.0f );
     auto continuar_button = sfg::Button::Create( "  Continuar?  " );
     continuar_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &Level::GotoMenu, this ) );
@@ -150,7 +147,7 @@ void Level::CreateGUI()
     dead_window->Show(false);
     /* Fin GUI */
     sf::FloatRect dallocation = dead_window->GetAllocation();
-    dead_window->SetPosition( sf::Vector2f( context->m_screensize.x - dallocation.width, context->m_screensize.y-dallocation.height - 200.0f )/2.0f );
+    dead_window->SetPosition( sf::Vector2f( context->m_screensize.x - dallocation.width, context->m_screensize.y-dallocation.height - 240.0f )/2.0f );
 }
 
 void Level::CastEnemy()
@@ -267,20 +264,10 @@ void Level::UpdateLists(sf::Time delta)
             e--;
         }
         else
-            enemmy->updateFind();
+            enemmy->update(delta);
     }
 
-    for(std::vector<sse::Character*>::iterator c = CharacterList.begin() ; c != CharacterList.end() ; c++ )
-    {
-        sse::Character* character = *c;
-        if(character->needremove)
-        {
-            CharacterList.erase(c);
-            c--;
-        }
-        else
-            character->update(delta);
-    }
+    player->update(delta);
 }
 
 void Level::DrawPointer(sf::Vector2f mousePos)
@@ -319,7 +306,7 @@ int Level::Run()
         if(!player->isDead() && isFocused)
             player->updatebehaviour(mousePos.x,mousePos.y);
 
-        playerposition = player->updatePlayer(isFocused, hasclickplayer);
+        playerposition = player->updateEventListener(isFocused, hasclickplayer);
 
         sf::Time frameTime = frameClock.restart();
 
@@ -336,8 +323,13 @@ int Level::Run()
         DrawObjects(frameTime);
         context->m_rwindow->draw(topS);
 
-        if(player->isDead() && !isFinish)
+        if((player->isDead() || EnemmyList.size() == 0) && !isFinish)
         {
+            if(EnemmyList.size() == 0)
+                image->SetImage( sfgui_coup );
+            else
+                image->SetImage( sfgui_dead );
+
             dead_window->Show(true);
             for(auto e = EnemmyList.cbegin() ; e != EnemmyList.cend() ; e++ )
             {

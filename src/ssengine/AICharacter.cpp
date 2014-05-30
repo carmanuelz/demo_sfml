@@ -6,6 +6,12 @@ AICharacter::~AICharacter()
 {
 }
 
+void AICharacter::update(sf::Time frameTime)
+{
+    updateFind();
+    Character::update(frameTime);
+}
+
 void AICharacter::updateFind()
 {
     if(Target != 0)
@@ -219,6 +225,7 @@ void AICharacter::CastTarget(b2Body* inTarget, bool isdebug)
             {
                 createBullet(bulletOrigin, bulletVU, angle);
                 weapon.play();
+                soundshoot.play();
                 shootbusy = true;
                 currenttimefind = 0;
                 Acumulator = 0;

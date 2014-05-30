@@ -60,6 +60,9 @@ private:
     sfg::Window::Ptr window = sfg::Window::Create();
     sfg::Desktop desktop;
 
+    sf::Image sfgui_dead;
+    sf::Image sfgui_coup;
+    sfg::Image::Ptr image = sfg::Image::Create();
     sfg::Window::Ptr dead_window = sfg::Window::Create();
 
     std::vector<sse::drawableentity*> DrawList;

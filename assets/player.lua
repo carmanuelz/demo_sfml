@@ -18,10 +18,10 @@ mob001 = {
 
 mob002 = {
 	type = 4,
-	src = "assets/images/characters/player2.png",
+	src = "assets/images/characters/enemmy2.png",
 	run = {8, 48, 60, 0},
 	idle = {8, 48, 60, 1},	
-	dead = {9, 72, 60, 2},
+	dead = {9, 72, 60, 0},
 	attack = {8, 48, 60, 0},	
 	offsetXR = -24,
 	offsetXL = -24,

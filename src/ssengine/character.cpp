@@ -223,7 +223,6 @@ b2Body* Character::createBody(float x, float y)
 void Character::update(sf::Time frameTime)
 {
     Body->SetLinearVelocity(vel);
-    TestCollision();
     if(Acumulator < 100)
         Acumulator+=frameTime.asSeconds();
 
@@ -235,6 +234,8 @@ void Character::update(sf::Time frameTime)
     y = position.y*PPM;
     animated.update(frameTime);
     animated.setPosition(x + ofsetanimx, y + offsetAnimYR);
+
+    TestCollision();
     if(hasweapon)
     {
         weapon.setPosition(x + ofsetanimx+CgunOffset.x, y + offsetAnimYR + CgunOffset.y);
@@ -245,7 +246,7 @@ void Character::update(sf::Time frameTime)
             isbusy = false;
 
     if(shootbusy)
-        if(Acumulator > 0.5f)
+        if(Acumulator > 1.5f)
         {
             shootbusy = false;
         }
@@ -345,7 +346,7 @@ b2Body* Character::createBullet(sf::Vector2f origin, sf::Vector2f bvel,float ang
     bool shootflag = true;
     if (Type != 1)
         shootflag = false;
-    BulletList->push_back(new Bullet(context,origin,bvel,angle,"g001",shootflag));
+    BulletList->push_back(new Bullet(context,origin,bvel,angle,"g001",shootflag,this));
 }
 
 void Character::addCollisionList(b2Fixture*f)
@@ -392,6 +393,13 @@ void Character::TestCollision()
                 context->m_psystem->addEmitter(BloodEmitter(sf::Vector2f(x,y)), sf::seconds(0.1f));
                 bullet->estado = 1;
                 takeDamage(5);
+                if(Type == objectType::obj_typeEnemy)
+                    if(Target == 0)
+                    {
+                        setAnimCicle(2);
+                        Character* player = static_cast<sse::Character*>(bullet->fromcharacter);
+                        Target = player->Body;
+                    }
             }
             break;
         }
