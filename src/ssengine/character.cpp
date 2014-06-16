@@ -234,8 +234,6 @@ void Character::update(sf::Time frameTime)
     y = position.y*PPM;
     animated.update(frameTime);
     animated.setPosition(x + ofsetanimx, y + offsetAnimYR);
-
-    TestCollision();
     if(hasweapon)
     {
         weapon.setPosition(x + ofsetanimx+CgunOffset.x, y + offsetAnimYR + CgunOffset.y);
@@ -250,20 +248,6 @@ void Character::update(sf::Time frameTime)
         {
             shootbusy = false;
         }
-
-    if(Type == 1 && !isdeadflag)
-    {
-        if(HP <= 0)
-        {
-            vel = b2Vec2(0,0);
-            setAnimCicle(5);
-            animated.setReverse(false);
-            animated.setLooped(false);
-            isdeadflag = true;
-            hasweapon = false;
-            blockbehaviour = true;
-        }
-    }
 }
 
 void Character::takeDamage(float inDamage)
@@ -360,59 +344,5 @@ void Character::removeCollisionList(b2Fixture*f)
     if ( it != CollisionList.end() )
         CollisionList.erase( it );
 }
-
-void Character::TestCollision()
-{
-    for(auto k = CollisionList.cbegin() ; k != CollisionList.cend() ; k++ )
-    {
-        b2Fixture* f = *k;
-        sse::UserData* userdata = static_cast<sse::UserData*>(f->GetUserData());
-        switch (userdata->tipo)
-        {
-        case objectType::obj_typePlayer:
-            if(!isbusy)
-            {
-                if(!hasweapon)
-                {
-                    animated.PrepareTimeLine();
-                    animated.PushTransition(new Transition(1,Cattackcicle ,0,0,0,0));
-                    animated.PushTransition(new Transition(1,Cruncicle,0,0,0,0));
-                    animated.StartTimeLine();
-                    isbusy = true;
-                    b2Vec2 pos = f->GetBody()->GetPosition();
-                    context->m_psystem->addEmitter(BloodEmitter(sf::Vector2f(pos.x*PPM,pos.y*PPM)), sf::seconds(0.1f));
-                    Character* player = static_cast<sse::Character*>(f->GetBody()->GetUserData());
-                    player->takeDamage(Hit());
-                }
-            }
-            break;
-        case objectType::obj_typeBullet:
-            Bullet* bullet = static_cast<sse::Bullet*>(f->GetBody()->GetUserData());
-            if(bullet->estado == 0)
-            {
-                context->m_psystem->addEmitter(BloodEmitter(sf::Vector2f(x,y)), sf::seconds(0.1f));
-                bullet->estado = 1;
-                takeDamage(5);
-                if(Type == objectType::obj_typeEnemy)
-                    if(Target == 0)
-                    {
-                        setAnimCicle(2);
-                        Character* player = static_cast<sse::Character*>(bullet->fromcharacter);
-                        Target = player->Body;
-                    }
-            }
-            break;
-        }
-
-        if(HP<15 && finished == false)
-        {
-            context->m_tweenmanager->add(&tween);
-            finished = true;
-        }
-        if(HP <= 0 && Type != 1)
-            needremove = true;
-    }
-}
-
 
 

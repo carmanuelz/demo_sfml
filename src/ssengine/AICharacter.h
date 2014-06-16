@@ -19,6 +19,7 @@ class AICharacter : public Character
         void findto(float intargetx, float intargety);
         void setpathfinding(AStarFinder* AStarta, float intileSize);
         void update(sf::Time frameTime);
+        void TestCollision();
         void updateFind();
         void setTarget(b2Body* inTarget);
         void setPatrol(float Ax, float Ay, float Bx, float By);

@@ -13,6 +13,7 @@ public:
     }
     sf::Vector2f updateEventListener(bool hasfocused = true, bool hasclick = true);
     void update(sf::Time frameTime);
+    void TestCollision();
     bool hasshoot = false;
     bool isDead();
 private:
