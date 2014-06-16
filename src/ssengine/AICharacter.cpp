@@ -105,11 +105,10 @@ void AICharacter::findto(float tox, float toy)
         startY = preenemmyY;
     }
 
-    std::vector<sf::Vector2i*> route;
     if(AStartF->isWalkableAt(startX,startY) && AStartF->isWalkableAt(endX,endY))
     {
         route = AStartF->findPath(startX,startY,endX,endY);
-        int len = route.size();
+        /*int len = route.size();
         if(len>1)
         {
             sf::Vector2f difstep((route[len-2]->x - startX)*TileSize, (route[len-2]->y - startY)*TileSize);
@@ -138,7 +137,7 @@ void AICharacter::findto(float tox, float toy)
                     }
                 }
             }
-        }
+        }*/
     }
 }
 
@@ -260,6 +259,16 @@ void AICharacter::CastTarget(b2Body* inTarget, bool isdebug)
                 sf::Vertex(sf::Vector2f(FinishC.x*PPM, FinishC.y*PPM))
             };
             context->m_rwindow->draw(lineC, 2, sf::Lines);
+        }
+        if(Target != 0)
+        {
+            sf::VertexArray lines(sf::LinesStrip, route.size());
+            for(int i = 0; i < route.size(); i++)
+            {
+                lines[i].position = sf::Vector2f(route[i]->x*TileSize, route[i]->y*TileSize);
+                lines[i].color = sf::Color::Red;
+            }
+            context->m_rwindow->draw(lines);
         }
     }
 }
