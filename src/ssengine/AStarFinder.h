@@ -38,17 +38,20 @@ struct Nodo
 class AStarFinder
 {
 public:
-    AStarFinder(float tilesize, int width, int height, std::vector<b2Fixture*> *blocFixtures);
+    AStarFinder(float intilesize, int width, int height, std::vector<b2Fixture*> *blocFixtures);
     std::vector<sf::Vector2i*> findPath(sf::Vector2i Pstart, sf::Vector2i Pend);
     std::vector<sf::Vector2i*> findPath(int startX, int startY, int endX, int endY);
     bool isWalkableAt(int x,int y);
+    void drawdebug(sf::RenderWindow* rw);
 private:
     int width;
     int height;
     int **blockgrid;
     Nodo ***Grid;
+    float tilesize;
     std::vector<Nodo*> getNeighbors(Nodo* node);
     std::vector<sf::Vector2i*> backtrace(Nodo* node);
+    std::vector<sf::Vertex*> griddebug;
     bool isInside(int x, int y);
     void setWalkableAt(int x, int y,bool walkable);
     bool compareNode(Nodo* A, Nodo* B);

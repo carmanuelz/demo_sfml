@@ -117,7 +117,7 @@ protected:
     float offsetAnimYR = 0;
     float offsetAnimYL = 0;
     float currenttimefind = 0;
-    float limittimefind = 4;
+    float limittimefind = 100;
     float HP = 0;
     float FullHP;
     float Damage = 0;

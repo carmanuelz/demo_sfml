@@ -362,6 +362,7 @@ int Level::Run()
             const float time = 1.f / frameTime.asSeconds();
             stream << "April's Quest. Current fps: " << time << std::endl;
             context->m_rwindow->setTitle(stream.str());
+            context->m_finder->drawdebug(context->m_rwindow);
         }
         DrawPointer(mousePos);
         context->m_rwindow->display();

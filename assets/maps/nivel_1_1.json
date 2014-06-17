@@ -23,13 +23,13 @@
         "reset":false
     }*/,
     {
-        "code":"mob002",
+        "code":"mob001",
         "x":50,
         "y":600,
         "reset":false
     },
     {
-        "code":"mob002",
+        "code":"mob001",
         "x":800,
         "y":450,
         "reset":false
@@ -41,7 +41,7 @@
         "reset":false
     },
     {
-        "code":"mob002",
+        "code":"mob001",
         "x":800,
         "y":800,
         "reset":false

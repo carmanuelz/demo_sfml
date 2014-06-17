@@ -3,10 +3,11 @@
 using namespace sse;
 
 #define SQRT2 = 1.4
-AStarFinder::AStarFinder(float tilesize, int inwidth, int inheight, std::vector<b2Fixture*> *blocFixtures)
+AStarFinder::AStarFinder(float intilesize, int inwidth, int inheight, std::vector<b2Fixture*> *blocFixtures)
 {
     width = inwidth;
     height = inheight;
+    tilesize = intilesize;
 
     blockgrid = new int*[height];
     for (int i = 0; i <height; ++i)
@@ -61,6 +62,28 @@ AStarFinder::AStarFinder(float tilesize, int inwidth, int inheight, std::vector<
         std::cout<<std::endl;
     }
 }
+void AStarFinder::drawdebug(sf::RenderWindow* rw)
+{
+    for(int i = 0; i < width; i++)
+    {
+        sf::Vertex line[2] =
+            {
+                sf::Vertex(sf::Vector2f(i*tilesize, 0),sf::Color::Blue),
+                sf::Vertex(sf::Vector2f(i*tilesize, width*tilesize),sf::Color::Blue)
+            };
+        rw->draw(line, 2, sf::Lines);
+    }
+
+    for(int j = 0; j < height; j++)
+    {
+        sf::Vertex line[2] =
+            {
+                sf::Vertex(sf::Vector2f(0, j*tilesize),sf::Color::Blue),
+                sf::Vertex(sf::Vector2f(height*tilesize, j*tilesize),sf::Color::Blue)
+            };
+        rw->draw(line, 2, sf::Lines);
+    }
+}
 
 bool AStarFinder::isWalkableAt(int x, int y)
 {
@@ -77,6 +100,19 @@ void AStarFinder::setWalkableAt(int x, int y, bool walkable)
     Grid[y][x]->walkable = walkable;
 };
 
+/**
+ * Get the neighbors of the given node.
+ *
+ *     offsets      diagonalOffsets:
+ *  +---+---+---+    +---+---+---+
+ *  |   | 0 |   |    | 0 |   | 1 |
+ *  +---+---+---+    +---+---+---+
+ *  | 3 |   | 1 |    |   |   |   |
+ *  +---+---+---+    +---+---+---+
+ *  |   | 2 |   |    | 3 |   | 2 |
+ *  +---+---+---+    +---+---+---+
+ *
+ */
 std::vector<Nodo*> AStarFinder::getNeighbors(Nodo* node)
 {
     int x, y;

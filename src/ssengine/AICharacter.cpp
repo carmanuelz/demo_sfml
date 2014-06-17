@@ -265,7 +265,7 @@ void AICharacter::CastTarget(b2Body* inTarget, bool isdebug)
             sf::VertexArray lines(sf::LinesStrip, route.size());
             for(int i = 0; i < route.size(); i++)
             {
-                lines[i].position = sf::Vector2f(route[i]->x*TileSize, route[i]->y*TileSize);
+                lines[i].position = sf::Vector2f(route[i]->x*TileSize+TileSize/2, route[i]->y*TileSize+TileSize/2);
                 lines[i].color = sf::Color::Red;
             }
             context->m_rwindow->draw(lines);
