@@ -34,7 +34,7 @@ class AICharacter : public Character
         int preenemmyX = 0;
         int preenemmyY = 0;
         float TileSize = 0;
-        float facVel = 0.27;
+        float facVel = 0.18;
         bool patrolflag = false;
         sf::Vector2f findposition;
         std::vector<sf::Vector2i*> route;

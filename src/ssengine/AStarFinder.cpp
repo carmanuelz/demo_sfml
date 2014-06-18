@@ -323,7 +323,11 @@ std::vector<sf::Vector2i*> AStarFinder::smoothenPath(std::vector<sf::Vector2i*> 
             blocked = false;
             for (int j = 1; j < line.size(); ++j)
             {
-                if (!isWalkableAt(line[j]->x, line[j]->y))
+                if (!isWalkableAt(line[j]->x, line[j]->y) ||
+                    ((line[j]->x > line[j-1]->x && line[j]->y > line[j-1]->y && (!isWalkableAt(line[j]->x, line[j]->y-1) || !isWalkableAt(line[j]->x-1, line[j]->y)))||
+                     (line[j]->x < line[j-1]->x && line[j]->y > line[j-1]->y && (!isWalkableAt(line[j]->x, line[j]->y-1) || !isWalkableAt(line[j]->x+1, line[j]->y)))||
+                     (line[j]->x < line[j-1]->x && line[j]->y < line[j-1]->y && (!isWalkableAt(line[j]->x+1, line[j]->y) || !isWalkableAt(line[j]->x, line[j]->y+1)))||
+                     (line[j]->x > line[j-1]->x && line[j]->y < line[j-1]->y && (!isWalkableAt(line[j]->x, line[j]->y+1) || !isWalkableAt(line[j]->x-1, line[j]->y)))))
                 {
                     blocked = true;
                     newPath.push_back(new sf::Vector2i(lx, ly));

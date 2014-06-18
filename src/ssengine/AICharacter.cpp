@@ -108,7 +108,7 @@ void AICharacter::findto(float tox, float toy)
     if(AStartF->isWalkableAt(startX,startY) && AStartF->isWalkableAt(endX,endY))
     {
         route = AStartF->findPath(startX,startY,endX,endY);
-        /*int len = route.size();
+        int len = route.size();
         if(len>1)
         {
             sf::Vector2f difstep((route[len-2]->x - startX)*TileSize, (route[len-2]->y - startY)*TileSize);
@@ -137,7 +137,7 @@ void AICharacter::findto(float tox, float toy)
                     }
                 }
             }
-        }*/
+        }
     }
 }
 
