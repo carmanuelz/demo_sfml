@@ -36,6 +36,8 @@ class AICharacter : public Character
         float TileSize = 0;
         float facVel = 0.18;
         bool patrolflag = false;
+        bool flagdestinityX = false;
+        bool flagdestinityY = false;
         sf::Vector2f findposition;
         std::vector<sf::Vector2i*> route;
     };

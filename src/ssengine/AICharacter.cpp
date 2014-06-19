@@ -89,23 +89,27 @@ void AICharacter::findto(float tox, float toy)
     {
         startX = floor(floatX);
         preenemmyX = startX;
+        flagdestinityX = true;
     }
     else
     {
         startX = preenemmyX;
+        flagdestinityX = false;
     }
 
     if((floatY - preenemmyY)>1.5f || (preenemmyY - floatY)>0.5f)
     {
         startY = floor(floatY);
         preenemmyY = startY;
+        flagdestinityY = true;
     }
     else
     {
         startY = preenemmyY;
+        flagdestinityY = false;
     }
 
-    if(AStartF->isWalkableAt(startX,startY) && AStartF->isWalkableAt(endX,endY))
+    if((flagdestinityY || flagdestinityX) && AStartF->isWalkableAt(startX,startY) && AStartF->isWalkableAt(endX,endY))
     {
         route = AStartF->findPath(startX,startY,endX,endY);
         int len = route.size();
@@ -133,7 +137,6 @@ void AICharacter::findto(float tox, float toy)
 
                         else
                             setRight();
-
                     }
                 }
             }

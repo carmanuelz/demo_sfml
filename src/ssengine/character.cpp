@@ -203,7 +203,6 @@ b2Body* Character::createBody(float x, float y)
         sensor = characterbody->CreateFixture(&sensordef);
         sensor->SetUserData(ud);
         sensor->SetSensor(true);
-        BodyDef.linearDamping = 20;
         filter.maskBits = 65534;
         filter.categoryBits = 4;
         sensor->SetFilterData(filter);
