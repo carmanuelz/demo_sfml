@@ -21,7 +21,7 @@
 					<Add option="-DUNICODE" />
 					<Add directory="../librerias/Box2d/include" />
 					<Add directory="../librerias/Lua/include" />
-					<Add directory="../librerias/Thor/include" />
+					<Add directory="../librerias/Thor-x64/include" />
 					<Add directory="../librerias/SFGUI/include" />
 					<Add directory="../librerias/Jsoncpp/include" />
 				</Compiler>
@@ -37,7 +37,7 @@
 					<Add library="openal32" />
 					<Add library="ws2_32" />
 					<Add library="jpeg" />
-					<Add library="glew" />
+					<Add library="glew32" />
 					<Add library="freetype" />
 					<Add library="gdi32" />
 					<Add library="opengl32" />
@@ -46,7 +46,7 @@
 					<Add library="Box2D-s" />
 					<Add directory="../librerias/Box2D/lib" />
 					<Add directory="../librerias/Lua/lib" />
-					<Add directory="../librerias/Thor/lib" />
+					<Add directory="../librerias/Thor-x64/lib" />
 					<Add directory="../librerias/SFGUI/lib" />
 					<Add directory="../librerias/Jsoncpp/lib" />
 				</Linker>
@@ -65,10 +65,10 @@
 					<Add option="-DSFGUI_STATIC" />
 					<Add option="-DUNICODE" />
 					<Add directory="../librerias/Lua/include" />
-					<Add directory="../librerias/Thor/include" />
 					<Add directory="../librerias/SFGUI/include" />
 					<Add directory="../librerias/Box2d/include" />
 					<Add directory="../librerias/Jsoncpp/include" />
+					<Add directory="../librerias/Thor-x64/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -83,7 +83,7 @@
 					<Add library="openal32" />
 					<Add library="ws2_32" />
 					<Add library="jpeg" />
-					<Add library="glew" />
+					<Add library="glew32" />
 					<Add library="freetype" />
 					<Add library="gdi32" />
 					<Add library="opengl32" />
@@ -91,7 +91,7 @@
 					<Add library="lua5.1-s" />
 					<Add library="Box2D-s" />
 					<Add directory="../librerias/Lua/lib" />
-					<Add directory="../librerias/Thor/lib" />
+					<Add directory="../librerias/Thor-x64/lib" />
 					<Add directory="../librerias/SFGUI/lib" />
 					<Add directory="../librerias/Box2D/lib" />
 					<Add directory="../librerias/Jsoncpp/lib" />
@@ -100,9 +100,10 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="D:/workspace/c++/librerias/SFML-2.1_64/include" />
 		</Compiler>
 		<Linker>
-			<Add directory="../librerias/SFML_GIT/extlibs/libs-mingw/x86" />
+			<Add directory="D:/workspace/c++/librerias/SFML-2.1_64/lib" />
 		</Linker>
 		<Unit filename="src/icon.h" />
 		<Unit filename="src/main.cpp" />
