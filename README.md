@@ -7,3 +7,4 @@ Juego implementado usando la libreria SMFL (https://www.sfml-dev.org/)
 - Creacion de mapaas a partir de un archivo JSON
 
 Este era parte de una iniciativa para un curso de creacion de videojuegos.
+https://www.youtube.com/watch?v=dvNiEy5K6bo
